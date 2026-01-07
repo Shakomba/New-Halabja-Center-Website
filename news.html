@@ -70,20 +70,73 @@
 </header>
 
 <main>
-  <section class="section soft">
+  <section class="activities-hero">
     <div class="container">
-      <div class="card pad reveal">
-        <div class="kicker" data-i18n="nav.news">Activities</div>
-        <h1 class="title h-title" style="margin-top:8px">Announcements, stories, and updates</h1>
-        <p class="small">Search, filter by topic, and open posts in a clean reading popup.</p>
-
-        <div class="input-row" style="margin-top:14px">
-          <input id="newsSearch" class="input" placeholder="Search posts..." aria-label="Search posts">
-          <select id="newsTag" class="select" aria-label="Filter by topic"></select>
-          <span class="pill">Share an announcement with the link icon on each card.</span>
+      <div class="activities-hero-grid">
+        <div class="activities-hero-copy reveal">
+          <div class="kicker" data-i18n="nav.news">Activities</div>
+          <h1 class="title h-title">Announcements, stories, and community moments</h1>
+          <p class="lead">Follow recitation circles, student milestones, workshops, and outreach as they happen.</p>
+          <div class="hero-pills">
+            <span class="hero-pill">Weekly updates</span>
+            <span class="hero-pill">Community stories</span>
+            <span class="hero-pill">Student milestones</span>
+          </div>
         </div>
+        <div class="activities-hero-card reveal" aria-label="Highlights">
+          <div class="eyebrow">Highlights</div>
+          <h3>What you will find here</h3>
+          <ul class="highlight-list">
+            <li>New programs, schedules, and registration announcements.</li>
+            <li>Event recaps with photos and community reflections.</li>
+            <li>Teacher workshops and student achievement milestones.</li>
+          </ul>
+          <div class="hero-card-footer">
+            <span class="mini">Updated monthly and during events.</span>
+            <span class="pill">Open any card to read the full story.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div id="newsList" class="list" style="margin-top:16px"></div>
+  <section class="section soft activities-feed">
+    <div class="container">
+      <div class="activities-shell">
+        <aside class="activities-filters card pad reveal" aria-label="Activity filters">
+          <div class="filters-head">
+            <h2>Find activities</h2>
+            <p class="small">Search by keyword or filter by topic.</p>
+          </div>
+
+          <div class="filters-fields">
+            <label class="field">
+              <span class="field-label">Search</span>
+              <input id="newsSearch" class="input input-block" placeholder="Search activities..." aria-label="Search activities">
+            </label>
+            <label class="field">
+              <span class="field-label">Topic</span>
+              <select id="newsTag" class="select select-block" aria-label="Filter by topic"></select>
+            </label>
+          </div>
+
+          <div class="filters-chips" id="newsTagChips" aria-label="Quick topics"></div>
+          <div class="filters-note small">
+            Tip: use the link icon to share a specific announcement.
+          </div>
+        </aside>
+
+        <div class="activities-stream">
+          <div class="activities-meta reveal">
+            <div>
+              <div class="eyebrow">Latest updates</div>
+              <div id="newsCount" class="count">0 activities</div>
+            </div>
+            <span class="pill">Read, share, and stay connected.</span>
+          </div>
+
+          <div id="newsList" class="activities-grid"></div>
+        </div>
       </div>
     </div>
   </section>

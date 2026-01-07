@@ -668,6 +668,8 @@
 
     const q = $("#newsSearch");
     const tagSel = $("#newsTag");
+    const tagChips = $("#newsTagChips");
+    const count = $("#newsCount");
 
     const getShareUrl = (id)=>{
       const base = window.location.href.split("#")[0];
@@ -724,9 +726,35 @@
 
     const allTags = new Set();
     window.NEWS_DATA.forEach(p=>(p.tags||[]).forEach(t=>allTags.add(t)));
+    const tagList = Array.from(allTags).sort();
     if(tagSel){
-      tagSel.innerHTML = `<option value="">All topics</option>` + Array.from(allTags).sort().map(t=>`<option value="${t}">${t}</option>`).join("");
+      tagSel.innerHTML = `<option value="">All topics</option>` + tagList.map(t=>`<option value="${t}">${t}</option>`).join("");
     }
+    if(tagChips){
+      tagChips.innerHTML = [
+        `<button class="chip" type="button" data-tag="">All topics</button>`,
+        ...tagList.map(t=>`<button class="chip" type="button" data-tag="${t}">${t}</button>`)
+      ].join("");
+      $$(".chip", tagChips).forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const nextTag = btn.getAttribute("data-tag") || "";
+          if(tagSel){
+            tagSel.value = nextTag;
+          }
+          apply();
+        });
+      });
+    }
+
+    const syncChips = (activeTag)=>{
+      if(!tagChips) return;
+      $$(".chip", tagChips).forEach(btn=>{
+        const tag = btn.getAttribute("data-tag") || "";
+        const isActive = tag === (activeTag || "");
+        btn.classList.toggle("is-active", isActive);
+        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    };
 
     function apply(){
       const query = (q?.value || "").trim().toLowerCase();
@@ -737,25 +765,51 @@
         return matchQ && matchT;
       });
 
-      list.innerHTML = data.map(p=>{
-        const tags = (p.tags||[]).slice(0,4).map(t=>`<span class="tag">${t}</span>`).join("");
+      if(count){
+        const total = data.length;
+        count.textContent = `${total} ${total === 1 ? "activity" : "activities"}`;
+      }
+      syncChips(tag);
+
+      if(!data.length){
+        list.innerHTML = `
+          <div class="news-empty">
+            No activities match your search. Try another keyword or topic.
+          </div>
+        `;
+        setupReveal();
+        return;
+      }
+
+      list.innerHTML = data.map((p, index)=>{
+        const tags = (p.tags||[]).slice(0,4).map(t=>`<span class="news-tag">${t}</span>`).join("");
         const preview = (p.excerpt || "").trim();
+        const featured = index === 0;
+        const mediaClass = p.image ? "" : " is-empty";
+        const mediaStyle = p.image ? ` style="background-image: url('${p.image}')"` : "";
+        const actionClass = featured ? "primary" : "secondary";
+        const featureLabel = featured ? `<span class="news-feature">Featured</span>` : "";
         return `
-          <article class="news-card reveal" data-id="${p.id}">
-            <div class="news-top">
-              <div class="news-badge">🗓️ ${fmtDate(p.date)}</div>
-              <div class="news-tags">${tags}</div>
+          <article class="news-card${featured ? " featured" : ""} reveal" data-id="${p.id}">
+            <div class="news-media${mediaClass}"${mediaStyle}>
+              ${featureLabel}
             </div>
-            <h3>${p.title}</h3>
-            <p class="small">${preview}</p>
-            <div class="news-actions">
-              <button class="btn primary" data-open="${p.id}" type="button">Read more</button>
-              <button class="icon-btn" data-share="${p.id}" type="button" aria-label="Copy link" title="Copy link">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 1 0-7.07-7.07L10 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 11a5 5 0 0 0-7.07 0l-2.12 2.12a5 5 0 1 0 7.07 7.07L14 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
+            <div class="news-body">
+              <div class="news-top">
+                <time class="news-date" datetime="${p.date}">${fmtDate(p.date)}</time>
+                <div class="news-tags">${tags}</div>
+              </div>
+              <h3>${p.title}</h3>
+              <p class="small">${preview}</p>
+              <div class="news-actions">
+                <button class="btn ${actionClass}" data-open="${p.id}" type="button">Read more</button>
+                <button class="icon-btn" data-share="${p.id}" type="button" aria-label="Copy link" title="Copy link">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 1 0-7.07-7.07L10 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 11a5 5 0 0 0-7.07 0l-2.12 2.12a5 5 0 1 0 7.07 7.07L14 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
             </div>
           </article>
         `;
