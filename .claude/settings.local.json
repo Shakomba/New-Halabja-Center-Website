@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(dir /s \"d:\\\\Project\\\\new-halabja-quran-center v3\\\\new-halabja-quran-center\\\\3DBookShowcase\")"
+    ]
+  }
+}

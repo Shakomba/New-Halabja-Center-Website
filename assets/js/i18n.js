@@ -24,7 +24,14 @@ window.I18N = {
     "footer.mission.line1": "A dedicated center in New Halabja for teaching the Holy Quran,",
     "footer.mission.line2": "Tajweed, and nurturing Islamic values in our community.",
     "footer.quick": "Quick Links",
-    "footer.contact": "Contact"
+    "footer.contact": "Contact",
+    "pub.hero.title": "Publications",
+    "pub.hero.subtitle": "Books and publications from New Halabja Center for Teaching and Memorizing the Holy Qur'an",
+    "pub.featured.badge": "Featured Publication",
+    "pub.section.title": "All Publications",
+    "pub.meta.pages": "pages",
+    "pub.btn.preview": "Preview",
+    "pub.btn.download": "Download"
   },
   "ar": {
     "nav.home": "الرئيسية",
@@ -51,7 +58,14 @@ window.I18N = {
     "footer.mission.line1": "مركز مخصص في حلبجة الجديدة لتعليم القرآن الكريم والتجويد،",
     "footer.mission.line2": "وتنمية القيم الإسلامية في مجتمعنا.",
     "footer.quick": "روابط سريعة",
-    "footer.contact": "معلومات التواصل"
+    "footer.contact": "معلومات التواصل",
+    "pub.hero.title": "المنشورات",
+    "pub.hero.subtitle": "كتب ومنشورات مركز حلبجة الجديدة لتعليم وتحفيظ القرآن الكريم",
+    "pub.featured.badge": "منشور مميز",
+    "pub.section.title": "جميع المنشورات",
+    "pub.meta.pages": "صفحة",
+    "pub.btn.preview": "معاينة",
+    "pub.btn.download": "تحميل"
   },
   "ku": {
     "nav.home": "سەرەکی",
@@ -78,7 +92,14 @@ window.I18N = {
     "footer.mission.line1": "ناوەندێکی تایبەتی لە هەڵەبجەی نوێ بۆ فێرکردنی قورئانی پیرۆز و تەجوید،",
     "footer.mission.line2": "و پەرەپێدانی ئەرزشە ئیسلامییەکان لە کۆمەڵگایمان.",
     "footer.quick": "بەستەرە خێراکان",
-    "footer.contact": "زانیاری پەیوەندی"
+    "footer.contact": "زانیاری پەیوەندی",
+    "pub.hero.title": "بڵاوکراوەکان",
+    "pub.hero.subtitle": "کتێب و بڵاوکراوەکانی بنکەی نوێی هەڵەبجە بۆ فێرکردن و لەبەرکردنەوەی قورئانی پیرۆز",
+    "pub.featured.badge": "بڵاوکراوەی تایبەت",
+    "pub.section.title": "هەموو بڵاوکراوەکان",
+    "pub.meta.pages": "پەڕە",
+    "pub.btn.preview": "پیشاندان",
+    "pub.btn.download": "داگرتن"
   }
 };
 

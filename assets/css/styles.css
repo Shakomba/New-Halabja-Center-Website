@@ -2484,4 +2484,542 @@ textarea.input{border-radius: 18px; min-height: 110px; resize: vertical}
   .brand .name{font-size:.92rem}
 }
 
+/* ========================================
+   PUBLICATIONS PAGE - MODERN REDESIGN
+   ======================================== */
+
+/* Typography */
+.pub-main{
+  font-family: 'Inter', 'IBM Plex Sans Arabic', sans-serif;
+}
+body[dir="rtl"] .pub-main{
+  font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
+}
+.pub-title-font{
+  font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+}
+
+/* Hero Section */
+.pub-hero{
+  background: linear-gradient(165deg, var(--color-green-3) 0%, var(--color-green-1) 50%, var(--color-green-2) 100%);
+  padding: clamp(80px, 12vw, 120px) 0 clamp(60px, 8vw, 80px);
+  position: relative;
+  overflow: hidden;
+}
+.pub-hero::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("../img/centerBuilding.jpg") center/cover no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+}
+.pub-hero-content{
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.pub-hero-title{
+  font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  margin: 0 0 16px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.pub-hero-subtitle{
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Featured Section */
+.pub-featured-section{
+  background: var(--color-cream);
+  padding: 60px 0 40px;
+}
+.pub-featured{
+  background: transparent;
+  border-radius: 0;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 50px;
+  align-items: center;
+  box-shadow: none;
+  border: none;
+  position: relative;
+}
+.pub-featured-badge{
+  position: absolute;
+  top: -15px;
+  left: 40px;
+  background: linear-gradient(135deg, var(--color-orange), #e88200);
+  color: white;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 15px rgba(254,144,7,0.3);
+  z-index: 10;
+}
+body[dir="rtl"] .pub-featured-badge{
+  left: auto;
+  right: 40px;
+}
+.pub-featured-book{
+  position: relative;
+  perspective: 1800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pub-featured-book .book-3d{
+  width: 220px;
+  height: 300px;
+}
+.pub-featured-book .book-bottom{
+  transform: rotate3d(1,0,0,-90deg) translate3d(0,0,300px);
+}
+.pub-featured-content{
+  padding-left: 20px;
+}
+body[dir="rtl"] .pub-featured-content{
+  padding-left: 0;
+  padding-right: 20px;
+}
+.pub-featured-title{
+  font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0 0 16px;
+  line-height: 1.4;
+}
+.pub-featured-desc{
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  line-height: 1.9;
+  margin: 0 0 24px;
+}
+
+/* Meta Pills */
+.pub-meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.pub-meta-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(20,126,73,0.08);
+  color: var(--color-muted);
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+}
+.pub-meta-pill svg{
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+/* Buttons */
+.pub-buttons{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.pub-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  border: none;
+}
+.pub-btn svg{
+  width: 20px;
+  height: 20px;
+}
+.pub-btn-ghost{
+  background: rgba(20,126,73,0.08);
+  border: none;
+  color: var(--color-green-1);
+}
+.pub-btn-ghost:hover{
+  background: rgba(20,126,73,0.12);
+  transform: translateY(-2px);
+}
+.pub-btn-solid{
+  background: linear-gradient(135deg, var(--color-green-1), var(--color-green-2));
+  color: white;
+  box-shadow: 0 4px 20px rgba(20,126,73,0.3);
+}
+.pub-btn-solid:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(20,126,73,0.4);
+}
+
+/* 3D Book Effect - RTL (spine on right) - Based on reference */
+.book-3d{
+  position: relative;
+  width: 180px;
+  height: 250px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+.book-3d.bk-bookdefault{
+  transform: rotate3d(0,1,0,-20deg);
+}
+.book-3d.bk-bookdefault:hover{
+  transform: rotate3d(0,1,0,-35deg);
+}
+.book-3d.bk-viewback{
+  transform: translate3d(0,0,0px) rotate3d(0,1,0,180deg);
+}
+
+/* Front cover wrapper */
+.book-front{
+  transform-style: preserve-3d;
+  transform-origin: 0% 50%;
+  transition: transform 0.5s;
+  transform: translate3d(0,0,20px);
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* Cover */
+.book-cover{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0 3px 3px 0;
+  box-shadow: inset 4px 0 10px rgba(0,0,0,0.1);
+  z-index: 1;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Cover back (black backing) */
+.book-cover-back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  transform: rotate3d(0,1,0,179deg);
+  border-radius: 0 3px 3px 0;
+  z-index: 1;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Spine line on cover */
+.book-cover:after{
+  content: '';
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: -1px;
+  width: 1px;
+}
+
+/* Binding detail on front (right side) */
+.book-front:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 3px;
+  background: rgba(0,0,0,0.15);
+  box-shadow: -1px 0 3px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+/* Binding detail on back (left side) */
+.book-back:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10px;
+  bottom: 0;
+  width: 3px;
+  background: rgba(0,0,0,0.06);
+  box-shadow: 1px 0 3px rgba(255,255,255,0.1);
+}
+
+/* Back cover */
+.book-back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate3d(0,1,0,-180deg) translate3d(0,0,20px);
+  box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+  border-radius: 3px 0 0 3px;
+}
+
+
+/* Right spine (visible edge) */
+.book-right{
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  left: -20px;
+  top: 0;
+  transform: rotate3d(0,1,0,90deg) translate3d(0,0,160px);
+  backface-visibility: hidden;
+  background-color: inherit;
+}
+
+/* Left spine (title spine) */
+.book-left{
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  right: -20px;
+  top: 0;
+  transform: rotate3d(0,1,0,-90deg);
+  background-color: inherit;
+}
+
+/* Top edge */
+.book-top{
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  top: -15px;
+  left: 0;
+  transform: rotate3d(1,0,0,90deg);
+  backface-visibility: hidden;
+  background-color: #fff;
+}
+
+/* Bottom edge */
+.book-bottom{
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  top: -15px;
+  left: 0;
+  transform: rotate3d(1,0,0,-90deg) translate3d(0,0,250px);
+  backface-visibility: hidden;
+  background-color: #fff;
+}
+
+/* Pages effect */
+.book-pages{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transform: translate3d(0,0,19px);
+  backface-visibility: hidden;
+  z-index: 9;
+}
+
+/* Grid Section */
+.pub-grid-section{
+  background: var(--color-cream);
+  padding: 40px 0 80px;
+}
+.pub-section-title{
+  font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0 0 40px;
+  text-align: center;
+}
+.pub-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+/* Publication Card */
+.pub-card{
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(20,126,73,0.06);
+  border: 1px solid var(--color-border-soft);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  perspective: 1800px;
+}
+.pub-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(20,126,73,0.12);
+}
+.pub-card .book-3d{
+  margin-bottom: 24px;
+}
+.pub-card .book-bottom{
+  transform: rotate3d(1,0,0,-90deg) translate3d(0,0,250px);
+}
+.pub-card-title{
+  font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+.pub-card .pub-meta{
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.pub-card-desc{
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin: 0 0 24px;
+  flex-grow: 1;
+}
+.pub-card .pub-buttons{
+  justify-content: center;
+  width: 100%;
+}
+.pub-card .pub-btn{
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  flex: 1;
+  max-width: 150px;
+}
+
+/* PDF Preview Modal */
+.pub-preview-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.pub-preview-modal.active{
+  display: flex;
+  opacity: 1;
+}
+.pub-preview-content{
+  width: 100%;
+  max-width: 900px;
+  height: 90vh;
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+.pub-preview-content iframe{
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.pub-preview-close{
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.pub-preview-close:hover{
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .pub-featured{
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 50px 30px 30px;
+  }
+  .pub-featured-badge{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  body[dir="rtl"] .pub-featured-badge{
+    right: 50%;
+    left: auto;
+    transform: translateX(50%);
+  }
+  .pub-featured-book{
+    justify-self: center;
+  }
+  .pub-featured-content{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .pub-meta{
+    justify-content: center;
+  }
+  .pub-buttons{
+    justify-content: center;
+  }
+}
+@media (max-width: 640px){
+  .pub-featured{
+    padding: 50px 20px 25px;
+    gap: 30px;
+  }
+  .pub-featured-book .book-3d{
+    width: 160px;
+    height: 220px;
+  }
+  .pub-featured-book .book-bottom{
+    transform: rotate3d(1,0,0,-90deg) translate3d(0,0,220px);
+  }
+  .pub-grid{
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .pub-card{
+    padding: 24px 20px;
+  }
+  .book-3d{
+    width: 140px;
+    height: 195px;
+  }
+  .pub-card .book-bottom{
+    transform: rotate3d(1,0,0,-90deg) translate3d(0,0,195px);
+  }
+  .pub-btn{
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}
+
 
