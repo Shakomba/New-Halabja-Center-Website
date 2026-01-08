@@ -252,6 +252,7 @@
     nodes.forEach(n=>io.observe(n));
   }
   setupReveal();
+  window.setupReveal = setupReveal;
 
   // Programs accordion (mobile)
   function setupProgramsAccordion(){
@@ -491,7 +492,7 @@
             <a class="news-mini-title" href="news.html#${p.id}">${p.title}</a>
           </div>
           <p class="news-mini-excerpt">${p.excerpt || ""}</p>
-          <a class="btn ghost" href="news.html#${p.id}">Read More <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn ghost" href="news.html#${p.id}">Read More</a>
         </article>
       `;
     }).join("");
@@ -662,7 +663,7 @@
   }
 
   function setupNewsPage(){
-    if(!window.NEWS_DATA) return;
+    return;
     const list = $("#newsList");
     if(!list) return;
 
@@ -1006,8 +1007,17 @@
 
   // Home previews
   if(page === "home"){
-    renderNews("#homeNews");
-    setupActivitiesSlider();
+    // Listen for news data to be ready
+    window.addEventListener('newsDataReady', () => {
+      renderNews("#homeNews");
+      setupActivitiesSlider();
+    });
+    
+    // Also try to render immediately in case data is already loaded
+    if(window.NEWS_DATA && window.NEWS_DATA.length > 0) {
+      renderNews("#homeNews");
+      setupActivitiesSlider();
+    }
   }
   if(page === "news"){
     // load data script already included in page

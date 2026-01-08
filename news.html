@@ -69,75 +69,48 @@
   </div>
 </header>
 
-<main>
-  <section class="activities-hero">
+<main class="news-page">
+  <section class="news-hero">
+    <div class="news-hero-bg"></div>
     <div class="container">
-      <div class="activities-hero-grid">
-        <div class="activities-hero-copy reveal">
-          <div class="kicker" data-i18n="nav.news">Activities</div>
-          <h1 class="title h-title">Announcements, stories, and community moments</h1>
-          <p class="lead">Follow recitation circles, student milestones, workshops, and outreach as they happen.</p>
-          <div class="hero-pills">
-            <span class="hero-pill">Weekly updates</span>
-            <span class="hero-pill">Community stories</span>
-            <span class="hero-pill">Student milestones</span>
+      <div class="news-hero-inner reveal">
+        <span class="news-hero-label">Center Activities</span>
+        <h1 class="news-hero-title">Stories & Announcements</h1>
+        <p class="news-hero-desc">Discover the latest from our Qur'an learning community — events, achievements, and updates.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="news-toolbar">
+    <div class="container">
+      <div class="news-toolbar-inner">
+        <div class="news-search-wrap">
+          <svg class="news-search-icon" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="newsSearch" class="news-search" type="text" placeholder="Search activities..." aria-label="Search activities">
+        </div>
+        <div class="news-filter-wrap">
+          <div class="custom-multiselect" id="categoryFilter">
+            <button class="multiselect-trigger" type="button" aria-label="Filter by categories">
+              <span class="multiselect-label">All Categories</span>
+              <svg class="multiselect-arrow" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="multiselect-dropdown">
+              <div class="multiselect-options" id="categoryOptions"></div>
+            </div>
           </div>
         </div>
-        <div class="activities-hero-card reveal" aria-label="Highlights">
-          <div class="eyebrow">Highlights</div>
-          <h3>What you will find here</h3>
-          <ul class="highlight-list">
-            <li>New programs, schedules, and registration announcements.</li>
-            <li>Event recaps with photos and community reflections.</li>
-            <li>Teacher workshops and student achievement milestones.</li>
-          </ul>
-          <div class="hero-card-footer">
-            <span class="mini">Updated monthly and during events.</span>
-            <span class="pill">Open any card to read the full story.</span>
-          </div>
+        <div class="news-count-wrap">
+          <span id="newsCount" class="news-count">0 activities</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section soft activities-feed">
+  <section class="news-content">
     <div class="container">
-      <div class="activities-shell">
-        <aside class="activities-filters card pad reveal" aria-label="Activity filters">
-          <div class="filters-head">
-            <h2>Find activities</h2>
-            <p class="small">Search by keyword or filter by topic.</p>
-          </div>
-
-          <div class="filters-fields">
-            <label class="field">
-              <span class="field-label">Search</span>
-              <input id="newsSearch" class="input input-block" placeholder="Search activities..." aria-label="Search activities">
-            </label>
-            <label class="field">
-              <span class="field-label">Topic</span>
-              <select id="newsTag" class="select select-block" aria-label="Filter by topic"></select>
-            </label>
-          </div>
-
-          <div class="filters-chips" id="newsTagChips" aria-label="Quick topics"></div>
-          <div class="filters-note small">
-            Tip: use the link icon to share a specific announcement.
-          </div>
-        </aside>
-
-        <div class="activities-stream">
-          <div class="activities-meta reveal">
-            <div>
-              <div class="eyebrow">Latest updates</div>
-              <div id="newsCount" class="count">0 activities</div>
-            </div>
-            <span class="pill">Read, share, and stay connected.</span>
-          </div>
-
-          <div id="newsList" class="activities-grid"></div>
-        </div>
-      </div>
+      <div id="newsList" class="news-grid"></div>
     </div>
   </section>
 </main>
@@ -146,8 +119,6 @@
 <div style="display:none" aria-hidden="true">
   <div id="svgDownloadIcon"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
 </div>
-
-<script src="assets/js/data-news.js"></script>
 
 <footer class="footer">
   <div class="container">
@@ -215,7 +186,10 @@
   <div class="box">
     <header>
       <h3 id="modalTitle">Details</h3>
-      <button class="xbtn" id="modalClose" aria-label="Close">✕</button>
+      <button class="xbtn" id="modalClose" aria-label="Close">
+        <span></span>
+        <span></span>
+      </button>
     </header>
     <div class="content" id="modalContent"></div>
   </div>
@@ -223,6 +197,7 @@
 
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/site-config.js"></script>
+<script src="assets/js/activities-loader.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
