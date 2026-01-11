@@ -7,6 +7,8 @@
   let selectedCategories = [];
   let currentSearch = '';
   let currentLang = 'en';
+  let currentPage = 1;
+  const ITEMS_PER_PAGE = 9;
 
   const elements = {
     grid: null,
@@ -77,13 +79,16 @@
     const lang = getCurrentLanguage();
     const mediaClass = activity.image ? '' : ' is-empty';
     const mediaStyle = activity.image ? ` style="background-image: url('${activity.image}')"` : '';
-    
+
     const title = getTranslatedValue(activity.title, lang);
     const summary = getTranslatedValue(activity.summary, lang);
 
+    // Make thumbnail clickable if image exists
+    const thumbnailClickable = activity.image ? ` data-gallery-trigger="${activity.id}"` : '';
+
     return `
       <article class="news-card reveal" data-id="${activity.id}">
-        <div class="news-media${mediaClass}"${mediaStyle}>
+        <div class="news-media${mediaClass}"${mediaStyle}${thumbnailClickable}>
         </div>
         <div class="news-body">
           <div class="news-top">
@@ -124,18 +129,24 @@
 
   function renderCards() {
     if (!elements.grid) return;
-    
+
     const sortedData = [...activitiesData].sort((a, b) => {
       return new Date(b.date) - new Date(a.date);
     });
     const filteredData = filterActivities(sortedData);
-    
+
+    // Calculate pagination
+    const totalItems = filteredData.length;
+    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedData = filteredData.slice(startIndex, endIndex);
+
     // Update counter
     if (elements.countDisplay) {
-      const count = filteredData.length;
-      elements.countDisplay.textContent = `${count} ${count === 1 ? 'activity' : 'activities'}`;
+      elements.countDisplay.textContent = `${totalItems} ${totalItems === 1 ? 'activity' : 'activities'}`;
     }
-    
+
     if (filteredData.length === 0) {
       elements.grid.innerHTML = `
         <div class="news-empty">
@@ -146,22 +157,109 @@
       return;
     }
 
-    elements.grid.innerHTML = filteredData
+    // Render cards
+    elements.grid.innerHTML = paginatedData
       .map((activity, index) => generateCardHTML(activity, index))
       .join('');
 
+    // Render pagination if needed
+    renderPagination(totalPages);
+
     // Attach event listeners immediately after DOM update
     attachCardEventListeners();
-    
+
     // Trigger scroll-based reveal animations
     setTimeout(() => {
       triggerRevealAnimations();
     }, 50);
   }
 
+  function renderPagination(totalPages) {
+    let paginationContainer = document.querySelector('.activities-pagination');
+
+    if (!paginationContainer) {
+      paginationContainer = document.createElement('div');
+      paginationContainer.className = 'activities-pagination';
+      elements.grid.parentElement.appendChild(paginationContainer);
+    }
+
+    if (totalPages <= 1) {
+      paginationContainer.innerHTML = '';
+      return;
+    }
+
+    const maxVisible = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
+    if (endPage - startPage < maxVisible - 1) {
+      startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+
+    let paginationHTML = '<div class="pagination-buttons">';
+
+    // Previous button
+    paginationHTML += `
+      <button class="pagination-btn pagination-prev" ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+    `;
+
+    // First page
+    if (startPage > 1) {
+      paginationHTML += `<button class="pagination-btn" data-page="1">1</button>`;
+      if (startPage > 2) {
+        paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+      }
+    }
+
+    // Page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      paginationHTML += `
+        <button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>
+      `;
+    }
+
+    // Last page
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+      }
+      paginationHTML += `<button class="pagination-btn" data-page="${totalPages}">${totalPages}</button>`;
+    }
+
+    // Next button
+    paginationHTML += `
+      <button class="pagination-btn pagination-next" ${currentPage === totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    `;
+
+    paginationHTML += '</div>';
+    paginationContainer.innerHTML = paginationHTML;
+
+    // Attach pagination event listeners
+    const paginationButtons = paginationContainer.querySelectorAll('.pagination-btn:not([disabled])');
+    paginationButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const page = parseInt(btn.getAttribute('data-page'));
+        if (page !== currentPage && page >= 1 && page <= totalPages) {
+          currentPage = page;
+          renderCards();
+          // Scroll to top of activities section
+          const newsSection = document.querySelector('.news-grid-section');
+          if (newsSection) {
+            newsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  }
+
   function attachCardEventListeners() {
     const openButtons = document.querySelectorAll('[data-open]');
-    
+    const galleryTriggers = document.querySelectorAll('[data-gallery-trigger]');
+
     openButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.getAttribute('data-open');
@@ -171,6 +269,37 @@
         }
       });
     });
+
+    // Gallery lightbox triggers for thumbnails
+    galleryTriggers.forEach(trigger => {
+      trigger.style.cursor = 'pointer';
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = trigger.getAttribute('data-gallery-trigger');
+        const activity = activitiesData.find(a => a.id === id);
+        if (activity) {
+          openGridGallery(activity);
+        }
+      });
+    });
+  }
+
+  function openGridGallery(activity) {
+    // Collect all images for the gallery
+    const images = [];
+    if (activity.image) {
+      images.push(activity.image);
+    }
+    if (activity.gallery && activity.gallery.length > 0) {
+      images.push(...activity.gallery);
+    }
+
+    if (images.length === 0) return;
+
+    // Use native lightbox with sliding track
+    if (typeof window.openNativeLightbox === 'function') {
+      window.openNativeLightbox(images[0], images, 0);
+    }
   }
 
   function openActivityModal(activity) {
@@ -223,93 +352,25 @@
     setTimeout(() => {
       const mainImage = document.querySelector('.modal-main-image');
       const galleryItems = document.querySelectorAll('.modal-gallery-item');
-      
-      if (mainImage) {
+
+      if (mainImage && typeof window.openNativeLightbox === 'function') {
         mainImage.addEventListener('click', () => {
-          openLightbox(mainImage.dataset.image, null, null);
+          window.openNativeLightbox(mainImage.dataset.image, [mainImage.dataset.image], 0);
         });
       }
-      
+
       galleryItems.forEach(item => {
         item.addEventListener('click', () => {
-          const images = JSON.parse(item.dataset.images);
-          const index = parseInt(item.dataset.index);
-          openLightbox(images[index], images, index);
+          if (typeof window.openNativeLightbox === 'function') {
+            const images = JSON.parse(item.dataset.images);
+            const index = parseInt(item.dataset.index);
+            window.openNativeLightbox(images[index], images, index);
+          }
         });
       });
     }, 100);
   }
 
-  function openLightbox(imageSrc, images, currentIndex) {
-    let lightbox = document.getElementById('imageLightbox');
-    
-    if (!lightbox) {
-      lightbox = document.createElement('div');
-      lightbox.id = 'imageLightbox';
-      lightbox.className = 'image-lightbox';
-      lightbox.innerHTML = `
-        <button class="lightbox-close" aria-label="Close">&times;</button>
-        <button class="lightbox-prev" aria-label="Previous image">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M15 18l-6-6 6-6"/>
-          </svg>
-        </button>
-        <button class="lightbox-next" aria-label="Next image">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 18l6-6-6-6"/>
-          </svg>
-        </button>
-        <img class="lightbox-image" src="" alt="Activity image">
-      `;
-      document.body.appendChild(lightbox);
-    }
-    
-    const img = lightbox.querySelector('.lightbox-image');
-    const closeBtn = lightbox.querySelector('.lightbox-close');
-    const prevBtn = lightbox.querySelector('.lightbox-prev');
-    const nextBtn = lightbox.querySelector('.lightbox-next');
-    
-    img.src = imageSrc;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    if (images && images.length > 1) {
-      prevBtn.style.display = 'flex';
-      nextBtn.style.display = 'flex';
-      
-      let index = currentIndex;
-      
-      prevBtn.onclick = () => {
-        index = (index - 1 + images.length) % images.length;
-        img.src = images[index];
-      };
-      
-      nextBtn.onclick = () => {
-        index = (index + 1) % images.length;
-        img.src = images[index];
-      };
-    } else {
-      prevBtn.style.display = 'none';
-      nextBtn.style.display = 'none';
-    }
-    
-    const closeLightbox = () => {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    };
-    
-    closeBtn.onclick = closeLightbox;
-    lightbox.onclick = (e) => {
-      if (e.target === lightbox) closeLightbox();
-    };
-    
-    document.addEventListener('keydown', function escapeHandler(e) {
-      if (e.key === 'Escape') {
-        closeLightbox();
-        document.removeEventListener('keydown', escapeHandler);
-      }
-    });
-  }
 
   async function copyToClipboard(text) {
     if (navigator.clipboard && window.isSecureContext) {
@@ -391,7 +452,7 @@
   function handleCategoryChange(event) {
     const category = event.target.value;
     const option = event.target.closest('.multiselect-option');
-    
+
     if (event.target.checked) {
       selectedCategories.push(category);
       option.classList.add('checked');
@@ -399,7 +460,8 @@
       selectedCategories = selectedCategories.filter(c => c !== category);
       option.classList.remove('checked');
     }
-    
+
+    currentPage = 1; // Reset to first page when filter changes
     updateMultiselectLabel();
     renderCards();
   }
@@ -418,6 +480,7 @@
 
   function handleSearch(event) {
     currentSearch = event.target.value.trim().toLowerCase();
+    currentPage = 1; // Reset to first page when searching
     renderCards();
   }
 

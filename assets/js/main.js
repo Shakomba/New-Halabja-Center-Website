@@ -455,6 +455,12 @@
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
     document.removeEventListener("keydown", onModalKeydown);
+
+    // Clear URL hash when closing modal
+    if(window.location.hash){
+      history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+
     if(lastFocusedElement && typeof lastFocusedElement.focus === "function"){
       lastFocusedElement.focus({preventScroll:true});
     }
@@ -547,6 +553,10 @@
       if(!target) return;
       pendingFocus = shouldFocus;
       target.scrollIntoView({behavior: "smooth", inline: "start", block: "nearest"});
+      // Save current slide index to localStorage
+      try {
+        localStorage.setItem('nhc_activities_slide', clampedIndex.toString());
+      } catch(e) {}
       requestAnimationFrame(update);
     };
     const scrollByStep = (dir, shouldFocus=false)=>{
@@ -637,6 +647,10 @@
         });
       }
       if(status) status.textContent = `${index + 1} / ${total}`;
+      // Save current slide index
+      try {
+        localStorage.setItem('nhc_activities_slide', index.toString());
+      } catch(e) {}
       if(pendingFocus){
         const focusTarget = slides[index]?.querySelector("a, button, [tabindex]:not([tabindex='-1'])");
         focusTarget?.focus({preventScroll:true});
@@ -660,6 +674,19 @@
     track.addEventListener("scroll", update, {passive:true});
     window.addEventListener("resize", update);
     update();
+
+    // Restore saved slide position after initial render
+    setTimeout(() => {
+      try {
+        const savedIndex = localStorage.getItem('nhc_activities_slide');
+        if (savedIndex !== null) {
+          const index = parseInt(savedIndex, 10);
+          if (!isNaN(index) && index > 0) {
+            scrollToIndex(index, false);
+          }
+        }
+      } catch(e) {}
+    }, 100);
   }
 
   function setupNewsPage(){

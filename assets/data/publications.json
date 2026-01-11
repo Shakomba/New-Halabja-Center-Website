@@ -1,0 +1,52 @@
+[
+  {
+    "id": "featured",
+    "title": "زانستی تەجوید",
+    "description": {
+      "en": "A comprehensive guide for learning to read the Holy Quran with proper Tajweed. This book is suitable for beginners and intermediate learners.",
+      "ku": "کتێبێکی گشتگیر بۆ فێربوونی خوێندنەوەی قورئانی پیرۆز بە ڕێبازی دروست و تەجوید. ئەم کتێبە گونجاوە بۆ سەرەتاییەکان و ناوەندییەکان.",
+      "ar": "دليل شامل لتعلم قراءة القرآن الكريم بالتجويد الصحيح. هذا الكتاب مناسب للمبتدئين والمتوسطين."
+    },
+    "coverFront": "assets/img/Publications/zanstyTajwidFront.jpg",
+    "coverBack": "assets/img/Publications/zanstyTajwidBack.jpg",
+    "coverSpine": "assets/img/Publications/zanstyTajwidSpine.jpg",
+    "color": "#147E49",
+    "pages": 120,
+    "size": "4.5 MB",
+    "file": "assets/pdfs/publication-sample-1.pdf",
+    "featured": true,
+    "newest": false
+  },
+  {
+    "id": "pub-2",
+    "title": "ئەحکامی تەجوید",
+    "description": {
+      "en": "Discussion of all Tajweed rules for proper and correct Quran recitation.",
+      "ku": "باسکردن لە هەموو یاساکانی تەجوید بۆ خوێندنەوەی ڕاست و دروستی قورئان.",
+      "ar": "مناقشة جميع أحكام التجويد للتلاوة الصحيحة للقرآن."
+    },
+    "cover": "assets/img/book-cover-2.png",
+    "color": "#222",
+    "pages": 85,
+    "size": "3.2 MB",
+    "file": "assets/pdfs/publication-sample-2.pdf",
+    "featured": false,
+    "newest": true
+  },
+  {
+    "id": "pub-3",
+    "title": "دوعا و ئەزکار",
+    "description": {
+      "en": "A collection of daily supplications and remembrances for Muslims.",
+      "ku": "کۆکراوەیەکی دوعا و ئەزکاری ڕۆژانە بۆ موسڵمانان.",
+      "ar": "مجموعة من الأدعية والأذكار اليومية للمسلمين."
+    },
+    "cover": "assets/img/book-cover-3.png",
+    "color": "#FE9007",
+    "pages": 64,
+    "size": "2.1 MB",
+    "file": "assets/pdfs/publication-sample-1.pdf",
+    "featured": false,
+    "newest": false
+  }
+]

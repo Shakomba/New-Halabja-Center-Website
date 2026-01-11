@@ -70,22 +70,26 @@
 </header>
 
 <main class="pub-main">
-  <!-- Hero Section -->
-  <section class="pub-hero">
-    <div class="container">
-      <div class="pub-hero-content reveal">
-        <h1 class="pub-hero-title" data-i18n="pub.hero.title">Publications</h1>
-        <p class="pub-hero-subtitle" data-i18n="pub.hero.subtitle">Books and publications from New Halabja Center for Teaching and Memorizing the Holy Qur'an</p>
-      </div>
-    </div>
-  </section>
+  <!-- Hero Carousel -->
+  <section class="pub-hero-carousel">
+    <div class="pub-hero-slider" role="region" aria-roledescription="carousel">
+      <button class="pub-hero-arrow prev" type="button" aria-label="Previous book">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
 
-  <!-- Featured Publication -->
-  <section class="pub-featured-section">
-    <div class="container">
-      <div class="pub-featured reveal" id="featuredPublication">
-        <!-- Populated by JS -->
+      <div class="pub-hero-track" id="pubHeroTrack" role="list">
+        <!-- Slides populated by JS -->
       </div>
+
+      <button class="pub-hero-arrow next" type="button" aria-label="Next book">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="pub-hero-dots" aria-label="Slide navigation"></div>
     </div>
   </section>
 
