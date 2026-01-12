@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(tree:*)",
-      "Bash(dir /s \"d:\\\\Project\\\\new-halabja-quran-center v3\\\\new-halabja-quran-center\\\\3DBookShowcase\")"
+      "Bash(dir /s \"d:\\\\Project\\\\new-halabja-quran-center v3\\\\new-halabja-quran-center\\\\3DBookShowcase\")",
+      "Bash(git checkout HEAD -- assets/js/publications-loader.js assets/css/styles.css)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)"
     ]
   }
 }

@@ -1,7 +1,11 @@
 [
   {
     "id": "featured",
-    "title": "زانستی تەجوید",
+    "title": {
+      "en": "Tajweed Science",
+      "ku": "زانستی تەجوید",
+      "ar": "علم التجويد"
+    },
     "description": {
       "en": "A comprehensive guide for learning to read the Holy Quran with proper Tajweed. This book is suitable for beginners and intermediate learners.",
       "ku": "کتێبێکی گشتگیر بۆ فێربوونی خوێندنەوەی قورئانی پیرۆز بە ڕێبازی دروست و تەجوید. ئەم کتێبە گونجاوە بۆ سەرەتاییەکان و ناوەندییەکان.",
@@ -19,13 +23,19 @@
   },
   {
     "id": "pub-2",
-    "title": "ئەحکامی تەجوید",
+    "title": {
+      "en": "Tajweed Rules",
+      "ku": "ئەحکامی تەجوید",
+      "ar": "أحكام التجويد"
+    },
     "description": {
       "en": "Discussion of all Tajweed rules for proper and correct Quran recitation.",
       "ku": "باسکردن لە هەموو یاساکانی تەجوید بۆ خوێندنەوەی ڕاست و دروستی قورئان.",
       "ar": "مناقشة جميع أحكام التجويد للتلاوة الصحيحة للقرآن."
     },
-    "cover": "assets/img/book-cover-2.png",
+    "coverFront": "assets/img/Publications/zanstyTajwidFront.jpg",
+    "coverBack": "assets/img/Publications/zanstyTajwidBack.jpg",
+    "coverSpine": "assets/img/Publications/zanstyTajwidSpine.jpg",
     "color": "#222",
     "pages": 85,
     "size": "3.2 MB",
@@ -35,13 +45,19 @@
   },
   {
     "id": "pub-3",
-    "title": "دوعا و ئەزکار",
+    "title": {
+      "en": "Supplications and Remembrances",
+      "ku": "دوعا و ئەزکار",
+      "ar": "الدعاء والأذكار"
+    },
     "description": {
       "en": "A collection of daily supplications and remembrances for Muslims.",
       "ku": "کۆکراوەیەکی دوعا و ئەزکاری ڕۆژانە بۆ موسڵمانان.",
       "ar": "مجموعة من الأدعية والأذكار اليومية للمسلمين."
     },
-    "cover": "assets/img/book-cover-3.png",
+    "coverFront": "assets/img/Publications/zanstyTajwidFront.jpg",
+    "coverBack": "assets/img/Publications/zanstyTajwidBack.jpg",
+    "coverSpine": "assets/img/Publications/zanstyTajwidSpine.jpg",
     "color": "#FE9007",
     "pages": 64,
     "size": "2.1 MB",

@@ -65,9 +65,77 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
   let isDragging = false;
   let isVerticalDrag = false;
   let isHorizontalDrag = false;
-  let scale = 1;
+  let isPinching = false;
+  let isPanning = false;
+  let pinchStartDistance = 0;
+  let pinchStartScale = 1;
+  let pinchStartPanX = 0;
+  let pinchStartPanY = 0;
+  let pinchStartMidX = 0;
+  let pinchStartMidY = 0;
+  let panStartX = 0;
+  let panStartY = 0;
+  let panStartPanX = 0;
+  let panStartPanY = 0;
+  let isMousePanning = false;
+  let mouseStartX = 0;
+  let mouseStartY = 0;
+  let mouseStartPanX = 0;
+  let mouseStartPanY = 0;
+  const MIN_SCALE = 1;
+  const MAX_SCALE = 3;
   const CLOSE_THRESHOLD = 80;
   const SWIPE_THRESHOLD = 40;
+
+  const slideStates = imageArray.map(() => ({ scale: 1, panX: 0, panY: 0 }));
+
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+  const clampPan = (state) => {
+    const maxPanX = (state.scale - 1) * (window.innerWidth / 2);
+    const maxPanY = (state.scale - 1) * (window.innerHeight / 2);
+    state.panX = clamp(state.panX, -maxPanX, maxPanX);
+    state.panY = clamp(state.panY, -maxPanY, maxPanY);
+  };
+
+  const applyTransform = (i, animated = false) => {
+    const img = slides[i]?.querySelector('img');
+    if (!img) return;
+    img.style.transition = animated ? 'transform 0.2s ease' : 'none';
+    const state = slideStates[i];
+    img.style.transform = `translate3d(${state.panX}px, ${state.panY}px, 0) scale(${state.scale})`;
+  };
+
+  const resetZoom = (i, animated = true) => {
+    slideStates[i].scale = 1;
+    slideStates[i].panX = 0;
+    slideStates[i].panY = 0;
+    applyTransform(i, animated);
+    if (i === index) {
+      updateZoomCursor();
+    }
+  };
+
+  const updateZoomCursor = () => {
+    const state = slideStates[index];
+    slidesWrapper.style.cursor = state.scale > 1 ? 'grab' : '';
+  };
+
+  const zoomAtPoint = (state, newScale, clientX, clientY) => {
+    const rect = slidesWrapper.getBoundingClientRect();
+    const offsetX = clientX - rect.left - rect.width / 2;
+    const offsetY = clientY - rect.top - rect.height / 2;
+    const imageX = (offsetX - state.panX) / state.scale;
+    const imageY = (offsetY - state.panY) / state.scale;
+    state.scale = newScale;
+    state.panX = offsetX - imageX * newScale;
+    state.panY = offsetY - imageY * newScale;
+    if (state.scale === 1) {
+      state.panX = 0;
+      state.panY = 0;
+    }
+    clampPan(state);
+  };
 
   const updateSlidePosition = (animated = true) => {
     if (animated) {
@@ -90,6 +158,7 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
   const goToSlide = (newIndex) => {
     index = Math.max(0, Math.min(imageArray.length - 1, newIndex));
     currentTranslateX = -index * slideWidth;
+    resetZoom(index, true);
     updateSlidePosition(true);
     updateCounter();
   };
@@ -108,18 +177,77 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
 
   // Touch gestures
   const handleTouchStart = (e) => {
+    if (e.touches.length === 2) {
+      const state = slideStates[index];
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      pinchStartDistance = Math.hypot(dx, dy);
+      pinchStartScale = state.scale;
+      pinchStartPanX = state.panX;
+      pinchStartPanY = state.panY;
+      pinchStartMidX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      pinchStartMidY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      isPinching = true;
+      isPanning = false;
+      isDragging = false;
+      isVerticalDrag = false;
+      isHorizontalDrag = false;
+      slidesTrack.style.transition = 'none';
+      return;
+    }
+
     if (e.touches.length !== 1) return;
 
+    const state = slideStates[index];
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
     isDragging = true;
     isVerticalDrag = false;
     isHorizontalDrag = false;
+    isPinching = false;
+    isPanning = state.scale > 1;
+    if (isPanning) {
+      isDragging = false;
+      panStartX = startX;
+      panStartY = startY;
+      panStartPanX = state.panX;
+      panStartPanY = state.panY;
+    }
 
     slidesTrack.style.transition = 'none';
   };
 
   const handleTouchMove = (e) => {
+    if (isPinching && e.touches.length === 2) {
+      e.preventDefault();
+      const state = slideStates[index];
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const distance = Math.hypot(dx, dy);
+      const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      const scaleFactor = distance / pinchStartDistance;
+
+      state.scale = clamp(pinchStartScale * scaleFactor, MIN_SCALE, MAX_SCALE);
+      state.panX = pinchStartPanX + (midX - pinchStartMidX);
+      state.panY = pinchStartPanY + (midY - pinchStartMidY);
+      clampPan(state);
+      applyTransform(index, false);
+      return;
+    }
+
+    if (isPanning && e.touches.length === 1) {
+      e.preventDefault();
+      const state = slideStates[index];
+      currentX = e.touches[0].clientX;
+      currentY = e.touches[0].clientY;
+      state.panX = panStartPanX + (currentX - panStartX);
+      state.panY = panStartPanY + (currentY - panStartY);
+      clampPan(state);
+      applyTransform(index, false);
+      return;
+    }
+
     if (!isDragging || e.touches.length !== 1) return;
 
     currentX = e.touches[0].clientX;
@@ -138,7 +266,7 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
     }
 
     // Vertical drag - close gesture with 1:1 tracking
-    if (isVerticalDrag && scale === 1) {
+    if (isVerticalDrag && slideStates[index].scale === 1) {
       e.preventDefault();
       const progress = deltaY;
       const opacity = 1 - (Math.abs(progress) / 400);
@@ -149,7 +277,7 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
     }
 
     // Horizontal drag - slide between images with real-time tracking
-    else if (isHorizontalDrag && imageArray.length > 1 && scale === 1) {
+    else if (isHorizontalDrag && imageArray.length > 1 && slideStates[index].scale === 1) {
       e.preventDefault();
       const newTranslateX = currentTranslateX + deltaX;
       slidesTrack.style.transform = `translateX(${newTranslateX}px)`;
@@ -157,6 +285,31 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
   };
 
   const handleTouchEnd = (e) => {
+    if (isPinching) {
+      if (e.touches.length === 1) {
+        const state = slideStates[index];
+        if (state.scale > 1) {
+          isPanning = true;
+          panStartX = e.touches[0].clientX;
+          panStartY = e.touches[0].clientY;
+          panStartPanX = state.panX;
+          panStartPanY = state.panY;
+        }
+      }
+      isPinching = false;
+      return;
+    }
+
+    if (isPanning) {
+      if (e.touches.length === 0) {
+        isPanning = false;
+      }
+      isDragging = false;
+      isVerticalDrag = false;
+      isHorizontalDrag = false;
+      return;
+    }
+
     if (!isDragging) return;
     isDragging = false;
 
@@ -202,9 +355,68 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
     isHorizontalDrag = false;
   };
 
+  const handleWheel = (e) => {
+    const state = slideStates[index];
+    if (!state) return;
+    e.preventDefault();
+    const direction = e.deltaY < 0 ? 1 : -1;
+    const zoomStep = 0.01;
+    const newScale = clamp(state.scale * (1 + zoomStep * direction), MIN_SCALE, MAX_SCALE);
+    if (newScale === state.scale) return;
+    zoomAtPoint(state, newScale, e.clientX, e.clientY);
+    applyTransform(index, false);
+    updateZoomCursor();
+  };
+
+  const handleDoubleClick = (e) => {
+    const state = slideStates[index];
+    if (state.scale > 1) {
+      resetZoom(index, true);
+      return;
+    }
+    zoomAtPoint(state, 2, e.clientX, e.clientY);
+    applyTransform(index, true);
+    updateZoomCursor();
+  };
+
+  const handleMouseDown = (e) => {
+    if (e.button !== 0) return;
+    const state = slideStates[index];
+    if (state.scale <= 1) return;
+    e.preventDefault();
+    isMousePanning = true;
+    mouseStartX = e.clientX;
+    mouseStartY = e.clientY;
+    mouseStartPanX = state.panX;
+    mouseStartPanY = state.panY;
+    slidesWrapper.style.cursor = 'grabbing';
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isMousePanning) return;
+    e.preventDefault();
+    const state = slideStates[index];
+    state.panX = mouseStartPanX + (e.clientX - mouseStartX);
+    state.panY = mouseStartPanY + (e.clientY - mouseStartY);
+    clampPan(state);
+    applyTransform(index, false);
+  };
+
+  const handleMouseUp = () => {
+    if (!isMousePanning) return;
+    isMousePanning = false;
+    updateZoomCursor();
+  };
+
   slidesWrapper.addEventListener('touchstart', handleTouchStart, { passive: false });
   slidesWrapper.addEventListener('touchmove', handleTouchMove, { passive: false });
   slidesWrapper.addEventListener('touchend', handleTouchEnd);
+  slidesWrapper.addEventListener('wheel', handleWheel, { passive: false });
+  slidesWrapper.addEventListener('mousedown', handleMouseDown);
+  slidesWrapper.addEventListener('mouseleave', handleMouseUp);
+  slidesWrapper.addEventListener('dblclick', handleDoubleClick);
+  window.addEventListener('mousemove', handleMouseMove);
+  window.addEventListener('mouseup', handleMouseUp);
 
   // Close lightbox
   const closeLightbox = () => {
@@ -228,6 +440,12 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
     slidesWrapper.removeEventListener('touchstart', handleTouchStart);
     slidesWrapper.removeEventListener('touchmove', handleTouchMove);
     slidesWrapper.removeEventListener('touchend', handleTouchEnd);
+    slidesWrapper.removeEventListener('wheel', handleWheel);
+    slidesWrapper.removeEventListener('mousedown', handleMouseDown);
+    slidesWrapper.removeEventListener('mouseleave', handleMouseUp);
+    slidesWrapper.removeEventListener('dblclick', handleDoubleClick);
+    window.removeEventListener('mousemove', handleMouseMove);
+    window.removeEventListener('mouseup', handleMouseUp);
     window.removeEventListener('popstate', handlePopState);
     document.removeEventListener('keydown', handleKeydown);
   };
@@ -258,6 +476,7 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
   document.addEventListener('keydown', handleKeydown);
 
   // Initialize
+  slideStates.forEach((_, i) => resetZoom(i, false));
   updateSlidePosition(false);
   updateCounter();
 
