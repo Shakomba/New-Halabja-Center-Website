@@ -32,7 +32,15 @@ window.I18N = {
     "pub.section.title": "All Publications",
     "pub.meta.pages": "pages",
     "pub.btn.preview": "Preview",
-    "pub.btn.download": "Download"
+    "pub.btn.download": "Download",
+    "tadabbur.hero.telegram": "Join our Telegram Channel",
+    "tadabbur.juz.title": "Juz 30 (Amma)",
+    "tadabbur.surah.label": "Surah",
+    "tadabbur.btn.video": "Watch Video",
+    "tadabbur.btn.audio": "Listen to Audio",
+    "tadabbur.player.speed": "Speed",
+    "tadabbur.player.minimize": "Minimize",
+    "tadabbur.empty": "No lectures available"
   },
   "ar": {
     "nav.home": "الرئيسية",
@@ -67,7 +75,15 @@ window.I18N = {
     "pub.section.title": "جميع المنشورات",
     "pub.meta.pages": "صفحة",
     "pub.btn.preview": "معاينة",
-    "pub.btn.download": "تحميل"
+    "pub.btn.download": "تحميل",
+    "tadabbur.hero.telegram": "انضم إلى قناتنا على تيليجرام",
+    "tadabbur.juz.title": "جزء عمّ (٣٠)",
+    "tadabbur.surah.label": "سورة",
+    "tadabbur.btn.video": "شاهد الفيديو",
+    "tadabbur.btn.audio": "استمع للصوت",
+    "tadabbur.player.speed": "السرعة",
+    "tadabbur.player.minimize": "تصغير",
+    "tadabbur.empty": "لا توجد محاضرات متاحة"
   },
   "ku": {
     "nav.home": "سەرەکی",
@@ -102,7 +118,15 @@ window.I18N = {
     "pub.section.title": "هەموو بڵاوکراوەکان",
     "pub.meta.pages": "پەڕە",
     "pub.btn.preview": "پیشاندان",
-    "pub.btn.download": "داگرتن"
+    "pub.btn.download": "داگرتن",
+    "tadabbur.hero.telegram": "بەشداربە لە کەناڵی تێلیگرام",
+    "tadabbur.juz.title": "جوزی عەممە (٣٠)",
+    "tadabbur.surah.label": "سورەی",
+    "tadabbur.btn.video": "ڤیدیۆ ببینە",
+    "tadabbur.btn.audio": "گوێبگرە",
+    "tadabbur.player.speed": "خێرایی",
+    "tadabbur.player.minimize": "بچووککردنەوە",
+    "tadabbur.empty": "هیچ وانەیەک بەردەست نییە"
   }
 };
 
