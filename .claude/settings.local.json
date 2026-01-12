@@ -5,7 +5,10 @@
       "Bash(dir /s \"d:\\\\Project\\\\new-halabja-quran-center v3\\\\new-halabja-quran-center\\\\3DBookShowcase\")",
       "Bash(git checkout HEAD -- assets/js/publications-loader.js assets/css/styles.css)",
       "Bash(dir:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(for:*)",
+      "Bash(do grep -n \"tafsir.html\" \"d:\\\\Project\\\\new-halabja-quran-center v3\\\\new-halabja-quran-center$file\")",
+      "Bash(done)"
     ]
   }
 }
