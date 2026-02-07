@@ -2762,7 +2762,7 @@ body[dir="rtl"] .pub-main{
 /* Track - slides move from absolute edge to edge */
 .pub-hero-track{
   display: flex;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 /* Disable transition during clone reset */
@@ -2807,16 +2807,16 @@ body[dir="rtl"] .pub-hero-slide-inner {
   top: 50px;
   left: calc(50% + var(--pub-hero-offset));
   transform: translateX(-50%);
-  background: rgba(255,255,255,0.2);
-  border: 1.5px solid rgba(255,255,255,0.4);
-  color: var(--color-cream);
+  background: linear-gradient(135deg, #DEB86D 0%, #C9A347 100%);
+  border: 1.5px solid #B8923D;
+  color: #2D2416;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   padding: 10px 28px;
   border-radius: var(--radius-pill);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(222, 184, 109, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
   z-index: 10;
 }
 
@@ -3158,10 +3158,10 @@ body[dir="ltr"] .pub-hero-title{
   position: absolute;
   width: 100%;
   height: 100%;
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
-  border-radius: 0 3px 3px 0;
-  box-shadow: inset 4px 0 10px rgba(0,0,0,0.1);
+  border-radius: 3px 0 0 3px; /* Round left edge (fore-edge for RTL) */
+  box-shadow: inset -4px 0 10px rgba(0,0,0,0.1); /* Shadow from right (spine side) */
   z-index: 1;
   backface-visibility: hidden;
   transform-style: preserve-3d;
@@ -3181,7 +3181,7 @@ body[dir="ltr"] .pub-hero-title{
   height: 100%;
   background-color: #000;
   transform: rotate3d(0,1,0,179deg);
-  border-radius: 0 3px 3px 0;
+  border-radius: 3px 0 0 3px; /* Round left edge */
   z-index: 1;
   backface-visibility: hidden;
   transform-style: preserve-3d;
@@ -3192,7 +3192,7 @@ body[dir="ltr"] .pub-hero-title{
   display: none;
 }
 
-/* Binding detail on front (right side) */
+/* Binding detail on front (right side - spine side for RTL) */
 .book-front:after{
   content: '';
   position: absolute;
@@ -3205,7 +3205,7 @@ body[dir="ltr"] .pub-hero-title{
   z-index: 100;
 }
 
-/* Binding detail on back (left side) */
+/* Binding detail on back (left side - spine side when flipped for RTL) */
 .book-back:after{
   content: '';
   position: absolute;
@@ -3217,6 +3217,12 @@ body[dir="ltr"] .pub-hero-title{
   box-shadow: 1px 0 3px rgba(255,255,255,0.1);
 }
 
+/* Remove binding dent for newest book */
+.book-newest .book-front:after,
+.book-newest .book-back:after{
+  display: none !important;
+}
+
 /* Back cover */
 .book-back{
   position: absolute;
@@ -3224,7 +3230,7 @@ body[dir="ltr"] .pub-hero-title{
   height: 100%;
   transform: rotate3d(0,1,0,-180deg) translate3d(0,0,20px);
   box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
-  border-radius: 3px 0 0 3px;
+  border-radius: 0 3px 3px 0; /* Round right edge (fore-edge when flipped) */
 }
 
 
@@ -3247,15 +3253,16 @@ body[dir="ltr"] .pub-hero-title{
 /* Rotate spine images 180 degrees */
 .book-right,
 .book-left{
-  background-size: cover !important;
+  background-size: 100% 100% !important;
   background-position: center !important;
+  background-repeat: no-repeat !important;
   transform-origin: center;
 }
 .book-right{
-  transform: rotate3d(0,1,0,90deg) translate3d(0,0,160px) scaleY(-1);
+  transform: rotate3d(0,1,0,90deg) translate3d(0,0,160px) scaleX(-1);
 }
 .book-left{
-  transform: rotate3d(0,1,0,-90deg) scaleY(-1);
+  transform: rotate3d(0,1,0,-90deg) scaleX(-1);
 }
 
 /* Top edge */
@@ -3268,6 +3275,7 @@ body[dir="ltr"] .pub-hero-title{
   transform: rotate3d(1,0,0,90deg);
   backface-visibility: hidden;
   background-color: #fff;
+  border-radius: 3px 0 0 3px; /* Match front cover radius */
 }
 
 /* Bottom edge */
@@ -3280,6 +3288,7 @@ body[dir="ltr"] .pub-hero-title{
   transform: rotate3d(1,0,0,-90deg) translate3d(0,0,250px);
   backface-visibility: hidden;
   background-color: #fff;
+  border-radius: 3px 0 0 3px; /* Match front cover radius */
 }
 
 /* Pages effect */
@@ -3291,6 +3300,7 @@ body[dir="ltr"] .pub-hero-title{
   transform: translate3d(0,0,19px);
   backface-visibility: hidden;
   z-index: 9;
+  border-radius: 3px 0 0 3px; /* Match front cover radius to prevent white corners */
 }
 
 /* Grid Section */

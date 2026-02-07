@@ -78,19 +78,25 @@
     const spineCover = pub.coverSpine;
 
     const coverStyle = frontCover
-      ? `background-image: url('${frontCover}'); background-size: cover; background-position: center;`
+      ? `background-image: url('${frontCover}'); background-size: 100% 100%; background-position: center;`
       : `background-color: ${pub.color || '#147E49'};`;
 
     const backStyle = backCover
-      ? `background-image: url('${backCover}'); background-size: cover; background-position: center;`
+      ? `background-image: url('${backCover}'); background-size: 100% 100%; background-position: center;`
       : `background-color: ${pub.color || '#147E49'};`;
 
     const spineStyle = spineCover
-      ? `background-image: url('${spineCover}'); background-size: cover; background-position: center;`
+      ? `background-image: url('${spineCover}'); background-size: 100% 100%; background-position: center;`
       : `background-color: ${pub.color || '#147E49'};`;
 
+    // Add special class for newest book to remove binding dent
+    const newestClass = pub.newest ? ' book-newest' : '';
+
+    // Add special class for pub-2 to make spine thinner
+    const thinSpineClass = pub.id === 'pub-2' ? ' book-thin-spine' : '';
+
     return `
-      <div class="book-3d bk-bookdefault">
+      <div class="book-3d bk-bookdefault${newestClass}${thinSpineClass}">
         <div class="book-front">
           <div class="book-cover" style="${coverStyle}"></div>
         </div>
@@ -331,13 +337,11 @@
       if (!direction) return;
 
       if (direction === 1) {
-        currentIndex = getNextIndex();
         const firstSlide = track.firstElementChild;
         track.appendChild(firstSlide);
         const nextIndex = getNextIndex();
         renderSlideContent(firstSlide, heroBooks[nextIndex], nextIndex);
       } else if (direction === -1) {
-        currentIndex = getPrevIndex();
         const lastSlide = track.lastElementChild;
         track.insertBefore(lastSlide, track.firstElementChild);
         const prevIndex = getPrevIndex();
@@ -345,10 +349,11 @@
       }
 
       direction = 0;
-      snapToCenter();
-      updateDots();
-      attachBookFlip();
-      isTransitioning = false;
+      requestAnimationFrame(() => {
+        snapToCenter();
+        attachBookFlip();
+        isTransitioning = false;
+      });
     }
 
     track.addEventListener('transitionend', handleTransitionEnd, false);
@@ -357,14 +362,30 @@
       if (isTransitioning) return;
       isTransitioning = true;
       direction = 1;
-      track.style.transform = 'translateX(-200%)';
+
+      // Update dots immediately
+      currentIndex = getNextIndex();
+      updateDots();
+
+      // Start transition
+      requestAnimationFrame(() => {
+        track.style.transform = 'translateX(-200%)';
+      });
     }
 
     function goPrev() {
       if (isTransitioning) return;
       isTransitioning = true;
       direction = -1;
-      track.style.transform = 'translateX(0%)';
+
+      // Update dots immediately
+      currentIndex = getPrevIndex();
+      updateDots();
+
+      // Start transition
+      requestAnimationFrame(() => {
+        track.style.transform = 'translateX(0%)';
+      });
     }
 
     function startAutoSlide() {
@@ -401,7 +422,11 @@
         const targetIndex = parseInt(dot.getAttribute('data-index'));
         if (targetIndex === currentIndex) return;
         stopAutoSlide();
-        if (targetIndex === getNextIndex()) {
+
+        // Update dots immediately before starting transition
+        const willGoNext = targetIndex === getNextIndex();
+
+        if (willGoNext) {
           goNext();
         } else {
           goPrev();
@@ -524,6 +549,7 @@
 
     // currentIndex: 0=lastClone, 1=first real, 2=second real, ..., totalSlides=firstClone
     let currentIndex = 1; // Start at first real slide
+    let logicalIndex = 0; // The actual slide we're viewing (0 to totalSlides-1)
     let isTransitioning = false;
     let autoSlideInterval = null;
 
@@ -543,6 +569,13 @@
       // No-op: CSS handles the constant state with !important rules
     }
 
+    // Update dots based on logical index
+    function updateDots() {
+      dots.forEach((dot, i) => {
+        dot.setAttribute('aria-current', i === logicalIndex ? 'true' : 'false');
+      });
+    }
+
     // Update carousel position
     function updateCarousel(animate = true) {
       if (!animate) {
@@ -552,15 +585,9 @@
       const offset = -currentIndex * 100;
       track.style.transform = `translateX(${offset}%)`;
 
-      // Update dots (map real index)
-      const realIndex = currentIndex - 1; // Offset by 1 because of leading clone
-      dots.forEach((dot, i) => {
-        dot.setAttribute('aria-current', i === realIndex ? 'true' : 'false');
-      });
-
       if (!animate) {
         // Force reflow to apply no-transition immediately
-        track.offsetHeight;
+        void track.offsetHeight;
         track.classList.remove('no-transition');
       }
 
@@ -575,24 +602,20 @@
 
       // If on last clone (first real slide clone), jump to first real slide
       if (currentIndex === totalSlides + 1) {
-        // Use double requestAnimationFrame for smoother visual transition
+        currentIndex = 1;
+        logicalIndex = 0;
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            currentIndex = 1;
-            updateCarousel(false); // Jump without animation
-            isTransitioning = false;
-          });
+          updateCarousel(false); // Jump without animation
+          isTransitioning = false;
         });
       }
       // If on first clone (last real slide clone), jump to last real slide
       else if (currentIndex === 0) {
-        // Use double requestAnimationFrame for smoother visual transition
+        currentIndex = totalSlides;
+        logicalIndex = totalSlides - 1;
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            currentIndex = totalSlides;
-            updateCarousel(false); // Jump without animation
-            isTransitioning = false;
-          });
+          updateCarousel(false); // Jump without animation
+          isTransitioning = false;
         });
       } else {
         isTransitioning = false;
@@ -607,7 +630,15 @@
       if (isTransitioning) return;
       isTransitioning = true;
       currentIndex++;
-      updateCarousel(true);
+      logicalIndex = (logicalIndex + 1) % totalSlides;
+
+      // Update dots immediately BEFORE transition starts
+      updateDots();
+
+      // Start transition
+      requestAnimationFrame(() => {
+        updateCarousel(true);
+      });
     }
 
     // Move backward
@@ -615,7 +646,15 @@
       if (isTransitioning) return;
       isTransitioning = true;
       currentIndex--;
-      updateCarousel(true);
+      logicalIndex = (logicalIndex - 1 + totalSlides) % totalSlides;
+
+      // Update dots immediately BEFORE transition starts
+      updateDots();
+
+      // Start transition
+      requestAnimationFrame(() => {
+        updateCarousel(true);
+      });
     }
 
     // Auto-slide every 5 seconds - always forward
@@ -654,13 +693,23 @@
         if (isTransitioning) return;
         stopAutoSlide();
         const targetIndex = parseInt(dot.getAttribute('data-index'));
+
+        // Update dots immediately
+        logicalIndex = targetIndex;
+        updateDots();
+
+        // Set physical index and animate
         currentIndex = targetIndex + 1; // Offset by 1 for leading clone
         isTransitioning = true;
-        updateCarousel(true);
+
+        requestAnimationFrame(() => {
+          updateCarousel(true);
+        });
+
         setTimeout(() => {
           isTransitioning = false;
           startAutoSlide();
-        }, 800);
+        }, 500);
       };
       dotHandlers.set(dot, handler);
       dot.addEventListener('click', handler);
@@ -754,6 +803,7 @@
 
     // Initial state
     updateCarousel(false); // Set initial position without animation
+    updateDots(); // Set initial dot state
     startAutoSlide();
 
     return () => {
@@ -778,8 +828,8 @@
     const container = document.getElementById('publicationsGrid');
     if (!container) return;
 
-    // Exclude featured and newest (they're in hero carousel)
-    const gridBooks = PUBLICATIONS.filter(p => !p.featured && !p.newest);
+    // Show all publications in grid (including featured and newest)
+    const gridBooks = [...PUBLICATIONS];
     const lang = getCurrentLanguage();
 
     const emptyMessages = {
