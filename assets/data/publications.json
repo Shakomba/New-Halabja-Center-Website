@@ -1,6 +1,6 @@
 [
   {
-    "id": "featured",
+    "id": "pub-1",
     "title": {
       "en": "Tajweed Science",
       "ku": "زانستی تەجوید",
@@ -11,9 +11,9 @@
       "ku": "کتێبێکی گشتگیر بۆ فێربوونی خوێندنەوەی قورئانی پیرۆز بە ڕێبازی دروست و تەجوید. ئەم کتێبە گونجاوە بۆ سەرەتاییەکان و ناوەندییەکان.",
       "ar": "دليل شامل لتعلم قراءة القرآن الكريم بالتجويد الصحيح. هذا الكتاب مناسب للمبتدئين والمتوسطين."
     },
-    "coverFront": "assets/img/Publications/zanstyTajwidFront.jpg",
-    "coverBack": "assets/img/Publications/zanstyTajwidBack.jpg",
-    "coverSpine": "assets/img/Publications/zanstyTajwidSpine.jpg",
+    "coverFront": "assets/img/Publications/ZanstiTejwid (1).jpg",
+    "coverBack": "assets/img/Publications/ZanstiTejwid (3).jpg",
+    "coverSpine": "assets/img/Publications/ZanstiTejwid (2).jpg",
     "color": "#147E49",
     "pages": 120,
     "size": "4.5 MB",
@@ -24,18 +24,18 @@
   {
     "id": "pub-2",
     "title": {
-      "en": "Tajweed Rules",
-      "ku": "ئەحکامی تەجوید",
-      "ar": "أحكام التجويد"
+      "en": "Explanation of Tuhfat al-Atfal",
+      "ku": "ڕاڤەی تحفة الأطفال",
+      "ar": "شرح تحفة الأطفال"
     },
     "description": {
-      "en": "Discussion of all Tajweed rules for proper and correct Quran recitation.",
-      "ku": "باسکردن لە هەموو یاساکانی تەجوید بۆ خوێندنەوەی ڕاست و دروستی قورئان.",
-      "ar": "مناقشة جميع أحكام التجويد للتلاوة الصحيحة للقرآن."
+      "en": "A simplified and concise guide to the rules of Tajweed, covering the basics of Quranic recitation for beginners.",
+      "ku": "ڕێبەرێکی ئاسانکاری کراو بۆ بنەماکانی زانستی تەجوید و ڕاست خوێندنەوەی قورئانی پیرۆز تایبەت بە ئاستی سەرەتایی.",
+      "ar": "شرح موجز ومبسط لقواعد التجويد، يتناول أساسيات تلاوة القرآن الكريم للمبتدئين."
     },
-    "coverFront": "assets/img/Publications/zanstyTajwidFront.jpg",
-    "coverBack": "assets/img/Publications/zanstyTajwidBack.jpg",
-    "coverSpine": "assets/img/Publications/zanstyTajwidSpine.jpg",
+    "coverFront": "assets/img/Publications/Tuhfa (1).jpg",
+    "coverBack": "assets/img/Publications/Tuhfa (3).jpg",
+    "coverSpine": "assets/img/Publications/Tuhfa (2).jpg",
     "color": "#222",
     "pages": 85,
     "size": "3.2 MB",
@@ -55,9 +55,9 @@
       "ku": "کۆکراوەیەکی دوعا و ئەزکاری ڕۆژانە بۆ موسڵمانان.",
       "ar": "مجموعة من الأدعية والأذكار اليومية للمسلمين."
     },
-    "coverFront": "assets/img/Publications/zanstyTajwidFront.jpg",
-    "coverBack": "assets/img/Publications/zanstyTajwidBack.jpg",
-    "coverSpine": "assets/img/Publications/zanstyTajwidSpine.jpg",
+    "coverFront": "assets/img/Publications/ZanstiTejwid (1).jpg",
+    "coverBack": "assets/img/Publications/ZanstiTejwid (3).jpg",
+    "coverSpine": "assets/img/Publications/ZanstiTejwid (2).jpg",
     "color": "#FE9007",
     "pages": 64,
     "size": "2.1 MB",

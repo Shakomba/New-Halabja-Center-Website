@@ -2762,7 +2762,7 @@ body[dir="rtl"] .pub-main{
 /* Track - slides move from absolute edge to edge */
 .pub-hero-track{
   display: flex;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 /* Disable transition during clone reset */
@@ -2807,16 +2807,16 @@ body[dir="rtl"] .pub-hero-slide-inner {
   top: 50px;
   left: calc(50% + var(--pub-hero-offset));
   transform: translateX(-50%);
-  background: rgba(255,255,255,0.2);
-  border: 1.5px solid rgba(255,255,255,0.4);
-  color: var(--color-cream);
+  background: linear-gradient(135deg, #DEB86D 0%, #C9A347 100%);
+  border: 1.5px solid #B8923D;
+  color: #2D2416;
   font-family: 'IBM Plex Sans Arabic', sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   padding: 10px 28px;
   border-radius: var(--radius-pill);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(222, 184, 109, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
   z-index: 10;
 }
 
@@ -3215,6 +3215,12 @@ body[dir="ltr"] .pub-hero-title{
   width: 3px;
   background: rgba(0,0,0,0.06);
   box-shadow: 1px 0 3px rgba(255,255,255,0.1);
+}
+
+/* Remove binding dent for newest book */
+.book-newest .book-front:after,
+.book-newest .book-back:after{
+  display: none !important;
 }
 
 /* Back cover */
