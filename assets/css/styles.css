@@ -2764,6 +2764,9 @@ body[dir="rtl"] .pub-main{
   display: flex;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
+  /* Keep carousel math consistent even when the page is RTL.
+     The JS uses fixed translateX(-100%/-200%/0%) values which assume LTR track direction. */
+  direction: ltr;
 }
 /* Disable transition during clone reset */
 .pub-hero-track.no-transition{
@@ -2799,13 +2802,16 @@ body[dir="rtl"] .pub-main{
 /* RTL support */
 body[dir="rtl"] .pub-hero-slide-inner {
   grid-template-columns: 40% 50%;
+  /* Preserve natural text/layout direction inside the slide */
+  direction: rtl;
 }
 
 /* Badge - Top Center with space from book */
 .pub-hero-badge{
   position: absolute;
   top: 50px;
-  left: calc(50% + var(--pub-hero-offset));
+  /* Always center the badge regardless of language direction */
+  left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, #DEB86D 0%, #C9A347 100%);
   border: 1.5px solid #B8923D;
@@ -2837,7 +2843,11 @@ body[dir="rtl"] .pub-hero-content{
   margin: 0 0 16px;
   line-height: 1.4;
   text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  /* Don't force centering; follow the element's direction (LTR/RTL) */
+  text-align: start;
 }
+
+/* English page (LTR): keep the Kurdish hero title visually left-aligned */
 body[dir="ltr"] .pub-hero-title{
   text-align: left;
 }
@@ -2910,6 +2920,11 @@ body[dir="ltr"] .pub-hero-title{
 }
 .pub-hero-slide .pub-meta-pill svg{
   opacity: 0.9;
+}
+.pub-hero-slide .pub-meta-physical{
+  background: rgba(255,255,255,0.2);
+  color: #ffe08a;
+  border: 1px solid rgba(255,224,138,0.35);
 }
 
 /* Hero-specific buttons for green background */
@@ -3037,6 +3052,8 @@ body[dir="ltr"] .pub-hero-title{
     height: 280px;
     /* Exact standardized margin for consistency */
     margin-bottom: 24px;
+    /* More space between badge and book */
+    margin-top: 24px;
     /* Center book on mobile */
     margin-left: auto;
     margin-right: auto;
@@ -3048,11 +3065,22 @@ body[dir="ltr"] .pub-hero-title{
   .pub-hero-arrow{
     display: none !important;
   }
+
+  /* Disable book hover effects on mobile */
+  /* Restore hover/tilt on mobile to match desktop interaction */
+  .book-3d.bk-bookdefault:hover{
+    transform: rotate3d(0,1,0,-35deg);
+  }
+  .pub-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(20,126,73,0.12);
+  }
 }
 @media (min-width: 901px){
-  .pub-hero-slide{
-    --pub-hero-offset: 24px;
-  }
+  /* Slight opposite offsets per language direction for visual balance.
+     This shifts the entire hero block (badge + slide-inner) equally. */
+  body[dir="ltr"] .pub-hero-slide{ --pub-hero-offset: 36px; }
+  body[dir="rtl"] .pub-hero-slide{ --pub-hero-offset: -36px; }
 }
 
 /* Meta Pills */
@@ -3078,6 +3106,12 @@ body[dir="ltr"] .pub-hero-title{
   height: 16px;
   opacity: 0.7;
 }
+.pub-meta-physical{
+  background: rgba(218,165,32,0.12);
+  color: #b8860b;
+  font-weight: 600;
+  border: 1px solid rgba(218,165,32,0.25);
+}
 
 /* Buttons */
 .pub-buttons{
@@ -3099,6 +3133,7 @@ body[dir="ltr"] .pub-hero-title{
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   border: none;
+  white-space: nowrap;
 }
 .pub-btn svg{
   width: 20px;
@@ -3122,7 +3157,6 @@ body[dir="ltr"] .pub-hero-title{
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(20,126,73,0.4);
 }
-
 /* 3D Book Effect - RTL (spine on right) - Based on reference */
 .book-3d{
   position: relative;
@@ -3146,7 +3180,7 @@ body[dir="ltr"] .pub-hero-title{
   transform-style: preserve-3d;
   transform-origin: 0% 50%;
   transition: transform 0.5s;
-  transform: translate3d(0,0,20px);
+  transform: translate3d(0,0,calc(var(--book-t, 20px) / 2));
   z-index: 10;
   position: absolute;
   width: 100%;
@@ -3228,7 +3262,7 @@ body[dir="ltr"] .pub-hero-title{
   position: absolute;
   width: 100%;
   height: 100%;
-  transform: rotate3d(0,1,0,-180deg) translate3d(0,0,20px);
+  transform: rotate3d(0,1,0,-180deg) translate3d(0,0,calc(var(--book-t, 20px) / 2));
   box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
   border-radius: 0 3px 3px 0; /* Round right edge (fore-edge when flipped) */
 }
@@ -3242,9 +3276,9 @@ body[dir="ltr"] .pub-hero-title{
 /* Left spine (title spine) */
 .book-left{
   position: absolute;
-  width: 40px;
+  width: var(--book-t, 20px);
   height: 100%;
-  right: -20px;
+  right: calc(var(--book-t, 20px) / -2);
   top: 0;
   transform: rotate3d(0,1,0,-90deg);
   background-color: inherit;
@@ -3269,8 +3303,8 @@ body[dir="ltr"] .pub-hero-title{
 .book-top{
   position: absolute;
   width: 100%;
-  height: 40px;
-  top: -15px;
+  height: var(--book-t, 20px);
+  top: calc(var(--book-t, 20px) * -0.4);
   left: 0;
   transform: rotate3d(1,0,0,90deg);
   backface-visibility: hidden;
@@ -3282,8 +3316,8 @@ body[dir="ltr"] .pub-hero-title{
 .book-bottom{
   position: absolute;
   width: 100%;
-  height: 40px;
-  top: -15px;
+  height: var(--book-t, 20px);
+  top: calc(var(--book-t, 20px) * -0.4);
   left: 0;
   transform: rotate3d(1,0,0,-90deg) translate3d(0,0,250px);
   backface-visibility: hidden;
@@ -3297,7 +3331,7 @@ body[dir="ltr"] .pub-hero-title{
   width: 100%;
   height: 100%;
   background-color: #fff;
-  transform: translate3d(0,0,19px);
+  transform: translate3d(0,0,calc(var(--book-t, 20px) / 2 - 1px));
   backface-visibility: hidden;
   z-index: 9;
   border-radius: 3px 0 0 3px; /* Match front cover radius to prevent white corners */
@@ -3355,7 +3389,7 @@ body[dir="ltr"] .pub-hero-title{
   line-height: 1.5;
 }
 body[dir="ltr"] .pub-card-title{
-  text-align: left;
+  text-align: center;
 }
 .pub-card .pub-meta{
   justify-content: center;
@@ -3479,12 +3513,13 @@ body[dir="ltr"] .pub-card-title{
   .pub-card{
     padding: 24px 20px;
   }
-  .book-3d{
-    width: 140px;
-    height: 195px;
+  /* Publications grid: make books larger on mobile */
+  .pub-card .book-3d{
+    width: 160px;
+    height: 220px;
   }
   .pub-card .book-bottom{
-    transform: rotate3d(1,0,0,-90deg) translate3d(0,0,195px);
+    transform: rotate3d(1,0,0,-90deg) translate3d(0,0,220px);
   }
   .pub-btn{
     padding: 12px 20px;

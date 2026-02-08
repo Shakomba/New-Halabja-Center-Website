@@ -37,6 +37,13 @@
     return field[lang] || field['en'] || '';
   }
 
+  // Titles: Kurdish only (no EN/AR fallback)
+  function getKurdishOnly(field) {
+    if (!field) return '';
+    if (typeof field === 'string') return '';
+    return field['ku'] || '';
+  }
+
   // Convert numbers to Arabic-Indic numerals
   function toArabicNumerals(num) {
     const arabicNumerals = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -67,7 +74,8 @@
     eye: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
     download: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
     pages: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
-    size: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`
+    size: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`,
+    phone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`
   };
 
   // Generate 3D book HTML
@@ -92,16 +100,12 @@
     // Add special class for newest book to remove binding dent
     const newestClass = pub.newest ? ' book-newest' : '';
 
-<<<<<<< HEAD
-    // Add special class for pub-2 to make spine thinner
-    const thinSpineClass = pub.id === 'pub-2' ? ' book-thin-spine' : '';
+    // Per-book thickness via CSS custom property
+    const thickness = pub.thickness || 20;
+    const thicknessStyle = `--book-t: ${thickness}px;`;
 
     return `
-      <div class="book-3d bk-bookdefault${newestClass}${thinSpineClass}">
-=======
-    return `
-      <div class="book-3d bk-bookdefault${newestClass}">
->>>>>>> ecb417b0304e6423ade35025eb9684ab9f370fa0
+      <div class="book-3d bk-bookdefault${newestClass}" style="${thicknessStyle}">
         <div class="book-front">
           <div class="book-cover" style="${coverStyle}"></div>
         </div>
@@ -116,33 +120,51 @@
   }
 
   // Generate meta pills HTML
-  function generateMetaHTML(pages, size) {
+  function generateMetaHTML(pub) {
     const lang = getCurrentLanguage();
-    const formattedPages = formatNumber(pages, lang);
+    const formattedPages = formatNumber(pub.pages, lang);
+    const showSize = !pub.physicalOnly && Boolean(pub.size);
 
     return `
       <div class="pub-meta">
+        ${pub.physicalOnly ? `
+        <span class="pub-meta-pill pub-meta-physical" data-i18n="pub.physical.note">
+          ${t('pub.physical.note')}
+        </span>
+        ` : ''}
         <span class="pub-meta-pill">
           ${ICONS.pages}
           <span>${formattedPages} ${t('pub.meta.pages')}</span>
         </span>
+        ${showSize ? `
         <span class="pub-meta-pill">
           ${ICONS.size}
-          <span>${size}</span>
+          <span>${pub.size}</span>
         </span>
+        ` : ''}
       </div>
     `;
   }
 
   // Generate buttons HTML
-  function generateButtonsHTML(file) {
+  function generateButtonsHTML(pub) {
+    if (pub.physicalOnly) {
+      return `
+        <div class="pub-buttons">
+          <a href="contact.html" class="pub-btn pub-btn-solid pub-btn-contact">
+            ${ICONS.phone}
+            <span data-i18n="pub.btn.contact">${t('pub.btn.contact')}</span>
+          </a>
+        </div>
+      `;
+    }
     return `
       <div class="pub-buttons">
-        <button class="pub-btn pub-btn-ghost" onclick="openPreview('${file}')">
+        <button class="pub-btn pub-btn-ghost" onclick="openPreview('${pub.file}')">
           ${ICONS.eye}
           <span data-i18n="pub.btn.preview">${t('pub.btn.preview')}</span>
         </button>
-        <a href="${file}" download class="pub-btn pub-btn-solid">
+        <a href="${pub.file}" download class="pub-btn pub-btn-solid">
           ${ICONS.download}
           <span data-i18n="pub.btn.download">${t('pub.btn.download')}</span>
         </a>
@@ -169,7 +191,7 @@
 
     const renderSlideContent = (slide, pub, index) => {
       const currentLang = getCurrentLanguage();
-      const title = getTranslatedValue(pub.title, 'ku'); // Always use Kurdish for titles
+      const title = getKurdishOnly(pub.title);
       const description = getTranslatedValue(pub.description, currentLang);
       const badgeKey = pub.newest ? 'pub.badge.newest' : 'pub.featured.badge';
       const badgeText = t(badgeKey);
@@ -193,9 +215,9 @@
         <div class="pub-hero-slide-inner">
           <div class="pub-hero-content">
             <h2 class="pub-hero-title" dir="${titleDir}" lang="${titleLang}">${title}</h2>
-            ${generateMetaHTML(pub.pages, pub.size)}
+            ${generateMetaHTML(pub)}
             <p class="pub-hero-desc" dir="${dirAttr}" lang="${currentLang}">${description}</p>
-            ${generateButtonsHTML(pub.file)}
+            ${generateButtonsHTML(pub)}
           </div>
           <div class="pub-hero-book">
             ${generateBookHTML(pub)}
@@ -206,7 +228,7 @@
 
     // Generate slide HTML with inner wrapper for centered content
     const generateSlide = (pub, index, isClone = false) => {
-      const title = getTranslatedValue(pub.title, 'ku'); // Always use Kurdish for titles
+      const title = getKurdishOnly(pub.title);
       const description = getTranslatedValue(pub.description, lang);
       const badgeKey = pub.newest ? 'pub.badge.newest' : 'pub.featured.badge';
       const badgeText = t(badgeKey);
@@ -225,9 +247,9 @@
           <div class="pub-hero-slide-inner">
             <div class="pub-hero-content">
               <h2 class="pub-hero-title" dir="${titleDir}" lang="${titleLang}">${title}</h2>
-              ${generateMetaHTML(pub.pages, pub.size)}
+              ${generateMetaHTML(pub)}
               <p class="pub-hero-desc" dir="${dirAttr}" lang="${lang}">${description}</p>
-              ${generateButtonsHTML(pub.file)}
+              ${generateButtonsHTML(pub)}
             </div>
             <div class="pub-hero-book">
               ${generateBookHTML(pub)}
@@ -852,7 +874,7 @@
     const isRTL = lang === 'ar' || lang === 'ku';
 
     container.innerHTML = gridBooks.map(pub => {
-      const title = getTranslatedValue(pub.title, 'ku'); // Always use Kurdish for titles
+      const title = getKurdishOnly(pub.title);
       const description = getTranslatedValue(pub.description, lang);
 
       // Title always in Kurdish (RTL)
@@ -866,9 +888,9 @@
         <article class="pub-card reveal">
           ${generateBookHTML(pub)}
           <h3 class="pub-card-title" dir="${titleDir}" lang="${titleLang}">${title}</h3>
-          ${generateMetaHTML(pub.pages, pub.size)}
+          ${generateMetaHTML(pub)}
           <p class="pub-card-desc" dir="${descDir}" lang="${lang}">${description}</p>
-          ${generateButtonsHTML(pub.file)}
+          ${generateButtonsHTML(pub)}
         </article>
       `;
     }).join('');

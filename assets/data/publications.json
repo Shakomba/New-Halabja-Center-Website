@@ -15,11 +15,12 @@
     "coverBack": "assets/img/Publications/ZanstiTejwid (3).jpg",
     "coverSpine": "assets/img/Publications/ZanstiTejwid (2).jpg",
     "color": "#147E49",
-    "pages": 120,
-    "size": "4.5 MB",
-    "file": "assets/pdfs/publication-sample-1.pdf",
+    "pages": 213,
+    "size": "5.2 MB",
+    "file": "assets/pdfs/ZanstiTejwid.pdf",
     "featured": true,
-    "newest": false
+    "newest": false,
+    "thickness": 26
   },
   {
     "id": "pub-2",
@@ -37,11 +38,12 @@
     "coverBack": "assets/img/Publications/Tuhfa (3).jpg",
     "coverSpine": "assets/img/Publications/Tuhfa (2).jpg",
     "color": "#222",
-    "pages": 85,
-    "size": "3.2 MB",
-    "file": "assets/pdfs/publication-sample-2.pdf",
+    "pages": 52,
+    "size": "",
     "featured": false,
-    "newest": true
+    "newest": true,
+    "thickness": 12,
+    "physicalOnly": true
   },
   {
     "id": "pub-3",
@@ -61,10 +63,10 @@
     "coverSpine": "assets/img/Publications/700 (2).jpg",
     "color": "#FE9007",
     "pages": 64,
-    "size": "2.1 MB",
-    "file": "assets/pdfs/publication-sample-1.pdf",
     "featured": false,
-    "newest": false
+    "newest": false,
+    "thickness": 26,
+    "physicalOnly": true
   },
   {
     "id": "pub-4",
@@ -82,11 +84,12 @@
     "coverBack": "assets/img/Publications/DaykaniImandaran (3).jpg",
     "coverSpine": "assets/img/Publications/DaykaniImandaran (2).jpg",
     "color": "#FE9007",
-    "pages": 64,
-    "size": "2.1 MB",
-    "file": "assets/pdfs/publication-sample-1.pdf",
+    "pages": 212,
+    "size": "2.2 MB",
+    "file": "assets/pdfs/DaykaniImandaran.pdf",
     "featured": false,
-    "newest": false
+    "newest": false,
+    "thickness": 26
   },
   {
     "id": "pub-5",
@@ -109,10 +112,11 @@
     "coverSpine": "assets/img/Publications/ZanstiTejwid (2).jpg",
 >>>>>>> ecb417b0304e6423ade35025eb9684ab9f370fa0
     "color": "#FE9007",
-    "pages": 64,
-    "size": "2.1 MB",
-    "file": "assets/pdfs/publication-sample-1.pdf",
+    "pages": 151,
+    "size": "1.85 MB",
+    "file": "assets/pdfs/BanguQamet.pdf",
     "featured": false,
-    "newest": false
+    "newest": false,
+    "thickness": 12
   }
 ]

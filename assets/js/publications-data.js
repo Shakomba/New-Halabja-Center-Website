@@ -1,0 +1,114 @@
+// Offline-safe publications dataset.
+// This is equivalent to assets/data/publications.json but loadable via <script> when opened via file://.
+window.PUBLICATIONS_RICH = [
+  {
+    "id": "pub-1",
+    "title": {
+      "en": "Tajweed Science",
+      "ku": "زانستی تەجوید",
+      "ar": "علم التجويد"
+    },
+    "description": {
+      "en": "A comprehensive guide for learning to read the Holy Quran with proper Tajweed. This book is suitable for beginners and intermediate learners.",
+      "ku": "کتێبێکی گشتگیر بۆ فێربوونی خوێندنەوەی قورئانی پیرۆز بە ڕێبازی دروست و تەجوید. ئەم کتێبە گونجاوە بۆ سەرەتاییەکان و ناوەندییەکان.",
+      "ar": "دليل شامل لتعلم قراءة القرآن الكريم بالتجويد الصحيح. هذا الكتاب مناسب للمبتدئين والمتوسطين."
+    },
+    "coverFront": "assets/img/Publications/ZanstiTejwid (1).jpg",
+    "coverBack": "assets/img/Publications/ZanstiTejwid (3).jpg",
+    "coverSpine": "assets/img/Publications/ZanstiTejwid (2).jpg",
+    "color": "#147E49",
+    "pages": 120,
+    "size": "4.5 MB",
+    "file": "assets/pdfs/publication-sample-1.pdf",
+    "featured": true,
+    "newest": false
+  },
+  {
+    "id": "pub-2",
+    "title": {
+      "en": "Explanation of Tuhfat al-Atfal",
+      "ku": "ڕاڤەی تحفة الأطفال",
+      "ar": "شرح تحفة الأطفال"
+    },
+    "description": {
+      "en": "A simplified and concise guide to the rules of Tajweed, covering the basics of Quranic recitation for beginners.",
+      "ku": "ڕێبەرێکی ئاسانکاری کراو بۆ بنەماکانی زانستی تەجوید و ڕاست خوێندنەوەی قورئانی پیرۆز تایبەت بە ئاستی سەرەتایی.",
+      "ar": "شرح موجز ومبسط لقواعد التجويد، يتناول أساسيات تلاوة القرآن الكريم للمبتدئين."
+    },
+    "coverFront": "assets/img/Publications/Tuhfa (1).jpg",
+    "coverBack": "assets/img/Publications/Tuhfa (3).jpg",
+    "coverSpine": "assets/img/Publications/Tuhfa (2).jpg",
+    "color": "#222",
+    "pages": 85,
+    "size": "3.2 MB",
+    "file": "assets/pdfs/publication-sample-2.pdf",
+    "featured": false,
+    "newest": true
+  },
+  {
+    "id": "pub-3",
+    "title": {
+      "en": "700 Multiple Choice Questions and Answers on Tajweed",
+      "ku": "٧٠٠ پرسیار و وەڵام لەسەر زانستی تەجوید بە شێوەی هەڵبژاردن",
+      "ar": "٧٠٠ سؤال وجواب في علم التجويد بنظام الاختيارات"
+    },
+    "description": {
+      "en": "700 multiple-choice questions and answers designed to test and master essential Tajweed rules.",
+      "ku": "٧٠٠ پرسیار و وەڵامی هەڵبژاردن بۆ تاقیکردنەوە و شارەزابوون لە یاسا بنچینەییەکانی تەجوید.",
+      "ar": "٧٠٠ سؤال وجواب بنظام الاختيارات لاختبار وإتقان أحكام التجويد الأساسية."
+    },
+    "coverFront": "assets/img/Publications/700 (1).jpg",
+    "coverBack": "assets/img/Publications/700 (3).jpg",
+    "coverSpine": "assets/img/Publications/700 (2).jpg",
+    "color": "#FE9007",
+    "pages": 64,
+    "size": "2.1 MB",
+    "file": "assets/pdfs/publication-sample-1.pdf",
+    "featured": false,
+    "newest": false
+  },
+  {
+    "id": "pub-4",
+    "title": {
+      "en": "Mothers of the Believers",
+      "ku": "دایکانی ئیمانداران",
+      "ar": "أمهات المؤمنين"
+    },
+    "description": {
+      "en": "Brief biographies and spiritual legacies of the wives of Prophet Muhammad (ﷺ)",
+      "ku": "کورتەیەک لە ژیان و شوێنەوارە ئیمانییەکانی هاوسەرانی پێغەمبەر (ﷺ)",
+      "ar": "سِيَر موجزة ومآثر إيمانية لزوجات النبي محمد (ﷺ)"
+    },
+    "coverFront": "assets/img/Publications/DaykaniImandaran (1).jpg",
+    "coverBack": "assets/img/Publications/DaykaniImandaran (3).jpg",
+    "coverSpine": "assets/img/Publications/DaykaniImandaran (2).jpg",
+    "color": "#FE9007",
+    "pages": 64,
+    "size": "2.1 MB",
+    "file": "assets/pdfs/publication-sample-1.pdf",
+    "featured": false,
+    "newest": false
+  },
+  {
+    "id": "pub-5",
+    "title": {
+      "en": "Adhan and Iqamah",
+      "ku": "بانگ و قامەت",
+      "ar": "الأذان والإقامة"
+    },
+    "description": {
+      "en": "A brief guide to the rulings and virtues of the Adhan and Iqamah according to the Sunnah.",
+      "ku": "ڕێبەرێکی کورت سەبارەت بە ئەحکام و فەزڵەکانی بانگ و قامەت بەپێی سوننەتی پێغەمبەر (ﷺ)",
+      "ar": "دليل موجز للأحكام وفضائل الأذان والإقامة وفقًا للسنة النبوية."
+    },
+    "coverFront": "assets/img/Publications/BanguQamat (1).jpg",
+    "coverBack": "assets/img/Publications/BanguQamat (3).jpg",
+    "coverSpine": "assets/img/Publications/BanuQamat (2).jpg",
+    "color": "#FE9007",
+    "pages": 64,
+    "size": "2.1 MB",
+    "file": "assets/pdfs/publication-sample-1.pdf",
+    "featured": false,
+    "newest": false
+  }
+];
