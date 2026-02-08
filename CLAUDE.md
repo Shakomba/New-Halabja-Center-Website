@@ -63,7 +63,6 @@ The `data-page` attribute on `<body>` identifies the page type (e.g., `data-page
 - [assets/js/data-news.js](assets/js/data-news.js) - Loads activities from JSON and populates `window.NEWS_DATA` for the home page
 - [assets/js/activities-loader.js](assets/js/activities-loader.js) - Full activities page implementation with filtering, search, and modal display
 - [assets/js/data-publications.js](assets/js/data-publications.js) - Publications data
-- [assets/js/data-tafsir.js](assets/js/data-tafsir.js) - Tafsir lectures data
 
 **Execution order matters**: i18n.js → site-config.js → main.js → page-specific scripts
 
@@ -73,7 +72,6 @@ Content is stored in JavaScript data files (not JSON) and one JSON file:
 
 - [assets/data/activities.json](assets/data/activities.json) - News/activities with multilingual support
 - [assets/js/data-publications.js](assets/js/data-publications.js) - PDF publications metadata
-- [assets/js/data-tafsir.js](assets/js/data-tafsir.js) - Audio/video tafsir lectures
 
 **Activities data structure**:
 ```javascript
@@ -141,7 +139,6 @@ Edit [assets/data/activities.json](assets/data/activities.json) and add new acti
 Edit [assets/js/data-publications.js](assets/js/data-publications.js) and place PDF files in `assets/pdfs/`.
 
 ### Adding Tafsir Lectures
-Edit [assets/js/data-tafsir.js](assets/js/data-tafsir.js) with audio files in `assets/audio/` or external URLs for video embeds.
 
 ### Adding Translations
 Add new keys to [assets/js/i18n.js](assets/js/i18n.js) under the `en`, `ku`, and `ar` language objects, then reference them in HTML with `data-i18n="your.key"`.

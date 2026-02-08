@@ -120,18 +120,14 @@
   }
 
   // Generate meta pills HTML
-  function generateMetaHTML(pub) {
+  // When inlinePhysical is true, the physical-only label is placed inside the meta row
+  function generateMetaHTML(pub, inlinePhysical) {
     const lang = getCurrentLanguage();
     const formattedPages = formatNumber(pub.pages, lang);
     const showSize = !pub.physicalOnly && Boolean(pub.size);
 
     return `
       <div class="pub-meta">
-        ${pub.physicalOnly ? `
-        <span class="pub-meta-pill pub-meta-physical" data-i18n="pub.physical.note">
-          ${t('pub.physical.note')}
-        </span>
-        ` : ''}
         <span class="pub-meta-pill">
           ${ICONS.pages}
           <span>${formattedPages} ${t('pub.meta.pages')}</span>
@@ -142,8 +138,15 @@
           <span>${pub.size}</span>
         </span>
         ` : ''}
+        ${inlinePhysical ? generatePhysicalNoteHTML(pub) : ''}
       </div>
     `;
+  }
+
+  // Generate physical-only note HTML
+  function generatePhysicalNoteHTML(pub) {
+    if (!pub.physicalOnly) return '';
+    return `<span class="pub-meta-pill pub-meta-physical" data-i18n="pub.physical.note">${t('pub.physical.note')}</span>`;
   }
 
   // Generate buttons HTML
@@ -215,7 +218,7 @@
         <div class="pub-hero-slide-inner">
           <div class="pub-hero-content">
             <h2 class="pub-hero-title" dir="${titleDir}" lang="${titleLang}">${title}</h2>
-            ${generateMetaHTML(pub)}
+            ${generateMetaHTML(pub, true)}
             <p class="pub-hero-desc" dir="${dirAttr}" lang="${currentLang}">${description}</p>
             ${generateButtonsHTML(pub)}
           </div>
@@ -247,7 +250,7 @@
           <div class="pub-hero-slide-inner">
             <div class="pub-hero-content">
               <h2 class="pub-hero-title" dir="${titleDir}" lang="${titleLang}">${title}</h2>
-              ${generateMetaHTML(pub)}
+              ${generateMetaHTML(pub, true)}
               <p class="pub-hero-desc" dir="${dirAttr}" lang="${lang}">${description}</p>
               ${generateButtonsHTML(pub)}
             </div>
@@ -890,6 +893,7 @@
           <h3 class="pub-card-title" dir="${titleDir}" lang="${titleLang}">${title}</h3>
           ${generateMetaHTML(pub)}
           <p class="pub-card-desc" dir="${descDir}" lang="${lang}">${description}</p>
+          ${generatePhysicalNoteHTML(pub)}
           ${generateButtonsHTML(pub)}
         </article>
       `;

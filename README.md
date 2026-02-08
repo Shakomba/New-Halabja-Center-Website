@@ -16,7 +16,6 @@ A fast, static website (HTML/CSS/JS) inspired by common Quran academy layouts:
 ## Update content
 - News: `assets/js/data-news.js`
 - Publications: `assets/js/data-publications.js` (place PDFs in `assets/pdfs/`)
-- Tafsir: `assets/js/data-tafsir.js` (audio files in `assets/audio/` or hosted URLs)
 
 ## Deploy (any static hosting)
 Upload the folder to:
