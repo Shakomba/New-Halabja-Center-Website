@@ -55,6 +55,7 @@
       "ku": "٧٠٠ پرسیار و وەڵامی هەڵبژاردن بۆ تاقیکردنەوە و شارەزابوون لە یاسا بنچینەییەکانی تەجوید.",
       "ar": "٧٠٠ سؤال وجواب بنظام الاختيارات لاختبار وإتقان أحكام التجويد الأساسية."
     },
+<<<<<<< HEAD
     "coverFront": "assets/img/Publications/700 (1).jpg",
     "coverBack": "assets/img/Publications/700 (3).jpg",
     "coverSpine": "assets/img/Publications/700 (2).jpg",
@@ -102,6 +103,11 @@
     "coverFront": "assets/img/Publications/BanguQamat (1).jpg",
     "coverBack": "assets/img/Publications/BanguQamat (3).jpg",
     "coverSpine": "assets/img/Publications/BanuQamat (2).jpg",
+=======
+    "coverFront": "assets/img/Publications/ZanstiTejwid (1).jpg",
+    "coverBack": "assets/img/Publications/ZanstiTejwid (3).jpg",
+    "coverSpine": "assets/img/Publications/ZanstiTejwid (2).jpg",
+>>>>>>> ecb417b0304e6423ade35025eb9684ab9f370fa0
     "color": "#FE9007",
     "pages": 64,
     "size": "2.1 MB",

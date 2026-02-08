@@ -92,11 +92,16 @@
     // Add special class for newest book to remove binding dent
     const newestClass = pub.newest ? ' book-newest' : '';
 
+<<<<<<< HEAD
     // Add special class for pub-2 to make spine thinner
     const thinSpineClass = pub.id === 'pub-2' ? ' book-thin-spine' : '';
 
     return `
       <div class="book-3d bk-bookdefault${newestClass}${thinSpineClass}">
+=======
+    return `
+      <div class="book-3d bk-bookdefault${newestClass}">
+>>>>>>> ecb417b0304e6423ade35025eb9684ab9f370fa0
         <div class="book-front">
           <div class="book-cover" style="${coverStyle}"></div>
         </div>
