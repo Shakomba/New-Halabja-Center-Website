@@ -1017,10 +1017,11 @@
     apply();
   }
 
-  // Contact page (mailto)
+  // Contact page (mailto + social links)
   function setupContactPage(){
     const form = $("#contactForm");
     if(!form) return;
+    const sc = window.SITE_CONFIG || {};
     form.addEventListener("submit", (e)=>{
       e.preventDefault();
       const name = $("#cName").value.trim();
@@ -1028,8 +1029,22 @@
       const msg = $("#cMsg").value.trim();
       const subject = encodeURIComponent(`Website Contact — ${name || "New message"}`);
       const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}\n\n— Sent from the website contact form.`);
-      window.location.href = `mailto:info@newhalabja.center?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${sc.email || "info@newhalabja.center"}?subject=${subject}&body=${body}`;
     });
+
+    // Populate info card links
+    const phoneCard = $("#contactPhoneCard");
+    const emailCard = $("#contactEmailCard");
+    if(phoneCard && sc.phone) phoneCard.href = "tel:" + sc.phone.replace(/\s/g,"");
+    if(emailCard && sc.email) emailCard.href = "mailto:" + sc.email;
+
+    // Populate social links
+    const fb = $("#contactFacebook");
+    const ig = $("#contactInstagram");
+    const wa = $("#contactWhatsapp");
+    if(fb && sc.facebookUrl) fb.href = sc.facebookUrl;
+    if(ig && sc.instagramUrl) ig.href = sc.instagramUrl;
+    if(wa && sc.whatsappUrl) wa.href = sc.whatsappUrl;
   }
 
   // Home previews
