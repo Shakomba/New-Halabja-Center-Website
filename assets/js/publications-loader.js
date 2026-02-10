@@ -935,7 +935,14 @@
     }
 
     const iframe = document.getElementById('pubPreviewFrame');
-    iframe.src = file;
+    const previewUrl = `${String(file || '').split('#')[0]}#page=1`;
+    // Force a fresh load so reopening always starts from the top/page 1.
+    iframe.src = 'about:blank';
+    requestAnimationFrame(() => {
+      iframe.src = previewUrl;
+    });
+    const previewContent = modal.querySelector('.pub-preview-content');
+    if (previewContent) previewContent.scrollTop = 0;
     
     setTimeout(() => {
       modal.classList.add('active');
@@ -948,9 +955,11 @@
     if (modal) {
       modal.classList.remove('active');
       document.body.style.overflow = '';
+      const previewContent = modal.querySelector('.pub-preview-content');
+      if (previewContent) previewContent.scrollTop = 0;
       setTimeout(() => {
         const iframe = document.getElementById('pubPreviewFrame');
-        if (iframe) iframe.src = '';
+        if (iframe) iframe.src = 'about:blank';
       }, 300);
     }
   };

@@ -337,7 +337,9 @@
     const content = getTranslatedValue(activity.content, lang);
     
     const mainImage = activity.image ? `
-      <div class="modal-main-image" style="background-image: url('${activity.image}')" data-image="${activity.image}"></div>
+      <div class="modal-main-image" data-image="${activity.image}">
+        <img src="${activity.image}" alt="${escapeHtml(title)}" />
+      </div>
     ` : '';
     
     const gallery = (activity.gallery && activity.gallery.length > 0) ? `
@@ -349,7 +351,9 @@
         </div>
         <div class="modal-gallery-grid">
           ${activity.gallery.map((img, index) => `
-            <div class="modal-gallery-item" style="background-image: url('${img}')" data-index="${index}" data-images='${JSON.stringify(activity.gallery)}'></div>
+            <div class="modal-gallery-item" data-index="${index}" data-images='${JSON.stringify(activity.gallery)}'>
+              <img src="${img}" alt="Gallery image ${index + 1}" loading="lazy" />
+            </div>
           `).join('')}
         </div>
       </div>
@@ -458,8 +462,9 @@
     });
 
     const sortedCategories = Array.from(allCategories).sort();
-    const optionsHTML = sortedCategories.map(cat => {
-      const id = `cat-${cat.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`;
+    const optionsHTML = sortedCategories.map((cat, index) => {
+      // Keep ids stable and valid regardless of localized category text.
+      const id = `cat-option-${index}`;
       return `
         <div class="multiselect-option" data-category="${escapeHtml(cat)}">
           <input type="checkbox" id="${id}" value="${escapeHtml(cat)}">
@@ -474,6 +479,18 @@
     const checkboxes = elements.categoryOptions.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
       checkbox.addEventListener('change', handleCategoryChange);
+    });
+
+    // Make the whole row clickable while preserving native label behavior.
+    const options = elements.categoryOptions.querySelectorAll('.multiselect-option');
+    options.forEach(option => {
+      option.addEventListener('click', event => {
+        if (event.target.closest('input, label')) return;
+        const checkbox = option.querySelector('input[type="checkbox"]');
+        if (!checkbox) return;
+        checkbox.checked = !checkbox.checked;
+        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+      });
     });
   }
 

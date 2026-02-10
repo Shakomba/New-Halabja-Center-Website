@@ -460,8 +460,21 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
   };
 
   closeBtn.onclick = closeLightbox;
+  const isClickInsideCurrentImage = (e) => {
+    const currentImage = slides[index]?.querySelector('img');
+    if (!currentImage) return false;
+    const rect = currentImage.getBoundingClientRect();
+    return (
+      e.clientX >= rect.left &&
+      e.clientX <= rect.right &&
+      e.clientY >= rect.top &&
+      e.clientY <= rect.bottom
+    );
+  };
   lightbox.onclick = (e) => {
-    if (e.target === lightbox) closeLightbox();
+    if (e.target.closest('.lightbox-close, .lightbox-prev, .lightbox-next')) return;
+    if (isClickInsideCurrentImage(e)) return;
+    closeLightbox();
   };
 
   // Back button support

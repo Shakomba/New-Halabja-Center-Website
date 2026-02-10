@@ -2,6 +2,11 @@
   const $ = (q,root=document)=>root.querySelector(q);
   const $$ = (q,root=document)=>Array.from(root.querySelectorAll(q));
 
+  document.documentElement.classList.add("nhc-hero-intro");
+  window.setTimeout(()=>{
+    document.documentElement.classList.remove("nhc-hero-intro");
+  }, 900);
+
   // Mobile menu
   const menuBtn = $("#menuBtn");
   const mobileDrawer = $("#mobileDrawer");
@@ -557,6 +562,7 @@
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onModalKeydown);
     requestAnimationFrame(()=>{
+      modalContent.scrollTop = 0;
       const focusable = getFocusable();
       const target = focusable[0] || modalClose;
       target?.focus({preventScroll:true});
@@ -566,6 +572,7 @@
     if(!modal) return;
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
+    modalContent.scrollTop = 0;
     document.body.style.overflow = "";
     document.removeEventListener("keydown", onModalKeydown);
 
@@ -1285,12 +1292,12 @@
 
       navigating = true;
       try{
-        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
         const html = await fetchPage(target.href);
         if(pushState){
           history.pushState({nhcSoftNav: true}, "", target.href);
         }
         loadedPageNoHash = targetNoHash;
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
         document.open();
         document.write(html);
         document.close();
