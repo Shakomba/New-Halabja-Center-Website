@@ -1225,6 +1225,111 @@
     setupContactPage();
   }
 
+  // Smooth tab switching for primary navigation without hard reloads.
+  function setupSmoothTabNavigation(){
+    if(!window.fetch || !window.history?.pushState) return;
+    if("scrollRestoration" in window.history){
+      window.history.scrollRestoration = "manual";
+    }
+
+    const pageCache = new Map();
+    const NAV_SELECTOR = ".nav a[href], .drawer-links a[href]";
+
+    const normalizePath = (path)=>path.replace(/\/index\.html$/i, "/");
+    const normalizeHref = (href)=>{
+      const u = new URL(href, window.location.href);
+      return `${u.origin}${normalizePath(u.pathname)}${u.search}${u.hash}`;
+    };
+    const shouldHandleLink = (link)=>{
+      if(!link) return false;
+      if(link.getAttribute("target") === "_blank") return false;
+      if(link.hasAttribute("download")) return false;
+
+      const href = link.getAttribute("href");
+      if(!href || href.startsWith("#") || href.startsWith("javascript:")) return false;
+
+      const url = new URL(href, window.location.href);
+      if(url.origin !== window.location.origin) return false;
+      if(!/\.html$/i.test(url.pathname) && normalizePath(url.pathname) !== "/") return false;
+
+      const currentNoHash = normalizeHref(window.location.href).split("#")[0];
+      const targetNoHash = normalizeHref(url.href).split("#")[0];
+      return currentNoHash !== targetNoHash;
+    };
+    let loadedPageNoHash = normalizeHref(window.location.href).split("#")[0];
+    let navigating = false;
+
+    const fetchPage = (href)=>{
+      const url = new URL(href, window.location.href).href;
+      if(pageCache.has(url)) return pageCache.get(url);
+
+      const req = fetch(url, { credentials: "same-origin" })
+        .then((res)=>{
+          if(!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+          return res.text();
+        })
+        .catch((err)=>{
+          pageCache.delete(url);
+          throw err;
+        });
+
+      pageCache.set(url, req);
+      return req;
+    };
+
+    const softNavigate = async (href, pushState = true)=>{
+      if(navigating) return;
+      const target = new URL(href, window.location.href);
+      const targetNoHash = normalizeHref(target.href).split("#")[0];
+      if(loadedPageNoHash === targetNoHash) return;
+
+      navigating = true;
+      try{
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        const html = await fetchPage(target.href);
+        if(pushState){
+          history.pushState({nhcSoftNav: true}, "", target.href);
+        }
+        loadedPageNoHash = targetNoHash;
+        document.open();
+        document.write(html);
+        document.close();
+      } finally {
+        navigating = false;
+      }
+    };
+
+    const prefetchLink = (link)=>{
+      if(!shouldHandleLink(link)) return;
+      fetchPage(link.href).catch(()=>{});
+    };
+
+    document.addEventListener("click", (e)=>{
+      if(e.defaultPrevented) return;
+      if(e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      const link = e.target.closest(NAV_SELECTOR);
+      if(!shouldHandleLink(link)) return;
+
+      e.preventDefault();
+      softNavigate(link.href, true).catch(()=>{
+        window.location.href = link.href;
+      });
+    });
+
+    document.addEventListener("pointerenter", (e)=>{
+      const link = e.target.closest(NAV_SELECTOR);
+      if(link) prefetchLink(link);
+    }, true);
+
+    window.addEventListener("popstate", ()=>{
+      softNavigate(window.location.href, false).catch(()=>{
+        window.location.reload();
+      });
+    });
+  }
+  setupSmoothTabNavigation();
+
   // Expose icons (used in dynamic templates)
   window.NHC_ICONS = {
     download: `<span aria-hidden="true" style="display:inline-flex; margin-right:6px; vertical-align:-2px">${document.getElementById("svgDownloadIcon")?.innerHTML || ""}</span>`

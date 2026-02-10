@@ -153,6 +153,8 @@ a{color:inherit; text-decoration:none}
   50%{transform:translateX(-50%) translateY(6px)}
 }
 
+
+
 .kicker{letter-spacing:.22em; text-transform:uppercase; font-size:.78rem; color:var(--muted)}
 body[dir="rtl"] .kicker{letter-spacing:0; text-transform:none}
 .h-title{
@@ -1235,16 +1237,19 @@ body[dir="rtl"] .programs-new:not(.is-accordion) .program-toggle h3{
     max-height:0;
     opacity:0;
     overflow:hidden;
-    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease;
     padding-top:0;
     padding-bottom:0;
     will-change: max-height;
+    transform: translateY(-4px);
   }
   .programs-new.is-accordion .program-toggle[aria-expanded="true"] + .program-body,
   .programs-new.is-accordion .program-body.active{
     opacity:1;
     padding-top:12px;
     padding-bottom:12px;
+    transform: translateY(0);
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
   }
 }
 /* Lists */

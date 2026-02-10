@@ -876,7 +876,7 @@
     // Set dir and lang attributes based on current language
     const isRTL = lang === 'ar' || lang === 'ku';
 
-    container.innerHTML = gridBooks.map(pub => {
+    container.innerHTML = gridBooks.map(function(pub, i) {
       const title = getKurdishOnly(pub.title);
       const description = getTranslatedValue(pub.description, lang);
 
