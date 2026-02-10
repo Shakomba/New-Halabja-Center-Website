@@ -23,7 +23,7 @@ function updateNewsData(lang) {
   
   const sortedActivities = [...activitiesDataCache].sort((a, b) => {
     return new Date(b.date) - new Date(a.date);
-  }).slice(0, 6);
+  }).slice(0, 5);
   
   window.NEWS_DATA = sortedActivities.map(activity => ({
     id: activity.id,

@@ -6,8 +6,9 @@
   const menuBtn = $("#menuBtn");
   const mobileDrawer = $("#mobileDrawer");
   const drawerPanel = $(".drawer-panel", mobileDrawer || undefined);
+  let setDrawer = null;
   if(menuBtn && mobileDrawer){
-    const setDrawer = (open)=>{
+    setDrawer = (open)=>{
       mobileDrawer.classList.toggle("open", open);
       document.body.classList.toggle("drawer-open", open);
       menuBtn.classList.toggle("is-active", open);
@@ -80,6 +81,8 @@
     });
   }
 
+  const LANG_SHORT = {en:"EN", ku:"\u06a9\u0648", ar:"\u0639\u0631"};
+
   function setupLanguageDropdown(langSelect){
     const langWrap = langSelect?.closest(".lang");
     if(!langWrap || langWrap.querySelector(".lang-trigger")) return null;
@@ -99,8 +102,12 @@
     }
 
     const label = document.createElement("span");
-    label.className = "lang-label";
+    label.className = "lang-label lang-label-full";
     trigger.appendChild(label);
+
+    const labelShort = document.createElement("span");
+    labelShort.className = "lang-label lang-label-short";
+    trigger.appendChild(labelShort);
 
     const caret = document.createElement("span");
     caret.className = "lang-caret";
@@ -118,7 +125,14 @@
       btn.className = "lang-option";
       btn.setAttribute("role", "option");
       btn.setAttribute("data-value", opt.value);
-      btn.textContent = opt.textContent;
+      const fullSpan = document.createElement("span");
+      fullSpan.className = "lang-option-full";
+      fullSpan.textContent = opt.textContent;
+      const shortSpan = document.createElement("span");
+      shortSpan.className = "lang-option-short";
+      shortSpan.textContent = LANG_SHORT[opt.value] || opt.value.toUpperCase();
+      btn.appendChild(fullSpan);
+      btn.appendChild(shortSpan);
       btn.addEventListener("click", ()=>{
         langSelect.value = opt.value;
         langSelect.dispatchEvent(new Event("change", {bubbles:true}));
@@ -145,6 +159,7 @@
       const current = langSelect.value;
       const selectedOpt = langSelect.selectedOptions[0];
       label.textContent = selectedOpt ? selectedOpt.textContent : current.toUpperCase();
+      labelShort.textContent = LANG_SHORT[current] || current.toUpperCase();
       options.forEach(btn=>{
         const selected = btn.getAttribute("data-value") === current;
         btn.setAttribute("aria-selected", selected ? "true" : "false");
@@ -191,6 +206,48 @@
     return { sync };
   }
 
+  function setupDrawerLangSwitcher(langSelect){
+    const panel = $(".drawer-panel");
+    const socials = $(".drawer-socials");
+    if(!panel || !socials || !langSelect) return null;
+
+    const LANG_LABELS = {en:"English", ku:"\u06a9\u0648\u0631\u062f\u06cc", ar:"\u0627\u0644\u0639\u0631\u0628\u064a\u0629"};
+    const wrap = document.createElement("div");
+    wrap.className = "drawer-lang";
+    wrap.setAttribute("role", "radiogroup");
+    wrap.setAttribute("aria-label", "Language");
+
+    const buttons = Object.entries(LANG_LABELS).map(([val, label])=>{
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "drawer-lang-btn";
+      btn.setAttribute("role", "radio");
+      btn.setAttribute("data-value", val);
+      btn.textContent = label;
+      btn.addEventListener("click", ()=>{
+        langSelect.value = val;
+        langSelect.dispatchEvent(new Event("change", {bubbles:true}));
+        if(typeof setDrawer === "function") setDrawer(false);
+      });
+      wrap.appendChild(btn);
+      return btn;
+    });
+
+    panel.insertBefore(wrap, socials);
+
+    function sync(){
+      const current = langSelect.value;
+      buttons.forEach(btn=>{
+        const active = btn.getAttribute("data-value") === current;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-checked", active ? "true" : "false");
+      });
+    }
+
+    sync();
+    return { sync };
+  }
+
   const langSelect = $("#langSelect");
   const stored = localStorage.getItem("nhc_lang") || "en";
   if(langSelect){
@@ -199,11 +256,14 @@
     applySiteConfig();
     const langUI = setupLanguageDropdown(langSelect);
     langUI?.sync();
+    const drawerLangUI = setupDrawerLangSwitcher(langSelect);
+    drawerLangUI?.sync();
     langSelect.addEventListener("change", ()=>{
       localStorage.setItem("nhc_lang", langSelect.value);
       applyLanguage(langSelect.value);
       applySiteConfig();
       langUI?.sync();
+      drawerLangUI?.sync();
     });
   } else {
     applyLanguage(stored);
@@ -385,6 +445,30 @@
     window.addEventListener("scroll", onScroll, {passive:true});
   }
 
+  // Header scroll effect (compact + shadow on scroll)
+  const header = $(".header");
+  if(header){
+    let headerTicking = false;
+    const syncHeaderOffset = ()=>{
+      document.documentElement.style.setProperty("--header-sticky-offset", `${header.offsetHeight}px`);
+    };
+    const updateHeader = ()=>{
+      header.classList.toggle("scrolled", window.scrollY > 20);
+      syncHeaderOffset();
+    };
+    const onHeaderScroll = ()=>{
+      if(headerTicking) return;
+      headerTicking = true;
+      requestAnimationFrame(()=>{
+        updateHeader();
+        headerTicking = false;
+      });
+    };
+    updateHeader();
+    window.addEventListener("scroll", onHeaderScroll, {passive:true});
+    window.addEventListener("resize", syncHeaderOffset, {passive:true});
+  }
+
 
   // Modal helpers
   const modal = $("#modal");
@@ -485,11 +569,15 @@
     if(!host || !window.NEWS_DATA) return;
     const data = [...window.NEWS_DATA].sort((a,b)=> (a.date<b.date?1:-1));
     const items = limit ? data.slice(0,limit) : data;
+    const total = items.length + 1;
 
-    host.innerHTML = items.map((p, index)=>{
+    const lang = $("#langSelect")?.value || "en";
+    const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
+    const seeAllText = dict["section.latestnews.seeall"] || "See All Activities";
+
+    const cards = items.map((p, index)=>{
       const image = p.image || "assets/img/3.jpg";
       const position = index + 1;
-      const total = items.length;
       return `
         <article class="news-mini" data-id="${p.id}" role="listitem" aria-roledescription="slide" aria-label="${position} of ${total}">
           <div class="news-mini-media" style="background-image:url('${image}')" aria-hidden="true"></div>
@@ -502,6 +590,15 @@
         </article>
       `;
     }).join("");
+
+    const seeAllCard = `
+      <a class="news-mini news-see-all" href="news.html" role="listitem" aria-roledescription="slide" aria-label="${total} of ${total}">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>${seeAllText}</span>
+      </a>
+    `;
+
+    host.innerHTML = cards + seeAllCard;
   }
 
   function setupActivitiesSlider(){

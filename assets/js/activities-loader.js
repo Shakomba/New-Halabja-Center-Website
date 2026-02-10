@@ -174,6 +174,18 @@
     }, 50);
   }
 
+  function scrollToFirstActivity(behavior = 'smooth') {
+    const header = document.querySelector('.header');
+    const toolbar = document.querySelector('.news-toolbar');
+    const offset = (header?.offsetHeight || 0) + (toolbar?.offsetHeight || 0) + 20;
+    const firstCard = elements.grid?.querySelector('.news-card');
+    const anchor = firstCard || elements.grid;
+    if (!anchor) return;
+
+    const targetY = Math.max(0, window.scrollY + anchor.getBoundingClientRect().top - offset);
+    window.scrollTo({ top: targetY, behavior });
+  }
+
   function renderPagination(totalPages) {
     let paginationContainer = document.querySelector('.activities-pagination');
 
@@ -246,11 +258,7 @@
         if (page !== currentPage && page >= 1 && page <= totalPages) {
           currentPage = page;
           renderCards();
-          // Scroll to top of activities section
-          const newsSection = document.querySelector('.news-grid-section');
-          if (newsSection) {
-            newsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+          scrollToFirstActivity('smooth');
         }
       });
     });
@@ -464,6 +472,7 @@
     currentPage = 1; // Reset to first page when filter changes
     updateMultiselectLabel();
     renderCards();
+    scrollToFirstActivity('smooth');
   }
 
   function updateMultiselectLabel() {
@@ -482,6 +491,7 @@
     currentSearch = event.target.value.trim().toLowerCase();
     currentPage = 1; // Reset to first page when searching
     renderCards();
+    scrollToFirstActivity('smooth');
   }
 
   function toggleMultiselect() {

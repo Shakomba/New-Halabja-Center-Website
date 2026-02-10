@@ -83,13 +83,19 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
   let mouseStartPanX = 0;
   let mouseStartPanY = 0;
   const MIN_SCALE = 1;
-  const MAX_SCALE = 3;
+  const MAX_SCALE = 5;
   const CLOSE_THRESHOLD = 80;
   const SWIPE_THRESHOLD = 40;
 
   const slideStates = imageArray.map(() => ({ scale: 1, panX: 0, panY: 0 }));
 
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const normalizeWheelDelta = (e) => {
+    let delta = e.deltaY;
+    if (e.deltaMode === 1) delta *= 16; // line-based delta
+    else if (e.deltaMode === 2) delta *= window.innerHeight; // page-based delta
+    return delta;
+  };
 
   const clampPan = (state) => {
     const maxPanX = (state.scale - 1) * (window.innerWidth / 2);
@@ -359,9 +365,12 @@ window.openNativeLightbox = function(imageSrc, images, currentIndex) {
     const state = slideStates[index];
     if (!state) return;
     e.preventDefault();
-    const direction = e.deltaY < 0 ? 1 : -1;
-    const zoomStep = 0.01;
-    const newScale = clamp(state.scale * (1 + zoomStep * direction), MIN_SCALE, MAX_SCALE);
+    const delta = normalizeWheelDelta(e);
+    if (!Number.isFinite(delta) || delta === 0) return;
+    // Trackpad pinch usually arrives as wheel+ctrl; make it respond faster.
+    const sensitivity = e.ctrlKey ? 0.0032 : 0.0022;
+    const zoomFactor = Math.exp(-delta * sensitivity);
+    const newScale = clamp(state.scale * zoomFactor, MIN_SCALE, MAX_SCALE);
     if (newScale === state.scale) return;
     zoomAtPoint(state, newScale, e.clientX, e.clientY);
     applyTransform(index, false);
