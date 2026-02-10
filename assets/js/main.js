@@ -351,7 +351,7 @@
     const mql = window.matchMedia("(max-width: 768px)");
     const bodyMap = new Map();
     const setExpandedHeight = (body)=>{
-      body.style.maxHeight = body.scrollHeight + "px";
+      body.style.maxHeight = (body.scrollHeight + 16) + "px";
     };
     const resizeObserver = ("ResizeObserver" in window)
       ? new ResizeObserver((entries)=>{

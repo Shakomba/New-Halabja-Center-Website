@@ -966,7 +966,6 @@
 
       book.addEventListener('click', function(e) {
         e.preventDefault();
-
         if (this.classList.contains('bk-viewback')) {
           // Flip back to front
           this.classList.remove('bk-viewback');
@@ -978,6 +977,7 @@
         }
       });
     });
+
   }
 
   // Load publications from JSON
