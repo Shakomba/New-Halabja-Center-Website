@@ -65,14 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     langSelect.addEventListener('change', () => {
       const newLang = getCurrentLanguage();
       updateNewsData(newLang);
-      
-      if (typeof window.renderNews === 'function') {
-        window.renderNews('#homeNews');
-      }
-      
-      if (typeof window.setupActivitiesSlider === 'function') {
-        window.setupActivitiesSlider();
-      }
+      window.dispatchEvent(new CustomEvent('newsDataReady'));
     });
   }
 });

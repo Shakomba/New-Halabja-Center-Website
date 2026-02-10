@@ -38,6 +38,17 @@
       const key = el.getAttribute("data-i18n");
       if(dict[key]) el.textContent = dict[key];
     });
+    $$("[data-i18n-placeholder]").forEach(el=>{
+      const key = el.getAttribute("data-i18n-placeholder");
+      if(dict[key]) el.placeholder = dict[key];
+    });
+
+    // Update address from SITE_CONFIG
+    if(window.SITE_CONFIG && window.SITE_CONFIG.address && typeof window.SITE_CONFIG.address === 'object'){
+      const addr = window.SITE_CONFIG.address[lang] || window.SITE_CONFIG.address['en'] || "";
+      const addrEls = [document.getElementById("contactAddress"), document.getElementById("contactAddress2")];
+      addrEls.forEach(el => { if(el) el.textContent = addr; });
+    }
   }
 
   // Site config (contact/social)
@@ -60,11 +71,15 @@
 
     setText("contactPhone", cfg.phone);
     setText("contactEmail", cfg.email);
-    setText("contactAddress", cfg.address);
+    
+    // Address (handle multilingual object or string)
+    let addr = cfg.address;
+    if(typeof addr === 'object') addr = addr['en'] || "";
+    setText("contactAddress", addr);
 
     setText("contactPhone2", cfg.phone);
     setText("contactEmail2", cfg.email);
-    setText("contactAddress2", cfg.address);
+    setText("contactAddress2", addr);
 
     setLink("footerLinkA", cfg.facebookUrl);
     setLink("footerLinkB", cfg.instagramUrl);
@@ -520,7 +535,9 @@
   function openModal(title, html){
     if(!modal) return;
     lastFocusedElement = document.activeElement;
-    modalTitle.textContent = title || "Details";
+    const lang = $("#langSelect")?.value || "en";
+    const modalDict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
+    modalTitle.textContent = title || modalDict["modal.details"] || "Details";
     modalContent.innerHTML = html || "";
     modalContent.scrollTop = 0;
     modal.classList.add("open");
@@ -574,6 +591,7 @@
     const lang = $("#langSelect")?.value || "en";
     const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
     const seeAllText = dict["section.latestnews.seeall"] || "See All Activities";
+    const readMoreText = dict["news.readmore"] || "Read more";
 
     const cards = items.map((p, index)=>{
       const image = p.image || "assets/img/3.jpg";
@@ -586,7 +604,7 @@
             <a class="news-mini-title" href="news.html#${p.id}">${p.title}</a>
           </div>
           <p class="news-mini-excerpt">${p.excerpt || ""}</p>
-          <a class="btn ghost" href="news.html#${p.id}">Read More</a>
+          <a class="btn ghost" href="news.html#${p.id}">${readMoreText}</a>
         </article>
       `;
     }).join("");
@@ -609,6 +627,12 @@
     const status = slider?.querySelector(".activities-status");
     const dots = slider?.querySelector(".activities-dots");
     if(!track || !prev || !next) return;
+    if(slider?.dataset.activitiesSliderInit === "true"){
+      if(typeof slider.__activitiesSliderUpdate === "function"){
+        slider.__activitiesSliderUpdate();
+      }
+      return;
+    }
 
     const getSlides = ()=>Array.from(track.querySelectorAll(".news-mini"));
 
@@ -759,6 +783,10 @@
       updateButtons();
       updateStatus();
     };
+    if(slider){
+      slider.__activitiesSliderUpdate = update;
+      slider.dataset.activitiesSliderInit = "true";
+    }
 
     slider?.addEventListener("keydown", (e)=>{
       if(e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;

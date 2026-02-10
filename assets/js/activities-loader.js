@@ -32,6 +32,12 @@
     return field[lang] || field['en'] || '';
   }
 
+  function getI18n(key) {
+    const lang = getCurrentLanguage();
+    const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
+    return dict[key] || '';
+  }
+
   function getFirstCategory(activity, lang) {
     if (!activity.categories || !Array.isArray(activity.categories) || activity.categories.length === 0) {
       return activity.category ? getTranslatedValue(activity.category, lang) : '';
@@ -97,7 +103,7 @@
           <h3>${escapeHtml(title)}</h3>
           <p class="small">${escapeHtml(summary)}</p>
           <div class="news-actions">
-            <button class="btn ghost" data-open="${activity.id}" type="button">Read more</button>
+            <button class="btn ghost" data-open="${activity.id}" type="button">${getI18n('news.readmore') || 'Read more'}</button>
           </div>
         </div>
       </article>
@@ -144,13 +150,14 @@
 
     // Update counter
     if (elements.countDisplay) {
-      elements.countDisplay.textContent = `${totalItems} ${totalItems === 1 ? 'activity' : 'activities'}`;
+      const unitText = totalItems === 1 ? (getI18n('news.activity') || 'activity') : (getI18n('news.activities') || 'activities');
+      elements.countDisplay.textContent = `${totalItems} ${unitText}`;
     }
 
     if (filteredData.length === 0) {
       elements.grid.innerHTML = `
         <div class="news-empty">
-          No activities found matching your criteria.
+          ${getI18n('news.empty') || 'No activities found matching your criteria.'}
         </div>
       `;
       triggerRevealAnimations();
@@ -477,13 +484,13 @@
 
   function updateMultiselectLabel() {
     if (!elements.multiselectLabel) return;
-    
+
     if (selectedCategories.length === 0) {
-      elements.multiselectLabel.textContent = 'All Categories';
+      elements.multiselectLabel.textContent = getI18n('news.allcategories') || 'All Categories';
     } else if (selectedCategories.length === 1) {
       elements.multiselectLabel.textContent = selectedCategories[0];
     } else {
-      elements.multiselectLabel.textContent = `${selectedCategories.length} Categories`;
+      elements.multiselectLabel.textContent = `${selectedCategories.length} ${getI18n('news.categories') || 'Categories'}`;
     }
   }
 
@@ -567,7 +574,7 @@
     if (data.length === 0) {
       elements.grid.innerHTML = `
         <div class="news-empty">
-          Unable to load activities. Please try again later.
+          ${getI18n('news.loaderror') || 'Unable to load activities. Please try again later.'}
         </div>
       `;
       return;

@@ -16,7 +16,7 @@
   <meta property="og:image" content="assets/img/Bnka.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/heroBackground-optimized.jpg" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
@@ -134,11 +134,11 @@
           <div class="welcome-content">
             <div class="kicker" data-i18n="section.welcome.kicker">Welcome</div>
             <h2 class="title h-title" data-i18n="section.welcome.title">In the Name of Allah, the Most Merciful</h2>
-            <p class="mini">
-              Welcome to New Halabja Center We are a community-focused center dedicated to helping students of all ages grow in faith and knowledge. Using modern teaching methods, we provide clear and authentic lessons in the Holy Qur'an (recitation and memorization), Fiqh, Tafsir, and the Sirah. From our fun and engaging kids' programs to our advanced adult classes, we focus on building knowledge with good character.
+            <p class="mini" data-i18n="welcome.text">
+              Welcome to New Halabja Center — a community-focused center dedicated to helping students of all ages grow in faith and knowledge. Using modern teaching methods, we provide clear and authentic lessons in the Holy Qur'an (recitation and memorization), Fiqh, Tafsir, and the Sirah. From our fun and engaging kids' programs to our advanced adult classes, we focus on building knowledge with good character.
             </p>
             <div class="welcome-actions">
-              <a class="btn ghost" href="about.html">Read more <span aria-hidden="true">&rarr;</span></a>
+              <a class="btn ghost" href="about.html"><span class="welcome-readmore-text" data-i18n="welcome.readmore">Read more</span> <span class="welcome-readmore-arrow" aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
         </div>
@@ -152,8 +152,8 @@
               </svg>
             </div>
             <div>
-              <h4 class="h-title">Our Vision</h4>
-              <p>To build a generation that masters the Qur'an, understands the wisdom of faith, and leads with excellent character.</p>
+              <h4 class="h-title" data-i18n="vision.title">Our Vision</h4>
+              <p data-i18n="vision.text">To build a generation that masters the Qur'an, understands the wisdom of faith, and leads with excellent character.</p>
             </div>
           </div>
           <div class="vitem">
@@ -165,8 +165,8 @@
               </svg>
             </div>
             <div>
-              <h4 class="h-title">Our Mission</h4>
-              <p>To provide structured learning for all ages through qualified teachers and consistent revision.</p>
+              <h4 class="h-title" data-i18n="mission.title">Our Mission</h4>
+              <p data-i18n="mission.text">To provide structured learning for all ages through qualified teachers and consistent revision.</p>
             </div>
           </div>
           <div class="vitem">
@@ -179,8 +179,8 @@
               </svg>
             </div>
             <div>
-              <h4 class="h-title">Community</h4>
-              <p>We work with families to support students, celebrate progress, and build a lasting connection to Qur'an.</p>
+              <h4 class="h-title" data-i18n="community.title">Community</h4>
+              <p data-i18n="community.text">We work with families to support students, celebrate progress, and build a lasting connection to Qur'an.</p>
             </div>
           </div>
         </div>
@@ -198,19 +198,19 @@
           <div class="inner">
             <button class="program-toggle" type="button" aria-expanded="true" aria-controls="program-body-1">
               <span class="picon2"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H7a3 3 0 0 0-3 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/><path d="M9 9h6M9 12h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-              <h3>Memorization</h3>
+              <h3 data-i18n="program.memorization">Memorization</h3>
               <span class="program-chevron" aria-hidden="true"></span>
             </button>
             <div class="program-body" id="program-body-1" aria-hidden="false">
-              <div class="sub">Hifz</div>
+              <div class="sub" data-i18n="program.memorization.sub">Hifz</div>
               <ul>
-                <li>Daily memorization with teacher supervision</li>
-                <li>Weekly revision plan (muraja‘ah) and assessment</li>
-                <li>Individual pacing with clear milestones</li>
+                <li data-i18n="program.memorization.li1">Daily memorization with teacher supervision</li>
+                <li data-i18n="program.memorization.li2">Weekly revision plan (muraja'ah) and assessment</li>
+                <li data-i18n="program.memorization.li3">Individual pacing with clear milestones</li>
               </ul>
               <div class="cta">
-                <a class="btn primary" href="contact.html">Enroll</a>
-                <a class="btn secondary" href="about.html">More details</a>
+                <a class="btn primary" href="contact.html" data-i18n="program.enroll">Enroll</a>
+                <a class="btn secondary" href="about.html" data-i18n="program.details">More details</a>
               </div>
             </div>
           </div>
@@ -220,19 +220,19 @@
           <div class="inner">
             <button class="program-toggle" type="button" aria-expanded="true" aria-controls="program-body-2">
               <span class="picon2"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.8"/><path d="M19 11a7 7 0 0 1-14 0" stroke="currentColor" stroke-width="1.8"/><path d="M12 18v3" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8" stroke="currentColor" stroke-width="1.8"/></svg></span>
-              <h3>Recitation</h3>
+              <h3 data-i18n="program.recitation">Recitation</h3>
               <span class="program-chevron" aria-hidden="true"></span>
             </button>
             <div class="program-body" id="program-body-2" aria-hidden="false">
-              <div class="sub">Tajweed</div>
+              <div class="sub" data-i18n="program.recitation.sub">Tajweed</div>
               <ul>
-                <li>Makharij &amp; sifat practice (pronunciation)</li>
-                <li>Rule-based recitation with guided correction</li>
-                <li>Reading circles and progress tracking</li>
+                <li data-i18n="program.recitation.li1">Makharij &amp; sifat practice (pronunciation)</li>
+                <li data-i18n="program.recitation.li2">Rule-based recitation with guided correction</li>
+                <li data-i18n="program.recitation.li3">Reading circles and progress tracking</li>
               </ul>
               <div class="cta">
-                <a class="btn primary" href="contact.html">Enroll</a>
-                <a class="btn secondary" href="publications.html">More details</a>
+                <a class="btn primary" href="contact.html" data-i18n="program.enroll">Enroll</a>
+                <a class="btn secondary" href="publications.html" data-i18n="program.details">More details</a>
               </div>
             </div>
           </div>
@@ -242,19 +242,19 @@
           <div class="inner">
             <button class="program-toggle" type="button" aria-expanded="true" aria-controls="program-body-3">
               <span class="picon2"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13" stroke="currentColor" stroke-width="1.8"/><path d="M6.5 18H20v1a2 2 0 0 1-2 2H6.5A2.5 2.5 0 0 1 4 18.5V18h2.5Z" stroke="currentColor" stroke-width="1.8"/><path d="M8 8h8M8 11h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-              <h3>Understanding</h3>
+              <h3 data-i18n="program.understanding">Understanding</h3>
               <span class="program-chevron" aria-hidden="true"></span>
             </button>
             <div class="program-body" id="program-body-3" aria-hidden="false">
-              <div class="sub">Tadabbur</div>
+              <div class="sub" data-i18n="program.understanding.sub">Tadabbur</div>
               <ul>
-                <li>Meaning and reflection (tadabbur)</li>
-                <li>Audio &amp; video lecture series</li>
-                <li>Notes and study resources</li>
+                <li data-i18n="program.understanding.li1">Meaning and reflection (tadabbur)</li>
+                <li data-i18n="program.understanding.li2">Audio &amp; video lecture series</li>
+                <li data-i18n="program.understanding.li3">Notes and study resources</li>
               </ul>
               <div class="cta">
-                <a class="btn primary" href="contact.html">Enroll</a>
-                <a class="btn secondary" href="https://tadabbur.newhalabjacenter.org" target="_blank" rel="noopener noreferrer">More details</a>
+                <a class="btn primary" href="contact.html" data-i18n="program.enroll">Enroll</a>
+                <a class="btn secondary" href="https://tadabbur.newhalabjacenter.org" target="_blank" rel="noopener noreferrer" data-i18n="program.details">More details</a>
               </div>
             </div>
           </div>
@@ -264,19 +264,19 @@
           <div class="inner">
             <button class="program-toggle" type="button" aria-expanded="true" aria-controls="program-body-4">
               <span class="picon2"><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 12 5l9 5.5-9 5.5-9-5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 12.5V17c0 1.2 2.7 3 6 3s6-1.8 6-3v-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-              <h3>Studies</h3>
+              <h3 data-i18n="program.studies">Studies</h3>
               <span class="program-chevron" aria-hidden="true"></span>
             </button>
             <div class="program-body" id="program-body-4" aria-hidden="false">
-              <div class="sub">Fiqh &amp; Seerah</div>
+              <div class="sub" data-i18n="program.studies.sub">Fiqh &amp; Seerah</div>
               <ul>
-                <li>Foundations of worship and daily practice</li>
-                <li>Seerah lessons and Islamic manners (adab)</li>
-                <li>Age-appropriate classes</li>
+                <li data-i18n="program.studies.li1">Foundations of worship and daily practice</li>
+                <li data-i18n="program.studies.li2">Seerah lessons and Islamic manners (adab)</li>
+                <li data-i18n="program.studies.li3">Age-appropriate classes</li>
               </ul>
               <div class="cta">
-                <a class="btn primary" href="contact.html">Enroll</a>
-                <a class="btn secondary" href="about.html">More details</a>
+                <a class="btn primary" href="contact.html" data-i18n="program.enroll">Enroll</a>
+                <a class="btn secondary" href="about.html" data-i18n="program.details">More details</a>
               </div>
             </div>
           </div>
@@ -327,14 +327,14 @@
         <img src="assets/img/BnkaWhite.png" alt="">
         <div>
           <div class="brandname" data-i18n="hero.title1">New Halabja Center</div>
-          <div class="small">New Halabja Center for Teaching &amp; Memorizing the Holy Qur’an</div>
+          <div class="small" data-i18n="footer.subtitle">New Halabja Center for Teaching &amp; Memorizing the Holy Qur'an</div>
         </div>
       </div>
 </div>
 
     <div class="footer-grid">
       <div>
-        <h4>Our Mission</h4>
+        <h4 data-i18n="footer.mission.title">Our Mission</h4>
                 <p class="small">
           <span class="mission-line" data-i18n="footer.mission.line1">A dedicated center in New Halabja for teaching the Holy Quran,</span>
           <span class="mission-line" data-i18n="footer.mission.line2">Tajweed, and nurturing Islamic values in our community.</span>
@@ -345,15 +345,15 @@
         <div class="small">
           <div class="contact-item">
             <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.5 5.5c0-.6.5-1 1-1h2.2c.4 0 .8.2.9.6l.9 2.7c.1.4 0 .8-.3 1.1l-1.3 1.3a12.7 12.7 0 0 0 5.6 5.6l1.3-1.3c.3-.3.7-.4 1.1-.3l2.7.9c.4.1.6.5.6.9v2.2c0 .6-.4 1-1 1h-1c-7.2 0-13-5.8-13-13v-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <b>Hotline: </b> <span id="contactPhone"></span>
+            <b data-i18n="footer.hotline">Hotline:</b> <span id="contactPhone"></span>
           </div>
           <div class="contact-item" style="margin-top:6px;">
             <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-            <b>Email: </b> <a data-mailto="info@newhalabja.center"><span id="contactEmail"></span></a>
+            <b data-i18n="footer.email">Email:</b> <a data-mailto="info@newhalabja.center"><span id="contactEmail"></span></a>
           </div>
           <div class="contact-item" style="margin-top:6px;">
             <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s6-5.4 6-10a6 6 0 1 0-12 0c0 4.6 6 10 6 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.6" stroke="currentColor" stroke-width="1.8"/></svg>
-            <b>Address: </b> <span id="contactAddress"></span>
+            <b data-i18n="footer.address">Address:</b> <span id="contactAddress"></span>
           </div>
         <div class="footer-links" aria-label="Footer links">
           <a class="sbtn sbtn-a" id="footerLinkA" href="#" title="External link 1" aria-label="External link 1" target="_blank" rel="noopener"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg></a>
@@ -376,7 +376,7 @@
       </div>
     </div>
 
-    <div class="copy">
+    <div class="copy" data-i18n="footer.copy">
       © 2025 New Halabja Center
     </div>
   </div>
@@ -385,7 +385,7 @@
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Dialog">
   <div class="box">
     <header>
-      <h3 id="modalTitle">Details</h3>
+      <h3 id="modalTitle" data-i18n="modal.details">Details</h3>
       <button class="xbtn" id="modalClose" aria-label="Close">✕</button>
     </header>
     <div class="content" id="modalContent"></div>

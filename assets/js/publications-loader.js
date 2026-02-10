@@ -133,9 +133,9 @@
           <span>${formattedPages} ${t('pub.meta.pages')}</span>
         </span>
         ${showSize ? `
-        <span class="pub-meta-pill">
+        <span class="pub-meta-pill pub-meta-size">
           ${ICONS.size}
-          <span>${pub.size}</span>
+          <span class="pub-size-text" dir="ltr">${pub.size}</span>
         </span>
         ` : ''}
         ${inlinePhysical ? generatePhysicalNoteHTML(pub) : ''}
