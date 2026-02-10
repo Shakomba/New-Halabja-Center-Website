@@ -1,13 +1,13 @@
 window.SITE_CONFIG = {
   centerName: "New Halabja Center for Teaching & Memorizing the Holy Qur’an",
-  phone: "+964 750 000 0000",
-  email: "info@newhalabja.center",
+  phone: "+964 750 1048902",
+  email: "bht@shakomba.org",
   address: {
-    en: "New Halabja, Kurdistan Region",
-    ku: "هەڵەبجەی تازە، هەرێمی کوردستان",
-    ar: "حلبجة الجديدة، إقليم كردستان"
+    en: "New Halabja, Kurdistan Region, Iraq",
+    ku: "هەڵەبجەی تازە، هەرێمی کوردستان، عێراق",
+    ar: "حلبجة الجديدة، إقليم كردستان، العراق"
   },
-  facebookUrl: "https://facebook.com/newhalabjaquran",
-  instagramUrl: "https://instagram.com/newhalabjaquran",
-  whatsappUrl: "https://wa.me/9647500000000"
+  facebookUrl: "https://facebook.com/bht.2017",
+  instagramUrl: "https://instagram.com/bht.2017",
+  whatsappUrl: "https://wa.me/9647501048902"
 };

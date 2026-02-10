@@ -55,6 +55,12 @@
   function applySiteConfig(){
     const cfg = window.SITE_CONFIG || {};
     const setText = (id, val)=>{ const el = document.getElementById(id); if(el) el.textContent = val || ""; };
+    const forceLtr = (id)=>{
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.setAttribute("dir", "ltr");
+      el.style.unicodeBidi = "isolate";
+    };
     const setLink = (id, val)=>{
       const el = document.getElementById(id);
       if(!el) return;
@@ -68,16 +74,22 @@
       });
       el.dataset.bound = "true";
     };
+    const currentLang = document.getElementById("langSelect")?.value
+      || localStorage.getItem("nhc_lang")
+      || document.documentElement.lang
+      || "en";
 
     setText("contactPhone", cfg.phone);
+    forceLtr("contactPhone");
     setText("contactEmail", cfg.email);
     
     // Address (handle multilingual object or string)
     let addr = cfg.address;
-    if(typeof addr === 'object') addr = addr['en'] || "";
+    if(addr && typeof addr === "object") addr = addr[currentLang] || addr.en || "";
     setText("contactAddress", addr);
 
     setText("contactPhone2", cfg.phone);
+    forceLtr("contactPhone2");
     setText("contactEmail2", cfg.email);
     setText("contactAddress2", addr);
 
@@ -573,9 +585,22 @@
   // Page-specific renderers
   const page = document.body.getAttribute("data-page");
 
-  function fmtDate(iso){
+  function fmtDate(iso, langOverride){
+    const lang = langOverride || "en";
+    const ymdMatch = typeof iso === "string" ? iso.match(/^(\d{4})-(\d{2})-(\d{2})/) : null;
+    if((lang === "ar" || lang === "ku") && ymdMatch){
+      return `${ymdMatch[3]}/${ymdMatch[2]}/${ymdMatch[1]}`;
+    }
     try{
-      const d = new Date(iso);
+      const d = ymdMatch
+        ? new Date(Number(ymdMatch[1]), Number(ymdMatch[2]) - 1, Number(ymdMatch[3]))
+        : new Date(iso);
+      if(Number.isNaN(d.getTime())) return iso;
+      if(lang === "ar" || lang === "ku"){
+        const dd = String(d.getDate()).padStart(2, "0");
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        return `${dd}/${mm}/${d.getFullYear()}`;
+      }
       return d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"2-digit"});
     }catch(_){ return iso; }
   }
@@ -600,7 +625,7 @@
         <article class="news-mini" data-id="${p.id}" role="listitem" aria-roledescription="slide" aria-label="${position} of ${total}">
           <div class="news-mini-media" style="background-image:url('${image}')" aria-hidden="true"></div>
           <div class="news-mini-meta">
-            <div class="news-mini-date">${fmtDate(p.date)}</div>
+            <div class="news-mini-date">${fmtDate(p.date, lang)}</div>
             <a class="news-mini-title" href="news.html#${p.id}">${p.title}</a>
           </div>
           <p class="news-mini-excerpt">${p.excerpt || ""}</p>

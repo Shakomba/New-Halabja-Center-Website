@@ -70,7 +70,20 @@
 
   function formatDate(dateStr) {
     if (!dateStr) return '';
-    const date = new Date(dateStr);
+    const lang = getCurrentLanguage();
+    const ymdMatch = typeof dateStr === 'string' ? dateStr.match(/^(\d{4})-(\d{2})-(\d{2})/) : null;
+    if ((lang === 'ar' || lang === 'ku') && ymdMatch) {
+      return `${ymdMatch[3]}/${ymdMatch[2]}/${ymdMatch[1]}`;
+    }
+    const date = ymdMatch
+      ? new Date(Number(ymdMatch[1]), Number(ymdMatch[2]) - 1, Number(ymdMatch[3]))
+      : new Date(dateStr);
+    if (Number.isNaN(date.getTime())) return dateStr;
+    if (lang === 'ar' || lang === 'ku') {
+      const dd = String(date.getDate()).padStart(2, '0');
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      return `${dd}/${mm}/${date.getFullYear()}`;
+    }
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return date.toLocaleDateString('en-US', options);
   }
