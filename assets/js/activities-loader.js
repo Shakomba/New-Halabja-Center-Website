@@ -88,6 +88,11 @@
     return div.innerHTML;
   }
 
+  function openImageFallback(src) {
+    if (!src) return;
+    window.open(src, '_blank', 'noopener');
+  }
+
   function generateCardHTML(activity) {
     const lang = getCurrentLanguage();
     const mediaClass = activity.image ? '' : ' is-empty';
@@ -320,8 +325,14 @@
 
     // Use native lightbox with sliding track
     if (typeof window.openNativeLightbox === 'function') {
-      window.openNativeLightbox(images[0], images, 0);
+      try {
+        window.openNativeLightbox(images[0], images, 0);
+        return;
+      } catch (error) {
+        console.error('Lightbox failed to open from activity card:', error);
+      }
     }
+    openImageFallback(images[0]);
   }
 
   function openActivityModal(activity) {
@@ -379,19 +390,40 @@
       const mainImage = document.querySelector('.modal-main-image');
       const galleryItems = document.querySelectorAll('.modal-gallery-item');
 
-      if (mainImage && typeof window.openNativeLightbox === 'function') {
+      if (mainImage) {
         mainImage.addEventListener('click', () => {
-          window.openNativeLightbox(mainImage.dataset.image, [mainImage.dataset.image], 0);
+          if (typeof window.openNativeLightbox === 'function') {
+            try {
+              window.openNativeLightbox(mainImage.dataset.image, [mainImage.dataset.image], 0);
+              return;
+            } catch (error) {
+              console.error('Lightbox failed to open from modal main image:', error);
+            }
+          }
+          openImageFallback(mainImage.dataset.image);
         });
       }
 
       galleryItems.forEach(item => {
         item.addEventListener('click', () => {
+          let images = null;
+          let index = 0;
+          try {
+            images = JSON.parse(item.dataset.images);
+            index = parseInt(item.dataset.index);
+          } catch (_) {}
+
+          if (!Array.isArray(images) || !images.length) return;
+
           if (typeof window.openNativeLightbox === 'function') {
-            const images = JSON.parse(item.dataset.images);
-            const index = parseInt(item.dataset.index);
-            window.openNativeLightbox(images[index], images, index);
+            try {
+              window.openNativeLightbox(images[index], images, index);
+              return;
+            } catch (error) {
+              console.error('Lightbox failed to open from modal gallery item:', error);
+            }
           }
+          openImageFallback(images[index]);
         });
       });
     }, 100);

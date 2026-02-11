@@ -18,25 +18,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
   <style>
-    html.nhc-nav-transitioning body{opacity:0 !important;visibility:hidden !important;}
+    html.nhc-prerender body{opacity:0 !important; visibility:hidden !important;}
   </style>
   <script>
     (function () {
+      document.documentElement.classList.add("nhc-prerender");
+      var revealed = false;
+      var reveal = function () {
+        if (revealed) return;
+        revealed = true;
+        document.documentElement.classList.remove("nhc-prerender");
+      };
       try {
-        document.documentElement.classList.add("nhc-nav-transitioning");
-        const clear = function () {
-          document.documentElement.classList.remove("nhc-nav-transitioning");
-        };
-        const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-        const loadReady = (document.readyState === "complete")
-          ? Promise.resolve()
-          : new Promise(function (resolve) { window.addEventListener("load", resolve, { once: true }); });
-        const timeout = new Promise(function (resolve) { setTimeout(resolve, 2500); });
-        Promise.race([Promise.all([fontsReady, loadReady]), timeout]).then(function () {
-          requestAnimationFrame(clear);
+        var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+        var pageReady = new Promise(function (resolve) {
+          if (document.readyState === "complete") {
+            resolve();
+            return;
+          }
+          window.addEventListener("load", resolve, { once: true });
         });
+        var timeout = new Promise(function (resolve) { setTimeout(resolve, 1800); });
+        Promise.race([Promise.all([fontsReady, pageReady]), timeout]).then(reveal, reveal);
       } catch (_) {
-        document.documentElement.classList.remove("nhc-nav-transitioning");
+        reveal();
       }
     })();
   </script>
@@ -324,10 +329,18 @@
     item.setAttribute('role', 'button');
     item.setAttribute('tabindex', '0');
     item.setAttribute('aria-label', 'View image ' + (i + 1));
-    item.addEventListener('click', function() {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       if (typeof window.openNativeLightbox === 'function') {
-        window.openNativeLightbox(src, galleryImages, i);
+        try {
+          window.openNativeLightbox(src, galleryImages, i);
+          return;
+        } catch (error) {
+          console.error('Lightbox failed to open from about gallery:', error);
+        }
       }
+      window.open(src, '_blank', 'noopener');
     });
     item.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {

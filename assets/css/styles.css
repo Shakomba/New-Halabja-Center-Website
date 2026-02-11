@@ -141,10 +141,6 @@ html.nhc-page-leaving{
 html.nhc-page-leaving body{
   opacity: .22;
 }
-html.nhc-nav-transitioning body{
-  opacity: 0 !important;
-  visibility: hidden !important;
-}
 body[dir="rtl"]{font-family: 'Vazirmatn', system-ui, "Noto Naskh Arabic", "Amiri", serif}
 html[lang="ar"] body{font-family: 'Tajawal', system-ui, "Noto Naskh Arabic", "Amiri", serif}
 html[lang="ku"] body{font-family: 'Vazirmatn', system-ui, "Noto Sans Kurdish", sans-serif}
@@ -185,6 +181,17 @@ a{color:inherit; text-decoration:none}
   to{
     opacity:1;
     transform:translateY(0);
+  }
+}
+
+@keyframes hero-fade-up-center{
+  from{
+    opacity:0;
+    transform:translate(-50%, 14px);
+  }
+  to{
+    opacity:1;
+    transform:translate(-50%, 0);
   }
 }
 
@@ -258,6 +265,10 @@ html.nhc-hero-intro .cp-form-inner > .cp-form-desc{animation-delay:.2s}
 html.nhc-hero-intro .cp-form-inner > .cp-form{animation-delay:.28s}
 
 html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-badge{animation-delay:.04s}
+html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-badge{
+  transform: translate(-50%, 14px);
+  animation-name: hero-fade-up-center;
+}
 html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-book{animation-delay:.14s}
 html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-content > *:nth-child(1){animation-delay:.12s}
 html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-content > *:nth-child(2){animation-delay:.18s}
@@ -270,10 +281,6 @@ html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-content > *:nth-child(
   }
   html.nhc-page-leaving body{
     opacity:1;
-  }
-  html.nhc-nav-transitioning body{
-    opacity:0 !important;
-    visibility:hidden !important;
   }
   html.nhc-hero-intro .hero h1,
   html.nhc-hero-intro .hero p,
@@ -294,6 +301,9 @@ html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-content > *:nth-child(
     animation:none;
     opacity:1;
     transform:none;
+  }
+  html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-badge{
+    transform: translateX(-50%);
   }
 }
 
@@ -3494,6 +3504,8 @@ body[dir="rtl"] .pub-main{
 /* Track - slides move from absolute edge to edge */
 .pub-hero-track{
   display: flex;
+  /* Start centered on the first real slide to avoid first-frame badge jump. */
+  transform: translateX(-100%);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
   /* Keep carousel math consistent even when the page is RTL.
