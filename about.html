@@ -16,7 +16,30 @@
   <meta property="og:image" content="assets/img/Bnka.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+  <style>
+    html.nhc-nav-transitioning body{opacity:0 !important;visibility:hidden !important;}
+  </style>
+  <script>
+    (function () {
+      try {
+        document.documentElement.classList.add("nhc-nav-transitioning");
+        const clear = function () {
+          document.documentElement.classList.remove("nhc-nav-transitioning");
+        };
+        const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+        const loadReady = (document.readyState === "complete")
+          ? Promise.resolve()
+          : new Promise(function (resolve) { window.addEventListener("load", resolve, { once: true }); });
+        const timeout = new Promise(function (resolve) { setTimeout(resolve, 2500); });
+        Promise.race([Promise.all([fontsReady, loadReady]), timeout]).then(function () {
+          requestAnimationFrame(clear);
+        });
+      } catch (_) {
+        document.documentElement.classList.remove("nhc-nav-transitioning");
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 

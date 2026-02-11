@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=block');
 
 :root{
   /* Colors */
@@ -133,6 +133,17 @@ body{
   -webkit-overflow-scrolling: touch;
   color: var(--ink);
   line-height: 1.7;
+  transition: opacity .16s ease;
+}
+html.nhc-page-leaving{
+  pointer-events: none;
+}
+html.nhc-page-leaving body{
+  opacity: .22;
+}
+html.nhc-nav-transitioning body{
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 body[dir="rtl"]{font-family: 'Vazirmatn', system-ui, "Noto Naskh Arabic", "Amiri", serif}
 html[lang="ar"] body{font-family: 'Tajawal', system-ui, "Noto Naskh Arabic", "Amiri", serif}
@@ -175,6 +186,33 @@ a{color:inherit; text-decoration:none}
     opacity:1;
     transform:translateY(0);
   }
+}
+
+@supports (view-transition-name: root){
+  @view-transition{
+    navigation: auto;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root){
+    animation-duration: .22s;
+    animation-timing-function: cubic-bezier(.22,1,.36,1);
+  }
+  ::view-transition-old(root){
+    animation-name: nhc-view-out;
+  }
+  ::view-transition-new(root){
+    animation-name: nhc-view-in;
+  }
+}
+
+@keyframes nhc-view-out{
+  from{opacity:1}
+  to{opacity:.88}
+}
+
+@keyframes nhc-view-in{
+  from{opacity:.9}
+  to{opacity:1}
 }
 
 html.nhc-hero-intro .hero h1,
@@ -227,6 +265,16 @@ html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-content > *:nth-child(
 html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-content > *:nth-child(4){animation-delay:.3s}
 
 @media (prefers-reduced-motion: reduce){
+  body{
+    transition:none;
+  }
+  html.nhc-page-leaving body{
+    opacity:1;
+  }
+  html.nhc-nav-transitioning body{
+    opacity:0 !important;
+    visibility:hidden !important;
+  }
   html.nhc-hero-intro .hero h1,
   html.nhc-hero-intro .hero p,
   html.nhc-hero-intro .hero .btn-row,
