@@ -62,16 +62,16 @@ The `data-page` attribute on `<body>` identifies the page type (e.g., `data-page
 **Page-specific scripts**:
 - [assets/js/data-news.js](assets/js/data-news.js) - Loads activities from JSON and populates `window.NEWS_DATA` for the home page
 - [assets/js/activities-loader.js](assets/js/activities-loader.js) - Full activities page implementation with filtering, search, and modal display
-- [assets/js/data-publications.js](assets/js/data-publications.js) - Publications data
+- [assets/js/publications-loader.js](assets/js/publications-loader.js) - Publications page renderer (loads data from JSON)
 
 **Execution order matters**: i18n.js → site-config.js → main.js → page-specific scripts
 
 ### Data Files
 
-Content is stored in JavaScript data files (not JSON) and one JSON file:
+Content is stored in JSON files:
 
 - [assets/data/activities.json](assets/data/activities.json) - News/activities with multilingual support
-- [assets/js/data-publications.js](assets/js/data-publications.js) - PDF publications metadata
+- [assets/data/publications.json](assets/data/publications.json) - Publications metadata
 
 **Activities data structure**:
 ```javascript
@@ -136,7 +136,7 @@ These values are automatically injected into the footer and header on every page
 Edit [assets/data/activities.json](assets/data/activities.json) and add new activity objects with multilingual fields.
 
 ### Adding Publications
-Edit [assets/js/data-publications.js](assets/js/data-publications.js) and place PDF files in `assets/pdfs/`.
+Edit [assets/data/publications.json](assets/data/publications.json) and place PDF files in `assets/pdfs/`.
 
 ### Adding Tafsir Lectures
 

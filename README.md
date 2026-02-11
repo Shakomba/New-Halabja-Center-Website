@@ -14,8 +14,8 @@ A fast, static website (HTML/CSS/JS) inspired by common Quran academy layouts:
    - Works offline (no database, no build step).
 
 ## Update content
-- News: `assets/js/data-news.js`
-- Publications: `assets/js/data-publications.js` (place PDFs in `assets/pdfs/`)
+- Activities/News: `assets/data/activities.json`
+- Publications: `assets/data/publications.json` (place PDFs in `assets/pdfs/`)
 
 ## Deploy (any static hosting)
 Upload the folder to:

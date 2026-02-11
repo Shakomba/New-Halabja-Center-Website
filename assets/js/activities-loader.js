@@ -1,19 +1,15 @@
 (function() {
   'use strict';
-  
-  console.log('=== ACTIVITIES LOADER SCRIPT LOADED ===');
 
   let activitiesData = [];
   let selectedCategories = [];
   let currentSearch = '';
-  let currentLang = 'en';
   let currentPage = 1;
   const ITEMS_PER_PAGE = 9;
 
   const elements = {
     grid: null,
     searchInput: null,
-    filterSelect: null,
     countDisplay: null,
     multiselect: null,
     multiselectTrigger: null,
@@ -59,8 +55,6 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       activitiesData = await response.json();
-      console.log('Activities data loaded and stored:', activitiesData.length, 'items');
-      console.log('activitiesData is now:', activitiesData);
       return activitiesData;
     } catch (error) {
       console.error('Error fetching activities:', error);
@@ -94,7 +88,7 @@
     return div.innerHTML;
   }
 
-  function generateCardHTML(activity, index) {
+  function generateCardHTML(activity) {
     const lang = getCurrentLanguage();
     const mediaClass = activity.image ? '' : ' is-empty';
     const mediaStyle = activity.image ? ` style="background-image: url('${activity.image}')"` : '';
@@ -403,48 +397,6 @@
     }, 100);
   }
 
-
-  async function copyToClipboard(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      try {
-        await navigator.clipboard.writeText(text);
-        return true;
-      } catch (err) {
-        console.error('Clipboard write failed:', err);
-      }
-    }
-    
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'absolute';
-    textarea.style.left = '-9999px';
-    document.body.appendChild(textarea);
-    textarea.select();
-    
-    let success = false;
-    try {
-      success = document.execCommand('copy');
-    } catch (err) {
-      console.error('Copy command failed:', err);
-    }
-    
-    document.body.removeChild(textarea);
-    return success;
-  }
-
-  function showShareFeedback(button, success) {
-    const originalTitle = button.getAttribute('title') || 'Copy link';
-    const message = success ? 'Link copied!' : 'Copy failed';
-    
-    button.setAttribute('title', message);
-    button.setAttribute('aria-label', message);
-    
-    setTimeout(() => {
-      button.setAttribute('title', originalTitle);
-      button.setAttribute('aria-label', originalTitle);
-    }, 2000);
-  }
-
   function triggerRevealAnimations() {
     if (typeof window.setupReveal === 'function') {
       window.setupReveal();
@@ -556,7 +508,6 @@
   function initializeElements() {
     elements.grid = document.getElementById('newsList');
     elements.searchInput = document.getElementById('newsSearch');
-    elements.filterSelect = document.getElementById('newsTag');
     elements.countDisplay = document.getElementById('newsCount');
     elements.multiselect = document.getElementById('categoryFilter');
     elements.multiselectTrigger = elements.multiselect?.querySelector('.multiselect-trigger');
@@ -584,7 +535,6 @@
   }
 
   function handleLanguageChange() {
-    currentLang = getCurrentLanguage();
     selectedCategories = []; // Reset selected categories on language change
     populateFilterOptions();
     updateMultiselectLabel();
