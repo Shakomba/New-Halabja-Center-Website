@@ -82,7 +82,7 @@
     const currentLang = document.getElementById("langSelect")?.value
       || localStorage.getItem("nhc_lang")
       || document.documentElement.lang
-      || "en";
+      || "ku";
 
     setText("contactPhone", cfg.phone);
     forceLtr("contactPhone");
@@ -281,7 +281,7 @@
   }
 
   const langSelect = $("#langSelect");
-  const stored = localStorage.getItem("nhc_lang") || "en";
+  const stored = localStorage.getItem("nhc_lang") || "ku";
   if(langSelect){
     langSelect.value = stored;
     applyLanguage(stored);
@@ -552,7 +552,7 @@
   function openModal(title, html){
     if(!modal) return;
     lastFocusedElement = document.activeElement;
-    const lang = $("#langSelect")?.value || "en";
+    const lang = $("#langSelect")?.value || "ku";
     const modalDict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
     modalTitle.textContent = title || modalDict["modal.details"] || "Details";
     modalContent.innerHTML = html || "";
@@ -593,7 +593,7 @@
   const page = document.body.getAttribute("data-page");
 
   function fmtDate(iso, langOverride){
-    const lang = langOverride || "en";
+    const lang = langOverride || "ku";
     const ymdMatch = typeof iso === "string" ? iso.match(/^(\d{4})-(\d{2})-(\d{2})/) : null;
     if((lang === "ar" || lang === "ku") && ymdMatch){
       return `${ymdMatch[3]}/${ymdMatch[2]}/${ymdMatch[1]}`;
@@ -620,13 +620,13 @@
     const items = limit ? data.slice(0,limit) : data;
     const total = items.length + 1;
 
-    const lang = $("#langSelect")?.value || "en";
+    const lang = $("#langSelect")?.value || "ku";
     const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
     const seeAllText = dict["section.latestnews.seeall"] || "See All Activities";
     const readMoreText = dict["news.readmore"] || "Read more";
 
     const cards = items.map((p, index)=>{
-      const image = p.image || "assets/img/3.jpg";
+      const image = p.image || "assets/img/heroBackground-optimized.jpg";
       const position = index + 1;
       return `
         <article class="news-mini" data-id="${p.id}" role="listitem" aria-roledescription="slide" aria-label="${position} of ${total}">

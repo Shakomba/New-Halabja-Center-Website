@@ -21,7 +21,7 @@
     } catch (error) {
       // Ignore storage access issues and fall back to default.
     }
-    return 'en';
+    return 'ku';
   }
 
   // Get translation

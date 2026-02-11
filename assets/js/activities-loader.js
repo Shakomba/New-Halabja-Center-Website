@@ -19,7 +19,7 @@
 
   function getCurrentLanguage() {
     const langSelect = document.getElementById('langSelect');
-    return langSelect ? langSelect.value : 'en';
+    return langSelect ? langSelect.value : 'ku';
   }
 
   function getTranslatedValue(field, lang) {
