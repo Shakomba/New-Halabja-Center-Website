@@ -692,6 +692,48 @@
     };
 
     const getDotLimit = ()=>window.matchMedia("(max-width: 768px)").matches ? 6 : 4;
+    const isRtl = ()=> (document.documentElement.dir || document.body.getAttribute("dir")) === "rtl";
+    let rtlScrollType = null;
+    const detectRtlScrollType = ()=>{
+      if(rtlScrollType) return rtlScrollType;
+      const probe = document.createElement("div");
+      const inner = document.createElement("div");
+      probe.dir = "rtl";
+      probe.style.width = "4px";
+      probe.style.height = "1px";
+      probe.style.overflow = "scroll";
+      probe.style.visibility = "hidden";
+      probe.style.position = "absolute";
+      probe.style.top = "-9999px";
+      inner.style.width = "8px";
+      inner.style.height = "1px";
+      probe.appendChild(inner);
+      document.body.appendChild(probe);
+
+      probe.scrollLeft = 0;
+      const initial = probe.scrollLeft;
+      probe.scrollLeft = 1;
+      const afterSet = probe.scrollLeft;
+
+      if(initial > 0) rtlScrollType = "reverse";
+      else if(afterSet === 0) rtlScrollType = "negative";
+      else rtlScrollType = "default";
+
+      probe.remove();
+      return rtlScrollType;
+    };
+    const getScrollMetrics = ()=>{
+      const max = Math.max(0, track.scrollWidth - track.clientWidth);
+      const raw = track.scrollLeft;
+      if(!isRtl()){
+        return {offset: Math.max(0, Math.min(max, raw)), max};
+      }
+      const mode = detectRtlScrollType();
+      let offset = raw;
+      if(mode === "negative") offset = -raw;
+      else if(mode === "reverse") offset = max - raw;
+      return {offset: Math.max(0, Math.min(max, offset)), max};
+    };
 
     let pendingFocus = false;
     let dotButtons = [];
@@ -707,6 +749,16 @@
       if(dotCount <= 1 || dotMaxStart <= 0) return 0;
       return Math.round((slideIndex / dotMaxStart) * (dotCount - 1));
     };
+    const getCurrentIndex = (slidesTotal = getSlides().length)=>{
+      const layout = getLayout();
+      const step = layout?.step || 0;
+      const visibleCount = layout?.visibleCount || 1;
+      const maxStart = Math.max(0, slidesTotal - visibleCount);
+      if(!step) return 0;
+      const {offset} = getScrollMetrics();
+      const rawIndex = Math.round(offset / step);
+      return Math.max(0, Math.min(maxStart, rawIndex));
+    };
     const scrollToIndex = (index, shouldFocus=false)=>{
       const slides = getSlides();
       const clampedIndex = Math.max(0, Math.min(slides.length - 1, index));
@@ -721,11 +773,10 @@
       requestAnimationFrame(update);
     };
     const scrollByStep = (dir, shouldFocus=false)=>{
-      const step = getLayout()?.step || 0;
-      if(!step) return;
-      pendingFocus = shouldFocus;
-      track.scrollBy({left: dir * step, behavior: "smooth"});
-      requestAnimationFrame(update);
+      const slides = getSlides();
+      if(!slides.length) return;
+      const currentIndex = getCurrentIndex(slides.length);
+      scrollToIndex(currentIndex + dir, shouldFocus);
     };
 
     prev.addEventListener("click", ()=>scrollByStep(-1));
@@ -768,9 +819,9 @@
     };
 
     const updateButtons = ()=>{
-      const max = track.scrollWidth - track.clientWidth;
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= max - 2;
+      const {offset, max} = getScrollMetrics();
+      prev.disabled = offset <= 2;
+      next.disabled = offset >= max - 2;
       prev.setAttribute("aria-disabled", prev.disabled ? "true" : "false");
       next.setAttribute("aria-disabled", next.disabled ? "true" : "false");
     };
@@ -788,16 +839,13 @@
         return;
       }
       const layout = getLayout();
-      const step = layout?.step || 0;
       const visibleCount = layout?.visibleCount || 1;
       dotMaxStart = Math.max(0, total - visibleCount);
       dotCount = Math.max(1, Math.min(getDotLimit(), dotMaxStart + 1, total));
       if(dots && (dotButtons.length !== dotCount || dotVisibleCount !== visibleCount || dotTotal !== total)){
         buildDots(total, visibleCount);
       }
-      const offset = Math.abs(track.scrollLeft);
-      const rawIndex = step ? Math.round(offset / step) : 0;
-      const index = Math.max(0, Math.min(dotMaxStart, rawIndex));
+      const index = getCurrentIndex(total);
       slides.forEach((slide, idx)=>{
         slide.setAttribute("aria-current", idx === index ? "true" : "false");
       });
@@ -1194,7 +1242,7 @@
       const msg = $("#cMsg").value.trim();
       const subject = encodeURIComponent(`Website Contact — ${name || "New message"}`);
       const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}\n\n— Sent from the website contact form.`);
-      window.location.href = `mailto:${sc.email || "info@newhalabja.center"}?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${sc.email || "support@bnkayhalabjaytaza.org"}?subject=${subject}&body=${body}`;
     });
 
     // Populate info card links

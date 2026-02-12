@@ -15,6 +15,12 @@
   let touchStartX = 0;
   let touchStartY = 0;
   let hasTouchStart = false;
+  let dragAxis = null;
+  let dragOffsetX = 0;
+  let dragOffsetY = 0;
+  const HORIZONTAL_SWIPE_THRESHOLD = 45;
+  const VERTICAL_CLOSE_THRESHOLD = 70;
+  const TOUCH_AXIS_LOCK_THRESHOLD = 8;
 
   function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
@@ -25,12 +31,62 @@
     return String(src).replace(/"/g, '&quot;');
   }
 
+  function normalizeSrc(src) {
+    if (!src) return '';
+    return String(src).trim().replace(/\\/g, '/');
+  }
+
+  function getSlideWidth() {
+    if (slidesWrapper && slidesWrapper.clientWidth > 0) return slidesWrapper.clientWidth;
+    return Math.max(window.innerWidth || 1, 1);
+  }
+
+  function applySlideMetrics() {
+    if (!track) return;
+    const slideWidth = getSlideWidth();
+    const slides = track.querySelectorAll('.lightbox-slide');
+    slides.forEach(function (slide) {
+      slide.style.width = slideWidth + 'px';
+      slide.style.flexBasis = slideWidth + 'px';
+    });
+    track.style.width = (slideWidth * Math.max(images.length, 1)) + 'px';
+  }
+
+  function setTrackTransform(offsetPx, animate) {
+    if (!track) return;
+    if (animate) track.classList.remove('no-transition');
+    else track.classList.add('no-transition');
+    track.style.transform = 'translate3d(' + offsetPx + 'px, 0, 0)';
+  }
+
+  function resetDragVisuals(animate) {
+    if (!slidesWrapper || !lightbox) return;
+    if (animate) {
+      slidesWrapper.style.transition = 'transform 0.22s ease';
+      lightbox.style.transition = 'opacity 0.22s ease';
+    } else {
+      slidesWrapper.style.transition = '';
+      lightbox.style.transition = '';
+    }
+    slidesWrapper.style.transform = 'translate3d(0, 0, 0)';
+    lightbox.style.opacity = '1';
+    if (animate) {
+      setTimeout(function () {
+        if (!slidesWrapper || !lightbox) return;
+        slidesWrapper.style.transition = '';
+        lightbox.style.transition = '';
+      }, 230);
+    }
+  }
+
   function ensureLightbox() {
     if (lightbox) return;
 
     lightbox = document.createElement('div');
     lightbox.id = 'nativeLightbox';
     lightbox.className = 'native-lightbox';
+    // Keep slider math consistent across site languages by isolating from page RTL direction.
+    lightbox.setAttribute('dir', 'ltr');
     lightbox.setAttribute('aria-hidden', 'true');
     lightbox.innerHTML = [
       '<button class="lightbox-close" aria-label="Close">&times;</button>',
@@ -58,6 +114,8 @@
     nextBtn = lightbox.querySelector('.lightbox-next');
     closeBtn = lightbox.querySelector('.lightbox-close');
     slidesWrapper = lightbox.querySelector('.lightbox-slides-wrapper');
+    if (slidesWrapper) slidesWrapper.style.direction = 'ltr';
+    if (track) track.style.direction = 'ltr';
 
     closeBtn.addEventListener('click', closeLightbox);
     prevBtn.addEventListener('click', function () { goTo(index - 1); });
@@ -75,25 +133,84 @@
       if (e.key === 'ArrowLeft') goTo(index - 1);
       if (e.key === 'ArrowRight') goTo(index + 1);
     });
+    window.addEventListener('resize', function () {
+      if (!lightbox || !lightbox.classList.contains('active')) return;
+      updateUi();
+    });
 
     slidesWrapper.addEventListener('touchstart', function (e) {
+      if (!lightbox.classList.contains('active')) return;
       if (!e.touches || e.touches.length !== 1) return;
       hasTouchStart = true;
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
+      dragAxis = null;
+      dragOffsetX = 0;
+      dragOffsetY = 0;
+      setTrackTransform(-index * getSlideWidth(), false);
     }, { passive: true });
+
+    slidesWrapper.addEventListener('touchmove', function (e) {
+      if (!hasTouchStart || !e.touches || e.touches.length !== 1) return;
+
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+
+      if (!dragAxis) {
+        if (Math.abs(dx) < TOUCH_AXIS_LOCK_THRESHOLD && Math.abs(dy) < TOUCH_AXIS_LOCK_THRESHOLD) return;
+        dragAxis = Math.abs(dx) >= Math.abs(dy) ? 'x' : 'y';
+      }
+
+      if (dragAxis === 'x') {
+        e.preventDefault();
+        dragOffsetX = dx;
+        if ((index === 0 && dragOffsetX > 0) || (index === images.length - 1 && dragOffsetX < 0)) {
+          dragOffsetX *= 0.35;
+        }
+        setTrackTransform((-index * getSlideWidth()) + dragOffsetX, false);
+        return;
+      }
+
+      e.preventDefault();
+      dragOffsetY = dy;
+      const fade = clamp(1 - (Math.abs(dragOffsetY) / (window.innerHeight * 0.9)), 0.55, 1);
+      slidesWrapper.style.transform = 'translate3d(0, ' + dragOffsetY + 'px, 0)';
+      lightbox.style.opacity = String(fade);
+    }, { passive: false });
 
     slidesWrapper.addEventListener('touchend', function (e) {
       if (!hasTouchStart || !e.changedTouches || e.changedTouches.length !== 1) return;
       hasTouchStart = false;
 
-      const dx = e.changedTouches[0].clientX - touchStartX;
-      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (dragAxis === 'x') {
+        const target = Math.abs(dragOffsetX) >= HORIZONTAL_SWIPE_THRESHOLD
+          ? (dragOffsetX > 0 ? index - 1 : index + 1)
+          : index;
+        dragAxis = null;
+        dragOffsetX = 0;
+        goTo(target);
+        return;
+      }
 
-      // Horizontal swipe only
-      if (Math.abs(dx) <= Math.abs(dy) || Math.abs(dx) < 45) return;
-      if (dx > 0) goTo(index - 1);
-      else goTo(index + 1);
+      if (dragAxis === 'y') {
+        const shouldClose = Math.abs(dragOffsetY) >= VERTICAL_CLOSE_THRESHOLD;
+        if (shouldClose) {
+          closeLightbox({ preserveSwipeState: true });
+          return;
+        }
+        dragAxis = null;
+        dragOffsetY = 0;
+        resetDragVisuals(true);
+      }
+    }, { passive: true });
+
+    slidesWrapper.addEventListener('touchcancel', function () {
+      hasTouchStart = false;
+      dragAxis = null;
+      dragOffsetX = 0;
+      dragOffsetY = 0;
+      resetDragVisuals(true);
+      updateUi(true);
     }, { passive: true });
   }
 
@@ -108,30 +225,64 @@
         '</div>'
       ].join('');
     }).join('');
+
+    const slideImages = track.querySelectorAll('img');
+    slideImages.forEach(function (img) {
+      img.addEventListener('error', function () {
+        const current = normalizeSrc(img.getAttribute('src'));
+        if (!current) return;
+        if (img.dataset.retryDone === '1') return;
+        img.dataset.retryDone = '1';
+        const encoded = encodeURI(current).replace(/%2F/g, '/');
+        if (encoded && encoded !== current) {
+          img.src = encoded;
+          return;
+        }
+        if (!/^https?:\/\//i.test(current) && !/^data:/i.test(current) && !current.startsWith('/')) {
+          img.src = './' + current;
+        }
+      }, { once: true });
+    });
+
+    applySlideMetrics();
   }
 
-  function updateUi() {
+  function updateUi(animate) {
     if (!track) return;
 
     const total = images.length;
     const clamped = clamp(index, 0, Math.max(0, total - 1));
     if (clamped !== index) index = clamped;
+    applySlideMetrics();
 
-    track.style.transition = 'transform 0.25s ease';
-    track.style.transform = 'translateX(' + (-index * 100) + 'vw)';
+    const shouldAnimate = animate !== false;
+    setTrackTransform(-index * getSlideWidth(), shouldAnimate);
 
     if (counter) {
       if (total > 1) {
         counter.style.display = 'block';
-        counter.textContent = (index + 1) + '/' + total;
+        counter.textContent = (index + 1) + ' / ' + total;
       } else {
         counter.style.display = 'none';
       }
     }
 
-    const showNav = total > 1;
-    if (prevBtn) prevBtn.style.display = showNav ? 'flex' : 'none';
-    if (nextBtn) nextBtn.style.display = showNav ? 'flex' : 'none';
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const showNav = total > 1 && !isMobile;
+    const atStart = index <= 0;
+    const atEnd = index >= Math.max(0, total - 1);
+
+    if (prevBtn) {
+      prevBtn.style.display = showNav ? 'flex' : 'none';
+      prevBtn.disabled = !showNav || atStart;
+      prevBtn.setAttribute('aria-disabled', prevBtn.disabled ? 'true' : 'false');
+    }
+
+    if (nextBtn) {
+      nextBtn.style.display = showNav ? 'flex' : 'none';
+      nextBtn.disabled = !showNav || atEnd;
+      nextBtn.setAttribute('aria-disabled', nextBtn.disabled ? 'true' : 'false');
+    }
   }
 
   function goTo(newIndex) {
@@ -145,26 +296,38 @@
 
     index = clamp(startIndex, 0, images.length - 1);
     renderSlides();
-    updateUi();
-
     lightbox.style.opacity = '0';
     lightbox.classList.add('active');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
     requestAnimationFrame(function () {
+      resetDragVisuals(false);
+      updateUi(false);
       lightbox.style.transition = 'opacity 0.25s ease';
       lightbox.style.opacity = '1';
     });
   }
 
-  function closeLightbox() {
+  function closeLightbox(options) {
     if (!lightbox || !lightbox.classList.contains('active')) return;
+    const preserveSwipeState = Boolean(options && options.preserveSwipeState);
+    hasTouchStart = false;
+    if (!preserveSwipeState) {
+      dragAxis = null;
+      dragOffsetX = 0;
+      dragOffsetY = 0;
+      resetDragVisuals(false);
+    }
     lightbox.style.opacity = '0';
     setTimeout(function () {
       if (!lightbox) return;
       lightbox.classList.remove('active');
       lightbox.setAttribute('aria-hidden', 'true');
+      dragAxis = null;
+      dragOffsetX = 0;
+      dragOffsetY = 0;
+      resetDragVisuals(false);
       lightbox.style.transition = '';
       lightbox.style.opacity = '';
       document.body.style.overflow = '';
@@ -174,15 +337,16 @@
   window.openNativeLightbox = function (imageSrc, allImages, currentIndex) {
     try {
       const list = Array.isArray(allImages) && allImages.length
-        ? allImages.filter(Boolean)
-        : [imageSrc].filter(Boolean);
+        ? allImages.map(normalizeSrc).filter(Boolean)
+        : [normalizeSrc(imageSrc)].filter(Boolean);
 
       if (!list.length) return;
 
       ensureLightbox();
       images = list;
 
-      const requested = Number.isInteger(currentIndex) ? currentIndex : 0;
+      const requestedRaw = Number(currentIndex);
+      const requested = Number.isFinite(requestedRaw) ? Math.trunc(requestedRaw) : 0;
       openLightbox(requested);
     } catch (error) {
       console.error('Failed to open native lightbox:', error);

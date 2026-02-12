@@ -472,6 +472,8 @@
 
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
+      touchCurrentX = touchStartX;
+      touchCurrentY = touchStartY;
       isDragging = true;
       isHorizontalSwipe = false;
       isVerticalSwipe = false;
@@ -500,9 +502,14 @@
       }
     };
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (e) => {
       if (!isDragging) return;
       isDragging = false;
+
+      if (e && e.changedTouches && e.changedTouches.length === 1) {
+        touchCurrentX = e.changedTouches[0].clientX;
+        touchCurrentY = e.changedTouches[0].clientY;
+      }
 
       const deltaX = touchCurrentX - touchStartX;
 
@@ -519,12 +526,29 @@
       isVerticalSwipe = false;
     };
 
+    const handleTouchCancel = () => {
+      isDragging = false;
+      isHorizontalSwipe = false;
+      isVerticalSwipe = false;
+      startAutoSlide();
+    };
+
     const touchTarget = carousel || slider || track;
     const touchStartOptions = { passive: true };
     const touchMoveOptions = { passive: false };
     touchTarget.addEventListener('touchstart', handleTouchStart, touchStartOptions);
     touchTarget.addEventListener('touchmove', handleTouchMove, touchMoveOptions);
     touchTarget.addEventListener('touchend', handleTouchEnd);
+    touchTarget.addEventListener('touchcancel', handleTouchCancel);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAutoSlide();
+      } else {
+        startAutoSlide();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     const handleKeydown = (e) => {
       if (e.key === 'ArrowLeft') {
@@ -560,6 +584,8 @@
       touchTarget.removeEventListener('touchstart', handleTouchStart, touchStartOptions);
       touchTarget.removeEventListener('touchmove', handleTouchMove, touchMoveOptions);
       touchTarget.removeEventListener('touchend', handleTouchEnd);
+      touchTarget.removeEventListener('touchcancel', handleTouchCancel);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       document.removeEventListener('keydown', handleKeydown);
       track.removeEventListener('mouseenter', handleMouseEnter);
       track.removeEventListener('mouseleave', handleMouseLeave);
@@ -751,6 +777,8 @@
 
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
+      touchCurrentX = touchStartX;
+      touchCurrentY = touchStartY;
       isDragging = true;
       isHorizontalSwipe = false;
       isVerticalSwipe = false;
@@ -781,9 +809,14 @@
       }
     };
 
-    const handleTouchEnd = () => {
+    const handleTouchEnd = (e) => {
       if (!isDragging) return;
       isDragging = false;
+
+      if (e && e.changedTouches && e.changedTouches.length === 1) {
+        touchCurrentX = e.changedTouches[0].clientX;
+        touchCurrentY = e.changedTouches[0].clientY;
+      }
 
       const deltaX = touchCurrentX - touchStartX;
 
@@ -803,6 +836,13 @@
       isVerticalSwipe = false;
     };
 
+    const handleTouchCancel = () => {
+      isDragging = false;
+      isHorizontalSwipe = false;
+      isVerticalSwipe = false;
+      startAutoSlide();
+    };
+
     // Add touch listeners to carousel for true edge-to-edge detection
     const touchTarget = carousel || slider || track;
     const touchStartOptions = { passive: true };
@@ -810,6 +850,16 @@
     touchTarget.addEventListener('touchstart', handleTouchStart, touchStartOptions);
     touchTarget.addEventListener('touchmove', handleTouchMove, touchMoveOptions);
     touchTarget.addEventListener('touchend', handleTouchEnd);
+    touchTarget.addEventListener('touchcancel', handleTouchCancel);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAutoSlide();
+      } else {
+        startAutoSlide();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // Keyboard navigation
     const handleKeydown = (e) => {
@@ -847,6 +897,8 @@
       touchTarget.removeEventListener('touchstart', handleTouchStart, touchStartOptions);
       touchTarget.removeEventListener('touchmove', handleTouchMove, touchMoveOptions);
       touchTarget.removeEventListener('touchend', handleTouchEnd);
+      touchTarget.removeEventListener('touchcancel', handleTouchCancel);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       document.removeEventListener('keydown', handleKeydown);
       track.removeEventListener('mouseenter', handleMouseEnter);
       track.removeEventListener('mouseleave', handleMouseLeave);

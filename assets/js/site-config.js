@@ -1,7 +1,7 @@
 window.SITE_CONFIG = {
   centerName: "New Halabja Center for Teaching & Memorizing the Holy Qur’an",
   phone: "+964 750 104 8902",
-  email: "bht@shakomba.org",
+  email: "support@bnkayhalabjaytaza.org",
   address: {
     en: "New Halabja, Kurdistan Region, Iraq",
     ku: "هەڵەبجەی تازە، هەرێمی کوردستان، عێراق",

@@ -88,6 +88,16 @@
     return div.innerHTML;
   }
 
+  function resolveImageUrl(src) {
+    const raw = String(src || '').trim();
+    if (!raw) return '';
+    try {
+      return new URL(raw, window.location.href).href;
+    } catch (_) {
+      return raw;
+    }
+  }
+
   function openImageFallback(src) {
     if (!src) return;
     window.open(src, '_blank', 'noopener');
@@ -313,26 +323,25 @@
 
   function openGridGallery(activity) {
     // Collect all images for the gallery
-    const images = [];
-    if (activity.image) {
-      images.push(activity.image);
-    }
-    if (activity.gallery && activity.gallery.length > 0) {
-      images.push(...activity.gallery);
-    }
-
-    if (images.length === 0) return;
+    const galleryImages = Array.isArray(activity.gallery)
+      ? activity.gallery.map(img => resolveImageUrl(img)).filter(Boolean)
+      : [];
+    const mainImage = resolveImageUrl(activity.image || '');
+    const lightboxImages = galleryImages.length
+      ? galleryImages
+      : (mainImage ? [mainImage] : []);
+    if (lightboxImages.length === 0) return;
 
     // Use native lightbox with sliding track
     if (typeof window.openNativeLightbox === 'function') {
       try {
-        window.openNativeLightbox(images[0], images, 0);
+        window.openNativeLightbox(lightboxImages[0], lightboxImages, 0);
         return;
       } catch (error) {
         console.error('Lightbox failed to open from activity card:', error);
       }
     }
-    openImageFallback(images[0]);
+    openImageFallback(lightboxImages[0]);
   }
 
   function openActivityModal(activity) {
@@ -340,24 +349,31 @@
     const title = getTranslatedValue(activity.title, lang);
     const category = getFirstCategory(activity, lang);
     const content = getTranslatedValue(activity.content, lang);
+    const mainImageRaw = activity.image ? String(activity.image).trim() : '';
+    const mainImageSrc = mainImageRaw ? escapeHtml(mainImageRaw) : '';
+    const galleryImages = Array.isArray(activity.gallery)
+      ? activity.gallery
+          .map(img => String(img).trim())
+          .filter(Boolean)
+      : [];
     
     const mainImage = activity.image ? `
-      <div class="modal-main-image" data-image="${activity.image}">
-        <img src="${activity.image}" alt="${escapeHtml(title)}" />
+      <div class="modal-main-image" data-image="${mainImageSrc}">
+        <img src="${mainImageSrc}" alt="${escapeHtml(title)}" />
       </div>
     ` : '';
     
-    const gallery = (activity.gallery && activity.gallery.length > 0) ? `
-      <div class="modal-gallery">
+    const gallery = (galleryImages.length > 0) ? `
+      <div class="modal-gallery" dir="ltr">
         <div class="modal-gallery-divider">
           <svg viewBox="0 0 640 640" fill="#DEB86D">
             <path d="M512 144C520.8 144 528 151.2 528 160L528 416C528 424.8 520.8 432 512 432L192 432C183.2 432 176 424.8 176 416L176 160C176 151.2 183.2 144 192 144L512 144zM192 96C156.7 96 128 124.7 128 160L128 416C128 451.3 156.7 480 192 480L512 480C547.3 480 576 451.3 576 416L576 160C576 124.7 547.3 96 512 96L192 96zM272 208C272 190.3 257.7 176 240 176C222.3 176 208 190.3 208 208C208 225.7 222.3 240 240 240C257.7 240 272 225.7 272 208zM412.7 211.8C408.4 204.5 400.5 200 392 200C383.5 200 375.6 204.5 371.3 211.8L324.8 290.8L307.6 266.2C303.1 259.8 295.8 256 287.9 256C280 256 272.7 259.8 268.2 266.2L212.2 346.2C207.1 353.5 206.4 363.1 210.6 371C214.8 378.9 223.1 384 232 384L472 384C480.6 384 488.6 379.4 492.8 371.9C497 364.4 497 355.2 492.7 347.8L412.7 211.8zM80 216C80 202.7 69.3 192 56 192C42.7 192 32 202.7 32 216L32 512C32 547.3 60.7 576 96 576L456 576C469.3 576 480 565.3 480 552C480 538.7 469.3 528 456 528L96 528C87.2 528 80 520.8 80 512L80 216z"></path>
           </svg>
         </div>
-        <div class="modal-gallery-grid">
-          ${activity.gallery.map((img, index) => `
-            <div class="modal-gallery-item" data-index="${index}" data-images='${JSON.stringify(activity.gallery)}'>
-              <img src="${img}" alt="Gallery image ${index + 1}" loading="lazy" />
+        <div class="modal-gallery-grid" dir="ltr">
+          ${galleryImages.map((img, index) => `
+            <div class="modal-gallery-item" data-index="${index}">
+              <img src="${escapeHtml(img)}" alt="Gallery image ${index + 1}" loading="lazy" />
             </div>
           `).join('')}
         </div>
@@ -377,56 +393,60 @@
     if (window.NHC_MODAL && typeof window.NHC_MODAL.open === 'function') {
       window.NHC_MODAL.open(title, modalContent);
       history.replaceState(null, '', `#${activity.id}`);
-      attachImageLightboxListeners();
+      attachImageLightboxListeners(activity);
     } else if (typeof window.openModal === 'function') {
       window.openModal(title, modalContent);
       history.replaceState(null, '', `#${activity.id}`);
-      attachImageLightboxListeners();
+      attachImageLightboxListeners(activity);
     }
   }
 
-  function attachImageLightboxListeners() {
-    setTimeout(() => {
-      const mainImage = document.querySelector('.modal-main-image');
-      const galleryItems = document.querySelectorAll('.modal-gallery-item');
+  function attachImageLightboxListeners(activity) {
+    const mainImage = document.querySelector('.modal-main-image');
+    const galleryItems = document.querySelectorAll('.modal-gallery-item');
+    const mainImageEl = mainImage?.querySelector('img');
+    const mainImageSrc = resolveImageUrl(mainImageEl?.currentSrc || mainImageEl?.src || mainImageEl?.getAttribute('src') || '');
+    const galleryImages = Array.from(document.querySelectorAll('.modal-gallery-item img'))
+      .map(img => resolveImageUrl(img.currentSrc || img.src || img.getAttribute('src') || ''))
+      .filter(Boolean);
+    const lightboxImages = galleryImages.length
+      ? galleryImages
+      : (mainImageSrc ? [mainImageSrc] : []);
 
-      if (mainImage) {
-        mainImage.addEventListener('click', () => {
-          if (typeof window.openNativeLightbox === 'function') {
-            try {
-              window.openNativeLightbox(mainImage.dataset.image, [mainImage.dataset.image], 0);
-              return;
-            } catch (error) {
-              console.error('Lightbox failed to open from modal main image:', error);
-            }
-          }
-          openImageFallback(mainImage.dataset.image);
-        });
-      }
-
-      galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-          let images = null;
-          let index = 0;
+    if (mainImage && lightboxImages.length > 0) {
+      mainImage.addEventListener('click', () => {
+        if (typeof window.openNativeLightbox === 'function') {
           try {
-            images = JSON.parse(item.dataset.images);
-            index = parseInt(item.dataset.index);
-          } catch (_) {}
-
-          if (!Array.isArray(images) || !images.length) return;
-
-          if (typeof window.openNativeLightbox === 'function') {
-            try {
-              window.openNativeLightbox(images[index], images, index);
-              return;
-            } catch (error) {
-              console.error('Lightbox failed to open from modal gallery item:', error);
-            }
+            window.openNativeLightbox(lightboxImages[0], lightboxImages, 0);
+            return;
+          } catch (error) {
+            console.error('Lightbox failed to open from modal main image:', error);
           }
-          openImageFallback(images[index]);
-        });
+        }
+        openImageFallback(lightboxImages[0]);
       });
-    }, 100);
+    }
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (lightboxImages.length === 0) return;
+        const clickedImg = item.querySelector('img');
+        const clickedSrc = resolveImageUrl(clickedImg?.currentSrc || clickedImg?.src || clickedImg?.getAttribute('src') || '');
+        const foundIndex = clickedSrc ? lightboxImages.findIndex(src => src === clickedSrc) : -1;
+        const lightboxIndex = foundIndex >= 0 ? foundIndex : 0;
+        const targetSrc = lightboxImages[lightboxIndex];
+
+        if (typeof window.openNativeLightbox === 'function') {
+          try {
+            window.openNativeLightbox(targetSrc, lightboxImages, lightboxIndex);
+            return;
+          } catch (error) {
+            console.error('Lightbox failed to open from modal gallery item:', error);
+          }
+        }
+        openImageFallback(targetSrc);
+      });
+    });
   }
 
   function triggerRevealAnimations() {
