@@ -195,6 +195,17 @@ a{color:inherit; text-decoration:none}
   }
 }
 
+@keyframes about-logo-fade-up{
+  from{
+    opacity:0;
+    transform:translateY(14px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(-10px);
+  }
+}
+
 @supports (view-transition-name: root){
   @view-transition{
     navigation: auto;
@@ -251,6 +262,7 @@ html.nhc-hero-intro .hero .stats{animation-delay:.28s}
 
 html.nhc-hero-intro .about-hero-content > *:nth-child(1){animation-delay:.06s}
 html.nhc-hero-intro .about-hero-content > *:nth-child(2){animation-delay:.14s}
+html.nhc-hero-intro .about-hero-content > .about-hero-logo{animation-name:about-logo-fade-up}
 
 html.nhc-hero-intro .news-hero-inner > *:nth-child(1){animation-delay:.06s}
 html.nhc-hero-intro .news-hero-inner > *:nth-child(2){animation-delay:.14s}
@@ -304,6 +316,9 @@ html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-content > *:nth-child(
   }
   html.nhc-hero-intro .pub-hero-slide:not(.clone) .pub-hero-badge{
     transform: translateX(-50%);
+  }
+  html.nhc-hero-intro .about-hero-content > .about-hero-logo{
+    transform: translateY(-10px);
   }
 }
 
@@ -4367,7 +4382,9 @@ body[dir="ltr"] .pub-card-title{
 .about-hero-logo{
   display:block;
   width: clamp(140px, 18vw, 230px);
+  aspect-ratio: 1629 / 1023;
   height:auto;
+  object-fit: contain;
   margin: 0 auto 18px;
   transform: translateY(-10px);
   filter:
