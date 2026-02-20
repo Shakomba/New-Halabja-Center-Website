@@ -320,6 +320,8 @@
     let isTransitioning = false;
     let autoSlideInterval = null;
     let direction = 0;
+    let transitionFallbackTimer = null;
+    const TRANSITION_FALLBACK_MS = 900;
 
     // Touch swipe state
     let touchStartX = 0;
@@ -345,26 +347,16 @@
       });
     }
 
-    function snapToCenter() {
-      track.classList.add('no-transition');
-      track.style.transform = 'translateX(-100%)';
-      void track.offsetHeight; // Force reflow
-      track.classList.remove('no-transition');
+    function clearTransitionFallback() {
+      if (transitionFallbackTimer) {
+        clearTimeout(transitionFallbackTimer);
+        transitionFallbackTimer = null;
+      }
     }
 
-    function renderInitialSlides() {
-      const prevIndex = getPrevIndex();
-      const nextIndex = getNextIndex();
-
-      renderSlideContent(slides[0], heroBooks[prevIndex], prevIndex);
-      renderSlideContent(slides[1], heroBooks[currentIndex], currentIndex);
-      renderSlideContent(slides[2], heroBooks[nextIndex], nextIndex);
-      attachBookFlip();
-    }
-
-    function handleTransitionEnd(e) {
-      if (!e || e.propertyName !== 'transform' || e.target !== track) return;
-      if (!direction) return;
+    function finishTransition() {
+      clearTransitionFallback();
+      if (!isTransitioning) return;
 
       if (direction === 1) {
         const firstSlide = track.firstElementChild;
@@ -386,6 +378,35 @@
       });
     }
 
+    function scheduleTransitionFallback() {
+      clearTransitionFallback();
+      transitionFallbackTimer = setTimeout(() => {
+        finishTransition();
+      }, TRANSITION_FALLBACK_MS);
+    }
+
+    function snapToCenter() {
+      track.classList.add('no-transition');
+      track.style.transform = 'translateX(-100%)';
+      void track.offsetHeight; // Force reflow
+      track.classList.remove('no-transition');
+    }
+
+    function renderInitialSlides() {
+      const prevIndex = getPrevIndex();
+      const nextIndex = getNextIndex();
+
+      renderSlideContent(slides[0], heroBooks[prevIndex], prevIndex);
+      renderSlideContent(slides[1], heroBooks[currentIndex], currentIndex);
+      renderSlideContent(slides[2], heroBooks[nextIndex], nextIndex);
+      attachBookFlip();
+    }
+
+    function handleTransitionEnd(e) {
+      if (!e || e.propertyName !== 'transform' || e.target !== track) return;
+      finishTransition();
+    }
+
     track.addEventListener('transitionend', handleTransitionEnd, false);
 
     function goNext() {
@@ -400,6 +421,7 @@
       // Start transition
       requestAnimationFrame(() => {
         track.style.transform = 'translateX(-200%)';
+        scheduleTransitionFallback();
       });
     }
 
@@ -415,6 +437,7 @@
       // Start transition
       requestAnimationFrame(() => {
         track.style.transform = 'translateX(0%)';
+        scheduleTransitionFallback();
       });
     }
 
@@ -545,6 +568,7 @@
       if (document.hidden) {
         stopAutoSlide();
       } else {
+        if (isTransitioning) finishTransition();
         startAutoSlide();
       }
     };
@@ -563,11 +587,6 @@
     };
     document.addEventListener('keydown', handleKeydown);
 
-    const handleMouseEnter = () => stopAutoSlide();
-    const handleMouseLeave = () => startAutoSlide();
-    track.addEventListener('mouseenter', handleMouseEnter);
-    track.addEventListener('mouseleave', handleMouseLeave);
-
     renderInitialSlides();
     snapToCenter();
     updateDots();
@@ -575,6 +594,7 @@
 
     return () => {
       stopAutoSlide();
+      clearTransitionFallback();
       track.removeEventListener('transitionend', handleTransitionEnd, false);
       if (prevBtn) prevBtn.removeEventListener('click', handlePrevClick);
       if (nextBtn) nextBtn.removeEventListener('click', handleNextClick);
@@ -587,8 +607,6 @@
       touchTarget.removeEventListener('touchcancel', handleTouchCancel);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       document.removeEventListener('keydown', handleKeydown);
-      track.removeEventListener('mouseenter', handleMouseEnter);
-      track.removeEventListener('mouseleave', handleMouseLeave);
     };
   }
 
@@ -608,6 +626,8 @@
     let logicalIndex = 0; // The actual slide we're viewing (0 to totalSlides-1)
     let isTransitioning = false;
     let autoSlideInterval = null;
+    let transitionFallbackTimer = null;
+    const TRANSITION_FALLBACK_MS = 900;
 
     // Touch swipe state
     let touchStartX = 0;
@@ -651,31 +671,45 @@
       setTimeout(() => resetHiddenBookFlips(), animate ? 600 : 0);
     }
 
-    // Handle transition end for clone wrapping - seamless infinite loop
-    function handleTransitionEnd(e) {
-      // Only handle transition on transform property and ensure it's from the track itself
-      if (!e || e.propertyName !== 'transform' || e.target !== track) return;
+    function clearTransitionFallback() {
+      if (transitionFallbackTimer) {
+        clearTimeout(transitionFallbackTimer);
+        transitionFallbackTimer = null;
+      }
+    }
+
+    function finishTransition() {
+      clearTransitionFallback();
+      if (!isTransitioning) return;
 
       // If on last clone (first real slide clone), jump to first real slide
       if (currentIndex === totalSlides + 1) {
         currentIndex = 1;
         logicalIndex = 0;
-        requestAnimationFrame(() => {
-          updateCarousel(false); // Jump without animation
-          isTransitioning = false;
-        });
+        updateCarousel(false); // Jump without animation
       }
       // If on first clone (last real slide clone), jump to last real slide
       else if (currentIndex === 0) {
         currentIndex = totalSlides;
         logicalIndex = totalSlides - 1;
-        requestAnimationFrame(() => {
-          updateCarousel(false); // Jump without animation
-          isTransitioning = false;
-        });
-      } else {
-        isTransitioning = false;
+        updateCarousel(false); // Jump without animation
       }
+
+      isTransitioning = false;
+    }
+
+    function scheduleTransitionFallback() {
+      clearTransitionFallback();
+      transitionFallbackTimer = setTimeout(() => {
+        finishTransition();
+      }, TRANSITION_FALLBACK_MS);
+    }
+
+    // Handle transition end for clone wrapping - seamless infinite loop
+    function handleTransitionEnd(e) {
+      // Only handle transition on transform property and ensure it's from the track itself
+      if (!e || e.propertyName !== 'transform' || e.target !== track) return;
+      finishTransition();
     }
 
     // Only listen for transitionend on the track itself, not bubbled events
@@ -694,6 +728,7 @@
       // Start transition
       requestAnimationFrame(() => {
         updateCarousel(true);
+        scheduleTransitionFallback();
       });
     }
 
@@ -710,6 +745,7 @@
       // Start transition
       requestAnimationFrame(() => {
         updateCarousel(true);
+        scheduleTransitionFallback();
       });
     }
 
@@ -760,12 +796,9 @@
 
         requestAnimationFrame(() => {
           updateCarousel(true);
+          scheduleTransitionFallback();
         });
-
-        setTimeout(() => {
-          isTransitioning = false;
-          startAutoSlide();
-        }, 500);
+        startAutoSlide();
       };
       dotHandlers.set(dot, handler);
       dot.addEventListener('click', handler);
@@ -856,6 +889,7 @@
       if (document.hidden) {
         stopAutoSlide();
       } else {
+        if (isTransitioning) finishTransition();
         startAutoSlide();
       }
     };
@@ -875,12 +909,6 @@
     };
     document.addEventListener('keydown', handleKeydown);
 
-    // Pause on hover
-    const handleMouseEnter = () => stopAutoSlide();
-    const handleMouseLeave = () => startAutoSlide();
-    track.addEventListener('mouseenter', handleMouseEnter);
-    track.addEventListener('mouseleave', handleMouseLeave);
-
     // Initial state
     updateCarousel(false); // Set initial position without animation
     updateDots(); // Set initial dot state
@@ -888,6 +916,7 @@
 
     return () => {
       stopAutoSlide();
+      clearTransitionFallback();
       track.removeEventListener('transitionend', handleTransitionEnd, false);
       if (prevBtn) prevBtn.removeEventListener('click', handlePrevClick);
       if (nextBtn) nextBtn.removeEventListener('click', handleNextClick);
@@ -900,8 +929,6 @@
       touchTarget.removeEventListener('touchcancel', handleTouchCancel);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       document.removeEventListener('keydown', handleKeydown);
-      track.removeEventListener('mouseenter', handleMouseEnter);
-      track.removeEventListener('mouseleave', handleMouseLeave);
     };
   }
 

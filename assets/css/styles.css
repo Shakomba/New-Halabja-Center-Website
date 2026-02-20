@@ -1611,28 +1611,36 @@ body[dir="rtl"] .welcome-readmore-arrow{
   --welcome-content-pad: 1.4rem;
   --welcome-title-offset: calc(var(--welcome-content-pad) + 1.326rem + 14px);
   --welcome-text-gap: 1.5rem;
+  --welcome-min-height: clamp(620px, 86vh, 920px);
 }
 #welcome .container{
   width:min(1200px, 92%);
-  min-height:80vh;
+  min-height: var(--welcome-min-height);
 }
 #welcome .container{
   position:relative;
   z-index:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 #welcome .container::before{
   content:"";
   position:absolute;
   inset:0;
-  background: url("../img/calligraphy.svg") no-repeat center center / 100% auto;
+  background: url("../img/calligraphy.svg") no-repeat center center / contain;
   opacity:.025;
   pointer-events:none;
   z-index:-1;
+}
+#welcome .welcome-grid{
+  width:100%;
 }
 #welcome .welcome-left{
   position:relative;
   isolation:isolate;
   display:flex;
+  justify-content:center;
 }
 #welcome .welcome-content{
   position:relative;
@@ -1648,6 +1656,7 @@ body[dir="rtl"] .welcome-readmore-arrow{
   display:flex;
   flex-direction:column;
   flex:1;
+  margin-inline:auto;
 }
 #welcome .welcome-content::before{
   content:"";
@@ -3365,7 +3374,8 @@ textarea.input{border-radius: 18px; min-height: 110px; resize: vertical}
     z-index:1;
   }
   #welcome{
-    padding-top: 40px;
+    padding-top: 56px;
+    --welcome-min-height: clamp(680px, 96vh, 860px);
   }
   #welcome{
     position:relative;
@@ -3375,11 +3385,15 @@ textarea.input{border-radius: 18px; min-height: 110px; resize: vertical}
   #welcome::before{
     content:"";
     position:absolute;
-    inset: clamp(14px, 4vw, 28px);
+    top:50%;
+    left:50%;
+    width: calc(100% - clamp(28px, 8vw, 56px));
+    height: calc(100% - clamp(28px, 8vw, 56px));
+    transform: translate(-50%, -50%);
     background-image: url("../img/calligraphy.png");
     background-repeat:no-repeat;
     background-position:center;
-    background-size:auto 86%;
+    background-size: contain;
     opacity:.025;
     pointer-events:none;
     z-index:0;
@@ -3400,7 +3414,7 @@ textarea.input{border-radius: 18px; min-height: 110px; resize: vertical}
     padding-top: 0;
     display:flex;
     flex-direction:column;
-    align-items:stretch;
+    align-items:center;
     gap:0;
   }
   #welcome .welcome-content{
@@ -4933,7 +4947,7 @@ body[dir="rtl"] .cp-detail-body strong{text-transform:none; letter-spacing:0}
   }
   #welcome .container{
     width: min(1180px, 94%);
-    min-height: auto;
+    min-height: var(--welcome-min-height);
   }
   .news-grid{
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4980,7 +4994,7 @@ body[dir="rtl"] .cp-detail-body strong{text-transform:none; letter-spacing:0}
   }
   #welcome .container{
     width: min(1280px, 90%);
-    min-height: auto;
+    min-height: var(--welcome-min-height);
   }
   .footer-contact{
     margin-left: 96px;
@@ -4997,7 +5011,7 @@ body[dir="rtl"] .cp-detail-body strong{text-transform:none; letter-spacing:0}
   }
   #welcome .container{
     width: min(1420px, 86%);
-    min-height: auto;
+    min-height: var(--welcome-min-height);
   }
   .hero h1{
     font-size: clamp(2.6rem, 3.1vw, 4.3rem);
@@ -5104,4 +5118,13 @@ body[dir="rtl"] .cp-detail-body strong{text-transform:none; letter-spacing:0}
   .pub-hero-badge{
     top: 44px;
   }
+}
+
+/* Activities page: fixed 4 x 2 layout on every screen */
+body[data-page="news"] #newsList.news-grid{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+}
+body[data-page="news"] #newsList.news-grid .news-card{
+  height: 100%;
 }

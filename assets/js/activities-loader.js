@@ -5,7 +5,7 @@
   let selectedCategories = [];
   let currentSearch = '';
   let currentPage = 1;
-  const ITEMS_PER_PAGE = 9;
+  const ITEMS_PER_PAGE = 8;
 
   const elements = {
     grid: null,
