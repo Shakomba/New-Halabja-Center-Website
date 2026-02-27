@@ -693,6 +693,7 @@
 
     const getDotLimit = ()=>window.matchMedia("(max-width: 768px)").matches ? 6 : 4;
     const isRtl = ()=> (document.documentElement.dir || document.body.getAttribute("dir")) === "rtl";
+    const prefersReducedMotion = ()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let rtlScrollType = null;
     const detectRtlScrollType = ()=>{
       if(rtlScrollType) return rtlScrollType;
@@ -734,6 +735,25 @@
       else if(mode === "reverse") offset = max - raw;
       return {offset: Math.max(0, Math.min(max, offset)), max};
     };
+    const setScrollOffset = (offset, behavior = "smooth")=>{
+      const max = Math.max(0, track.scrollWidth - track.clientWidth);
+      const clamped = Math.max(0, Math.min(max, offset));
+      let rawTarget = clamped;
+      if(isRtl()){
+        const mode = detectRtlScrollType();
+        if(mode === "negative") rawTarget = -clamped;
+        else if(mode === "reverse") rawTarget = max - clamped;
+      }
+      if(typeof track.scrollTo === "function"){
+        try{
+          track.scrollTo({left: rawTarget, behavior});
+          return;
+        }catch(_){
+          // Fallback for older browsers without options support
+        }
+      }
+      track.scrollLeft = rawTarget;
+    };
 
     let pendingFocus = false;
     let dotButtons = [];
@@ -761,16 +781,30 @@
     };
     const scrollToIndex = (index, shouldFocus=false)=>{
       const slides = getSlides();
-      const clampedIndex = Math.max(0, Math.min(slides.length - 1, index));
+      if(!slides.length) return;
+      const layout = getLayout();
+      const step = layout?.step || 0;
+      const visibleCount = layout?.visibleCount || 1;
+      const maxStart = Math.max(0, slides.length - visibleCount);
+      const clampedIndex = Math.max(0, Math.min(maxStart, index));
       const target = slides[clampedIndex];
       if(!target) return;
       pendingFocus = shouldFocus;
-      target.scrollIntoView({behavior: "smooth", inline: "start", block: "nearest"});
+      const behavior = prefersReducedMotion() ? "auto" : "smooth";
+      if(step){
+        setScrollOffset(step * clampedIndex, behavior);
+      }else{
+        target.scrollIntoView({
+          behavior,
+          inline: isRtl() ? "end" : "start",
+          block: "nearest"
+        });
+      }
       // Save current slide index to localStorage
       try {
         localStorage.setItem('nhc_activities_slide', clampedIndex.toString());
       } catch(e) {}
-      requestAnimationFrame(update);
+      requestAnimationFrame(()=>requestAnimationFrame(update));
     };
     const scrollByStep = (dir, shouldFocus=false)=>{
       const slides = getSlides();
@@ -819,9 +853,13 @@
     };
 
     const updateButtons = ()=>{
-      const {offset, max} = getScrollMetrics();
-      prev.disabled = offset <= 2;
-      next.disabled = offset >= max - 2;
+      const slidesTotal = getSlides().length;
+      const layout = getLayout();
+      const visibleCount = layout?.visibleCount || 1;
+      const maxStart = Math.max(0, slidesTotal - visibleCount);
+      const index = getCurrentIndex(slidesTotal);
+      prev.disabled = index <= 0;
+      next.disabled = index >= maxStart;
       prev.setAttribute("aria-disabled", prev.disabled ? "true" : "false");
       next.setAttribute("aria-disabled", next.disabled ? "true" : "false");
     };
