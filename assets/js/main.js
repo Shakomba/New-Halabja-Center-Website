@@ -1,16 +1,16 @@
-(function(){
-  const $ = (q,root=document)=>root.querySelector(q);
-  const $$ = (q,root=document)=>Array.from(root.querySelectorAll(q));
+(function () {
+  const $ = (q, root = document) => root.querySelector(q);
+  const $$ = (q, root = document) => Array.from(root.querySelectorAll(q));
 
   let skipHeroIntro = false;
-  try{
+  try {
     skipHeroIntro = sessionStorage.getItem("nhc_skip_intro") === "1";
-    if(skipHeroIntro) sessionStorage.removeItem("nhc_skip_intro");
-  }catch(_){}
+    if (skipHeroIntro) sessionStorage.removeItem("nhc_skip_intro");
+  } catch (_) { }
 
-  if(!skipHeroIntro){
+  if (!skipHeroIntro) {
     document.documentElement.classList.add("nhc-hero-intro");
-    window.setTimeout(()=>{
+    window.setTimeout(() => {
       document.documentElement.classList.remove("nhc-hero-intro");
     }, 900);
   }
@@ -20,26 +20,26 @@
   const mobileDrawer = $("#mobileDrawer");
   const drawerPanel = $(".drawer-panel", mobileDrawer || undefined);
   let setDrawer = null;
-  if(menuBtn && mobileDrawer){
-    setDrawer = (open)=>{
+  if (menuBtn && mobileDrawer) {
+    setDrawer = (open) => {
       mobileDrawer.classList.toggle("open", open);
       document.body.classList.toggle("drawer-open", open);
       menuBtn.classList.toggle("is-active", open);
     };
-    menuBtn.addEventListener("click", ()=>{
+    menuBtn.addEventListener("click", () => {
       const isOpen = mobileDrawer.classList.contains("open");
       setDrawer(!isOpen);
     });
-    mobileDrawer.addEventListener("click", (e)=>{
-      if(e.target === mobileDrawer) setDrawer(false);
+    mobileDrawer.addEventListener("click", (e) => {
+      if (e.target === mobileDrawer) setDrawer(false);
     });
-    $$("a", drawerPanel || mobileDrawer).forEach(link=>{
-      link.addEventListener("click", ()=>setDrawer(false));
+    $$("a", drawerPanel || mobileDrawer).forEach(link => {
+      link.addEventListener("click", () => setDrawer(false));
     });
   }
 
   // i18n
-  function applyLanguage(lang){
+  function applyLanguage(lang) {
     const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N.en;
     // Direction rules
     const rtl = (lang === "ar" || lang === "ku");
@@ -47,41 +47,41 @@
     document.documentElement.dir = rtl ? "rtl" : "ltr";
     document.body.setAttribute("dir", rtl ? "rtl" : "ltr");
 
-    $$("[data-i18n]").forEach(el=>{
+    $$("[data-i18n]").forEach(el => {
       const key = el.getAttribute("data-i18n");
-      if(dict[key]) el.textContent = dict[key];
+      if (dict[key]) el.textContent = dict[key];
     });
-    $$("[data-i18n-placeholder]").forEach(el=>{
+    $$("[data-i18n-placeholder]").forEach(el => {
       const key = el.getAttribute("data-i18n-placeholder");
-      if(dict[key]) el.placeholder = dict[key];
+      if (dict[key]) el.placeholder = dict[key];
     });
 
     // Update address from SITE_CONFIG
-    if(window.SITE_CONFIG && window.SITE_CONFIG.address && typeof window.SITE_CONFIG.address === 'object'){
+    if (window.SITE_CONFIG && window.SITE_CONFIG.address && typeof window.SITE_CONFIG.address === 'object') {
       const addr = window.SITE_CONFIG.address[lang] || window.SITE_CONFIG.address['en'] || "";
       const addrEls = [document.getElementById("contactAddress"), document.getElementById("contactAddress2")];
-      addrEls.forEach(el => { if(el) el.textContent = addr; });
+      addrEls.forEach(el => { if (el) el.textContent = addr; });
     }
   }
 
   // Site config (contact/social)
-  function applySiteConfig(){
+  function applySiteConfig() {
     const cfg = window.SITE_CONFIG || {};
-    const setText = (id, val)=>{ const el = document.getElementById(id); if(el) el.textContent = val || ""; };
-    const forceLtr = (id)=>{
+    const setText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val || ""; };
+    const forceLtr = (id) => {
       const el = document.getElementById(id);
-      if(!el) return;
+      if (!el) return;
       el.setAttribute("dir", "ltr");
       el.style.unicodeBidi = "isolate";
     };
-    const setLink = (id, val)=>{
+    const setLink = (id, val) => {
       const el = document.getElementById(id);
-      if(!el) return;
+      if (!el) return;
       el.dataset.url = val || "";
-      if(el.dataset.bound === "true") return;
-      el.addEventListener("click", (e)=>{
+      if (el.dataset.bound === "true") return;
+      el.addEventListener("click", (e) => {
         const targetUrl = el.dataset.url;
-        if(!targetUrl) return;
+        if (!targetUrl) return;
         e.preventDefault();
         window.open(targetUrl, "_blank", "noopener");
       });
@@ -95,10 +95,10 @@
     setText("contactPhone", cfg.phone);
     forceLtr("contactPhone");
     setText("contactEmail", cfg.email);
-    
+
     // Address (handle multilingual object or string)
     let addr = cfg.address;
-    if(addr && typeof addr === "object") addr = addr[currentLang] || addr.en || "";
+    if (addr && typeof addr === "object") addr = addr[currentLang] || addr.en || "";
     setText("contactAddress", addr);
 
     setText("contactPhone2", cfg.phone);
@@ -115,17 +115,17 @@
 
     // mailto links
     const mailLinks = Array.from(document.querySelectorAll("[data-mailto]"));
-    mailLinks.forEach(a=>{
+    mailLinks.forEach(a => {
       const email = cfg.email || a.getAttribute("data-mailto");
-      if(email) a.setAttribute("href", "mailto:" + email);
+      if (email) a.setAttribute("href", "mailto:" + email);
     });
   }
 
-  const LANG_SHORT = {en:"EN", ku:"\u06a9\u0648", ar:"\u0639\u0631"};
+  const LANG_SHORT = { en: "EN", ku: "\u06a9\u0648", ar: "\u0639\u0631" };
 
-  function setupLanguageDropdown(langSelect){
+  function setupLanguageDropdown(langSelect) {
     const langWrap = langSelect?.closest(".lang");
-    if(!langWrap || langWrap.querySelector(".lang-trigger")) return null;
+    if (!langWrap || langWrap.querySelector(".lang-trigger")) return null;
 
     langWrap.classList.add("lang--custom");
     const icon = langWrap.querySelector("span[aria-hidden='true']");
@@ -136,7 +136,7 @@
     trigger.setAttribute("aria-haspopup", "listbox");
     trigger.setAttribute("aria-expanded", "false");
 
-    if(icon){
+    if (icon) {
       icon.classList.add("lang-icon");
       trigger.appendChild(icon);
     }
@@ -159,7 +159,7 @@
     menu.setAttribute("role", "listbox");
     menu.setAttribute("aria-label", "Language");
 
-    const options = Array.from(langSelect.options).map(opt=>{
+    const options = Array.from(langSelect.options).map(opt => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "lang-option";
@@ -173,9 +173,9 @@
       shortSpan.textContent = LANG_SHORT[opt.value] || opt.value.toUpperCase();
       btn.appendChild(fullSpan);
       btn.appendChild(shortSpan);
-      btn.addEventListener("click", ()=>{
+      btn.addEventListener("click", () => {
         langSelect.value = opt.value;
-        langSelect.dispatchEvent(new Event("change", {bubbles:true}));
+        langSelect.dispatchEvent(new Event("change", { bubbles: true }));
         setOpen(false);
         trigger.focus();
       });
@@ -186,88 +186,88 @@
     langWrap.insertBefore(trigger, langSelect);
     langWrap.appendChild(menu);
 
-    function setOpen(open){
+    function setOpen(open) {
       langWrap.classList.toggle("open", open);
       trigger.setAttribute("aria-expanded", open ? "true" : "false");
-      if(open){
+      if (open) {
         const current = menu.querySelector("[aria-selected='true']") || options[0];
         current?.focus();
       }
     }
 
-    function sync(){
+    function sync() {
       const current = langSelect.value;
       const selectedOpt = langSelect.selectedOptions[0];
       label.textContent = selectedOpt ? selectedOpt.textContent : current.toUpperCase();
       labelShort.textContent = LANG_SHORT[current] || current.toUpperCase();
-      options.forEach(btn=>{
+      options.forEach(btn => {
         const selected = btn.getAttribute("data-value") === current;
         btn.setAttribute("aria-selected", selected ? "true" : "false");
         btn.tabIndex = selected ? 0 : -1;
       });
     }
 
-    trigger.addEventListener("click", (e)=>{
+    trigger.addEventListener("click", (e) => {
       e.preventDefault();
       setOpen(!langWrap.classList.contains("open"));
     });
-    trigger.addEventListener("keydown", (e)=>{
-      if(e.key === "ArrowDown" || e.key === "Enter" || e.key === " "){
+    trigger.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         setOpen(true);
       }
-      if(e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") setOpen(false);
     });
 
-    menu.addEventListener("keydown", (e)=>{
+    menu.addEventListener("keydown", (e) => {
       const currentIndex = options.indexOf(document.activeElement);
-      if(e.key === "ArrowDown"){
+      if (e.key === "ArrowDown") {
         e.preventDefault();
         options[Math.min(options.length - 1, currentIndex + 1)]?.focus();
       }
-      if(e.key === "ArrowUp"){
+      if (e.key === "ArrowUp") {
         e.preventDefault();
         options[Math.max(0, currentIndex - 1)]?.focus();
       }
-      if(e.key === "Enter" || e.key === " "){
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         document.activeElement?.click();
       }
     });
 
-    document.addEventListener("click", (e)=>{
-      if(!langWrap.contains(e.target)) setOpen(false);
+    document.addEventListener("click", (e) => {
+      if (!langWrap.contains(e.target)) setOpen(false);
     });
-    document.addEventListener("keydown", (e)=>{
-      if(e.key === "Escape") setOpen(false);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
     });
 
     sync();
     return { sync };
   }
 
-  function setupDrawerLangSwitcher(langSelect){
+  function setupDrawerLangSwitcher(langSelect) {
     const panel = $(".drawer-panel");
     const socials = $(".drawer-socials");
-    if(!panel || !socials || !langSelect) return null;
+    if (!panel || !socials || !langSelect) return null;
 
-    const LANG_LABELS = {en:"English", ku:"\u06a9\u0648\u0631\u062f\u06cc", ar:"\u0627\u0644\u0639\u0631\u0628\u064a\u0629"};
+    const LANG_LABELS = { en: "English", ku: "\u06a9\u0648\u0631\u062f\u06cc", ar: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629" };
     const wrap = document.createElement("div");
     wrap.className = "drawer-lang";
     wrap.setAttribute("role", "radiogroup");
     wrap.setAttribute("aria-label", "Language");
 
-    const buttons = Object.entries(LANG_LABELS).map(([val, label])=>{
+    const buttons = Object.entries(LANG_LABELS).map(([val, label]) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "drawer-lang-btn";
       btn.setAttribute("role", "radio");
       btn.setAttribute("data-value", val);
       btn.textContent = label;
-      btn.addEventListener("click", ()=>{
+      btn.addEventListener("click", () => {
         langSelect.value = val;
-        langSelect.dispatchEvent(new Event("change", {bubbles:true}));
-        if(typeof setDrawer === "function") setDrawer(false);
+        langSelect.dispatchEvent(new Event("change", { bubbles: true }));
+        if (typeof setDrawer === "function") setDrawer(false);
       });
       wrap.appendChild(btn);
       return btn;
@@ -275,9 +275,9 @@
 
     panel.insertBefore(wrap, socials);
 
-    function sync(){
+    function sync() {
       const current = langSelect.value;
-      buttons.forEach(btn=>{
+      buttons.forEach(btn => {
         const active = btn.getAttribute("data-value") === current;
         btn.classList.toggle("active", active);
         btn.setAttribute("aria-checked", active ? "true" : "false");
@@ -290,7 +290,7 @@
 
   const langSelect = $("#langSelect");
   const stored = localStorage.getItem("nhc_lang") || "ku";
-  if(langSelect){
+  if (langSelect) {
     langSelect.value = stored;
     applyLanguage(stored);
     applySiteConfig();
@@ -298,7 +298,7 @@
     langUI?.sync();
     const drawerLangUI = setupDrawerLangSwitcher(langSelect);
     drawerLangUI?.sync();
-    langSelect.addEventListener("change", ()=>{
+    langSelect.addEventListener("change", () => {
       localStorage.setItem("nhc_lang", langSelect.value);
       applyLanguage(langSelect.value);
       applySiteConfig();
@@ -311,94 +311,94 @@
   }
 
   // Count-up animation (home only)
-  function animateCounters(){
+  function animateCounters() {
     const counters = $$(".num[data-target]");
-    if(!counters.length) return;
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(!e.isIntersecting) return;
+    if (!counters.length) return;
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
         const el = e.target;
         io.unobserve(el);
-        const target = parseInt(el.getAttribute("data-target"),10);
+        const target = parseInt(el.getAttribute("data-target"), 10);
         const suffix = el.getAttribute("data-suffix") || "";
         const duration = 900;
         const start = performance.now();
-        function tick(now){
-          const t = Math.min(1,(now-start)/duration);
-          const val = Math.floor(target * (0.15 + 0.85*t));
+        function tick(now) {
+          const t = Math.min(1, (now - start) / duration);
+          const val = Math.floor(target * (0.15 + 0.85 * t));
           el.textContent = val.toLocaleString() + suffix;
-          if(t<1) requestAnimationFrame(tick);
+          if (t < 1) requestAnimationFrame(tick);
           else el.textContent = target.toLocaleString() + suffix;
         }
         requestAnimationFrame(tick);
       });
-    }, {threshold: .35});
-    counters.forEach(c=>io.observe(c));
+    }, { threshold: .35 });
+    counters.forEach(c => io.observe(c));
   }
   animateCounters();
 
   // Scroll reveal animations
-  function setupReveal(){
+  function setupReveal() {
     const nodes = $$(".reveal");
-    if(!nodes.length) return;
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
+    if (!nodes.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
           e.target.classList.add("in-view");
           io.unobserve(e.target);
         }
       });
-    }, {threshold: 0.18});
-    nodes.forEach(n=>io.observe(n));
+    }, { threshold: 0.18 });
+    nodes.forEach(n => io.observe(n));
   }
   setupReveal();
   window.setupReveal = setupReveal;
 
   // Programs accordion (mobile)
-  function setupProgramsAccordion(){
+  function setupProgramsAccordion() {
     const programs = $(".programs-new");
-    if(!programs) return;
+    if (!programs) return;
     const cards = $$(".program-card", programs);
-    if(!cards.length) return;
+    if (!cards.length) return;
 
     const mql = window.matchMedia("(max-width: 768px)");
     const bodyMap = new Map();
-    const setExpandedHeight = (body)=>{
+    const setExpandedHeight = (body) => {
       body.style.maxHeight = (body.scrollHeight + 16) + "px";
     };
     const resizeObserver = ("ResizeObserver" in window)
-      ? new ResizeObserver((entries)=>{
-          entries.forEach(entry=>{
-            const body = entry.target;
-            const toggle = bodyMap.get(body);
-            if(!toggle) return;
-            if(!programs.classList.contains("is-accordion")) return;
-            if(toggle.getAttribute("aria-expanded") !== "true") return;
-            setExpandedHeight(body);
-          });
-        })
+      ? new ResizeObserver((entries) => {
+        entries.forEach(entry => {
+          const body = entry.target;
+          const toggle = bodyMap.get(body);
+          if (!toggle) return;
+          if (!programs.classList.contains("is-accordion")) return;
+          if (toggle.getAttribute("aria-expanded") !== "true") return;
+          setExpandedHeight(body);
+        });
+      })
       : null;
 
-    const syncHeights = ()=>{
-      if(!programs.classList.contains("is-accordion")) return;
-      cards.forEach(card=>{
+    const syncHeights = () => {
+      if (!programs.classList.contains("is-accordion")) return;
+      cards.forEach(card => {
         const toggle = $(".program-toggle", card);
         const body = $(".program-body", card);
-        if(!toggle || !body) return;
-        if(toggle.getAttribute("aria-expanded") === "true"){
+        if (!toggle || !body) return;
+        if (toggle.getAttribute("aria-expanded") === "true") {
           setExpandedHeight(body);
         }
       });
     };
 
-    const setMode = ()=>{
+    const setMode = () => {
       const isMobile = mql.matches;
       programs.classList.toggle("is-accordion", isMobile);
-      cards.forEach(card=>{
+      cards.forEach(card => {
         const toggle = $(".program-toggle", card);
         const body = $(".program-body", card);
-        if(!toggle || !body) return;
-        if(isMobile){
+        if (!toggle || !body) return;
+        if (isMobile) {
           toggle.setAttribute("aria-expanded", "false");
           body.setAttribute("aria-hidden", "true");
           body.style.maxHeight = "0px";
@@ -411,43 +411,43 @@
       });
     };
 
-    const closeItem = (toggle, body)=>{
+    const closeItem = (toggle, body) => {
       toggle.setAttribute("aria-expanded", "false");
       body.setAttribute("aria-hidden", "true");
       body.style.maxHeight = "0px";
       body.classList.remove("active");
     };
-    const openItem = (toggle, body, card)=>{
+    const openItem = (toggle, body, card) => {
       toggle.setAttribute("aria-expanded", "true");
       body.setAttribute("aria-hidden", "false");
       body.classList.add("active");
       body.style.maxHeight = "0px";
-      requestAnimationFrame(()=>{
+      requestAnimationFrame(() => {
         setExpandedHeight(body);
       });
-      setTimeout(()=>{
+      setTimeout(() => {
         card.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }, 100);
     };
 
-    cards.forEach(card=>{
+    cards.forEach(card => {
       const toggle = $(".program-toggle", card);
       const body = $(".program-body", card);
-      if(!toggle || !body) return;
+      if (!toggle || !body) return;
       bodyMap.set(body, toggle);
-      if(resizeObserver) resizeObserver.observe(body);
-      toggle.addEventListener("click", ()=>{
-        if(!programs.classList.contains("is-accordion")) return;
+      if (resizeObserver) resizeObserver.observe(body);
+      toggle.addEventListener("click", () => {
+        if (!programs.classList.contains("is-accordion")) return;
         const isOpen = toggle.getAttribute("aria-expanded") === "true";
-        if(isOpen){
+        if (isOpen) {
           closeItem(toggle, body);
           return;
         }
-        cards.forEach(otherCard=>{
+        cards.forEach(otherCard => {
           const otherToggle = $(".program-toggle", otherCard);
           const otherBody = $(".program-body", otherCard);
-          if(!otherToggle || !otherBody || otherToggle === toggle) return;
-          if(otherToggle.getAttribute("aria-expanded") === "true"){
+          if (!otherToggle || !otherBody || otherToggle === toggle) return;
+          if (otherToggle.getAttribute("aria-expanded") === "true") {
             closeItem(otherToggle, otherBody);
           }
         });
@@ -456,9 +456,9 @@
     });
 
     setMode();
-    if(mql.addEventListener){
+    if (mql.addEventListener) {
       mql.addEventListener("change", setMode);
-    } else if(mql.addListener){
+    } else if (mql.addListener) {
       mql.addListener(setMode);
     }
     window.addEventListener("resize", syncHeights);
@@ -467,46 +467,46 @@
 
   // Scroll indicator (home)
   const scrollIndicator = $(".scroll-indicator");
-  if(scrollIndicator){
+  if (scrollIndicator) {
     let ticking = false;
-    const updateIndicator = ()=>{
+    const updateIndicator = () => {
       const hide = window.scrollY > 10;
       scrollIndicator.classList.toggle("hidden", hide);
     };
-    const onScroll = ()=>{
-      if(ticking) return;
+    const onScroll = () => {
+      if (ticking) return;
       ticking = true;
-      requestAnimationFrame(()=>{
+      requestAnimationFrame(() => {
         updateIndicator();
         ticking = false;
       });
     };
     updateIndicator();
-    window.addEventListener("scroll", onScroll, {passive:true});
+    window.addEventListener("scroll", onScroll, { passive: true });
   }
 
   // Header scroll effect (compact + shadow on scroll)
   const header = $(".header");
-  if(header){
+  if (header) {
     let headerTicking = false;
-    const syncHeaderOffset = ()=>{
+    const syncHeaderOffset = () => {
       document.documentElement.style.setProperty("--header-sticky-offset", `${header.offsetHeight}px`);
     };
-    const updateHeader = ()=>{
+    const updateHeader = () => {
       header.classList.toggle("scrolled", window.scrollY > 20);
       syncHeaderOffset();
     };
-    const onHeaderScroll = ()=>{
-      if(headerTicking) return;
+    const onHeaderScroll = () => {
+      if (headerTicking) return;
       headerTicking = true;
-      requestAnimationFrame(()=>{
+      requestAnimationFrame(() => {
         updateHeader();
         headerTicking = false;
       });
     };
     updateHeader();
-    window.addEventListener("scroll", onHeaderScroll, {passive:true});
-    window.addEventListener("resize", syncHeaderOffset, {passive:true});
+    window.addEventListener("scroll", onHeaderScroll, { passive: true });
+    window.addEventListener("resize", syncHeaderOffset, { passive: true });
   }
 
 
@@ -518,47 +518,47 @@
   const modalBox = modal?.querySelector(".box");
   let lastFocusedElement = null;
 
-  if(modal) modal.setAttribute("aria-hidden", "true");
+  if (modal) modal.setAttribute("aria-hidden", "true");
 
-  const getFocusable = ()=>{
-    if(!modalBox) return [];
+  const getFocusable = () => {
+    if (!modalBox) return [];
     return Array.from(modalBox.querySelectorAll(
       'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    )).filter((el)=>!el.hasAttribute("aria-hidden"));
+    )).filter((el) => !el.hasAttribute("aria-hidden"));
   };
 
-  const onModalKeydown = (e)=>{
-    if(!modal || !modal.classList.contains("open")) return;
-    if(e.key === "Escape"){
+  const onModalKeydown = (e) => {
+    if (!modal || !modal.classList.contains("open")) return;
+    if (e.key === "Escape") {
       e.preventDefault();
       closeModal();
       return;
     }
-    if(e.key !== "Tab") return;
+    if (e.key !== "Tab") return;
     const focusable = getFocusable();
-    if(!focusable.length){
+    if (!focusable.length) {
       e.preventDefault();
       return;
     }
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
     const active = document.activeElement;
-    if(modalBox && !modalBox.contains(active)){
+    if (modalBox && !modalBox.contains(active)) {
       e.preventDefault();
-      first.focus({preventScroll:true});
+      first.focus({ preventScroll: true });
       return;
     }
-    if(e.shiftKey && active === first){
+    if (e.shiftKey && active === first) {
       e.preventDefault();
-      last.focus({preventScroll:true});
-    }else if(!e.shiftKey && active === last){
+      last.focus({ preventScroll: true });
+    } else if (!e.shiftKey && active === last) {
       e.preventDefault();
-      first.focus({preventScroll:true});
+      first.focus({ preventScroll: true });
     }
   };
 
-  function openModal(title, html){
-    if(!modal) return;
+  function openModal(title, html) {
+    if (!modal) return;
     lastFocusedElement = document.activeElement;
     const lang = $("#langSelect")?.value || "ku";
     const modalDict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
@@ -569,15 +569,15 @@
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onModalKeydown);
-    requestAnimationFrame(()=>{
+    requestAnimationFrame(() => {
       modalContent.scrollTop = 0;
       const focusable = getFocusable();
       const target = focusable[0] || modalClose;
-      target?.focus({preventScroll:true});
+      target?.focus({ preventScroll: true });
     });
   }
-  function closeModal(){
-    if(!modal) return;
+  function closeModal() {
+    if (!modal) return;
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
     modalContent.scrollTop = 0;
@@ -585,47 +585,47 @@
     document.removeEventListener("keydown", onModalKeydown);
 
     // Clear URL hash when closing modal
-    if(window.location.hash){
+    if (window.location.hash) {
       history.replaceState(null, null, window.location.pathname + window.location.search);
     }
 
-    if(lastFocusedElement && typeof lastFocusedElement.focus === "function"){
-      lastFocusedElement.focus({preventScroll:true});
+    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+      lastFocusedElement.focus({ preventScroll: true });
     }
   }
-  if(modalClose) modalClose.addEventListener("click", closeModal);
-  if(modal) modal.addEventListener("click", (e)=>{ if(e.target === modal) closeModal(); });
+  if (modalClose) modalClose.addEventListener("click", closeModal);
+  if (modal) modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
   window.NHC_MODAL = { open: openModal, close: closeModal };
 
   // Page-specific renderers
   const page = document.body.getAttribute("data-page");
 
-  function fmtDate(iso, langOverride){
+  function fmtDate(iso, langOverride) {
     const lang = langOverride || "ku";
     const ymdMatch = typeof iso === "string" ? iso.match(/^(\d{4})-(\d{2})-(\d{2})/) : null;
-    if((lang === "ar" || lang === "ku") && ymdMatch){
+    if ((lang === "ar" || lang === "ku") && ymdMatch) {
       return `${ymdMatch[3]}/${ymdMatch[2]}/${ymdMatch[1]}`;
     }
-    try{
+    try {
       const d = ymdMatch
         ? new Date(Number(ymdMatch[1]), Number(ymdMatch[2]) - 1, Number(ymdMatch[3]))
         : new Date(iso);
-      if(Number.isNaN(d.getTime())) return iso;
-      if(lang === "ar" || lang === "ku"){
+      if (Number.isNaN(d.getTime())) return iso;
+      if (lang === "ar" || lang === "ku") {
         const dd = String(d.getDate()).padStart(2, "0");
         const mm = String(d.getMonth() + 1).padStart(2, "0");
         return `${dd}/${mm}/${d.getFullYear()}`;
       }
-      return d.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"2-digit"});
-    }catch(_){ return iso; }
+      return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "2-digit" });
+    } catch (_) { return iso; }
   }
 
   // NEWS
-  function renderNews(targetSelector, limit){
+  function renderNews(targetSelector, limit) {
     const host = $(targetSelector);
-    if(!host || !window.NEWS_DATA) return;
-    const data = [...window.NEWS_DATA].sort((a,b)=> (a.date<b.date?1:-1));
-    const items = limit ? data.slice(0,limit) : data;
+    if (!host || !window.NEWS_DATA) return;
+    const data = [...window.NEWS_DATA].sort((a, b) => (a.date < b.date ? 1 : -1));
+    const items = limit ? data.slice(0, limit) : data;
     const total = items.length + 1;
 
     const lang = $("#langSelect")?.value || "ku";
@@ -633,7 +633,7 @@
     const seeAllText = dict["section.latestnews.seeall"] || "See All Activities";
     const readMoreText = dict["news.readmore"] || "Read more";
 
-    const cards = items.map((p, index)=>{
+    const cards = items.map((p, index) => {
       const image = p.image || "assets/img/heroBackground-optimized.jpg";
       const position = index + 1;
       return `
@@ -659,26 +659,29 @@
     host.innerHTML = cards + seeAllCard;
   }
 
-  function setupActivitiesSlider(){
+  function setupActivitiesSlider() {
     const track = $("#homeNews");
     const prev = $(".activities-arrow.prev");
     const next = $(".activities-arrow.next");
     const slider = track?.closest(".activities-slider");
     const status = slider?.querySelector(".activities-status");
     const dots = slider?.querySelector(".activities-dots");
-    if(!track || !prev || !next) return;
-    if(slider?.dataset.activitiesSliderInit === "true"){
-      if(typeof slider.__activitiesSliderUpdate === "function"){
+    if (!track || !prev || !next) return;
+    if (slider?.dataset.activitiesSliderInit === "true") {
+      // Reset scroll position to start on re-init (e.g. after language change)
+      if (typeof slider.__activitiesSliderReset === "function") {
+        slider.__activitiesSliderReset();
+      } else if (typeof slider.__activitiesSliderUpdate === "function") {
         slider.__activitiesSliderUpdate();
       }
       return;
     }
 
-    const getSlides = ()=>Array.from(track.querySelectorAll(".news-mini"));
+    const getSlides = () => Array.from(track.querySelectorAll(".news-mini"));
 
-    const getLayout = ()=>{
+    const getLayout = () => {
       const card = track.querySelector(".news-mini");
-      if(!card) return null;
+      if (!card) return null;
       const styles = getComputedStyle(track);
       const gapValue = styles.columnGap || styles.gap || "0";
       const gap = parseFloat(gapValue) || 0;
@@ -688,72 +691,13 @@
       const cardWidth = card.getBoundingClientRect().width;
       const step = cardWidth + gap;
       const visibleCount = step ? Math.max(1, Math.floor((available + gap) / step)) : 1;
-      return {gap, step, visibleCount};
+      return { gap, step, visibleCount };
     };
 
-    const getDotLimit = ()=>window.matchMedia("(max-width: 768px)").matches ? 6 : 4;
-    const isRtl = ()=> (document.documentElement.dir || document.body.getAttribute("dir")) === "rtl";
-    const prefersReducedMotion = ()=>window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let rtlScrollType = null;
-    const detectRtlScrollType = ()=>{
-      if(rtlScrollType) return rtlScrollType;
-      const probe = document.createElement("div");
-      const inner = document.createElement("div");
-      probe.dir = "rtl";
-      probe.style.width = "4px";
-      probe.style.height = "1px";
-      probe.style.overflow = "scroll";
-      probe.style.visibility = "hidden";
-      probe.style.position = "absolute";
-      probe.style.top = "-9999px";
-      inner.style.width = "8px";
-      inner.style.height = "1px";
-      probe.appendChild(inner);
-      document.body.appendChild(probe);
-
-      probe.scrollLeft = 0;
-      const initial = probe.scrollLeft;
-      probe.scrollLeft = 1;
-      const afterSet = probe.scrollLeft;
-
-      if(initial > 0) rtlScrollType = "reverse";
-      else if(afterSet === 0) rtlScrollType = "negative";
-      else rtlScrollType = "default";
-
-      probe.remove();
-      return rtlScrollType;
-    };
-    const getScrollMetrics = ()=>{
-      const max = Math.max(0, track.scrollWidth - track.clientWidth);
-      const raw = track.scrollLeft;
-      if(!isRtl()){
-        return {offset: Math.max(0, Math.min(max, raw)), max};
-      }
-      const mode = detectRtlScrollType();
-      let offset = raw;
-      if(mode === "negative") offset = -raw;
-      else if(mode === "reverse") offset = max - raw;
-      return {offset: Math.max(0, Math.min(max, offset)), max};
-    };
-    const setScrollOffset = (offset, behavior = "smooth")=>{
-      const max = Math.max(0, track.scrollWidth - track.clientWidth);
-      const clamped = Math.max(0, Math.min(max, offset));
-      let rawTarget = clamped;
-      if(isRtl()){
-        const mode = detectRtlScrollType();
-        if(mode === "negative") rawTarget = -clamped;
-        else if(mode === "reverse") rawTarget = max - clamped;
-      }
-      if(typeof track.scrollTo === "function"){
-        try{
-          track.scrollTo({left: rawTarget, behavior});
-          return;
-        }catch(_){
-          // Fallback for older browsers without options support
-        }
-      }
-      track.scrollLeft = rawTarget;
-    };
+    const getDotLimit = () => window.matchMedia("(max-width: 768px)").matches ? 6 : 4;
+    // Use the track direction (not page direction) so slider physics stay correct in RTL pages.
+    const isTrackRtl = () => getComputedStyle(track).direction === "rtl";
+    const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let pendingFocus = false;
     let dotButtons = [];
@@ -761,83 +705,119 @@
     let dotCount = 0;
     let dotVisibleCount = 0;
     let dotTotal = 0;
-    const getDotSlideIndex = (dotIndex)=>{
-      if(dotCount <= 1 || dotMaxStart <= 0) return 0;
+    const getDotSlideIndex = (dotIndex) => {
+      if (dotCount <= 1 || dotMaxStart <= 0) return 0;
       return Math.round((dotIndex / (dotCount - 1)) * dotMaxStart);
     };
-    const getActiveDotIndex = (slideIndex)=>{
-      if(dotCount <= 1 || dotMaxStart <= 0) return 0;
+    const getActiveDotIndex = (slideIndex) => {
+      if (dotCount <= 1 || dotMaxStart <= 0) return 0;
       return Math.round((slideIndex / dotMaxStart) * (dotCount - 1));
     };
-    const getCurrentIndex = (slidesTotal = getSlides().length)=>{
-      const layout = getLayout();
-      const step = layout?.step || 0;
-      const visibleCount = layout?.visibleCount || 1;
-      const maxStart = Math.max(0, slidesTotal - visibleCount);
-      if(!step) return 0;
-      const {offset} = getScrollMetrics();
-      const rawIndex = Math.round(offset / step);
-      return Math.max(0, Math.min(maxStart, rawIndex));
+    const toPx = (value) => {
+      const n = parseFloat(value);
+      return Number.isFinite(n) ? n : 0;
     };
-    const scrollToIndex = (index, shouldFocus=false)=>{
-      const slides = getSlides();
-      if(!slides.length) return;
+    const getTrackStartEdge = () => {
+      const rect = track.getBoundingClientRect();
+      const styles = getComputedStyle(track);
+      const paddingLeft = toPx(styles.paddingLeft);
+      const paddingRight = toPx(styles.paddingRight);
+      const inlineStartPad = toPx(styles.scrollPaddingInlineStart || styles.getPropertyValue("scroll-padding-inline-start"));
+      const sidePad = isTrackRtl()
+        ? toPx(styles.scrollPaddingRight || styles.getPropertyValue("scroll-padding-right"))
+        : toPx(styles.scrollPaddingLeft || styles.getPropertyValue("scroll-padding-left"));
+      const startInset = isTrackRtl()
+        ? Math.max(paddingRight, inlineStartPad, sidePad)
+        : Math.max(paddingLeft, inlineStartPad, sidePad);
+      return isTrackRtl() ? rect.right - startInset : rect.left + startInset;
+    };
+    const getMaxStart = (slidesTotal = getSlides().length) => {
       const layout = getLayout();
-      const step = layout?.step || 0;
       const visibleCount = layout?.visibleCount || 1;
-      const maxStart = Math.max(0, slides.length - visibleCount);
+      const step = layout?.step || 0;
+      const theoreticalMax = Math.max(0, slidesTotal - visibleCount);
+      if (!step) return theoreticalMax;
+      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+      // Some viewport/card combinations cannot snap to the theoretical final start.
+      // Cap to what the real scroll range can reach.
+      const reachableMax = Math.floor((maxScroll + step * 0.15) / step);
+      return Math.max(0, Math.min(theoreticalMax, reachableMax));
+    };
+    const getCurrentIndex = (slidesTotal = getSlides().length) => {
+      const slides = getSlides();
+      if (!slides.length) return 0;
+      const maxStart = getMaxStart(slidesTotal);
+      const trackEdge = getTrackStartEdge();
+
+      let nearestIndex = 0;
+      let nearestDistance = Number.POSITIVE_INFINITY;
+      slides.forEach((slide, idx) => {
+        const rect = slide.getBoundingClientRect();
+        const slideEdge = isTrackRtl() ? rect.right : rect.left;
+        const distance = Math.abs(slideEdge - trackEdge);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = idx;
+        }
+      });
+
+      return Math.max(0, Math.min(maxStart, nearestIndex));
+    };
+    const scrollToIndex = (index, shouldFocus = false) => {
+      const slides = getSlides();
+      if (!slides.length) return;
+      const maxStart = getMaxStart(slides.length);
       const clampedIndex = Math.max(0, Math.min(maxStart, index));
       const target = slides[clampedIndex];
-      if(!target) return;
+      if (!target) return;
       pendingFocus = shouldFocus;
       const behavior = prefersReducedMotion() ? "auto" : "smooth";
-      if(step){
-        setScrollOffset(step * clampedIndex, behavior);
-      }else{
-        target.scrollIntoView({
-          behavior,
-          inline: isRtl() ? "end" : "start",
-          block: "nearest"
-        });
-      }
+      target.scrollIntoView({
+        behavior,
+        inline: "start",
+        block: "nearest"
+      });
       // Save current slide index to localStorage
       try {
         localStorage.setItem('nhc_activities_slide', clampedIndex.toString());
-      } catch(e) {}
-      requestAnimationFrame(()=>requestAnimationFrame(update));
+      } catch (e) { }
+      requestAnimationFrame(() => requestAnimationFrame(update));
     };
-    const scrollByStep = (dir, shouldFocus=false)=>{
+    const scrollByStep = (dir, shouldFocus = false) => {
       const slides = getSlides();
-      if(!slides.length) return;
+      if (!slides.length) return;
       const currentIndex = getCurrentIndex(slides.length);
       scrollToIndex(currentIndex + dir, shouldFocus);
     };
 
-    prev.addEventListener("click", ()=>scrollByStep(-1));
-    next.addEventListener("click", ()=>scrollByStep(1));
+    const getArrowDirections = () => isTrackRtl()
+      ? { prev: 1, next: -1 }
+      : { prev: -1, next: 1 };
+    prev.addEventListener("click", () => scrollByStep(getArrowDirections().prev));
+    next.addEventListener("click", () => scrollByStep(getArrowDirections().next));
 
-    const handleDotKeydown = (e)=>{
-      if(e.key !== "ArrowLeft" && e.key !== "ArrowRight" && e.key !== "Home" && e.key !== "End") return;
+    const handleDotKeydown = (e) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight" && e.key !== "Home" && e.key !== "End") return;
       e.preventDefault();
       e.stopPropagation();
       const currentIndex = dotButtons.indexOf(e.currentTarget);
-      if(currentIndex === -1) return;
+      if (currentIndex === -1) return;
       let nextIndex = currentIndex;
-      if(e.key === "ArrowLeft") nextIndex = currentIndex === 0 ? dotButtons.length - 1 : currentIndex - 1;
-      if(e.key === "ArrowRight") nextIndex = currentIndex === dotButtons.length - 1 ? 0 : currentIndex + 1;
-      if(e.key === "Home") nextIndex = 0;
-      if(e.key === "End") nextIndex = dotButtons.length - 1;
-      dotButtons[nextIndex]?.focus({preventScroll:true});
+      if (e.key === "ArrowLeft") nextIndex = currentIndex === 0 ? dotButtons.length - 1 : currentIndex - 1;
+      if (e.key === "ArrowRight") nextIndex = currentIndex === dotButtons.length - 1 ? 0 : currentIndex + 1;
+      if (e.key === "Home") nextIndex = 0;
+      if (e.key === "End") nextIndex = dotButtons.length - 1;
+      dotButtons[nextIndex]?.focus({ preventScroll: true });
       scrollToIndex(getDotSlideIndex(nextIndex), false);
     };
 
-    const buildDots = (total, visibleCount)=>{
-      if(!dots) return;
+    const buildDots = (total, visibleCount) => {
+      if (!dots) return;
       dots.innerHTML = "";
       dotButtons = [];
       dotVisibleCount = visibleCount;
       dotTotal = total;
-      for(let i = 0; i < dotCount; i += 1){
+      for (let i = 0; i < dotCount; i += 1) {
         const slideIndex = getDotSlideIndex(i);
         const start = slideIndex + 1;
         const end = Math.min(total, slideIndex + visibleCount);
@@ -845,31 +825,34 @@
         btn.type = "button";
         btn.className = "activities-dot";
         btn.setAttribute("aria-label", visibleCount > 1 ? `Go to slides ${start}-${end}` : `Go to slide ${start}`);
-        btn.addEventListener("click", ()=>scrollToIndex(slideIndex, false));
+        btn.addEventListener("click", () => scrollToIndex(slideIndex, false));
         btn.addEventListener("keydown", handleDotKeydown);
         dots.appendChild(btn);
         dotButtons.push(btn);
       }
     };
 
-    const updateButtons = ()=>{
+    const updateButtons = () => {
       const slidesTotal = getSlides().length;
-      const layout = getLayout();
-      const visibleCount = layout?.visibleCount || 1;
-      const maxStart = Math.max(0, slidesTotal - visibleCount);
+      const maxStart = getMaxStart(slidesTotal);
       const index = getCurrentIndex(slidesTotal);
-      prev.disabled = index <= 0;
-      next.disabled = index >= maxStart;
+      const dirs = getArrowDirections();
+      const canMove = (dir) => {
+        const targetIndex = index + dir;
+        return targetIndex >= 0 && targetIndex <= maxStart;
+      };
+      prev.disabled = !canMove(dirs.prev);
+      next.disabled = !canMove(dirs.next);
       prev.setAttribute("aria-disabled", prev.disabled ? "true" : "false");
       next.setAttribute("aria-disabled", next.disabled ? "true" : "false");
     };
 
-    const updateStatus = ()=>{
+    const updateStatus = () => {
       const slides = getSlides();
       const total = slides.length;
-      if(!total){
-        if(status) status.textContent = "0 / 0";
-        if(dots) dots.innerHTML = "";
+      if (!total) {
+        if (status) status.textContent = "0 / 0";
+        if (dots) dots.innerHTML = "";
         dotButtons = [];
         dotCount = 0;
         dotVisibleCount = 0;
@@ -878,89 +861,103 @@
       }
       const layout = getLayout();
       const visibleCount = layout?.visibleCount || 1;
-      dotMaxStart = Math.max(0, total - visibleCount);
+      dotMaxStart = getMaxStart(total);
       dotCount = Math.max(1, Math.min(getDotLimit(), dotMaxStart + 1, total));
-      if(dots && (dotButtons.length !== dotCount || dotVisibleCount !== visibleCount || dotTotal !== total)){
+      if (dots && (dotButtons.length !== dotCount || dotVisibleCount !== visibleCount || dotTotal !== total)) {
         buildDots(total, visibleCount);
       }
       const index = getCurrentIndex(total);
-      slides.forEach((slide, idx)=>{
+      slides.forEach((slide, idx) => {
         slide.setAttribute("aria-current", idx === index ? "true" : "false");
       });
-      if(dotButtons.length){
+      if (dotButtons.length) {
         const activeDot = getActiveDotIndex(index);
-        dotButtons.forEach((dot, idx)=>{
+        dotButtons.forEach((dot, idx) => {
           dot.setAttribute("aria-current", idx === activeDot ? "true" : "false");
         });
       }
-      if(status) status.textContent = `${index + 1} / ${total}`;
+      if (status) status.textContent = `${index + 1} / ${total}`;
       // Save current slide index
       try {
         localStorage.setItem('nhc_activities_slide', index.toString());
-      } catch(e) {}
-      if(pendingFocus){
+      } catch (e) { }
+      if (pendingFocus) {
         const focusTarget = slides[index]?.querySelector("a, button, [tabindex]:not([tabindex='-1'])");
-        focusTarget?.focus({preventScroll:true});
+        focusTarget?.focus({ preventScroll: true });
         pendingFocus = false;
       }
     };
 
-    const update = ()=>{
+    const update = () => {
       updateButtons();
       updateStatus();
     };
-    if(slider){
+    const resetToStart = () => {
+      const slides = getSlides();
+      const firstSlide = slides[0];
+      if (!firstSlide) return;
+      firstSlide.scrollIntoView({
+        behavior: "auto",
+        inline: "start",
+        block: "nearest"
+      });
+      requestAnimationFrame(update);
+    };
+    if (slider) {
       slider.__activitiesSliderUpdate = update;
+      slider.__activitiesSliderReset = resetToStart;
       slider.dataset.activitiesSliderInit = "true";
     }
 
-    slider?.addEventListener("keydown", (e)=>{
-      if(e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    slider?.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
       e.preventDefault();
       const active = document.activeElement;
       const keepFocus = active && active.classList.contains("activities-arrow");
-      scrollByStep(e.key === "ArrowLeft" ? -1 : 1, !keepFocus);
+      const keyboardStep = e.key === "ArrowLeft" ? -1 : 1;
+      scrollByStep(keyboardStep, !keepFocus);
     });
 
-    track.addEventListener("scroll", update, {passive:true});
+    track.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     update();
+    if (isTrackRtl()) resetToStart();
 
     // Restore saved slide position after initial render
     setTimeout(() => {
       try {
         const savedIndex = localStorage.getItem('nhc_activities_slide');
-        if (savedIndex !== null) {
+        if (savedIndex !== null && !isTrackRtl()) {
           const index = parseInt(savedIndex, 10);
           if (!isNaN(index) && index > 0) {
             scrollToIndex(index, false);
           }
         }
-      } catch(e) {}
+      } catch (e) { }
     }, 100);
   }
 
-  function setupNewsPage(){
+  function setupNewsPage() {
     return;
     const list = $("#newsList");
-    if(!list) return;
+    if (!list) return;
 
     const q = $("#newsSearch");
     const tagSel = $("#newsTag");
     const tagChips = $("#newsTagChips");
     const count = $("#newsCount");
 
-    const getShareUrl = (id)=>{
+    const getShareUrl = (id) => {
       const base = window.location.href.split("#")[0];
       return `${base}#${id}`;
     };
 
-    const copyToClipboard = async (text)=>{
-      if(navigator.clipboard && window.isSecureContext){
-        try{
+    const copyToClipboard = async (text) => {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
           await navigator.clipboard.writeText(text);
           return true;
-        }catch(_){
+        } catch (_) {
           // fall through
         }
       }
@@ -972,26 +969,26 @@
       document.body.appendChild(field);
       field.select();
       let ok = false;
-      try{
+      try {
         ok = document.execCommand("copy");
-      }catch(_){
+      } catch (_) {
         ok = false;
       }
       document.body.removeChild(field);
       return ok;
     };
 
-    const flashShareHint = (btn, message)=>{
+    const flashShareHint = (btn, message) => {
       const original = btn.getAttribute("title") || "Copy link";
       btn.setAttribute("title", message);
       btn.setAttribute("aria-label", message);
-      window.setTimeout(()=>{
+      window.setTimeout(() => {
         btn.setAttribute("title", original);
         btn.setAttribute("aria-label", original);
       }, 1500);
     };
 
-    const buildAnnouncementModal = (post)=>{
+    const buildAnnouncementModal = (post) => {
       const date = post?.date || "";
       return `
         <div class="modal-meta">
@@ -1004,20 +1001,20 @@
     };
 
     const allTags = new Set();
-    window.NEWS_DATA.forEach(p=>(p.tags||[]).forEach(t=>allTags.add(t)));
+    window.NEWS_DATA.forEach(p => (p.tags || []).forEach(t => allTags.add(t)));
     const tagList = Array.from(allTags).sort();
-    if(tagSel){
-      tagSel.innerHTML = `<option value="">All topics</option>` + tagList.map(t=>`<option value="${t}">${t}</option>`).join("");
+    if (tagSel) {
+      tagSel.innerHTML = `<option value="">All topics</option>` + tagList.map(t => `<option value="${t}">${t}</option>`).join("");
     }
-    if(tagChips){
+    if (tagChips) {
       tagChips.innerHTML = [
         `<button class="chip" type="button" data-tag="">All topics</button>`,
-        ...tagList.map(t=>`<button class="chip" type="button" data-tag="${t}">${t}</button>`)
+        ...tagList.map(t => `<button class="chip" type="button" data-tag="${t}">${t}</button>`)
       ].join("");
-      $$(".chip", tagChips).forEach(btn=>{
-        btn.addEventListener("click", ()=>{
+      $$(".chip", tagChips).forEach(btn => {
+        btn.addEventListener("click", () => {
           const nextTag = btn.getAttribute("data-tag") || "";
-          if(tagSel){
+          if (tagSel) {
             tagSel.value = nextTag;
           }
           apply();
@@ -1025,9 +1022,9 @@
       });
     }
 
-    const syncChips = (activeTag)=>{
-      if(!tagChips) return;
-      $$(".chip", tagChips).forEach(btn=>{
+    const syncChips = (activeTag) => {
+      if (!tagChips) return;
+      $$(".chip", tagChips).forEach(btn => {
         const tag = btn.getAttribute("data-tag") || "";
         const isActive = tag === (activeTag || "");
         btn.classList.toggle("is-active", isActive);
@@ -1035,22 +1032,22 @@
       });
     };
 
-    function apply(){
+    function apply() {
       const query = (q?.value || "").trim().toLowerCase();
       const tag = (tagSel?.value || "");
-      const data = [...window.NEWS_DATA].sort((a,b)=> (a.date<b.date?1:-1)).filter(p=>{
-        const matchQ = !query || (p.title+p.excerpt+p.contentHtml).toLowerCase().includes(query);
-        const matchT = !tag || (p.tags||[]).includes(tag);
+      const data = [...window.NEWS_DATA].sort((a, b) => (a.date < b.date ? 1 : -1)).filter(p => {
+        const matchQ = !query || (p.title + p.excerpt + p.contentHtml).toLowerCase().includes(query);
+        const matchT = !tag || (p.tags || []).includes(tag);
         return matchQ && matchT;
       });
 
-      if(count){
+      if (count) {
         const total = data.length;
         count.textContent = `${total} ${total === 1 ? "activity" : "activities"}`;
       }
       syncChips(tag);
 
-      if(!data.length){
+      if (!data.length) {
         list.innerHTML = `
           <div class="news-empty">
             No activities match your search. Try another keyword or topic.
@@ -1060,8 +1057,8 @@
         return;
       }
 
-      list.innerHTML = data.map((p, index)=>{
-        const tags = (p.tags||[]).slice(0,4).map(t=>`<span class="news-tag">${t}</span>`).join("");
+      list.innerHTML = data.map((p, index) => {
+        const tags = (p.tags || []).slice(0, 4).map(t => `<span class="news-tag">${t}</span>`).join("");
         const preview = (p.excerpt || "").trim();
         const featured = index === 0;
         const mediaClass = p.image ? "" : " is-empty";
@@ -1096,21 +1093,21 @@
 
       setupReveal();
 
-      $$("[data-open]").forEach(btn=>{
-        btn.addEventListener("click", ()=>{
+      $$("[data-open]").forEach(btn => {
+        btn.addEventListener("click", () => {
           const id = btn.getAttribute("data-open");
-          const post = window.NEWS_DATA.find(x=>x.id===id);
-          if(post){
+          const post = window.NEWS_DATA.find(x => x.id === id);
+          if (post) {
             openModal(post.title, buildAnnouncementModal(post));
-            history.replaceState(null,"", `#${post.id}`);
+            history.replaceState(null, "", `#${post.id}`);
           }
         });
       });
 
-      $$("[data-share]").forEach(btn=>{
-        btn.addEventListener("click", async ()=>{
+      $$("[data-share]").forEach(btn => {
+        btn.addEventListener("click", async () => {
           const id = btn.getAttribute("data-share");
-          if(!id) return;
+          if (!id) return;
           const ok = await copyToClipboard(getShareUrl(id));
           flashShareHint(btn, ok ? "Link copied" : "Copy failed");
         });
@@ -1122,11 +1119,11 @@
     apply();
 
     // Open if hash
-    const openFromHash = ()=>{
-      const id = (location.hash||"").replace("#","").trim();
-      if(!id) return;
-      const post = window.NEWS_DATA.find(x=>x.id===id);
-      if(post){
+    const openFromHash = () => {
+      const id = (location.hash || "").replace("#", "").trim();
+      if (!id) return;
+      const post = window.NEWS_DATA.find(x => x.id === id);
+      if (post) {
         openModal(post.title, buildAnnouncementModal(post));
       }
     };
@@ -1135,30 +1132,30 @@
   }
 
   // Publications
-  function setupPublicationsPage(){
-    if(!window.PUBLICATIONS_DATA) return;
+  function setupPublicationsPage() {
+    if (!window.PUBLICATIONS_DATA) return;
     const list = $("#pubList");
-    if(!list) return;
+    if (!list) return;
 
     const q = $("#pubSearch");
     const catSel = $("#pubCategory");
 
     const cats = new Set();
-    window.PUBLICATIONS_DATA.forEach(p=>cats.add(p.category || "Other"));
-    if(catSel){
-      catSel.innerHTML = `<option value="">All categories</option>` + Array.from(cats).sort().map(c=>`<option value="${c}">${c}</option>`).join("");
+    window.PUBLICATIONS_DATA.forEach(p => cats.add(p.category || "Other"));
+    if (catSel) {
+      catSel.innerHTML = `<option value="">All categories</option>` + Array.from(cats).sort().map(c => `<option value="${c}">${c}</option>`).join("");
     }
 
-    function apply(){
-      const query = (q?.value||"").trim().toLowerCase();
-      const cat = (catSel?.value||"");
-      const data = window.PUBLICATIONS_DATA.filter(p=>{
-        const matchQ = !query || (p.title+p.author+p.description).toLowerCase().includes(query);
-        const matchC = !cat || (p.category===cat);
+    function apply() {
+      const query = (q?.value || "").trim().toLowerCase();
+      const cat = (catSel?.value || "");
+      const data = window.PUBLICATIONS_DATA.filter(p => {
+        const matchQ = !query || (p.title + p.author + p.description).toLowerCase().includes(query);
+        const matchC = !cat || (p.category === cat);
         return matchQ && matchC;
       });
 
-      list.innerHTML = data.map(p=>`
+      list.innerHTML = data.map(p => `
         <article class="item">
           <h3>${p.title}</h3>
           <div class="meta">
@@ -1181,33 +1178,33 @@
   }
 
   // Tafsir
-  function setupTafsirPage(){
-    if(!window.TAFSIR_DATA) return;
+  function setupTafsirPage() {
+    if (!window.TAFSIR_DATA) return;
     const list = $("#tafsirList");
-    if(!list) return;
+    if (!list) return;
 
     const q = $("#tafsirSearch");
     const typeSel = $("#tafsirType");
     const speakerSel = $("#tafsirSpeaker");
 
     const speakers = new Set();
-    window.TAFSIR_DATA.forEach(x=>speakers.add(x.speaker || "—"));
-    if(speakerSel){
-      speakerSel.innerHTML = `<option value="">All speakers</option>` + Array.from(speakers).sort().map(s=>`<option value="${s}">${s}</option>`).join("");
+    window.TAFSIR_DATA.forEach(x => speakers.add(x.speaker || "—"));
+    if (speakerSel) {
+      speakerSel.innerHTML = `<option value="">All speakers</option>` + Array.from(speakers).sort().map(s => `<option value="${s}">${s}</option>`).join("");
     }
 
-    function apply(){
-      const query = (q?.value||"").trim().toLowerCase();
-      const type = (typeSel?.value||"");
-      const speaker = (speakerSel?.value||"");
-      const data = window.TAFSIR_DATA.filter(x=>{
-        const matchQ = !query || (x.title+x.series+x.speaker+x.notes).toLowerCase().includes(query);
-        const matchT = !type || x.type===type;
-        const matchS = !speaker || x.speaker===speaker;
+    function apply() {
+      const query = (q?.value || "").trim().toLowerCase();
+      const type = (typeSel?.value || "");
+      const speaker = (speakerSel?.value || "");
+      const data = window.TAFSIR_DATA.filter(x => {
+        const matchQ = !query || (x.title + x.series + x.speaker + x.notes).toLowerCase().includes(query);
+        const matchT = !type || x.type === type;
+        const matchS = !speaker || x.speaker === speaker;
         return matchQ && matchT && matchS;
       });
 
-      list.innerHTML = data.map(x=>{
+      list.innerHTML = data.map(x => {
         const meta = `<div class="meta">
           <span>🎙️ ${x.speaker || "—"}</span>
           <span>📚 ${x.series || "—"}</span>
@@ -1225,11 +1222,11 @@
         const actions = x.type === "video"
           ? `<div class="actions">
                <button class="btn primary" type="button" data-play="${encodeURIComponent(x.embedUrl)}">Play video</button>
-               <button class="btn secondary" type="button" data-notes="${x.title.replace(/"/g,'&quot;')}">Notes</button>
+               <button class="btn secondary" type="button" data-notes="${x.title.replace(/"/g, '&quot;')}">Notes</button>
              </div>`
           : `<div class="actions">
                <a class="btn secondary" href="${x.file}" target="_blank" rel="noopener">Open audio file</a>
-               <button class="btn primary" type="button" data-notes="${x.title.replace(/"/g,'&quot;')}">Notes</button>
+               <button class="btn primary" type="button" data-notes="${x.title.replace(/"/g, '&quot;')}">Notes</button>
              </div>`;
 
         return `
@@ -1243,19 +1240,19 @@
         `;
       }).join("") || `<div class="note">No lectures match your filters.</div>`;
 
-      $$("[data-play]").forEach(btn=>{
-        btn.addEventListener("click", ()=>{
+      $$("[data-play]").forEach(btn => {
+        btn.addEventListener("click", () => {
           const url = decodeURIComponent(btn.getAttribute("data-play"));
           openModal("Video Lecture", `<div style="position:relative; padding-top:56.25%">
             <iframe src="${url}" title="Video" style="position:absolute; inset:0; width:100%; height:100%; border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>`);
         });
       });
-      $$("[data-notes]").forEach(btn=>{
-        btn.addEventListener("click", ()=>{
+      $$("[data-notes]").forEach(btn => {
+        btn.addEventListener("click", () => {
           const title = btn.getAttribute("data-notes");
-          const item = window.TAFSIR_DATA.find(x=>x.title===title);
-          if(item){
+          const item = window.TAFSIR_DATA.find(x => x.title === title);
+          if (item) {
             openModal(item.title, `<div class="meta"><span>🎙️ ${item.speaker || "—"}</span><span>📚 ${item.series || "—"}</span><span>🗓️ ${fmtDate(item.date)}</span></div><hr class="sep"/><p>${item.notes || ""}</p>`);
           }
         });
@@ -1269,11 +1266,11 @@
   }
 
   // Contact page (mailto + social links)
-  function setupContactPage(){
+  function setupContactPage() {
     const form = $("#contactForm");
-    if(!form) return;
+    if (!form) return;
     const sc = window.SITE_CONFIG || {};
-    form.addEventListener("submit", (e)=>{
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
       const name = $("#cName").value.trim();
       const email = $("#cEmail").value.trim();
@@ -1286,48 +1283,48 @@
     // Populate info card links
     const phoneCard = $("#contactPhoneCard");
     const emailCard = $("#contactEmailCard");
-    if(phoneCard && sc.phone) phoneCard.href = "tel:" + sc.phone.replace(/\s/g,"");
-    if(emailCard && sc.email) emailCard.href = "mailto:" + sc.email;
+    if (phoneCard && sc.phone) phoneCard.href = "tel:" + sc.phone.replace(/\s/g, "");
+    if (emailCard && sc.email) emailCard.href = "mailto:" + sc.email;
 
     // Populate social links
     const fb = $("#contactFacebook");
     const ig = $("#contactInstagram");
     const wa = $("#contactWhatsapp");
-    if(fb && sc.facebookUrl) fb.href = sc.facebookUrl;
-    if(ig && sc.instagramUrl) ig.href = sc.instagramUrl;
-    if(wa && sc.whatsappUrl) wa.href = sc.whatsappUrl;
+    if (fb && sc.facebookUrl) fb.href = sc.facebookUrl;
+    if (ig && sc.instagramUrl) ig.href = sc.instagramUrl;
+    if (wa && sc.whatsappUrl) wa.href = sc.whatsappUrl;
   }
 
   // Home previews
-  if(page === "home"){
+  if (page === "home") {
     // Listen for news data to be ready
     window.addEventListener('newsDataReady', () => {
       renderNews("#homeNews");
       setupActivitiesSlider();
     });
-    
+
     // Also try to render immediately in case data is already loaded
-    if(window.NEWS_DATA && window.NEWS_DATA.length > 0) {
+    if (window.NEWS_DATA && window.NEWS_DATA.length > 0) {
       renderNews("#homeNews");
       setupActivitiesSlider();
     }
   }
-  if(page === "news"){
+  if (page === "news") {
     // load data script already included in page
     setupNewsPage();
   }
-  if(page === "publications"){
+  if (page === "publications") {
     setupPublicationsPage();
   }
-  if(page === "tafsir"){
+  if (page === "tafsir") {
     setupTafsirPage();
   }
-  if(page === "contact"){
+  if (page === "contact") {
     setupContactPage();
   }
 
   // Use native full-page navigation for maximum reliability.
-  function setupSmoothTabNavigation(){
+  function setupSmoothTabNavigation() {
     return;
   }
   setupSmoothTabNavigation();
@@ -1337,7 +1334,3 @@
     download: `<span aria-hidden="true" style="display:inline-flex; margin-right:6px; vertical-align:-2px">${document.getElementById("svgDownloadIcon")?.innerHTML || ""}</span>`
   };
 })();
-
-
-
-
