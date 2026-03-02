@@ -356,11 +356,23 @@
     const drawerLangUI = setupDrawerLangSwitcher(langSelect);
     drawerLangUI?.sync();
     langSelect.addEventListener("change", () => {
+      const shouldPreserveScroll = isHomePath(window.location.pathname);
+      const pageTopBeforeLangChange = shouldPreserveScroll
+        ? (window.scrollY || window.pageYOffset || 0)
+        : 0;
       localStorage.setItem("nhc_lang", langSelect.value);
       applyLanguage(langSelect.value);
       applySiteConfig();
       langUI?.sync();
       drawerLangUI?.sync();
+      if (shouldPreserveScroll) {
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          const pageTopAfterLangChange = window.scrollY || window.pageYOffset || 0;
+          if (Math.abs(pageTopAfterLangChange - pageTopBeforeLangChange) > 1) {
+            window.scrollTo({ top: pageTopBeforeLangChange, behavior: "auto" });
+          }
+        }));
+      }
     });
   } else {
     applyLanguage(stored);
@@ -712,15 +724,29 @@
     };
     const scrollSlideIntoView = (slideEl, behavior = "auto") => {
       if (!slideEl) return;
-      const pageTop = window.scrollY || window.pageYOffset || 0;
-      slideEl.scrollIntoView({
-        behavior,
-        inline: "start",
-        block: "nearest"
-      });
-      const nextPageTop = window.scrollY || window.pageYOffset || 0;
-      if (nextPageTop !== pageTop) {
-        window.scrollTo({ top: pageTop, behavior: "auto" });
+      const styles = getComputedStyle(track);
+      if (!isTrackRtl()) {
+        const paddingLeft = toPx(styles.paddingLeft);
+        const inlineStartPad = toPx(styles.scrollPaddingInlineStart || styles.getPropertyValue("scroll-padding-inline-start"));
+        const sidePad = toPx(styles.scrollPaddingLeft || styles.getPropertyValue("scroll-padding-left"));
+        const startInset = Math.max(paddingLeft, inlineStartPad, sidePad);
+        const targetLeft = Math.max(0, slideEl.offsetLeft - startInset);
+        track.scrollTo({ left: targetLeft, behavior });
+      } else {
+        // RTL: scrollLeft is 0 at the right (inline-start) and goes negative
+        // toward the left. Both Chrome and Firefox agree on this convention.
+        // We avoid scrollIntoView() because Firefox implements it inconsistently
+        // for RTL overflow containers.
+        const paddingRight = toPx(styles.paddingRight);
+        const inlineStartPad = toPx(styles.scrollPaddingInlineStart || styles.getPropertyValue("scroll-padding-inline-start"));
+        const sidePad = toPx(styles.scrollPaddingRight || styles.getPropertyValue("scroll-padding-right"));
+        const startInset = Math.max(paddingRight, inlineStartPad, sidePad);
+        // Right edge of the slide relative to the scrollable content area.
+        // offsetLeft is always measured from the physical left even in RTL.
+        const slideRight = slideEl.offsetLeft + slideEl.offsetWidth;
+        // scrollLeft needed so slideRight lands at (track.scrollWidth - startInset)
+        const targetLeft = Math.min(0, slideRight - track.scrollWidth + startInset);
+        track.scrollTo({ left: targetLeft, behavior });
       }
     };
     const scrollToIndex = (index, shouldFocus = false) => {
@@ -746,9 +772,11 @@
       scrollToIndex(currentIndex + dir, shouldFocus);
     };
 
-    const getArrowDirections = () => isTrackRtl()
-      ? { prev: 1, next: -1 }
-      : { prev: -1, next: 1 };
+    // prev always means "go to a lower index" (toward inline-start),
+    // next always means "go to a higher index" (toward inline-end).
+    // scrollIntoView with inline:"start" is a logical property so the
+    // browser handles the physical RTL scroll direction automatically.
+    const getArrowDirections = () => ({ prev: -1, next: 1 });
     prev.addEventListener("click", () => scrollByStep(getArrowDirections().prev));
     next.addEventListener("click", () => scrollByStep(getArrowDirections().next));
 
@@ -866,7 +894,10 @@
       e.preventDefault();
       const active = document.activeElement;
       const keepFocus = active && active.classList.contains("activities-arrow");
-      const keyboardStep = e.key === "ArrowLeft" ? -1 : 1;
+      // In RTL the arrow keys are flipped: ArrowLeft moves toward higher indices (visually left = further in list)
+      const keyboardStep = isTrackRtl()
+        ? (e.key === "ArrowLeft" ? 1 : -1)
+        : (e.key === "ArrowLeft" ? -1 : 1);
       scrollByStep(keyboardStep, !keepFocus);
     });
 
@@ -1260,6 +1291,16 @@
       renderNews("#homeNews");
       setupActivitiesSlider();
     }
+
+    // Re-render cards and reset slider position whenever the language changes
+    // so RTL/LTR layout and translations update instantly.
+    document.addEventListener('languageChanged', () => {
+      if (window.NEWS_DATA && window.NEWS_DATA.length > 0) {
+        renderNews("#homeNews");
+        // Give the browser one frame to apply the new direction before resetting
+        requestAnimationFrame(() => setupActivitiesSlider());
+      }
+    });
   }
   if (page === "news") {
     // load data script already included in page
