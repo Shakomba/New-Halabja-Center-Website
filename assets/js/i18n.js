@@ -6,6 +6,7 @@ window.I18N = {
     "nav.tadabburi": "Tadabbur",
     "nav.about": "About Us",
     "nav.contact": "Contact",
+    "nav.directory": "Our Pride",
     "hero.title1": "New Halabja Center",
     "hero.title2": "for Teaching & Memorizing the Holy Qur’an",
     "hero.subtitle": "Authenticity in recitation and precision in memorization",
@@ -129,6 +130,11 @@ window.I18N = {
     "modal.details": "Details",
     "modal.close": "Close",
     "meta.date": "Date",
+    "dir.hero.title": "Wall of Honor",
+    "dir.hero.desc": "Honoring all individuals who have earned certificates at the center.",
+    "dir.search": "Search by name or certificate...",
+    "dir.empty": "No results found.",
+    "dir.certs": "Certificates",
   },
   "ar": {
     "nav.home": "الرئيسية",
@@ -137,6 +143,7 @@ window.I18N = {
     "nav.tadabburi": "تدبر",
     "nav.about": "من نحن",
     "nav.contact": "اتصل بنا",
+    "nav.directory": "فخرنا",
     "hero.title1": "مركز حلبجة الجديدة",
     "hero.title2": "لتعليم وتحفيظ القرآن الكريم",
     "hero.subtitle": "الأصالة في التلاوة والدقة في الحفظ",
@@ -259,7 +266,12 @@ window.I18N = {
     "news.categories": "التصنيفات",
     "modal.details": "التفاصيل",
     "modal.close": "إغلاق",
-    "meta.date": "التاريخ"
+    "meta.date": "التاريخ",
+    "dir.hero.title": "فخرنا",
+    "dir.hero.desc": "تكريم جميع الأفراد الذين حصلوا على شهادات في المركز.",
+    "dir.search": "ابحث بالاسم أو الشهادة...",
+    "dir.empty": "لا توجد نتائج مطابقة للبحث.",
+    "dir.certs": "الشهادات",
   },
   "ku": {
     "nav.home": "سەرەکی",
@@ -268,6 +280,7 @@ window.I18N = {
     "nav.tadabburi": "تەدەبور",
     "nav.about": "دەربارە",
     "nav.contact": "پەیوەندی",
+    "nav.directory": "شانازییەکانمان",
     "hero.title1": "بنکەی هەڵەبجەی تازە",
     "hero.title2": "بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز",
     "hero.subtitle": "ڕەسەنایەتی لە خوێندن و وردی لە لەبەرکردندا",
@@ -390,6 +403,11 @@ window.I18N = {
     "news.categories": "بەشەکان",
     "modal.details": "وردەکاری",
     "modal.close": "داخستن",
-    "meta.date": "ڕێکەوت"
+    "meta.date": "ڕێکەوت",
+    "dir.hero.title": "شانازییەکانمان",
+    "dir.hero.desc": "ڕێزلێنان لە هەموو ئەو کەسانەی بڕوانامەیان لە بنکەکە بەدەستهێناوە.",
+    "dir.search": "گەڕان بەپێی ناو یان بڕوانامە...",
+    "dir.empty": "هیچ ئەنجامێک نەدۆزرایەوە.",
+    "dir.certs": "بڕوانامەکان"
   }
 };

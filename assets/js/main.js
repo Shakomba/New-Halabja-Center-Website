@@ -38,6 +38,47 @@
     });
   }
 
+  function isHomePath(pathname) {
+    const p = String(pathname || "").replace(/\/+$/, "");
+    return p === "" || p === "/" || p.endsWith("/index.html");
+  }
+
+  function setupHomeTabScrollToTop() {
+    if (isHomePath(window.location.pathname) && !document.getElementById("top")) {
+      if (!document.body.id) document.body.id = "top";
+    }
+
+    const homeLinks = $$("a[href='index.html'], a[href='./index.html'], a[href='/index.html'], a[href='/']");
+    homeLinks.forEach(link => {
+      const rawHref = link.getAttribute("href");
+      if (!rawHref || rawHref.startsWith("#")) return;
+
+      let url;
+      try {
+        url = new URL(rawHref, window.location.href);
+      } catch (_) {
+        return;
+      }
+      if (!isHomePath(url.pathname)) return;
+
+      const normalizedHref = rawHref.startsWith("./") ? "./index.html#top" : "index.html#top";
+      if (rawHref !== normalizedHref) {
+        link.setAttribute("href", normalizedHref);
+      }
+
+      link.addEventListener("click", (e) => {
+        if (!isHomePath(window.location.pathname)) return;
+        e.preventDefault();
+        if (typeof setDrawer === "function") setDrawer(false);
+        if (window.location.hash !== "#top") {
+          history.replaceState(null, "", `${window.location.pathname}${window.location.search}#top`);
+        }
+        (document.getElementById("top") || document.body).scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+  setupHomeTabScrollToTop();
+
   // i18n
   function applyLanguage(lang) {
     const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N.en;
@@ -62,6 +103,9 @@
       const addrEls = [document.getElementById("contactAddress"), document.getElementById("contactAddress2")];
       addrEls.forEach(el => { if (el) el.textContent = addr; });
     }
+
+    // Notify other scripts that the language has changed
+    document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
   }
 
   // Site config (contact/social)
@@ -122,6 +166,7 @@
   }
 
   const LANG_SHORT = { en: "EN", ku: "\u06a9\u0648", ar: "\u0639\u0631" };
+  const isRtlLang = (lang) => lang === "ar" || lang === "ku";
 
   function setupLanguageDropdown(langSelect) {
     const langWrap = langSelect?.closest(".lang");
@@ -165,12 +210,18 @@
       btn.className = "lang-option";
       btn.setAttribute("role", "option");
       btn.setAttribute("data-value", opt.value);
+      btn.setAttribute("lang", opt.value);
+      btn.setAttribute("dir", isRtlLang(opt.value) ? "rtl" : "ltr");
       const fullSpan = document.createElement("span");
       fullSpan.className = "lang-option-full";
       fullSpan.textContent = opt.textContent;
+      fullSpan.setAttribute("lang", opt.value);
+      fullSpan.setAttribute("dir", isRtlLang(opt.value) ? "rtl" : "ltr");
       const shortSpan = document.createElement("span");
       shortSpan.className = "lang-option-short";
       shortSpan.textContent = LANG_SHORT[opt.value] || opt.value.toUpperCase();
+      shortSpan.setAttribute("lang", opt.value);
+      shortSpan.setAttribute("dir", isRtlLang(opt.value) ? "rtl" : "ltr");
       btn.appendChild(fullSpan);
       btn.appendChild(shortSpan);
       btn.addEventListener("click", () => {
@@ -200,6 +251,10 @@
       const selectedOpt = langSelect.selectedOptions[0];
       label.textContent = selectedOpt ? selectedOpt.textContent : current.toUpperCase();
       labelShort.textContent = LANG_SHORT[current] || current.toUpperCase();
+      label.setAttribute("lang", current);
+      label.setAttribute("dir", isRtlLang(current) ? "rtl" : "ltr");
+      labelShort.setAttribute("lang", current);
+      labelShort.setAttribute("dir", isRtlLang(current) ? "rtl" : "ltr");
       options.forEach(btn => {
         const selected = btn.getAttribute("data-value") === current;
         btn.setAttribute("aria-selected", selected ? "true" : "false");
@@ -263,6 +318,8 @@
       btn.className = "drawer-lang-btn";
       btn.setAttribute("role", "radio");
       btn.setAttribute("data-value", val);
+      btn.setAttribute("lang", val);
+      btn.setAttribute("dir", isRtlLang(val) ? "rtl" : "ltr");
       btn.textContent = label;
       btn.addEventListener("click", () => {
         langSelect.value = val;
@@ -653,6 +710,19 @@
 
       return Math.max(0, Math.min(maxStart, nearestIndex));
     };
+    const scrollSlideIntoView = (slideEl, behavior = "auto") => {
+      if (!slideEl) return;
+      const pageTop = window.scrollY || window.pageYOffset || 0;
+      slideEl.scrollIntoView({
+        behavior,
+        inline: "start",
+        block: "nearest"
+      });
+      const nextPageTop = window.scrollY || window.pageYOffset || 0;
+      if (nextPageTop !== pageTop) {
+        window.scrollTo({ top: pageTop, behavior: "auto" });
+      }
+    };
     const scrollToIndex = (index, shouldFocus = false) => {
       const slides = getSlides();
       if (!slides.length) return;
@@ -662,11 +732,7 @@
       if (!target) return;
       pendingFocus = shouldFocus;
       const behavior = prefersReducedMotion() ? "auto" : "smooth";
-      target.scrollIntoView({
-        behavior,
-        inline: "start",
-        block: "nearest"
-      });
+      scrollSlideIntoView(target, behavior);
       // Save current slide index to localStorage
       try {
         localStorage.setItem('nhc_activities_slide', clampedIndex.toString());
@@ -786,11 +852,7 @@
       const slides = getSlides();
       const firstSlide = slides[0];
       if (!firstSlide) return;
-      firstSlide.scrollIntoView({
-        behavior: "auto",
-        inline: "start",
-        block: "nearest"
-      });
+      scrollSlideIntoView(firstSlide, "auto");
       requestAnimationFrame(update);
     };
     if (slider) {

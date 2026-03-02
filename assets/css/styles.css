@@ -525,15 +525,13 @@ body[dir="rtl"] .h-title {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(247, 244, 238, .92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--color-cream);
   border-bottom: 1px solid rgba(20, 126, 73, .06);
-  transition: background .3s ease, box-shadow .3s ease, border-color .3s ease;
+  transition: background .3s ease, box-shadow .3s ease, border-color .3s ease, padding .3s ease;
 }
 
 .header.scrolled {
-  background: rgba(247, 244, 238, .96);
+  background: var(--color-cream);
   box-shadow: 0 1px 12px rgba(0, 0, 0, .06), 0 4px 24px rgba(0, 0, 0, .03);
   border-bottom-color: rgba(20, 126, 73, .10);
 }
@@ -542,9 +540,9 @@ body[dir="rtl"] .h-title {
   display: grid;
   grid-template-columns: auto auto 1fr;
   align-items: center;
-  gap: 24px;
-  padding: 10px 0;
-  transition: padding .3s ease;
+  gap: var(--header-gap, 24px);
+  padding: var(--header-py, 10px) 0;
+  transition: padding .3s ease, gap .3s ease;
 }
 
 .header.scrolled .header-inner {
@@ -793,6 +791,33 @@ body[dir="rtl"] .brand {
   display: none
 }
 
+.lang-label[lang="ar"],
+.lang-label[lang="ku"],
+.lang-option[lang="ar"],
+.lang-option[lang="ku"],
+.lang-option-full[lang="ar"],
+.lang-option-full[lang="ku"],
+.lang-option-short[lang="ar"],
+.lang-option-short[lang="ku"] {
+  letter-spacing: 0;
+}
+
+.lang-label[lang="ar"],
+.lang-option[lang="ar"],
+.lang-option-full[lang="ar"],
+.lang-option-short[lang="ar"],
+.drawer-lang-btn[lang="ar"] {
+  font-family: var(--font-ar-sans);
+}
+
+.lang-label[lang="ku"],
+.lang-option[lang="ku"],
+.lang-option-full[lang="ku"],
+.lang-option-short[lang="ku"],
+.drawer-lang-btn[lang="ku"] {
+  font-family: var(--font-ku-sans);
+}
+
 .lang-caret {
   width: 6px;
   height: 6px;
@@ -945,11 +970,13 @@ body[dir="rtl"] .lang-menu {
 .drawer-panel {
   width: 100%;
   height: 100%;
-  padding: var(--header-height) 20px max(40px, env(safe-area-inset-bottom));
+  padding: calc(var(--header-height) + env(safe-area-inset-top)) 20px max(14px, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .drawer-links {
@@ -957,16 +984,17 @@ body[dir="rtl"] .lang-menu {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-grow: 1;
-  flex-shrink: 0;
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
-  gap: 2rem;
+  gap: clamp(.45rem, 1.7vh, 2rem);
+  padding-block: clamp(6px, 1.5vh, 18px);
 }
 
 .drawer-links a {
   display: block;
   font-family: var(--font-heading-active);
-  font-size: 2.8rem;
+  font-size: clamp(1.05rem, 5vh, 2.8rem);
   font-weight: 300;
   color: #fff;
   margin: 0;
@@ -974,7 +1002,7 @@ body[dir="rtl"] .lang-menu {
   text-align: center;
   background: transparent;
   text-transform: capitalize;
-  line-height: 1.1;
+  line-height: 1.04;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity .3s cubic-bezier(0.4, 0, 0.2, 1), transform .3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1021,11 +1049,11 @@ body[dir="rtl"] .drawer-links a {
 .drawer-socials {
   display: flex;
   gap: 16px;
-  margin-top: auto;
+  margin-top: clamp(6px, 1.5vh, 18px);
   width: 100%;
   justify-content: center;
   flex-wrap: nowrap;
-  padding-bottom: 50px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
 }
 
 .drawer-socials .sbtn {
@@ -1056,7 +1084,7 @@ body[dir="rtl"] .drawer-links a {
   justify-content: center;
   gap: 0;
   width: 100%;
-  padding: 16px 0 24px;
+  padding: clamp(8px, 1.4vh, 16px) 0 clamp(10px, 2vh, 24px);
   opacity: 0;
   transform: translateY(20px);
   transition: opacity .3s cubic-bezier(0.4, 0, 0.2, 1), transform .3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1079,15 +1107,20 @@ body[dir="rtl"] .drawer-lang {
   border: 0;
   color: rgba(255, 255, 255, .45);
   font-family: inherit;
-  font-size: 1rem;
+  font-size: clamp(.85rem, 1.7vh, 1rem);
   font-weight: 500;
   letter-spacing: .01em;
-  padding: 12px 18px;
+  padding: clamp(8px, 1.5vh, 12px) clamp(10px, 2.8vw, 18px);
   min-height: 44px;
   min-width: 44px;
   cursor: pointer;
   transition: color .25s ease, opacity .25s ease;
   white-space: nowrap;
+}
+
+.drawer-lang-btn[lang="ar"],
+.drawer-lang-btn[lang="ku"] {
+  letter-spacing: 0;
 }
 
 .drawer-lang-btn.active {
@@ -6455,11 +6488,47 @@ body[dir="rtl"] .cp-detail-body strong {
     --space-section: 64px;
     --card-padding: 36px;
     --header-height: 84px;
+    --header-gap: 36px;
+    --header-py: 14px;
   }
 
   .container,
   #welcome .container {
     width: min(1680px, 86%);
+  }
+
+  .brand img,
+  .header.scrolled .brand img {
+    width: 60px;
+    height: 60px;
+    margin: -8px 0;
+  }
+
+  .nav a {
+    padding: 12px 20px;
+  }
+
+  .nav a .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .lang {
+    padding: 12px 18px;
+  }
+
+  .lang svg.icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .lang-trigger {
+    padding: 14px 20px;
+  }
+
+  .lang-trigger svg {
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -6472,12 +6541,48 @@ body[dir="rtl"] .cp-detail-body strong {
   :root {
     --space-section: 80px;
     --card-padding: 44px;
-    --header-height: 96px;
+    --header-height: 100px;
+    --header-gap: 48px;
+    --header-py: 18px;
   }
 
   .container,
   #welcome .container {
     width: min(2100px, 86%);
+  }
+
+  .brand img,
+  .header.scrolled .brand img {
+    width: 72px;
+    height: 72px;
+    margin: -10px 0;
+  }
+
+  .nav a {
+    padding: 14px 24px;
+  }
+
+  .nav a .icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .lang {
+    padding: 14px 22px;
+  }
+
+  .lang svg.icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .lang-trigger {
+    padding: 16px 24px;
+  }
+
+  .lang-trigger svg {
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -6653,6 +6758,7 @@ body[dir="rtl"] .cp-detail-body strong {
 /* FHD range (including common scaled-FHD viewport widths):
    Make Welcome mission/vision/community points as large as 2K styling for KU/AR only. */
 @media (min-width: 1500px) and (max-width: 2559px) and (min-height: 800px) {
+
   html[lang="ar"] #welcome .vitem,
   html[lang="ku"] #welcome .vitem {
     gap: 2rem;
@@ -7101,6 +7207,7 @@ body[dir="rtl"] .cp-detail-body strong {
     height: 22px;
   }
 }
+
 /* --- Programs Grid V2 --- */
 .programs-grid {
   display: grid;
