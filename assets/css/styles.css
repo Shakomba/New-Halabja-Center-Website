@@ -2820,13 +2820,8 @@ body[dir="rtl"] .pagination-next svg {
   /* Allow both horizontal card swipe and vertical page scroll from card touch start */
   touch-action: pan-x pan-y pinch-zoom;
   direction: ltr;
-  /* Default LTR; overridden for RTL below */
+  /* Keep physical scroll direction consistent across browsers (LTR). */
   unicode-bidi: isolate;
-}
-
-body[dir="rtl"] .activities-track,
-html[dir="rtl"] .activities-track {
-  direction: rtl;
 }
 
 .activities-track::-webkit-scrollbar {
@@ -5090,7 +5085,7 @@ body[dir="ltr"] .pub-hero-title {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   image-rendering: auto;
-  image-rendering: -webkit-optimize-contrast;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -5150,7 +5145,7 @@ body[dir="ltr"] .pub-hero-title {
   width: 100%;
   height: 100%;
   transform: rotate3d(0, 1, 0, -180deg) translate3d(0, 0, calc(var(--book-t, 20px) / 2));
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2), 0 4px 10px rgba(0, 0, 0, 0.14);
   border-radius: 0 3px 3px 0;
   /* Round right edge (fore-edge when flipped) */
   backface-visibility: hidden;
@@ -5274,14 +5269,11 @@ body[dir="ltr"] .pub-hero-title {
   .book-top {
     transform: rotate3d(1, 0, 0, 89.15deg) translateZ(0.5px);
     box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 0 0.6px rgba(255, 255, 255, 0.4);
-    /* Subtle blur to smooth the jagged edge from near-90deg X rotation */
-    filter: blur(0.3px);
   }
 
   .book-bottom {
     transform: rotate3d(1, 0, 0, -89.15deg) translate3d(0, 0, 250px) translateZ(-0.5px);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.08), 0 0 0 0.6px rgba(255, 255, 255, 0.25);
-    filter: blur(0.3px);
   }
 
   .book-pages {
@@ -5296,10 +5288,11 @@ body[dir="ltr"] .pub-hero-title {
 
   /* Fix subpixel cover bleed in Firefox 3D */
   .book-cover {
-    transform: translate3d(0, 0, 0.5px);
+    transform: translate3d(0, 0, 0.15px);
     background-repeat: no-repeat !important;
-    background-size: calc(100% + 2px) calc(100% + 2px) !important;
+    background-size: 100% 100% !important;
     background-position: center center !important;
+    image-rendering: optimizeQuality;
   }
 }
 
