@@ -2,6 +2,25 @@
   const $ = (q, root = document) => root.querySelector(q);
   const $$ = (q, root = document) => Array.from(root.querySelectorAll(q));
 
+  // Disable automatic scroll restoration and force scroll to top
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+  
+  // Clear activities slider position on page load
+  try {
+    localStorage.removeItem("nhc_activities_slide");
+  } catch (e) {}
+  
+  // Scroll to top immediately
+  window.scrollTo(0, 0);
+  
+  // Also scroll to top after DOMContentLoaded and after a delay to ensure it takes effect
+  const scrollToTop = () => window.scrollTo(0, 0);
+  document.addEventListener("DOMContentLoaded", scrollToTop);
+  window.addEventListener("load", scrollToTop);
+  setTimeout(scrollToTop, 100);
+
   let skipHeroIntro = false;
   try {
     skipHeroIntro = sessionStorage.getItem("nhc_skip_intro") === "1";
@@ -620,304 +639,178 @@
 
   function setupActivitiesSlider() {
     const track = $("#homeNews");
-    const prev = $(".activities-arrow.prev");
-    const next = $(".activities-arrow.next");
+    const prevBtn = $(".activities-arrow.prev");
+    const nextBtn = $(".activities-arrow.next");
     const slider = track?.closest(".activities-slider");
-    const status = slider?.querySelector(".activities-status");
-    const dots = slider?.querySelector(".activities-dots");
-    if (!track || !prev || !next) return;
-    if (slider?.dataset.activitiesSliderInit === "true") {
-      // Reset scroll position to start on re-init (e.g. after language change)
-      if (typeof slider.__activitiesSliderReset === "function") {
-        slider.__activitiesSliderReset();
-      } else if (typeof slider.__activitiesSliderUpdate === "function") {
-        slider.__activitiesSliderUpdate();
-      }
-      return;
-    }
+    const statusEl = slider?.querySelector(".activities-status");
+    const dotsContainer = slider?.querySelector(".activities-dots");
 
-    const getSlides = () => Array.from(track.querySelectorAll(".news-mini"));
+    if (!track || !prevBtn || !nextBtn || !slider) return;
+    if (slider.dataset.activitiesSliderInit === "true") return;
 
-    const getLayout = () => {
-      const card = track.querySelector(".news-mini");
-      if (!card) return null;
-      const styles = getComputedStyle(track);
-      const gapValue = styles.columnGap || styles.gap || "0";
-      const gap = parseFloat(gapValue) || 0;
-      const paddingLeft = parseFloat(styles.paddingLeft) || 0;
-      const paddingRight = parseFloat(styles.paddingRight) || 0;
-      const available = Math.max(0, track.clientWidth - paddingLeft - paddingRight);
-      const cardWidth = card.getBoundingClientRect().width;
-      const step = cardWidth + gap;
-      const visibleCount = step ? Math.max(1, Math.floor((available + gap) / step)) : 1;
-      return { gap, step, visibleCount };
-    };
-
-    const getDotLimit = () => window.matchMedia("(max-width: 768px)").matches ? 6 : 4;
-    // Use the track direction (not page direction) so slider physics stay correct in RTL pages.
-    const isTrackRtl = () => getComputedStyle(track).direction === "rtl";
+    const isRTL = () => document.documentElement.getAttribute("dir") === "rtl";
     const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    let pendingFocus = false;
-    let dotButtons = [];
-    let dotMaxStart = 0;
-    let dotCount = 0;
-    let dotVisibleCount = 0;
-    let dotTotal = 0;
-    const getDotSlideIndex = (dotIndex) => {
-      if (dotCount <= 1 || dotMaxStart <= 0) return 0;
-      return Math.round((dotIndex / (dotCount - 1)) * dotMaxStart);
-    };
-    const getActiveDotIndex = (slideIndex) => {
-      if (dotCount <= 1 || dotMaxStart <= 0) return 0;
-      return Math.round((slideIndex / dotMaxStart) * (dotCount - 1));
-    };
-    const toPx = (value) => {
-      const n = parseFloat(value);
-      return Number.isFinite(n) ? n : 0;
-    };
-    const getTrackStartEdge = () => {
-      const rect = track.getBoundingClientRect();
-      const styles = getComputedStyle(track);
-      const paddingLeft = toPx(styles.paddingLeft);
-      const paddingRight = toPx(styles.paddingRight);
-      const inlineStartPad = toPx(styles.scrollPaddingInlineStart || styles.getPropertyValue("scroll-padding-inline-start"));
-      const sidePad = isTrackRtl()
-        ? toPx(styles.scrollPaddingRight || styles.getPropertyValue("scroll-padding-right"))
-        : toPx(styles.scrollPaddingLeft || styles.getPropertyValue("scroll-padding-left"));
-      const startInset = isTrackRtl()
-        ? Math.max(paddingRight, inlineStartPad, sidePad)
-        : Math.max(paddingLeft, inlineStartPad, sidePad);
-      return isTrackRtl() ? rect.right - startInset : rect.left + startInset;
-    };
-    const getMaxStart = (slidesTotal = getSlides().length) => {
-      const layout = getLayout();
-      const visibleCount = layout?.visibleCount || 1;
-      const step = layout?.step || 0;
-      const theoreticalMax = Math.max(0, slidesTotal - visibleCount);
-      if (!step) return theoreticalMax;
-      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-      // Some viewport/card combinations cannot snap to the theoretical final start.
-      // Cap to what the real scroll range can reach.
-      const reachableMax = Math.floor((maxScroll + step * 0.15) / step);
-      return Math.max(0, Math.min(theoreticalMax, reachableMax));
-    };
-    const getCurrentIndex = (slidesTotal = getSlides().length) => {
+    let slideIndex = 0;
+
+    // Get all slides
+    const getSlides = () => Array.from(track.querySelectorAll(".news-mini"));
+
+    // Get how many slides are visible in viewport
+    const getVisibleCount = () => {
       const slides = getSlides();
-      if (!slides.length) return 0;
-      const maxStart = getMaxStart(slidesTotal);
-      const trackEdge = getTrackStartEdge();
-
-      let nearestIndex = 0;
-      let nearestDistance = Number.POSITIVE_INFINITY;
-      slides.forEach((slide, idx) => {
-        const rect = slide.getBoundingClientRect();
-        const slideEdge = isTrackRtl() ? rect.right : rect.left;
-        const distance = Math.abs(slideEdge - trackEdge);
-        if (distance < nearestDistance) {
-          nearestDistance = distance;
-          nearestIndex = idx;
-        }
-      });
-
-      return Math.max(0, Math.min(maxStart, nearestIndex));
+      if (!slides.length) return 1;
+      const card = slides[0];
+      const cardRect = card.getBoundingClientRect();
+      const cardWidth = cardRect.width;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 16;
+      const availableWidth = track.clientWidth;
+      return Math.max(1, Math.floor((availableWidth + gap) / (cardWidth + gap)));
     };
-    const scrollSlideIntoView = (slideEl, behavior = "auto") => {
-      if (!slideEl) return;
-      const styles = getComputedStyle(track);
-      if (!isTrackRtl()) {
-        const paddingLeft = toPx(styles.paddingLeft);
-        const inlineStartPad = toPx(styles.scrollPaddingInlineStart || styles.getPropertyValue("scroll-padding-inline-start"));
-        const sidePad = toPx(styles.scrollPaddingLeft || styles.getPropertyValue("scroll-padding-left"));
-        const startInset = Math.max(paddingLeft, inlineStartPad, sidePad);
-        const targetLeft = Math.max(0, slideEl.offsetLeft - startInset);
-        track.scrollTo({ left: targetLeft, behavior });
-      } else {
-        // RTL: scrollLeft is 0 at the right (inline-start) and goes negative
-        // toward the left. Both Chrome and Firefox agree on this convention.
-        // We avoid scrollIntoView() because Firefox implements it inconsistently
-        // for RTL overflow containers.
-        const paddingRight = toPx(styles.paddingRight);
-        const inlineStartPad = toPx(styles.scrollPaddingInlineStart || styles.getPropertyValue("scroll-padding-inline-start"));
-        const sidePad = toPx(styles.scrollPaddingRight || styles.getPropertyValue("scroll-padding-right"));
-        const startInset = Math.max(paddingRight, inlineStartPad, sidePad);
-        // Right edge of the slide relative to the scrollable content area.
-        // offsetLeft is always measured from the physical left even in RTL.
-        const slideRight = slideEl.offsetLeft + slideEl.offsetWidth;
-        // scrollLeft needed so slideRight lands at (track.scrollWidth - startInset)
-        const targetLeft = Math.min(0, slideRight - track.scrollWidth + startInset);
-        track.scrollTo({ left: targetLeft, behavior });
-      }
-    };
-    const scrollToIndex = (index, shouldFocus = false) => {
+
+    // Navigate to specific slide
+    const goToSlide = (index) => {
       const slides = getSlides();
       if (!slides.length) return;
-      const maxStart = getMaxStart(slides.length);
-      const clampedIndex = Math.max(0, Math.min(maxStart, index));
-      const target = slides[clampedIndex];
-      if (!target) return;
-      pendingFocus = shouldFocus;
-      const behavior = prefersReducedMotion() ? "auto" : "smooth";
-      scrollSlideIntoView(target, behavior);
-      // Save current slide index to localStorage
-      try {
-        localStorage.setItem('nhc_activities_slide', clampedIndex.toString());
-      } catch (e) { }
-      requestAnimationFrame(() => requestAnimationFrame(update));
-    };
-    const scrollByStep = (dir, shouldFocus = false) => {
-      const slides = getSlides();
-      if (!slides.length) return;
-      const currentIndex = getCurrentIndex(slides.length);
-      scrollToIndex(currentIndex + dir, shouldFocus);
-    };
 
-    // prev always means "go to a lower index" (toward inline-start),
-    // next always means "go to a higher index" (toward inline-end).
-    // scrollIntoView with inline:"start" is a logical property so the
-    // browser handles the physical RTL scroll direction automatically.
-    const getArrowDirections = () => ({ prev: -1, next: 1 });
-    prev.addEventListener("click", () => scrollByStep(getArrowDirections().prev));
-    next.addEventListener("click", () => scrollByStep(getArrowDirections().next));
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, slides.length - visibleCount);
+      slideIndex = Math.max(0, Math.min(index, maxIndex));
 
-    const handleDotKeydown = (e) => {
-      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight" && e.key !== "Home" && e.key !== "End") return;
-      e.preventDefault();
-      e.stopPropagation();
-      const currentIndex = dotButtons.indexOf(e.currentTarget);
-      if (currentIndex === -1) return;
-      let nextIndex = currentIndex;
-      if (e.key === "ArrowLeft") nextIndex = currentIndex === 0 ? dotButtons.length - 1 : currentIndex - 1;
-      if (e.key === "ArrowRight") nextIndex = currentIndex === dotButtons.length - 1 ? 0 : currentIndex + 1;
-      if (e.key === "Home") nextIndex = 0;
-      if (e.key === "End") nextIndex = dotButtons.length - 1;
-      dotButtons[nextIndex]?.focus({ preventScroll: true });
-      scrollToIndex(getDotSlideIndex(nextIndex), false);
-    };
-
-    const buildDots = (total, visibleCount) => {
-      if (!dots) return;
-      dots.innerHTML = "";
-      dotButtons = [];
-      dotVisibleCount = visibleCount;
-      dotTotal = total;
-      for (let i = 0; i < dotCount; i += 1) {
-        const slideIndex = getDotSlideIndex(i);
-        const start = slideIndex + 1;
-        const end = Math.min(total, slideIndex + visibleCount);
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "activities-dot";
-        btn.setAttribute("aria-label", visibleCount > 1 ? `Go to slides ${start}-${end}` : `Go to slide ${start}`);
-        btn.addEventListener("click", () => scrollToIndex(slideIndex, false));
-        btn.addEventListener("keydown", handleDotKeydown);
-        dots.appendChild(btn);
-        dotButtons.push(btn);
+      const targetSlide = slides[slideIndex];
+      if (targetSlide) {
+        const behavior = prefersReducedMotion() ? "auto" : "smooth";
+        targetSlide.scrollIntoView({ behavior, inline: "start", block: "nearest" });
+        try {
+          localStorage.setItem("nhc_activities_slide", slideIndex.toString());
+        } catch (e) {}
       }
+
+      updateUI();
     };
 
-    const updateButtons = () => {
-      const slidesTotal = getSlides().length;
-      const maxStart = getMaxStart(slidesTotal);
-      const index = getCurrentIndex(slidesTotal);
-      const dirs = getArrowDirections();
-      const canMove = (dir) => {
-        const targetIndex = index + dir;
-        return targetIndex >= 0 && targetIndex <= maxStart;
-      };
-      prev.disabled = !canMove(dirs.prev);
-      next.disabled = !canMove(dirs.next);
-      prev.setAttribute("aria-disabled", prev.disabled ? "true" : "false");
-      next.setAttribute("aria-disabled", next.disabled ? "true" : "false");
-    };
-
-    const updateStatus = () => {
+    // Update UI state
+    const updateUI = () => {
       const slides = getSlides();
-      const total = slides.length;
-      if (!total) {
-        if (status) status.textContent = "0 / 0";
-        if (dots) dots.innerHTML = "";
-        dotButtons = [];
-        dotCount = 0;
-        dotVisibleCount = 0;
-        dotTotal = 0;
+      if (!slides.length) {
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        if (statusEl) statusEl.textContent = "0 / 0";
         return;
       }
-      const layout = getLayout();
-      const visibleCount = layout?.visibleCount || 1;
-      dotMaxStart = getMaxStart(total);
-      dotCount = Math.max(1, Math.min(getDotLimit(), dotMaxStart + 1, total));
-      if (dots && (dotButtons.length !== dotCount || dotVisibleCount !== visibleCount || dotTotal !== total)) {
-        buildDots(total, visibleCount);
+
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, slides.length - visibleCount);
+
+      // Update buttons
+      prevBtn.disabled = slideIndex === 0;
+      nextBtn.disabled = slideIndex >= maxIndex;
+      prevBtn.setAttribute("aria-disabled", prevBtn.disabled ? "true" : "false");
+      nextBtn.setAttribute("aria-disabled", nextBtn.disabled ? "true" : "false");
+
+      // Update status
+      if (statusEl) {
+        statusEl.textContent = `${slideIndex + 1} / ${slides.length}`;
       }
-      const index = getCurrentIndex(total);
-      slides.forEach((slide, idx) => {
-        slide.setAttribute("aria-current", idx === index ? "true" : "false");
-      });
-      if (dotButtons.length) {
-        const activeDot = getActiveDotIndex(index);
-        dotButtons.forEach((dot, idx) => {
+
+      // Update dots
+      if (dotsContainer?.children.length) {
+        const dotCount = dotsContainer.children.length;
+        const activeDot = Math.round((slideIndex / maxIndex) * (dotCount - 1)) || 0;
+        Array.from(dotsContainer.children).forEach((dot, idx) => {
           dot.setAttribute("aria-current", idx === activeDot ? "true" : "false");
         });
       }
-      if (status) status.textContent = `${index + 1} / ${total}`;
-      // Save current slide index
-      try {
-        localStorage.setItem('nhc_activities_slide', index.toString());
-      } catch (e) { }
-      if (pendingFocus) {
-        const focusTarget = slides[index]?.querySelector("a, button, [tabindex]:not([tabindex='-1'])");
-        focusTarget?.focus({ preventScroll: true });
-        pendingFocus = false;
+
+      // Update slides aria-current
+      slides.forEach((slide, idx) => {
+        slide.setAttribute("aria-current", idx === slideIndex ? "true" : "false");
+      });
+    };
+
+    // Build dots
+    const buildDots = () => {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = "";
+
+      const slides = getSlides();
+      if (!slides.length) return;
+
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, slides.length - visibleCount);
+      const dotLimit = window.matchMedia("(max-width: 768px)").matches ? 6 : 4;
+      const dotCount = Math.max(1, Math.min(dotLimit, maxIndex + 1));
+
+      for (let i = 0; i < dotCount; i++) {
+        const targetIndex = Math.round((i / (dotCount - 1)) * maxIndex) || 0;
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "activities-dot";
+        dot.setAttribute("data-slide", targetIndex.toString());
+        dot.addEventListener("click", () => goToSlide(targetIndex));
+        dot.addEventListener("keydown", (e) => {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+          e.preventDefault();
+          const current = Array.from(dotsContainer.children).indexOf(dot);
+          let next = current;
+          if (e.key === "Home") next = 0;
+          else if (e.key === "End") next = dotsContainer.children.length - 1;
+          else if (e.key === "ArrowLeft") next = current === 0 ? dotsContainer.children.length - 1 : current - 1;
+          else if (e.key === "ArrowRight") next = current === dotsContainer.children.length - 1 ? 0 : current + 1;
+          const nextDot = dotsContainer.children[next];
+          if (nextDot) {
+            nextDot.focus();
+            goToSlide(parseInt(nextDot.getAttribute("data-slide")) || 0);
+          }
+        });
+        dotsContainer.appendChild(dot);
       }
     };
 
-    const update = () => {
-      updateButtons();
-      updateStatus();
-    };
-    const resetToStart = () => {
-      const slides = getSlides();
-      const firstSlide = slides[0];
-      if (!firstSlide) return;
-      scrollSlideIntoView(firstSlide, "auto");
-      requestAnimationFrame(update);
-    };
-    if (slider) {
-      slider.__activitiesSliderUpdate = update;
-      slider.__activitiesSliderReset = resetToStart;
-      slider.dataset.activitiesSliderInit = "true";
-    }
+    // Arrow buttons
+    prevBtn.addEventListener("click", () => goToSlide(slideIndex - 1));
+    nextBtn.addEventListener("click", () => goToSlide(slideIndex + 1));
 
-    slider?.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    // Keyboard on slider
+    slider.addEventListener("keydown", (e) => {
+      if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return;
       e.preventDefault();
-      const active = document.activeElement;
-      const keepFocus = active && active.classList.contains("activities-arrow");
-      // In RTL the arrow keys are flipped: ArrowLeft moves toward higher indices (visually left = further in list)
-      const keyboardStep = isTrackRtl()
-        ? (e.key === "ArrowLeft" ? 1 : -1)
-        : (e.key === "ArrowLeft" ? -1 : 1);
-      scrollByStep(keyboardStep, !keepFocus);
+      const direction = (isRTL() && e.key === "ArrowLeft") || (!isRTL() && e.key === "ArrowRight") ? 1 : -1;
+      goToSlide(slideIndex + direction);
     });
 
-    track.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    update();
-    if (isTrackRtl()) resetToStart();
+    // Language change
+    const langSelect = document.getElementById("langSelect");
+    if (langSelect) {
+      langSelect.addEventListener("change", () => {
+        slideIndex = 0;
+        buildDots();
+        goToSlide(0);
+      });
+    }
 
-    // Restore saved slide position after initial render
+    // Resize
+    window.addEventListener("resize", () => {
+      buildDots();
+      updateUI();
+    });
+
+    // Initialize
+    buildDots();
+    updateUI();
+
+    // Restore saved position
     setTimeout(() => {
       try {
-        const savedIndex = localStorage.getItem('nhc_activities_slide');
-        if (savedIndex !== null && !isTrackRtl()) {
-          const index = parseInt(savedIndex, 10);
-          if (!isNaN(index) && index > 0) {
-            scrollToIndex(index, false);
-          }
+        const saved = localStorage.getItem("nhc_activities_slide");
+        if (saved) {
+          const index = parseInt(saved, 10);
+          if (!isNaN(index) && index > 0) goToSlide(index);
         }
-      } catch (e) { }
+      } catch (e) {}
     }, 100);
+
+    slider.dataset.activitiesSliderInit = "true";
   }
 
   function setupNewsPage() {
