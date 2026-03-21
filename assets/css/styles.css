@@ -6205,6 +6205,34 @@ body[dir="rtl"] .cp-detail-body strong {
   }
 }
 
+/* Extra tuning for small desktops / large tablets in landscape (861–980px) */
+@media (min-width: 861px) and (max-width: 980px) {
+  .brand {
+    min-width: auto;
+    flex-shrink: 1;
+  }
+
+  .brand .name {
+    display: none; /* hide text label, keep logo visible */
+  }
+
+  .nav {
+    gap: 2px;
+    margin-inline: 2px;
+  }
+
+  .nav a {
+    padding: 6px 8px;
+    gap: 4px;
+    font-size: .8rem;
+  }
+
+  /* Hide individual nav icons to save space */
+  .nav a .icon {
+    display: none;
+  }
+}
+
 /* Rebalance dense desktop layouts around laptop widths */
 @media (min-width: 981px) and (max-width: 1240px) {
   .container {
@@ -7843,8 +7871,21 @@ body[dir="rtl"] .pc-features li::before {
   width: calc(100% - 32px);
   background: #fff;
   box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  /* Cap height so content doesn't overflow the viewport */
+  max-height: 90dvh;
+  max-height: 90vh; /* fallback */
   overflow: hidden;
   animation: bioModalIn 0.28s cubic-bezier(.22,.68,0,1.2) both;
+}
+/* Inner card handles the flex layout so close btn + photo + body stack correctly */
+.dir-bio-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 90dvh;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
 }
 @keyframes bioModalIn {
   from { opacity: 0; transform: scale(0.92) translateY(16px); }
@@ -7940,9 +7981,17 @@ body[dir="rtl"] .pc-features li::before {
   background: linear-gradient(135deg, #147E49 0%, #0d5c35 100%);
   padding: 28px 24px 20px;
 }
+/* Photo header never shrinks */
+.dir-bio-photo-wrap {
+  flex-shrink: 0;
+}
 /* Body */
 .dir-bio-body {
   padding: 20px 24px 24px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  min-height: 0; /* critical for flex children to scroll */
 }
 .dir-bio-name {
   font-size: 1.25rem;
