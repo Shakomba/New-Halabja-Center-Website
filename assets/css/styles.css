@@ -4199,10 +4199,7 @@ textarea.input {
   }
 }
 
-@media (max-width: 860px) {
-  .nav {
-    display: none
-  }
+@media (max-width: 1080px) {
 
   .menu-toggle {
     display: inline-flex
@@ -6158,7 +6155,7 @@ body[dir="rtl"] .cp-detail-body strong {
    ======================================== */
 
 /* Keep nav/header readable on narrow desktops without dropping to mobile nav too early */
-@media (min-width: 861px) and (max-width: 1260px) {
+@media (min-width: 1081px) and (max-width: 1360px) {
   .header-inner {
     gap: 14px;
   }
@@ -6205,8 +6202,8 @@ body[dir="rtl"] .cp-detail-body strong {
   }
 }
 
-/* Extra tuning for small desktops / large tablets in landscape (861–980px) */
-@media (min-width: 861px) and (max-width: 980px) {
+/* Extra tuning for small desktops / large tablets in landscape (1081–1180px) */
+@media (min-width: 1081px) and (max-width: 1180px) {
   .brand {
     min-width: auto;
     flex-shrink: 1;
