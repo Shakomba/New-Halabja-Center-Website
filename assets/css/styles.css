@@ -1048,6 +1048,14 @@ body[dir="rtl"] .drawer-links a {
   transition-delay: .18s
 }
 
+.mobile-drawer.open .drawer-links a:nth-child(7) {
+  transition-delay: .21s
+}
+
+.mobile-drawer.open .drawer-links a:nth-child(8) {
+  transition-delay: .24s
+}
+
 .drawer-socials {
   display: flex;
   gap: 16px;
@@ -2499,13 +2507,6 @@ body[data-page="news"] .news-card {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-}
-
-body[data-page="news"] .news-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-  border-color: rgba(20, 126, 73, .18);
 }
 
 body[data-page="news"] .news-media {
@@ -2542,20 +2543,6 @@ body[data-page="news"] .news-media::before {
   background: linear-gradient(180deg, transparent 40%, rgba(10, 75, 44, .5) 100%);
   opacity: 0;
   transition: opacity .35s ease;
-}
-
-body[data-page="news"] .news-card:hover .news-media::before {
-  opacity: 1;
-}
-
-body[data-page="news"] .news-media[data-gallery-trigger]:hover {
-  transform: scale(1.02);
-  transition: transform 0.3s ease;
-}
-
-body[data-page="news"] .news-media[data-gallery-trigger]:hover::after {
-  opacity: 1;
-  backdrop-filter: blur(4px);
 }
 
 body[data-page="news"] .news-media.is-empty {
@@ -3424,8 +3411,8 @@ html[lang="ar"] .modal-date {
   transform: scale(1.06);
 }
 
-/* Native Lightbox Gallery with Sliding Track */
-.native-lightbox {
+/* Native Lightbox Gallery (Now an HTML <dialog> Top-Layer Element) */
+dialog.native-lightbox {
   position: fixed;
   inset: 0;
   z-index: 10000;
@@ -3433,6 +3420,20 @@ html[lang="ar"] .modal-date {
   display: none;
   opacity: 0;
   transition: opacity 0.3s ease, background-color 0.3s ease;
+  
+  /* Reset defaults for dialog */
+  border: none;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+}
+
+dialog.native-lightbox::backdrop {
+  background: transparent;
 }
 
 .native-lightbox.active {
@@ -7604,6 +7605,15 @@ body[dir="rtl"] .pc-features li::before {
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 16px;
 }
+/* ── Masonry layout for search results (positions set by JS) */
+.dir-card-grid.dir-card-grid-search {
+  position: relative;
+}
+/* JS masonry sets absolute position & width per card */
+.dir-card-grid.dir-card-grid-search .dir-card,
+.dir-card-grid.dir-card-grid-search .dir-card.dir-card-multi {
+  flex: none;
+}
 
 /* ── Individual Card ───────────────────────────────── */
 .dir-card {
@@ -7616,7 +7626,17 @@ body[dir="rtl"] .pc-features li::before {
   transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
-  
+}
+/* Bio-enabled cards are clickable */
+.dir-card.dir-card-bio {
+  cursor: pointer;
+}
+.dir-card.dir-card-bio:hover {
+  box-shadow: 0 6px 24px rgba(20, 126, 73, 0.15);
+  border-color: rgba(20, 126, 73, 0.2);
+  transform: translateY(-2px);
+}
+.dir-card {
   /* Flexbox layout for fixed-bottom date */
   display: flex;
   flex-direction: column;
@@ -7730,6 +7750,276 @@ body[dir="rtl"] .pc-features li::before {
   background: rgba(10, 130, 140, 0.10);
   color: #0a7a85;
 }
+
+/* The Ten Qira'at — rich gold */
+.dir-card-category[data-cat-id="ten-qiraat"] {
+  background: rgba(212, 175, 55, 0.15);
+  color: #a67c00;
+}
+
+/* Grouped card adjustments for search */
+.dir-card.dir-card-grouped {
+  justify-content: flex-start;
+  padding-bottom: 24px;
+}
+.dir-card.dir-card-grouped .dir-card-name {
+  flex: none;
+  font-size: 1.1rem;
+  color: var(--green-3, #147E49);
+  margin-bottom: 16px;
+  align-items: flex-start;
+  justify-content: center;
+}
+.dir-card-certs-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+/* Grouped card: use normal category badge styles */
+.dir-card.dir-card-grouped .dir-card-category {
+  margin-top: 0;
+  flex: 1 1 30%;
+  min-width: 30%;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ── Mobile: search results responsive layout ──────── */
+@media (max-width: 560px) {
+  /* Switch search grid back to normal CSS grid on mobile */
+  .dir-card-grid.dir-card-grid-search {
+    display: grid;
+    grid-template-columns: 1fr;
+    position: static !important;
+    height: auto !important;
+    gap: 12px;
+  }
+
+  /* Reset any absolute positions JS masonry may have set */
+  .dir-card-grid.dir-card-grid-search .dir-card {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+  }
+
+  /* Make badges wrap and shrink gracefully */
+  .dir-card-certs-list {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .dir-card-category {
+    white-space: normal;
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Tighten card padding on mobile */
+  .dir-card.dir-card-grouped {
+    padding: 16px 12px 16px;
+  }
+
+  .dir-card.dir-card-grouped .dir-card-name {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+}
+
+/* ── Biography Modal ───────────────────────────────── */
+.dir-bio-modal {
+  border: none;
+  border-radius: 20px;
+  padding: 0;
+  max-width: 520px;
+  width: calc(100% - 32px);
+  background: #fff;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  overflow: hidden;
+  animation: bioModalIn 0.28s cubic-bezier(.22,.68,0,1.2) both;
+}
+@keyframes bioModalIn {
+  from { opacity: 0; transform: scale(0.92) translateY(16px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+.dir-bio-modal::backdrop {
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+}
+/* Close button */
+.dir-bio-close {
+  position: absolute;
+  top: 14px;
+  inset-inline-end: 14px;
+  width: 34px; height: 34px;
+  border: none; border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .18s;
+  z-index: 1;
+}
+.dir-bio-close:hover { background: rgba(255,255,255,0.32); }
+.dir-bio-close svg { width: 18px; height: 18px; }
+/* Photo (optional) */
+.dir-bio-photo-wrap {
+  background: linear-gradient(135deg, #147E49 0%, #0d5c35 100%);
+  padding: 32px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.dir-bio-photo-wrap.dir-is-clickable img {
+  cursor: pointer;
+}
+.dir-bio-photo {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.35);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  transition: transform 0.3s cubic-bezier(.22,.68,0,1.2);
+}
+
+/* ── Fullscreen Photo Modal ────────────────────────── */
+.dir-fullscreen-modal {
+  border: none;
+  background: transparent;
+  padding: 0;
+  max-width: 95vw;
+  max-height: 95vh;
+  margin: auto;
+  overflow: visible;
+  outline: none;
+}
+.dir-fullscreen-modal::backdrop {
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+}
+.dir-fs-photo {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+  background: #fff;
+  display: block;
+  margin: auto;
+}
+.dir-fs-close {
+  position: absolute;
+  top: -48px;
+  inset-inline-end: 0;
+  width: 40px; height: 40px;
+  border: none; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.dir-fs-close:hover {
+  background: rgba(255,255,255,0.4);
+}
+.dir-fs-close svg {
+  width: 22px; height: 22px;
+}
+
+/* No-photo header strip */
+.dir-bio-header-strip {
+  background: linear-gradient(135deg, #147E49 0%, #0d5c35 100%);
+  padding: 28px 24px 20px;
+}
+/* Body */
+.dir-bio-body {
+  padding: 20px 24px 24px;
+}
+.dir-bio-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0d5c35;
+  margin: 0 0 16px;
+  text-align: center;
+}
+/* Info rows (birthDate, job, degree) */
+.dir-bio-info {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.dir-bio-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: #374151;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #f8faf9;
+}
+.dir-bio-row-icon {
+  width: 20px; height: 20px;
+  color: #147E49;
+  flex-shrink: 0;
+}
+.dir-bio-row-label {
+  font-weight: 600;
+  color: #6b7280;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+.dir-bio-row > span:last-child {
+  margin-inline-start: auto;
+  text-align: end;
+}
+/* Certs section */
+.dir-bio-certs-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+.dir-bio-cert-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #f8faf9;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+.dir-bio-cert-name {
+  font-weight: 600;
+  color: #111827;
+}
+.dir-bio-cert-date {
+  font-size: 0.78rem;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+.dir-bio-cert-num {
+  font-size: 0.72rem;
+  background: rgba(20,126,73,0.1);
+  color: #147E49;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
 /* ── Mobile Drawer & FAB ───────────────────────────── */
 .dir-fab {
   display: none; /* hidden on desktop */
@@ -7769,6 +8059,15 @@ body[dir="rtl"] .pc-features li::before {
     height: 24px;
   }
   
+  /* Hide the filter button when the main hamburger menu is open */
+  body.drawer-open .dir-fab {
+    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  
+
   /* 2. Drawer Overlay */
   .dir-drawer-overlay {
     display: block;
@@ -7835,6 +8134,15 @@ body[dir="rtl"] .pc-features li::before {
   .dir-card-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 12px;
+  }
+  .dir-card-grid.dir-card-grid-search {
+    gap: 12px;
+  }
+  .dir-card-grid.dir-card-grid-search .dir-card {
+    flex: 0 0 150px;
+  }
+  .dir-card-grid.dir-card-grid-search .dir-card.dir-card-multi {
+    flex: 0 0 260px;
   }
 }
 

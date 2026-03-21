@@ -220,6 +220,42 @@
     </div>
   </main>
 
+  <!-- Biography Modal -->
+  <dialog id="dirBioModal" class="dir-bio-modal" aria-modal="true" aria-labelledby="dirBioName">
+    <div class="dir-bio-card">
+      <button class="dir-bio-close" id="dirBioClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Photo (only rendered by JS when a photo exists) -->
+      <div class="dir-bio-photo-wrap" id="dirBioPhotoWrap" hidden>
+        <img id="dirBioPhoto" src="" alt="" class="dir-bio-photo">
+      </div>
+
+      <div class="dir-bio-body">
+        <h2 class="dir-bio-name" id="dirBioName"></h2>
+
+        <!-- Info rows -->
+        <div class="dir-bio-info" id="dirBioInfo"></div>
+
+        <!-- Certificates list -->
+        <div class="dir-bio-certs" id="dirBioCerts"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Fullscreen Photo Modal -->
+  <dialog id="dirFullscreenModal" class="dir-fullscreen-modal" aria-modal="true" aria-label="Fullscreen Photo">
+    <button class="dir-fs-close" id="dirFsClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <img id="dirFsPhoto" src="" alt="Fullscreen view" class="dir-fs-photo">
+  </dialog>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
@@ -295,6 +331,7 @@
   <script src="assets/js/i18n.js?v=5"></script>
   <script src="assets/js/site-config.js?v=5"></script>
   <script src="assets/js/main.js?v=5"></script>
+  <script src="assets/js/lightbox-gallery.js"></script>
   <script src="assets/js/directory.js?v=5"></script>
 </body>
 

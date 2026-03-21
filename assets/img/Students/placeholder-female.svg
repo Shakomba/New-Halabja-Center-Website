@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="50" fill="#fae8e8"/>
+  <path d="M 50 15 
+           C 28 15 26 40 28 55 
+           C 30 65 18 85 18 100 
+           L 82 100 
+           C 82 85 70 65 72 55 
+           C 74 40 72 15 50 15 Z" fill="#b893a6"/>
+  <!-- The face opening area to make it look like a hijab -->
+  <ellipse cx="50" cy="40" rx="14" ry="18" fill="#fceae3"/>
+</svg>

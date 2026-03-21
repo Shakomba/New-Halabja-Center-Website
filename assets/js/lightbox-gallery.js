@@ -82,7 +82,7 @@
   function ensureLightbox() {
     if (lightbox) return;
 
-    lightbox = document.createElement('div');
+    lightbox = document.createElement('dialog');
     lightbox.id = 'nativeLightbox';
     lightbox.className = 'native-lightbox';
     // Keep slider math consistent across site languages by isolating from page RTL direction.
@@ -298,6 +298,7 @@
     renderSlides();
     lightbox.style.opacity = '0';
     lightbox.classList.add('active');
+    if (typeof lightbox.showModal === 'function' && !lightbox.hasAttribute('open')) lightbox.showModal();
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
@@ -323,6 +324,7 @@
     setTimeout(function () {
       if (!lightbox) return;
       lightbox.classList.remove('active');
+      if (typeof lightbox.close === 'function' && lightbox.hasAttribute('open')) lightbox.close();
       lightbox.setAttribute('aria-hidden', 'true');
       dragAxis = null;
       dragOffsetX = 0;

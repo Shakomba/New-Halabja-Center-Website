@@ -18,6 +18,27 @@ const directoryInit = () => {
 
   const getCurrentLang = () => document.documentElement.lang || 'ku';
 
+  /* ── Bio modal elements ────────────────────────────── */
+  const bioModal      = getEl('dirBioModal');
+  const bioPhotoWrap  = getEl('dirBioPhotoWrap');
+  const bioPhoto      = getEl('dirBioPhoto');
+  const bioName       = getEl('dirBioName');
+  const bioInfo       = getEl('dirBioInfo');
+  const bioCerts      = getEl('dirBioCerts');
+  const bioClose      = getEl('dirBioClose');
+
+  /* ── Fullscreen modal elements ──────────────────────── */
+  const fsModal       = getEl('dirFullscreenModal');
+  const fsPhoto       = getEl('dirFsPhoto');
+  const fsClose       = getEl('dirFsClose');
+
+  /* ── Bio modal label lookup ────────────────────────── */
+  const bioLabels = {
+    ku: { birthDate: 'بەرواری لەدایکبوون', job: 'پیشە', degree: 'بروانامە', certs: 'بروانامەکان' },
+    ar: { birthDate: 'تاريخ الميلاد',       job: 'المهنة', degree: 'الشهادة',    certs: 'الشهادات' },
+    en: { birthDate: 'Date of Birth',        job: 'Profession', degree: 'Degree', certs: 'Certificates' }
+  };
+
   /* ── i18n helpers ──────────────────────────────────── */
   const t = (field, lang) => {
     lang = lang || getCurrentLang();
@@ -97,6 +118,18 @@ const directoryInit = () => {
     });
   };
 
+  /* ── Find bio by name ──────────────────────────────── */
+  const getBioByName = (nameStr, lang) => {
+    for (const cat of categoriesData) {
+      for (const m of (cat.members || [])) {
+        if (t(m.name, lang) === nameStr && m.bio) {
+          return m.bio;
+        }
+      }
+    }
+    return null;
+  };
+
   /* ── Build card HTML ───────────────────────────────── */
   const buildCard = (member, categoryName, categoryId, showCategory) => {
     const lang = getCurrentLang();
@@ -108,11 +141,36 @@ const directoryInit = () => {
       ? `<span class="dir-card-category" data-cat-id="${categoryId}">${categoryName}</span>`
       : '';
 
-    return `<article class="dir-card">
+    const hasBio = !!(member.bio || getBioByName(name, lang));
+    return `<article class="dir-card${hasBio ? ' dir-card-bio' : ''}"${hasBio ? ` data-bio="1" data-cat-id="${categoryId}"` : ''}>
       <div class="dir-card-certnum">${certNum}</div>
       <div class="dir-card-name">${name}</div>
       <div class="dir-card-date">${dateStr}</div>
       ${categoryBadge}
+    </article>`;
+  };
+
+  const buildGroupedCard = (member, certificates) => {
+    const lang = getCurrentLang();
+    const name = t(member.name, lang);
+    
+    let certsHtml = '<div class="dir-card-certs-list">';
+    certificates.forEach(c => {
+       let label = c.categoryName || '';
+       label = label.replace(/(?:مۆڵەتی?|بڕوانامەی?|إجازة|شهادة|License|Certificate)\s*/ig, '').trim();
+       if (c.certNumber) {
+         label += ` #${c.certNumber}`;
+       }
+       certsHtml += `<span class="dir-card-category" data-cat-id="${c.categoryId}">${label}</span>`;
+    });
+    certsHtml += '</div>';
+
+    const multiClass = certificates.length > 1 ? ' dir-card-multi' : '';
+    const hasBio = !!(member.bio || getBioByName(name, lang));
+    const bioAttr = hasBio ? ' data-bio="1"' : '';
+    return `<article class="dir-card dir-card-grouped${multiClass}${hasBio ? ' dir-card-bio' : ''}"${bioAttr}>
+      <div class="dir-card-name">${name}</div>
+      ${certsHtml}
     </article>`;
   };
 
@@ -126,7 +184,7 @@ const directoryInit = () => {
       // Global search across all categories — check ALL language variants
       isSearching = true;
       const tokens = normalizedTerm.split(/\s+/).filter(Boolean);
-      const results = [];
+      const groupedResults = {};
 
       categoriesData.forEach(cat => {
         const catName = t(cat.name, lang);
@@ -139,12 +197,25 @@ const directoryInit = () => {
             [nameVariants, m.certNumber || '', m.date || ''].join(' ')
           );
           if (tokens.every(tok => haystack.includes(tok))) {
-            results.push({ member: m, categoryName: catName, categoryId: cat.id });
+            const studentKey = typeof m.name === 'object' ? (m.name.ku || m.name.en || m.name.ar || String(m.name)) : String(m.name);
+            
+            if (!groupedResults[studentKey]) {
+                groupedResults[studentKey] = {
+                    member: m,
+                    certificates: []
+                };
+            }
+            groupedResults[studentKey].certificates.push({
+                categoryName: catName,
+                categoryId: cat.id,
+                certNumber: m.certNumber,
+                date: m.date
+            });
           }
         });
       });
 
-      return { cards: results, showCategory: true };
+      return { cards: Object.values(groupedResults), showCategory: true };
     } else {
       // Show active category
       isSearching = false;
@@ -157,6 +228,109 @@ const directoryInit = () => {
       };
     }
   };
+
+  /* ── Open Bio Modal ────────────────────────────────── */
+  const openBioModal = (member, allCertsForMember) => {
+    if (!bioModal) return;
+    const lang = getCurrentLang();
+    const labels = bioLabels[lang] || bioLabels.en;
+
+    // Name
+    bioName.textContent = t(member.name, lang);
+
+    // Photo — show only if present
+    const photo = member.bio && member.bio.photo;
+    if (photo) {
+      bioPhoto.src = photo;
+      bioPhoto.alt = t(member.name, lang);
+      bioPhotoWrap.hidden = false;
+      bioPhotoWrap.innerHTML = ''; // reset
+      bioPhotoWrap.appendChild(bioPhoto);
+      if (photo.includes('placeholder-')) {
+        bioPhotoWrap.classList.remove('dir-is-clickable');
+      } else {
+        bioPhotoWrap.classList.add('dir-is-clickable');
+      }
+    } else {
+      bioPhotoWrap.hidden = true;
+      // Add a coloured header strip with just the name instead
+      bioPhotoWrap.hidden = true;
+    }
+
+    // Info rows
+    const infoFields = ['birthDate', 'job', 'degree'];
+    const icons = {
+      birthDate: `<svg class="dir-bio-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>`,
+      job:       `<svg class="dir-bio-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`,
+      degree:    `<svg class="dir-bio-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>`
+    };
+    let infoHtml = '';
+    if (member.bio) {
+      infoFields.forEach(field => {
+        const val = t(member.bio[field], lang);
+        if (val) {
+          infoHtml += `<div class="dir-bio-row">
+            ${icons[field]}
+            <span class="dir-bio-row-label">${labels[field]}</span>
+            <span>${val}</span>
+          </div>`;
+        }
+      });
+    }
+    bioInfo.innerHTML = infoHtml;
+
+    // Certificates
+    let certsHtml = `<div class="dir-bio-certs-title">${labels.certs}</div>`;
+    allCertsForMember.forEach(cert => {
+      const catName = (cert.categoryName || '').replace(/(?:مۆڵەتی?|بڕوانامەی?|إجازة|شهادة|License|Certificate)\s*/ig, '').trim();
+      certsHtml += `<div class="dir-bio-cert-row">
+        <span class="dir-bio-cert-name">${catName}</span>
+        <span class="dir-bio-cert-date">${cert.date || ''}</span>
+        ${cert.certNumber ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
+      </div>`;
+    });
+    bioCerts.innerHTML = certsHtml;
+
+    bioModal.showModal();
+    document.body.style.overflow = 'hidden';
+  };
+
+  /* ── Bio modal close ───────────────────────────────── */
+  if (bioClose) {
+    bioClose.addEventListener('click', () => bioModal.close());
+  }
+  if (bioModal) {
+    bioModal.addEventListener('click', e => {
+      if (e.target === bioModal) bioModal.close();
+    });
+    bioModal.addEventListener('close', () => {
+      document.body.style.overflow = '';
+    });
+  }
+
+  /* ── Fullscreen modal open/close ───────────────────── */
+  if (bioPhotoWrap) {
+    bioPhotoWrap.addEventListener('click', (e) => {
+      // Only open if the exact clicked element is the profile picture itself
+      if (e.target !== bioPhoto) return;
+      if (bioPhoto.src && bioPhotoWrap.classList.contains('dir-is-clickable')) {
+        if (typeof window.openNativeLightbox === 'function') {
+          window.openNativeLightbox(bioPhoto.src, [bioPhoto.src], 0);
+        } else if (fsModal) {
+          fsPhoto.src = bioPhoto.src;
+          fsModal.showModal();
+        }
+      }
+    });
+  }
+  if (fsClose) {
+    fsClose.addEventListener('click', () => fsModal.close());
+  }
+  if (fsModal) {
+    fsModal.addEventListener('click', e => {
+      if (e.target === fsModal) fsModal.close();
+    });
+  }
 
   const render = () => {
     renderSidebar();
@@ -172,23 +346,129 @@ const directoryInit = () => {
       cardGrid.style.display = '';
     }
 
+    if (isSearching) {
+      cardGrid.classList.add('dir-card-grid-search');
+    } else {
+      cardGrid.classList.remove('dir-card-grid-search');
+      // Reset inline styles left by JS masonry
+      cardGrid.style.position = '';
+      cardGrid.style.height = '';
+    }
+
     // Render cards
     let html = '';
-    cards.forEach(({ member, categoryName, categoryId }) => {
-      html += buildCard(member, categoryName, categoryId, showCategory);
+    cards.forEach(cardItem => {
+      // If we're searching, cards are grouped with a certificates array
+      if (isSearching && cardItem.certificates) {
+        html += buildGroupedCard(cardItem.member, cardItem.certificates);
+      } else {
+        html += buildCard(cardItem.member, cardItem.categoryName, cardItem.categoryId, showCategory);
+      }
     });
 
     cardGrid.innerHTML = html;
 
-    // Animate cards
+    // Delegated click: open bio modal for bio-enabled cards
+    cardGrid.addEventListener('click', e => {
+      const card = e.target.closest('[data-bio="1"]');
+      if (!card) return;
+      const lang = getCurrentLang();
+      // Find the member name from the card
+      const nameEl = card.querySelector('.dir-card-name');
+      const cardName = nameEl ? nameEl.textContent.trim() : '';
+
+      // Gather all certs for this member across all categories
+      let memberObj = null;
+      const allCerts = [];
+      for (const cat of categoriesData) {
+        for (const m of (cat.members || [])) {
+          if (t(m.name, lang) === cardName) {
+            if (!memberObj || m.bio) memberObj = m; // prioritize member object with bio
+            allCerts.push({ ...m, categoryName: t(cat.name, lang), categoryId: cat.id });
+          }
+        }
+      }
+      if (memberObj) openBioModal(memberObj, allCerts);
+    }, { once: false });
+
+    // Animate cards + apply masonry for search
     requestAnimationFrame(() => {
       const cardEls = cardGrid.querySelectorAll('.dir-card');
       cardEls.forEach((card, i) => {
         card.style.animationDelay = `${Math.min(i * 0.04, 0.6)}s`;
         card.classList.add('visible');
       });
+      if (isSearching) applyMasonry();
     });
   };
+
+  const applyMasonry = () => {
+    if (!cardGrid) return;
+    const cardEls = [...cardGrid.querySelectorAll('.dir-card')];
+    if (!cardEls.length) return;
+
+    // On narrow screens, skip masonry and let CSS grid handle layout
+    if (window.innerWidth <= 560) {
+      cardGrid.style.position = '';
+      cardGrid.style.height = '';
+      cardEls.forEach(card => {
+        card.style.position = '';
+        card.style.top = '';
+        card.style.left = '';
+        card.style.right = '';
+        card.style.width = '';
+      });
+      return;
+    }
+
+    const gap = 16;
+    const isEn = getCurrentLang() === 'en';
+    const baseCol = isEn ? 220 : 180; // wider columns for English to fit longer text
+    const containerW = cardGrid.offsetWidth;
+    const cols = Math.max(1, Math.floor((containerW + gap) / (baseCol + gap)));
+
+    const colHeights = Array(cols).fill(0);
+    cardGrid.style.position = 'relative';
+
+    cardEls.forEach(card => {
+      const isMulti = card.classList.contains('dir-card-multi');
+      // multi-cert spans 2 base columns; capped to available columns
+      const span = isMulti && cols >= 2 ? 2 : 1;
+      const cardW = span * baseCol + (span - 1) * gap;
+
+      // Find lowest-height column group that fits `span` cols side by side
+      let bestCol = 0;
+      let bestH = Infinity;
+      for (let i = 0; i <= cols - span; i++) {
+        const h = Math.max(...colHeights.slice(i, i + span));
+        if (h < bestH) { bestH = h; bestCol = i; }
+      }
+
+      const x = bestCol * (baseCol + gap);
+      card.style.position = 'absolute';
+      card.style.top  = bestH + 'px';
+      
+      const isRTL = document.documentElement.dir === 'rtl' || !isEn;
+      if (isRTL) {
+        card.style.right = x + 'px';
+        card.style.left = 'auto';
+      } else {
+        card.style.left = x + 'px';
+        card.style.right = 'auto';
+      }
+      
+      card.style.width = cardW + 'px';
+
+      // Update heights for spanned columns
+      const cardH = card.offsetHeight;
+      for (let i = bestCol; i < bestCol + span; i++) {
+        colHeights[i] = bestH + cardH + gap;
+      }
+    });
+
+    cardGrid.style.height = Math.max(...colHeights) + 'px';
+  };
+
 
   /* ── Drawer Handlers ───────────────────────────────── */
   if (fab && sidebar && overlay) {
@@ -211,6 +491,15 @@ const directoryInit = () => {
       render();
     });
   }
+
+  /* ── Re-run masonry on resize ───────────────────────── */
+  let _masonryResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(_masonryResizeTimer);
+    _masonryResizeTimer = setTimeout(() => {
+      if (isSearching) applyMasonry();
+    }, 120);
+  });
 
   /* ── Language change ───────────────────────────────── */
   translatePlaceholder();

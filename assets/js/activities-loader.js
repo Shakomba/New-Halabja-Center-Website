@@ -111,8 +111,7 @@
     const title = getTranslatedValue(activity.title, lang);
     const summary = getTranslatedValue(activity.summary, lang);
 
-    // Make thumbnail clickable if image exists
-    const thumbnailClickable = activity.image ? ` data-gallery-trigger="${activity.id}"` : '';
+    const thumbnailClickable = '';
 
     return `
       <article class="news-card reveal" data-id="${activity.id}">
@@ -295,7 +294,6 @@
 
   function attachCardEventListeners() {
     const openButtons = document.querySelectorAll('[data-open]');
-    const galleryTriggers = document.querySelectorAll('[data-gallery-trigger]');
 
     openButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -303,19 +301,6 @@
         const activity = activitiesData.find(a => a.id === id);
         if (activity) {
           openActivityModal(activity);
-        }
-      });
-    });
-
-    // Gallery lightbox triggers for thumbnails
-    galleryTriggers.forEach(trigger => {
-      trigger.style.cursor = 'pointer';
-      trigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const id = trigger.getAttribute('data-gallery-trigger');
-        const activity = activitiesData.find(a => a.id === id);
-        if (activity) {
-          openGridGallery(activity);
         }
       });
     });
@@ -413,17 +398,17 @@
       ? galleryImages
       : (mainImageSrc ? [mainImageSrc] : []);
 
-    if (mainImage && lightboxImages.length > 0) {
+    if (mainImage && mainImageSrc) {
       mainImage.addEventListener('click', () => {
         if (typeof window.openNativeLightbox === 'function') {
           try {
-            window.openNativeLightbox(lightboxImages[0], lightboxImages, 0);
+            window.openNativeLightbox(mainImageSrc, [mainImageSrc], 0);
             return;
           } catch (error) {
             console.error('Lightbox failed to open from modal main image:', error);
           }
         }
-        openImageFallback(lightboxImages[0]);
+        openImageFallback(mainImageSrc);
       });
     }
 
