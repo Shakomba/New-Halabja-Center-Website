@@ -653,6 +653,11 @@
 
     let slideIndex = 0;
 
+    // Guard flag for the scroll listener — prevents it from interfering
+    // when arrows / dots / keyboard drive the scroll programmatically.
+    let programmaticScroll = false;
+    let programmaticScrollTimer = null;
+
     // Get all slides
     const getSlides = () => Array.from(track.querySelectorAll(".news-mini"));
 
@@ -679,8 +684,13 @@
 
       const targetSlide = slides[slideIndex];
       if (targetSlide) {
+        // Suppress the scroll listener so it doesn't fight this programmatic scroll
+        programmaticScroll = true;
+        if (programmaticScrollTimer) clearTimeout(programmaticScrollTimer);
         const behavior = prefersReducedMotion() ? "auto" : "smooth";
         targetSlide.scrollIntoView({ behavior, inline: "start", block: "nearest" });
+        // Clear the guard after the animation is done (~400ms is safe for smooth scroll)
+        programmaticScrollTimer = setTimeout(() => { programmaticScroll = false; }, 400);
         try {
           localStorage.setItem("nhc_activities_slide", slideIndex.toString());
         } catch (e) {}
@@ -796,14 +806,16 @@
       updateUI();
     });
 
-    // ── Native scroll sync (mobile swipe) ───────────────
-    // On mobile, arrows are hidden so the user swipes natively.
-    // We listen for scroll on the track and sync slideIndex + dots in real-time.
+    // ── Native scroll sync (mobile swipe only) ──────────
+    // The programmaticScroll guard (declared above) prevents this listener
+    // from interfering when arrows / dots / keyboard drive the scroll.
     const onTrackScroll = () => {
+      // Ignore scroll events caused by JS-driven navigation (arrows, dots, keyboard)
+      if (programmaticScroll) return;
+
       const slides = getSlides();
       if (!slides.length) return;
       const scrollLeft = track.scrollLeft;
-      // Find which slide is closest to the current scroll position
       let closest = 0;
       let closestDist = Infinity;
       slides.forEach((slide, i) => {
