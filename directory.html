@@ -51,30 +51,6 @@
   </script>
 
   <link rel="stylesheet" href="assets/css/styles.css" />
-
-  <!-- Add Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      corePlugins: {
-        preflight: false, // Prevent Tailwind from breaking styles.css nav/footer
-        container: false, // Prevent Tailwind from overriding .container width
-      },
-      theme: {
-        extend: {
-          colors: {
-            nhc: {
-              green: '#147E49',
-              dark: '#0a4b2c',
-              gold: '#d6b46d',
-              cream: '#f7f4ee',
-              ink: '#0b1a12'
-            }
-          }
-        }
-      }
-    }
-  </script>
 </head>
 
 <body data-page="directory">
@@ -183,59 +159,63 @@
     </div>
   </header>
 
-  <main class="bg-gray-50 min-h-screen py-16 px-4 sm:px-6 lg:px-8" style="font-family: inherit;">
-    <div class="max-w-7xl mx-auto">
+  <main class="dir-main">
+    <div class="container">
       <!-- Header -->
-      <div class="text-center mb-12 reveal">
-        <h1 class="text-4xl md:text-5xl font-bold text-nhc-dark mb-4 h-title" data-i18n="dir.hero.title">Wall of Honor
-        </h1>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto" data-i18n="dir.hero.desc">Honoring all individuals past and
-          present who have earned certificates at the center.</p>
+      <div class="dir-header reveal">
+        <h1 class="h-title" data-i18n="dir.hero.title">Achievements</h1>
+        <p data-i18n="dir.hero.desc">Honoring all individuals who have earned certificates at the center.</p>
       </div>
 
       <!-- Search Bar -->
-      <div class="max-w-2xl mx-auto mb-16 sticky top-[90px] z-40 reveal relative">
-        <div class="relative group">
-          <div
-            class="absolute inset-y-0 ltr:left-0 rtl:right-0 flex items-center ltr:pl-4 rtl:pr-4 pointer-events-none">
-            <svg class="h-6 w-6 text-gray-400 group-focus-within:text-nhc-green transition-colors" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-          <!-- Note: We use logical padding based on dir attributes -->
-          <input type="text" id="dirSearchInput"
-            class="block w-full rounded-full border-0 py-4 px-12 text-gray-900 shadow-lg ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nhc-green sm:text-lg bg-white transition-all outline-none"
-            placeholder="Search by name or certificate..." data-i18n-placeholder="dir.search">
+      <div class="dir-search-wrap">
+        <div class="dir-search-box">
+          <svg class="dir-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input type="text" id="dirSearchInput" placeholder="Search by name..." data-i18n-placeholder="dir.search">
         </div>
       </div>
 
-      <!-- Loading State -->
-      <div id="dirLoading" class="flex justify-center py-24">
-        <div class="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-nhc-gold"></div>
-      </div>
+      <!-- Overlay for mobile drawer -->
+      <div class="dir-drawer-overlay" id="dirDrawerOverlay"></div>
 
-      <!-- Empty State -->
-      <div id="dirEmptyState"
-        class="hidden text-center py-24 px-6 bg-white/50 backdrop-blur-sm rounded-3xl border border-dashed border-gray-300 reveal max-w-2xl mx-auto shadow-sm">
-        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <!-- Floating Action Button (Mobile) -->
+      <button class="dir-fab" id="dirFab" aria-label="Open Categories">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h6" />
         </svg>
-        <h3 class="text-xl font-medium text-gray-900" data-i18n="dir.empty">No results found. Please try another search.
-        </h3>
-      </div>
+      </button>
+      <!-- Layout: Sidebar + Content -->
+      <div class="dir-layout">
+        <!-- Right Sidebar (categories) — first in DOM for RTL -->
+        <aside class="dir-sidebar" id="dirSidebar">
+          <h3 class="dir-sidebar-title" data-i18n="dir.certs">Certificates</h3>
+          <nav class="dir-sidebar-nav" id="dirSidebarNav" aria-label="Certificate categories">
+            <!-- Links rendered via JS -->
+          </nav>
+        </aside>
 
-      <!-- Grid -->
-      <div id="dirGrid"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 xl:gap-8 transition-opacity duration-500">
-        <!-- Cards rendered via JS -->
-      </div>
+        <!-- Main Content Area -->
+        <div class="dir-content">
+          <!-- Loading State -->
+          <div id="dirLoading" class="dir-loading">
+            <div class="dir-spinner"></div>
+          </div>
 
-      <!-- Pagination -->
-      <div id="dirPagination" class="hidden flex-wrap justify-center items-center gap-2 mt-16">
-        <!-- Pagination generated by JS -->
+          <!-- Empty State -->
+          <div id="dirEmptyState" class="dir-empty" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h3 data-i18n="dir.empty">No results found.</h3>
+          </div>
+
+          <!-- Card Grid -->
+          <div id="dirCardGrid" class="dir-card-grid">
+            <!-- Cards rendered via JS -->
+          </div>
+        </div>
       </div>
     </div>
   </main>

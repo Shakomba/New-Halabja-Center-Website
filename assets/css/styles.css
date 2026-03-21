@@ -7338,3 +7338,517 @@ body[dir="rtl"] .pc-features li::before {
 .program-card-v2:hover .pc-btn {
   opacity: 1;
 }
+
+/* ========================================
+   DIRECTORY / ACHIEVEMENTS PAGE — V2
+   Sidebar + Cards + Global Search
+   ======================================== */
+
+/* Main layout */
+.dir-main {
+  min-height: 100vh;
+  padding: 40px 0 64px;
+  background: linear-gradient(180deg, #f8faf9 0%, #f1f5f3 100%);
+}
+
+.dir-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.dir-header h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  color: var(--green-3, #0a4b2c);
+  margin-bottom: 12px;
+}
+
+.dir-header p {
+  font-size: 1.1rem;
+  color: #556b5e;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Search bar */
+.dir-search-wrap {
+  max-width: 560px;
+  margin: 0 auto 32px;
+}
+
+.dir-search-box {
+  position: relative;
+}
+
+.dir-search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  color: #9ca3af;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+[dir="ltr"] .dir-search-icon,
+:not([dir]) .dir-search-icon {
+  left: 18px;
+}
+
+[dir="rtl"] .dir-search-icon {
+  right: 18px;
+}
+
+.dir-search-box input {
+  width: 100%;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 1rem;
+  color: #1a1a1a;
+  outline: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+[dir="ltr"] .dir-search-box input,
+:not([dir]) .dir-search-box input {
+  padding: 14px 20px 14px 50px;
+}
+
+[dir="rtl"] .dir-search-box input {
+  padding: 14px 50px 14px 20px;
+}
+
+.dir-search-box input::placeholder {
+  color: #9ca3af;
+}
+
+.dir-search-box input:focus {
+  border-color: var(--green-3, #147E49);
+  box-shadow: 0 4px 20px rgba(20, 126, 73, 0.12);
+}
+
+.dir-search-box:focus-within .dir-search-icon {
+  color: var(--green-3, #147E49);
+}
+
+/* Mobile category selector — hidden on desktop */
+.dir-mobile-cats {
+  display: none;
+}
+
+/* ── Two-column layout ─────────────────────────────── */
+.dir-layout {
+  display: grid;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Sidebar is first in DOM → first column. In RTL it renders right. */
+.dir-layout {
+  grid-template-columns: 240px 1fr;
+}
+
+/* LTR: swap visual order so sidebar stays on the left */
+[dir="ltr"] .dir-sidebar {
+  order: -1;
+}
+
+/* ── Sidebar ───────────────────────────────────────── */
+.dir-sidebar {
+  position: sticky;
+  top: calc(var(--header-height, 72px) + 16px);
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.dir-sidebar-title {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin: 0 0 14px 0;
+  padding: 0 8px;
+  font-weight: 600;
+}
+
+.dir-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dir-sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #3d5a47;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: inherit;
+}
+
+.dir-sidebar-link:hover {
+  background: rgba(20, 126, 73, 0.06);
+  color: var(--green-3, #147E49);
+}
+
+.dir-sidebar-link.active {
+  background: var(--green-3, #147E49);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(20, 126, 73, 0.2);
+}
+
+.dir-sidebar-name {
+  flex: 1;
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.dir-sidebar-count {
+  min-width: 26px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 126, 73, 0.08);
+  color: var(--green-3, #147E49);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.dir-sidebar-link.active .dir-sidebar-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+/* Dimmed state when searching globally */
+.dir-sidebar-link.searching {
+  opacity: 0.45;
+  pointer-events: auto;
+}
+
+.dir-sidebar-link.searching:hover {
+  opacity: 0.8;
+}
+
+/* ── Content area ──────────────────────────────────── */
+.dir-content {
+  min-height: 300px;
+}
+
+/* Loading spinner */
+.dir-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.dir-spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid rgba(0, 0, 0, 0.08);
+  border-top-color: var(--orange, #d6b46d);
+  border-radius: 50%;
+  animation: dir-spin 0.8s linear infinite;
+}
+
+@keyframes dir-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Empty state */
+.dir-empty {
+  text-align: center;
+  padding: 64px 24px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.dir-empty svg {
+  width: 48px;
+  height: 48px;
+  color: #c4cfc8;
+  margin: 0 auto 16px;
+  display: block;
+}
+
+.dir-empty h3 {
+  font-size: 1.1rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* ── Card Grid ─────────────────────────────────────── */
+.dir-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+/* ── Individual Card ───────────────────────────────── */
+.dir-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 16px 20px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.dir-card.visible {
+  animation: dir-card-in 0.4s ease forwards;
+}
+
+@keyframes dir-card-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dir-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(20, 126, 73, 0.1);
+  border-color: rgba(20, 126, 73, 0.15);
+}
+
+/* Certificate Number — prominent center */
+.dir-card-certnum {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--green-3, #147E49);
+  margin-bottom: 10px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Name */
+.dir-card-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a2b1f;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+/* Date */
+.dir-card-date {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Category badge (only during search) */
+.dir-card-category {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  /* default fallback */
+  background: rgba(20, 126, 73, 0.10);
+  color: #147E49;
+}
+
+/* ── Per-category badge colours ─────────────────────── */
+/* Memorization License — deep gold */
+.dir-card-category[data-cat-id="hifz-license"] {
+  background: rgba(180, 120, 0, 0.10);
+  color: #9a6500;
+}
+
+/* Recitation License — teal green */
+.dir-card-category[data-cat-id="recitation-license"] {
+  background: rgba(13, 116, 80, 0.10);
+  color: #0d7450;
+}
+
+/* Tajweed Theory — indigo/purple */
+.dir-card-category[data-cat-id="tajweed-theory"] {
+  background: rgba(99, 60, 180, 0.10);
+  color: #5b35a8;
+}
+
+/* Tuhfat al-Atfal — rose */
+.dir-card-category[data-cat-id="tuhfat-alatfal"] {
+  background: rgba(190, 40, 80, 0.10);
+  color: #b01f4a;
+}
+
+/* Noorani Qaida — sky blue */
+.dir-card-category[data-cat-id="noorani-qaida"] {
+  background: rgba(14, 110, 200, 0.10);
+  color: #0b5ea8;
+}
+
+/* Muqaddimah Jazariyyah — warm amber/orange */
+.dir-card-category[data-cat-id="muqaddimah-jazariyyah"] {
+  background: rgba(200, 100, 10, 0.10);
+  color: #b35500;
+}
+
+/* Adhan & Iqamah — slate teal */
+.dir-card-category[data-cat-id="adhan-iqamah"] {
+  background: rgba(10, 130, 140, 0.10);
+  color: #0a7a85;
+}
+/* ── Mobile Drawer & FAB ───────────────────────────── */
+.dir-fab {
+  display: none; /* hidden on desktop */
+}
+
+.dir-drawer-overlay {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  /* 1. Floating Action Button */
+  .dir-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 24px;
+    inset-inline-start: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--green-3, #147E49);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 16px rgba(20, 126, 73, 0.35);
+    z-index: 900;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .dir-fab:active {
+    transform: scale(0.92);
+  }
+  
+  .dir-fab svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* 2. Drawer Overlay */
+  .dir-drawer-overlay {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 950;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+  
+  .dir-drawer-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* 3. Slide-out Drawer (converted sidebar) */
+  .dir-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 85vw;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 0 24px rgba(0,0,0,0.15);
+    margin: 0; /* remove sticky margins */
+    border-radius: 0; /* flat edges */
+    overflow-y: auto;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.35s;
+    visibility: hidden; /* Prevent focus when closed */
+  }
+  
+  .dir-sidebar.drawer-open {
+    visibility: visible;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0s;
+    transform: translateX(0) !important;
+  }
+  
+  /* Slide from left in LTR (English) */
+  [dir="ltr"] .dir-sidebar,
+  :not([dir]) .dir-sidebar {
+    right: auto;
+    left: 0;
+    transform: translateX(-100%);
+  }
+  
+  /* Slide from right in RTL (Kurdish/Arabic) */
+  [dir="rtl"] .dir-sidebar {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  /* Single column layout for content */
+  .dir-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .dir-card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .dir-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .dir-header p {
+    font-size: 0.92rem;
+  }
+
+  .dir-card {
+    padding: 18px 12px 16px;
+  }
+
+  .dir-card-certnum {
+    font-size: 1.3rem;
+  }
+
+  .dir-card-name {
+    font-size: 0.85rem;
+  }
+}
+

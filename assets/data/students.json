@@ -1,488 +1,392 @@
-[
-  {
-    "name": {
-      "en": "Ahmed Ainadeen",
-      "ku": "أحمد عين الدين",
-      "ar": "أحمد عين الدين"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Azan Anwar",
-      "ku": "ئازان انور",
-      "ar": "أذان أنور"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Evin Omar",
-      "ku": "ئێڤین عمر",
-      "ar": "إيفين عمر"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Bushra Saeed",
-      "ku": "بشری سعید",
-      "ar": "بشرى سعيد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Bahman Hama Amin",
-      "ku": "بەهمەن حمە ئەمین",
-      "ar": "بهمن حمه أمين"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Tre Adnan",
-      "ku": "ترێ عدنان",
-      "ar": "تري عدنان"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Khanda Ahmed",
-      "ku": "خەندە احمد",
-      "ar": "خندة أحمد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Dara Karim",
-      "ku": "دارا کریم",
-      "ar": "دارا كريم"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Dunya Muneer",
-      "ku": "دونیا منیر",
-      "ar": "دنيا منير"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Diwan Nuraddin",
-      "ku": "دیوان نور الدین",
-      "ar": "ديوان نور الدين"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Zarya Omed",
-      "ku": "زەریا اومید",
-      "ar": "زريا أوميد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Sabat Ahmed",
-      "ku": "سابات احمد",
-      "ar": "سابات أحمد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Sazgar Mohammed",
-      "ku": "سازگار محمد",
-      "ar": "سازكار محمد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Snur Abdullah",
-      "ku": "سنور عبد الله",
-      "ar": "سنور عبد الله"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Soma Hama Rashid",
-      "ku": "سۆما حمە رەشيد",
-      "ar": "سوما حمه رشيد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Shler Mohammed",
-      "ku": "شلێر محمد",
-      "ar": "شلير محمد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Unyar Tahir",
-      "ku": "شنیار طاهر",
-      "ar": "شنيار طاهر"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Shahla Ahmed",
-      "ku": "شهلا احمد",
-      "ar": "شهلاء أحمد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Shko Faruq",
-      "ku": "شکۆ فاروق",
-      "ar": "شكو فاروق"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Shene Abdullah",
-      "ku": "شێنێ عبد اللە",
-      "ar": "شيني عبد الله"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Faruq Hussein",
-      "ku": "فاروق حسین",
-      "ar": "فاروق حسين"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Lare Omar",
-      "ku": "لەرێ عومەر",
-      "ar": "لري عمر"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Mohammed Ahmed Majid",
-      "ku": "محمد احمد مجید",
-      "ar": "محمد أحمد مجيد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Mohammed Othman Hama Rashid",
-      "ku": "محمد عوسمان حمە ڕەشید",
-      "ar": "محمد عثمان حمه رشيد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Maryam Wali",
-      "ku": "مریم والی",
-      "ar": "مريم والي"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Hataw Abdullah",
-      "ku": "هەتاو عبد اللە",
-      "ar": "هتاو عبد الله"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Harme Rauf",
-      "ku": "هەرمێ رؤوف",
-      "ar": "هرمي رؤوف"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Pishtiwan Aziz",
-      "ku": "پشتیوان عزیز",
-      "ar": "بشتيوان عزيز"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Parya Sabah",
-      "ku": "پەریا صباح",
-      "ar": "بريا صباح"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Chnur Azad",
-      "ku": "چنور ئازاد",
-      "ar": "جنور آزاد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Rezhin Najmaddin",
-      "ku": "ڕێژین نجم الدین",
-      "ar": "ريجين نجم الدين"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Rand Fahmi",
-      "ku": "ڕەند فەهمی",
-      "ar": "رند فهمي"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Gulala Mohammed",
-      "ku": "گوڵاڵە محمد",
-      "ar": "كلالة محمد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
-      }
-    ]
-  },
-  {
-    "name": {
-      "en": "Yusra Saeed",
-      "ku": "یسری سعید",
-      "ar": "يسرى سعيد"
-    },
-    "certs": [
-      {
-        "en": "Quran Reading",
-        "ku": "خوێندنەوەی قورئان",
-        "ar": "تلاوة القرآن"
+{
+  "categories": [
+    {
+      "id": "hifz-license",
+      "name": {
+        "en": "Memorization License",
+        "ku": "مۆڵەتی حفظ",
+        "ar": "إجازة الحفظ"
       },
-      {
-        "en": "Noorani Qaida",
-        "ku": "قاعیدەی نوورانی",
-        "ar": "القاعدة النورانية"
+      "members": []
+    },
+    {
+      "id": "recitation-license",
+      "name": {
+        "en": "Recitation License",
+        "ku": "مۆڵەتی خوێندنەوە",
+        "ar": "إجازة التلاوة"
       },
-      {
-        "en": "Quran Memorization",
-        "ku": "لەبەرکردنی قورئان",
-        "ar": "حفظ القرآن"
-      }
-    ]
-  }
-]
+      "members": [
+        {
+          "name": {
+            "ku": "فاروق حسین",
+            "ar": "فاروق حسين",
+            "en": "Farooq Hussein"
+          },
+          "certNumber": "1",
+          "date": "01/01/2012"
+        },
+        {
+          "name": {
+            "ku": "أحمد عين الدين",
+            "ar": "أحمد عين الدين",
+            "en": "Ahmed Ainaddin"
+          },
+          "certNumber": "4",
+          "date": "21/03/2013"
+        },
+        {
+          "name": {
+            "ku": "شلێر محمد",
+            "ar": "شلير محمد",
+            "en": "Shler Muhammad"
+          },
+          "certNumber": "13",
+          "date": "27/04/2016"
+        },
+        {
+          "name": {
+            "ku": "سازگار محمد",
+            "ar": "سازكار محمد",
+            "en": "Sazgar Muhammad"
+          },
+          "certNumber": "16",
+          "date": "01/05/2018"
+        },
+        {
+          "name": {
+            "ku": "ژیلان محمود",
+            "ar": "جيلان محمود",
+            "en": "Zhilan Mahmud"
+          },
+          "certNumber": "17",
+          "date": "28/06/2018"
+        },
+        {
+          "name": {
+            "ku": "مریم والی",
+            "ar": "مريم والي",
+            "en": "Maryam Wali"
+          },
+          "certNumber": "18",
+          "date": "18/09/2018"
+        },
+        {
+          "name": {
+            "ku": "ڕێژین نجم",
+            "ar": "ريجين نجم",
+            "en": "Rezhin Najm"
+          },
+          "certNumber": "19",
+          "date": "31/01/2019"
+        },
+        {
+          "name": {
+            "ku": "خەندە احمد",
+            "ar": "خندة أحمد",
+            "en": "Khanda Ahmed"
+          },
+          "certNumber": "23",
+          "date": "12/10/2019"
+        },
+        {
+          "name": {
+            "ku": "لەرێ عومەر",
+            "ar": "لري عمر",
+            "en": "Lare Omar"
+          },
+          "certNumber": "24",
+          "date": "08/11/2019"
+        },
+        {
+          "name": {
+            "ku": "هەتاو عبداللە",
+            "ar": "هتاو عبد الله",
+            "en": "Hataw Abdullah"
+          },
+          "certNumber": "26",
+          "date": "13/12/2019"
+        },
+        {
+          "name": {
+            "ku": "شهلا احمد",
+            "ar": "شهلا أحمد",
+            "en": "Shahla Ahmed"
+          },
+          "certNumber": "27",
+          "date": "24/01/2020"
+        },
+        {
+          "name": {
+            "ku": "سنور عبدالله",
+            "ar": "سنور عبد الله",
+            "en": "Snur Abdullah"
+          },
+          "certNumber": "29",
+          "date": "27/04/2020"
+        },
+        {
+          "name": {
+            "ku": "چنور ئازاد",
+            "ar": "جنور أزاد",
+            "en": "Chnur Azad"
+          },
+          "certNumber": "29",
+          "date": "10/07/2024"
+        },
+        {
+          "name": {
+            "ku": "شنیار طاهر",
+            "ar": "شنيار طاهر",
+            "en": "Shnyar Tahir"
+          },
+          "certNumber": "31",
+          "date": "21/06/2020"
+        },
+        {
+          "name": {
+            "ku": "پشتیوان عزیز",
+            "ar": "بشتيوان عزيز",
+            "en": "Pshtiwan Aziz"
+          },
+          "certNumber": "34",
+          "date": "01/12/2020"
+        },
+        {
+          "name": {
+            "ku": "پشتیوان عزیز",
+            "ar": "بشتيوان عزيز",
+            "en": "Pshtiwan Aziz"
+          },
+          "certNumber": "34",
+          "date": "01/12/2020"
+        },
+        {
+          "name": {
+            "ku": "گوڵاڵە محمد",
+            "ar": "جلالة محمد",
+            "en": "Gulala Muhammad"
+          },
+          "certNumber": "35",
+          "date": "30/01/2021"
+        },
+        {
+          "name": {
+            "ku": "دونیا منیر",
+            "ar": "دنيا منير",
+            "en": "Dunya Munir"
+          },
+          "certNumber": "38",
+          "date": "11/12/2021"
+        },
+        {
+          "name": {
+            "ku": "ڕەند فەهمی",
+            "ar": "رند فهمي",
+            "en": "Rand Fahmi"
+          },
+          "certNumber": "39",
+          "date": "08/04/2022"
+        },
+        {
+          "name": {
+            "ku": "دیوان نورالدین",
+            "ar": "ديوان نور الدين",
+            "en": "Diwan Nuraddin"
+          },
+          "certNumber": "40",
+          "date": "01/09/2021"
+        },
+        {
+          "name": {
+            "ku": "بشری سعید",
+            "ar": "بشرى سعيد",
+            "en": "Bushra Saeed"
+          },
+          "certNumber": "42",
+          "date": "27/08/2022"
+        },
+        {
+          "name": {
+            "ku": "سابات احمد",
+            "ar": "سابات أحمد",
+            "en": "Sabat Ahmed"
+          },
+          "certNumber": "43",
+          "date": "13/01/2023"
+        },
+        {
+          "name": {
+            "ku": "سۆما حمەرەشيد",
+            "ar": "سوما حمه رشيد",
+            "en": "Soma Hama Rashid"
+          },
+          "certNumber": "45",
+          "date": "07/06/2023"
+        },
+        {
+          "name": {
+            "ku": "ئازان انور",
+            "ar": "أزان أنور",
+            "en": "Azan Anwar"
+          },
+          "certNumber": "46",
+          "date": "22/10/2023"
+        },
+        {
+          "name": {
+            "ku": "بەهمەن حمەامين",
+            "ar": "بهمن حمه أمين",
+            "en": "Bahman Hama Amin"
+          },
+          "certNumber": "47",
+          "date": "01/11/2024"
+        },
+        {
+          "name": {
+            "ku": "ترێ عدنان",
+            "ar": "تري عدنان",
+            "en": "Tre Adnan"
+          },
+          "certNumber": "49",
+          "date": "25/01/2024"
+        },
+        {
+          "name": {
+            "ku": "پەریا صباح",
+            "ar": "بريا صباح",
+            "en": "Parya Sabah"
+          },
+          "certNumber": "50",
+          "date": "09/03/2024"
+        },
+        {
+          "name": {
+            "ku": "هەرمێ رؤوف",
+            "ar": "هرمي رؤوف",
+            "en": "Harme Rauf"
+          },
+          "certNumber": "52",
+          "date": "04/07/2024"
+        },
+        {
+          "name": {
+            "ku": "ئێڤین عمر",
+            "ar": "إيفين عمر",
+            "en": "Evin Omar"
+          },
+          "certNumber": "53",
+          "date": "04/07/2024"
+        },
+        {
+          "name": {
+            "ku": "شکۆ فاروق",
+            "ar": "شكو فاروق",
+            "en": "Shiko Farooq"
+          },
+          "certNumber": "57",
+          "date": "19/12/2024"
+        },
+        {
+          "name": {
+            "ku": "محمد عوسمان",
+            "ar": "محمد عثمان",
+            "en": "Muhammad Osman"
+          },
+          "certNumber": "59",
+          "date": "19/05/2024"
+        },
+        {
+          "name": {
+            "ku": "دارا کریم",
+            "ar": "دارا كريم",
+            "en": "Dara Karim"
+          },
+          "certNumber": "62",
+          "date": "21/08/2025"
+        },
+        {
+          "name": {
+            "ku": "زەریا ئومێد",
+            "ar": "زريا أوميد",
+            "en": "Zarya Omed"
+          },
+          "certNumber": "62",
+          "date": "31/07/2025"
+        },
+        {
+          "name": {
+            "ku": "یسری سعید",
+            "ar": "يسرى سعيد",
+            "en": "Yusra Saeed"
+          },
+          "certNumber": "64",
+          "date": "10/09/2025"
+        },
+        {
+          "name": {
+            "ku": "شێنێ عبداللە",
+            "ar": "شيني عبد الله",
+            "en": "Shene Abdullah"
+          },
+          "certNumber": "67",
+          "date": "11/12/2025"
+        },
+        {
+          "name": {
+            "ku": "محمد احمد",
+            "ar": "محمد أحمد",
+            "en": "Muhammad Ahmed"
+          },
+          "certNumber": "...",
+          "date": "2016"
+        }
+      ]
+    },
+    {
+      "id": "tajweed-theory",
+      "name": {
+        "en": "Theoretical Tajweed Certificate",
+        "ku": "بڕوانامەی تەجویدی تیۆری",
+        "ar": "شهادة التجويد النظري"
+      },
+      "members": []
+    },
+    {
+      "id": "tuhfat-alatfal",
+      "name": {
+        "en": "Tuhfat Al-Atfal Certificate",
+        "ku": "بڕوانامەی تحفة الأطفال",
+        "ar": "شهادة تحفة الأطفال"
+      },
+      "members": []
+    },
+    {
+      "id": "noorani-qaida",
+      "name": {
+        "en": "Noorani Qaida Certificate",
+        "ku": "بڕوانامەی القاعدة النورانية",
+        "ar": "شهادة القاعدة النورانية"
+      },
+      "members": []
+    },
+    {
+      "id": "muqaddimah-jazariyyah",
+      "name": {
+        "en": "Al-Muqaddimah Al-Jazariyyah",
+        "ku": "بڕوانامەی المقدمة الجزرية",
+        "ar": "شهادة المقدمة الجزرية"
+      },
+      "members": []
+    },
+    {
+      "id": "adhan-iqamah",
+      "name": {
+        "en": "Adhan & Iqamah Certificate",
+        "ku": "بڕوانامەی بانگ و قامەت",
+        "ar": "شهادة الأذان والإقامة"
+      },
+      "members": []
+    }
+  ]
+}

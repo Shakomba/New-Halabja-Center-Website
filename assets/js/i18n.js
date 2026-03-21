@@ -132,9 +132,13 @@ window.I18N = {
     "meta.date": "Date",
     "dir.hero.title": "Achievements",
     "dir.hero.desc": "Honoring all individuals who have earned certificates at the center.",
-    "dir.search": "Search by name or certificate...",
+    "dir.search": "Search by name or number...",
     "dir.empty": "No results found.",
     "dir.certs": "Certificates",
+    "dir.tab.name": "Name",
+    "dir.tab.certnum": "Certificate No.",
+    "dir.tab.date": "Date",
+    "dir.searchresults": "Search Results",
   },
   "ar": {
     "nav.home": "الرئيسية",
@@ -269,9 +273,13 @@ window.I18N = {
     "meta.date": "التاريخ",
     "dir.hero.title": "الإنجازات",
     "dir.hero.desc": "تكريم جميع الأفراد الذين حصلوا على شهادات في المركز.",
-    "dir.search": "ابحث بالاسم أو الشهادة...",
+    "dir.search": "ابحث بالاسم أو الرقم...",
     "dir.empty": "لا توجد نتائج مطابقة للبحث.",
     "dir.certs": "الشهادات",
+    "dir.tab.name": "الاسم",
+    "dir.tab.certnum": "رقم الشهادة",
+    "dir.tab.date": "التاريخ",
+    "dir.searchresults": "نتائج البحث",
   },
   "ku": {
     "nav.home": "سەرەکی",
@@ -406,8 +414,12 @@ window.I18N = {
     "meta.date": "ڕێکەوت",
     "dir.hero.title": "دەستکەوتەکان",
     "dir.hero.desc": "ڕێزلێنان لە هەموو ئەو کەسانەی بڕوانامەیان لە بنکەکە بەدەستهێناوە.",
-    "dir.search": "گەڕان بەپێی ناو یان بڕوانامە...",
+    "dir.search": "گەڕان بەپێی ناو یان ژمارە...",
     "dir.empty": "هیچ ئەنجامێک نەدۆزرایەوە.",
-    "dir.certs": "بڕوانامەکان"
+    "dir.certs": "بڕوانامەکان",
+    "dir.tab.name": "ناو",
+    "dir.tab.certnum": "ژمارەی بڕوانامە",
+    "dir.tab.date": "ڕێکەوت",
+    "dir.searchresults": "ئەنجامەکانی گەڕان"
   }
 };
