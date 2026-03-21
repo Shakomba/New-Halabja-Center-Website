@@ -4200,6 +4200,9 @@ textarea.input {
 }
 
 @media (max-width: 1080px) {
+  .nav {
+    display: none
+  }
 
   .menu-toggle {
     display: inline-flex
