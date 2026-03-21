@@ -779,13 +779,14 @@
       goToSlide(slideIndex + direction);
     });
 
-    // Language change
+    // Language change — reset to first slide without scrollIntoView (which drags the page down)
     const langSelect = document.getElementById("langSelect");
     if (langSelect) {
       langSelect.addEventListener("change", () => {
         slideIndex = 0;
+        track.scrollLeft = 0;
         buildDots();
-        goToSlide(0);
+        updateUI();
       });
     }
 
@@ -794,6 +795,27 @@
       buildDots();
       updateUI();
     });
+
+    // ── Native scroll sync (mobile swipe) ───────────────
+    // On mobile, arrows are hidden so the user swipes natively.
+    // We listen for scroll on the track and sync slideIndex + dots in real-time.
+    const onTrackScroll = () => {
+      const slides = getSlides();
+      if (!slides.length) return;
+      const scrollLeft = track.scrollLeft;
+      // Find which slide is closest to the current scroll position
+      let closest = 0;
+      let closestDist = Infinity;
+      slides.forEach((slide, i) => {
+        const dist = Math.abs(slide.offsetLeft - scrollLeft);
+        if (dist < closestDist) { closestDist = dist; closest = i; }
+      });
+      if (closest !== slideIndex) {
+        slideIndex = closest;
+        updateUI();
+      }
+    };
+    track.addEventListener("scroll", onTrackScroll, { passive: true });
 
     // Initialize
     buildDots();
