@@ -9,5 +9,6 @@ window.SITE_CONFIG = {
   },
   facebookUrl: "https://facebook.com/bht.2017",
   instagramUrl: "https://instagram.com/bht.2017",
-  whatsappUrl: "https://wa.me/9647501048902"
+  whatsappUrl: "https://wa.me/9647501048902",
+  establishedYear: 2012
 };

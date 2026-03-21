@@ -107,9 +107,22 @@
     document.documentElement.dir = rtl ? "rtl" : "ltr";
     document.body.setAttribute("dir", rtl ? "rtl" : "ltr");
 
+    // Dynamic years calculation
+    const estYear = (window.SITE_CONFIG && window.SITE_CONFIG.establishedYear) || 2012;
+    const yearsCount = new Date().getFullYear() - estYear;
+    let yearsLocal = yearsCount.toString();
+    if (rtl) {
+      const easternDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+      yearsLocal = yearsLocal.replace(/[0-9]/g, w => easternDigits[w]);
+    }
+
     $$("[data-i18n]").forEach(el => {
       const key = el.getAttribute("data-i18n");
-      if (dict[key]) el.textContent = dict[key];
+      if (dict[key]) {
+        let text = dict[key];
+        if (text.includes("{years}")) text = text.replace("{years}", yearsLocal);
+        el.textContent = text;
+      }
     });
     $$("[data-i18n-placeholder]").forEach(el => {
       const key = el.getAttribute("data-i18n-placeholder");
@@ -400,6 +413,13 @@
 
   // Count-up animation (home only)
   function animateCounters() {
+    // Dynamically set years of experience target before starting
+    const yearsCounter = document.getElementById("yearsCountOdometer");
+    if (yearsCounter) {
+      const estYear = (window.SITE_CONFIG && window.SITE_CONFIG.establishedYear) || 2012;
+      yearsCounter.setAttribute("data-target", Math.max(0, new Date().getFullYear() - estYear));
+    }
+
     const counters = $$(".num[data-target]");
     if (!counters.length) return;
     const io = new IntersectionObserver(entries => {
