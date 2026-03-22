@@ -269,11 +269,30 @@
     renderPagination();
   };
 
+  /* ── Static staff entries (not in students.json) ─── */
+  const STATIC_STAFF = {
+    first: [],
+    last: [
+      {
+        member: {
+          name: { ku: 'سەردار عەبدوڕەحیم مەحموود', ar: 'سردار عبدالرحيم محمود', en: 'Sardar Abdulrahim Mahmoud' },
+          staffRole: 'admin',
+          isStaff: true,
+          bio: { photo: 'assets/img/students/placeholder-male.svg' }
+        },
+        allCerts: []
+      }
+    ]
+  };
+
   /* ── Fetch and initialise ─────────────────────────── */
   fetch('assets/data/students.json')
     .then(r => r.json())
     .then(data => {
-      staffList = buildStaffList(data.categories || []);
+      const roleOrder = { director: 0, huffaz: 1, tajweed: 2, studies: 3, admin: 4 };
+      const fromJson = buildStaffList(data.categories || [])
+        .sort((a, b) => (roleOrder[a.member.staffRole] ?? 99) - (roleOrder[b.member.staffRole] ?? 99));
+      staffList = [...STATIC_STAFF.first, ...fromJson, ...STATIC_STAFF.last];
       if (staffList.length === 0) return; // no staff marked yet
       section.hidden = false;
       render();

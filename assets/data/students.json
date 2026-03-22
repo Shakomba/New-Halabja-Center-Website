@@ -7,7 +7,35 @@
         "ku": "مۆڵەتی لەبەرکردن",
         "ar": "إجازة الحفظ"
       },
-      "members": []
+      "members": [
+        {
+          "name": {
+            "ku": "سیروان حامید ڕاهیم",
+            "ar": "سيروان حامد رحيم",
+            "en": "Sirwan Hamid Rahim"
+          },
+          "isStaff": true,
+          "staffRole": "director",
+          "bio": {
+            "birthDate": {
+              "ku": "13/02/1975",
+              "ar": "13/02/1975",
+              "en": "13/02/1975"
+            },
+            "job": {
+              "ku": "مامۆستای زمانی عەرەبی",
+              "ar": "مدرس اللغة العربية",
+              "en": "Arabic Language Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە زمانی عەرەبی",
+              "ar": "بكالوريوس في اللغة العربية",
+              "en": "Bachelor's in Arabic Language"
+            },
+            "photo": "assets/img/students/SirwanHamid.jpg"
+          }
+        }
+      ]
     },
     {
       "id": "recitation-license",
@@ -305,8 +333,6 @@
           },
           "certNumber": "26",
           "date": "13/12/2019",
-          "isStaff": true,
-          "staffRole": "huffaz",
           "bio": {
             "birthDate": {
               "ku": "11/03/1989",
@@ -442,8 +468,6 @@
           },
           "certNumber": "34",
           "date": "01/12/2020",
-          "isStaff": true,
-          "staffRole": "tajweed",
           "bio": {
             "birthDate": {
               "ku": "01/03/1985",
@@ -715,7 +739,7 @@
           "certNumber": "47",
           "date": "01/11/2024",
           "isStaff": true,
-          "staffRole": "huffaz",
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": {
               "ku": "01/03/1985",
@@ -1004,6 +1028,33 @@
             },
             "photo": "assets/img/students/placeholder-female.svg"
           }
+        },
+        {
+          "name": {
+            "ku": "سیروان حامید ڕاهیم",
+            "ar": "سيروان حامد رحيم",
+            "en": "Sirwan Hamid Rahim"
+          },
+          "isStaff": true,
+          "staffRole": "director",
+          "bio": {
+            "birthDate": {
+              "ku": "13/02/1975",
+              "ar": "13/02/1975",
+              "en": "13/02/1975"
+            },
+            "job": {
+              "ku": "مامۆستای زمانی عەرەبی",
+              "ar": "مدرس اللغة العربية",
+              "en": "Arabic Language Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە زمانی عەرەبی",
+              "ar": "بكالوريوس في اللغة العربية",
+              "en": "Bachelor's in Arabic Language"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          }
         }
       ]
     },
@@ -1023,6 +1074,15 @@
           },
           "certNumber": "1",
           "date": "01/01/2012"
+        },
+        {
+          "name": {
+            "ku": "سیروان حامید ڕاهیم",
+            "ar": "سيروان حامد رحيم",
+            "en": "Sirwan Hamid Rahim"
+          },
+          "isStaff": true,
+          "staffRole": "director"
         }
       ]
     },
@@ -1042,6 +1102,15 @@
           },
           "certNumber": "1",
           "date": "01/01/2012"
+        },
+        {
+          "name": {
+            "ku": "سیروان حامید ڕاهیم",
+            "ar": "سيروان حامد رحيم",
+            "en": "Sirwan Hamid Rahim"
+          },
+          "isStaff": true,
+          "staffRole": "director"
         }
       ]
     },
@@ -1061,6 +1130,15 @@
           },
           "certNumber": "1",
           "date": "01/01/2012"
+        },
+        {
+          "name": {
+            "ku": "سیروان حامید ڕاهیم",
+            "ar": "سيروان حامد رحيم",
+            "en": "Sirwan Hamid Rahim"
+          },
+          "isStaff": true,
+          "staffRole": "director"
         }
       ]
     },
@@ -1080,6 +1158,15 @@
           },
           "certNumber": "1",
           "date": "01/01/2012"
+        },
+        {
+          "name": {
+            "ku": "سیروان حامید ڕاهیم",
+            "ar": "سيروان حامد رحيم",
+            "en": "Sirwan Hamid Rahim"
+          },
+          "isStaff": true,
+          "staffRole": "director"
         }
       ]
     },
@@ -1090,7 +1177,17 @@
         "ku": "مۆڵەتی بانگ و قامەت",
         "ar": "إجازة الأذان والإقامة"
       },
-      "members": []
+      "members": [
+        {
+          "name": {
+            "ku": "سیروان حامید ڕاهیم",
+            "ar": "سيروان حامد رحيم",
+            "en": "Sirwan Hamid Rahim"
+          },
+          "isStaff": true,
+          "staffRole": "tajweed"
+        }
+      ]
     },
     {
       "id": "ten-qiraat",
@@ -1099,7 +1196,17 @@
         "ku": "القراءات العشر",
         "ar": "القراءات العشر"
       },
-      "members": []
+      "members": [
+        {
+          "name": {
+            "ku": "سیروان حامید ڕاهیم",
+            "ar": "سيروان حامد رحيم",
+            "en": "Sirwan Hamid Rahim"
+          },
+          "isStaff": true,
+          "staffRole": "director"
+        }
+      ]
     }
   ]
 }

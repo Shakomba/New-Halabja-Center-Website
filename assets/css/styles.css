@@ -6003,6 +6003,7 @@ body[dir="ltr"] .pub-card-title {
   border-radius: 0;
 }
 
+.staff-role-director { color: #1a4a8a; }
 .staff-role-huffaz  { color: var(--color-green-1); }
 .staff-role-tajweed { color: #8a6a00; }
 .staff-role-studies { color: #a35500; }
