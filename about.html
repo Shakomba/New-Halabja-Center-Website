@@ -252,8 +252,6 @@
         <div class="about-team-header reveal">
           <div class="kicker" data-i18n="about.team.kicker">Our Team</div>
           <h2 class="h-title about-section-title" data-i18n="about.team.title">Dedicated Educators</h2>
-          <p class="about-team-subtitle" data-i18n="about.team.desc">Our center is powered by a team of qualified,
-            passionate educators who are committed to each student's growth in knowledge and character.</p>
         </div>
 
         <div class="about-team-grid">
@@ -310,6 +308,15 @@
             <p class="small" data-i18n="about.team.admin.desc">Coordinators and support staff who ensure smooth
               operations, parent communication, and a welcoming environment for all.</p>
           </div>
+        </div>
+
+        <!-- Staff Profiles -->
+        <div class="staff-profiles-section" id="staffProfilesSection" hidden>
+          <div class="staff-profiles-divider">
+            <span class="staff-profiles-label" data-i18n="about.team.profiles.title">Meet Our Educators</span>
+          </div>
+          <div class="staff-profiles-grid" id="staffProfilesGrid"></div>
+          <div class="staff-pagination" id="staffPagination" aria-label="Staff pagination"></div>
         </div>
       </div>
     </section>
@@ -450,26 +457,61 @@
     </div>
   </div>
 
+  <!-- Bio modal (same structure as directory.html) -->
+  <dialog id="dirBioModal" class="dir-bio-modal" aria-modal="true" aria-labelledby="dirBioName">
+    <div class="dir-bio-card">
+      <button class="dir-bio-close" id="dirBioClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="dir-bio-photo-wrap" id="dirBioPhotoWrap" hidden>
+        <img id="dirBioPhoto" src="" alt="" class="dir-bio-photo">
+      </div>
+      <div class="dir-bio-body">
+        <h2 class="dir-bio-name" id="dirBioName"></h2>
+        <div class="dir-bio-info" id="dirBioInfo"></div>
+        <div class="dir-bio-certs" id="dirBioCerts"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Fullscreen photo modal (same structure as directory.html) -->
+  <dialog id="dirFullscreenModal" class="dir-fullscreen-modal" aria-modal="true" aria-label="Fullscreen Photo">
+    <button class="dir-fs-close" id="dirFsClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <img id="dirFsPhoto" src="" alt="Fullscreen view" class="dir-fs-photo">
+  </dialog>
+
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/site-config.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/lightbox-gallery.js"></script>
+  <script src="assets/js/staff-profiles.js"></script>
   <script>
     (function () {
       // Gallery images from activities folder
       var galleryImages = [
         'assets/img/activities/FB_IMG_1767833206332.jpg',
         'assets/img/activities/FB_IMG_1767833211085.jpg',
+        'assets/img/activities/FB_IMG_1767833212799.jpg',
         'assets/img/activities/FB_IMG_1767833214420.jpg',
         'assets/img/activities/FB_IMG_1767833216260.jpg',
+        'assets/img/activities/FB_IMG_1767833217999.jpg',
         'assets/img/activities/FB_IMG_1767833219529.jpg',
         'assets/img/activities/FB_IMG_1767833221224.jpg',
+        'assets/img/activities/FB_IMG_1767833222808.jpg',
         'assets/img/activities/FB_IMG_1767833224549.jpg',
         'assets/img/activities/FB_IMG_1767833226091.jpg',
-        'assets/img/activities/FB_IMG_1767833248691.jpg',
-        'assets/img/activities/FB_IMG_1767833265623.jpg',
-        'assets/img/activities/FB_IMG_1767833283138.jpg',
-        'assets/img/activities/FB_IMG_1767833297612.jpg'
+        'assets/img/activities/FB_IMG_1767833227819.jpg',
+        'assets/img/activities/FB_IMG_1767833229542.jpg',
+        'assets/img/activities/FB_IMG_1767834540241.jpg',
+        'assets/img/activities/FB_IMG_1767834542084.jpg',
+        'assets/img/activities/FB_IMG_1767834543715.jpg',
+        'assets/img/activities/FB_IMG_1767834545497.jpg'
       ];
 
       var grid = document.getElementById('aboutGalleryGrid');

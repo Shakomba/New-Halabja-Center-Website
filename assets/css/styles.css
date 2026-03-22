@@ -3544,26 +3544,27 @@ dialog.native-lightbox::backdrop {
   position: absolute;
   top: 20px;
   left: 20px;
-  background: rgba(0, 0, 0, 0.75);
+  background: transparent;
   color: white;
-  padding: 10px 18px;
-  border-radius: 24px;
+  padding: 0;
+  border-radius: 0;
   font-size: 0.95rem;
   font-weight: 600;
   z-index: 10001;
-  backdrop-filter: blur(12px);
+  backdrop-filter: none;
   display: none;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
   transition: opacity 0.3s ease;
   font-family: inherit;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 768px) {
   .lightbox-counter {
     top: 16px;
     left: 16px;
-    padding: 8px 14px;
+    padding: 0;
     font-size: 0.875rem;
   }
 }
@@ -5865,6 +5866,252 @@ body[dir="ltr"] .pub-card-title {
   .about-gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 140px;
+  }
+}
+
+/* ========================================
+   ABOUT PAGE — STAFF PROFILES
+   ======================================== */
+
+.staff-profiles-section {
+  margin-top: var(--space-4xl);
+}
+
+/* Divider between category cards and staff profiles grid */
+.staff-profiles-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+}
+.staff-profiles-divider::before,
+.staff-profiles-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border-soft);
+}
+.staff-profiles-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-ink-strong);
+  white-space: nowrap;
+}
+
+.staff-profiles-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.staff-profiles-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+}
+
+.staff-profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+/* Staff card — full-bleed photo with bottom info strip */
+.staff-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 3 / 4;
+  background: var(--color-cream);
+  transition: box-shadow .25s ease, transform .25s ease;
+  cursor: default;
+}
+
+.staff-card:hover {
+  box-shadow: var(--shadow-card-strong);
+  transform: translateY(-4px);
+}
+
+/* Photo fills the entire card */
+.staff-card-photo-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.staff-card-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform .35s ease;
+}
+
+.staff-card:hover .staff-card-photo {
+  transform: scale(1.04);
+}
+
+/* Floating info strip — inset from card edges */
+.staff-card-body {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 10px 10px 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, .18);
+}
+
+/* Text section grows, button stays fixed */
+.staff-card-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.staff-card-name {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Shrink font for longer names so they don't eat button space */
+.staff-card-name.is-long {
+  font-size: .75rem;
+}
+
+/* Role label — plain coloured text */
+.staff-role-badge {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.staff-role-huffaz  { color: var(--color-green-1); }
+.staff-role-tajweed { color: #8a6a00; }
+.staff-role-studies { color: #a35500; }
+.staff-role-admin   { color: var(--color-muted); }
+
+/* View Profile — compact circular arrow button */
+.staff-card-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-green-1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .18s, transform .18s;
+}
+
+.staff-card-btn:hover {
+  background: var(--color-green-2);
+  transform: scale(1.08);
+}
+
+.staff-card-btn svg {
+  display: block;
+}
+
+[dir="rtl"] .staff-card-btn svg {
+  transform: scaleX(-1);
+}
+
+/* Pagination */
+.staff-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.staff-page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 var(--space-md);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-green-1);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background .18s, color .18s, border-color .18s;
+}
+
+.staff-page-btn:hover:not(:disabled) {
+  background: var(--color-green-1);
+  color: #fff;
+  border-color: var(--color-green-1);
+}
+
+.staff-page-btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.staff-page-info {
+  font-size: .9rem;
+  color: var(--color-muted);
+  min-width: 3ch;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .staff-profiles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .staff-profiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .staff-card-body {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 8px 8px 8px 10px;
+    gap: 6px;
+  }
+
+  .staff-card-name {
+    font-size: .78rem;
+  }
+
+  .staff-card-name.is-long {
+    font-size: .66rem;
+  }
+
+  .staff-card-btn {
+    width: 30px;
+    height: 30px;
   }
 }
 

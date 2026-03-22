@@ -25,6 +25,8 @@
           },
           "certNumber": "1",
           "date": "01/01/2012",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": {
               "ku": "01/03/1978",
@@ -52,6 +54,8 @@
           },
           "certNumber": "4",
           "date": "21/03/2013",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": {
               "ku": "01/05/1976",
@@ -79,6 +83,8 @@
           },
           "certNumber": "13",
           "date": "27/04/2016",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": {
               "ku": "25/03/1982",
@@ -187,6 +193,8 @@
           },
           "certNumber": "18",
           "date": "18/09/2018",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": {
               "ku": "01/01/1979",
@@ -268,6 +276,8 @@
           },
           "certNumber": "24",
           "date": "08/11/2019",
+          "isStaff": true,
+          "staffRole": "studies",
           "bio": {
             "birthDate": {
               "ku": "03/10/1983",
@@ -295,6 +305,8 @@
           },
           "certNumber": "26",
           "date": "13/12/2019",
+          "isStaff": true,
+          "staffRole": "huffaz",
           "bio": {
             "birthDate": {
               "ku": "11/03/1989",
@@ -430,6 +442,8 @@
           },
           "certNumber": "34",
           "date": "01/12/2020",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": {
               "ku": "01/03/1985",
@@ -700,6 +714,8 @@
           },
           "certNumber": "47",
           "date": "01/11/2024",
+          "isStaff": true,
+          "staffRole": "huffaz",
           "bio": {
             "birthDate": {
               "ku": "01/03/1985",
@@ -1070,9 +1086,9 @@
     {
       "id": "adhan-iqamah",
       "name": {
-        "en": "Adhan & Iqamah Certificate",
-        "ku": "بڕوانامەی بانگ و قامەت",
-        "ar": "شهادة الأذان والإقامة"
+        "en": "Adhan & Iqamah License",
+        "ku": "مۆڵەتی بانگ و قامەت",
+        "ar": "إجازة الأذان والإقامة"
       },
       "members": []
     },
