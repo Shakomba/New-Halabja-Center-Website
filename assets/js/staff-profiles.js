@@ -11,9 +11,9 @@
 
   const getEl = (id) => document.getElementById(id);
 
-  const grid      = getEl('staffProfilesGrid');
+  const grid = getEl('staffProfilesGrid');
   const pagination = getEl('staffPagination');
-  const section   = getEl('staffProfilesSection');
+  const section = getEl('staffProfilesSection');
 
   if (!grid || !section) return; // not on about page
 
@@ -37,22 +37,22 @@
   };
 
   /* ── Bio modal elements ───────────────────────────── */
-  const bioModal     = getEl('dirBioModal');
+  const bioModal = getEl('dirBioModal');
   const bioPhotoWrap = getEl('dirBioPhotoWrap');
-  const bioPhoto     = getEl('dirBioPhoto');
-  const bioName      = getEl('dirBioName');
-  const bioInfo      = getEl('dirBioInfo');
-  const bioCerts     = getEl('dirBioCerts');
-  const bioClose     = getEl('dirBioClose');
-  const fsModal      = getEl('dirFullscreenModal');
-  const fsPhoto      = getEl('dirFsPhoto');
-  const fsClose      = getEl('dirFsClose');
+  const bioPhoto = getEl('dirBioPhoto');
+  const bioName = getEl('dirBioName');
+  const bioInfo = getEl('dirBioInfo');
+  const bioCerts = getEl('dirBioCerts');
+  const bioClose = getEl('dirBioClose');
+  const fsModal = getEl('dirFullscreenModal');
+  const fsPhoto = getEl('dirFsPhoto');
+  const fsClose = getEl('dirFsClose');
 
   /* ── Bio modal label lookup ───────────────────────── */
   const bioLabels = {
     ku: { birthDate: 'بەرواری لەدایکبوون', job: 'پیشە', degree: 'بروانامە', certs: 'بروانامەکان' },
-    ar: { birthDate: 'تاريخ الميلاد',       job: 'المهنة', degree: 'الشهادة',  certs: 'الشهادات'  },
-    en: { birthDate: 'Date of Birth',        job: 'Profession', degree: 'Degree', certs: 'Certificates' }
+    ar: { birthDate: 'تاريخ الميلاد', job: 'المهنة', degree: 'الشهادة', certs: 'الشهادات' },
+    en: { birthDate: 'Date of Birth', job: 'Profession', degree: 'Degree', certs: 'Certificates' }
   };
 
   /* ── Open Bio Modal (mirrors directory.js) ────────── */
@@ -81,8 +81,8 @@
 
     const icons = {
       birthDate: `<svg class="dir-bio-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>`,
-      job:       `<svg class="dir-bio-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`,
-      degree:    `<svg class="dir-bio-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>`
+      job: `<svg class="dir-bio-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`,
+      degree: `<svg class="dir-bio-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>`
     };
     let infoHtml = '';
     if (member.bio) {
@@ -99,15 +99,18 @@
     }
     bioInfo.innerHTML = infoHtml;
 
-    let certsHtml = `<div class="dir-bio-certs-title">${labels.certs}</div>`;
-    allCertsForMember.forEach(cert => {
-      const catName = (cert.categoryName || '').replace(/(?:مۆڵەتی?|بڕوانامەی?|إجازة|شهادة|License|Certificate)\s*/ig, '').trim();
-      certsHtml += `<div class="dir-bio-cert-row">
-        <span class="dir-bio-cert-name">${catName}</span>
-        <span class="dir-bio-cert-date">${cert.date || ''}</span>
-        ${cert.certNumber ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
-      </div>`;
-    });
+    let certsHtml = '';
+    if (allCertsForMember.length > 0) {
+      certsHtml += `<div class="dir-bio-certs-title">${labels.certs}</div>`;
+      allCertsForMember.forEach(cert => {
+        const catName = (cert.categoryName || '').replace(/(?:مۆڵەتی?|بڕوانامەی?|إجازة|شهادة|License|Certificate)\s*/ig, '').trim();
+        certsHtml += `<div class="dir-bio-cert-row">
+          <span class="dir-bio-cert-name">${catName}</span>
+          <span class="dir-bio-cert-date">${cert.date || ''}</span>
+          ${cert.certNumber && cert.categoryId !== 'ten-qiraat' ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
+        </div>`;
+      });
+    }
     bioCerts.innerHTML = certsHtml;
 
     bioModal.showModal();
@@ -172,8 +175,8 @@
           if (memberKey !== nameKey) return;
 
           peopleMap[nameKey].allCerts.push({
-            categoryName: t(cat.name, 'ku') || t(cat.name, 'en'),
-            categoryNameObj: cat.name,
+            categoryName: member.customLabel ? (t(member.customLabel, 'ku') || t(member.customLabel, 'en')) : (t(cat.name, 'ku') || t(cat.name, 'en')),
+            categoryNameObj: member.customLabel || cat.name,
             categoryId: cat.id,
             certNumber: member.certNumber,
             date: member.date
@@ -193,10 +196,14 @@
     const item = staffList[idx];
     if (!item) return;
     const lang = getCurrentLang();
-    const certsI18n = item.allCerts.map(c => ({
-      ...c,
-      categoryName: t(c.categoryNameObj, lang)
-    }));
+    const certsI18n = item.allCerts.map(c => {
+      let cName = t(c.categoryNameObj, lang);
+      if (c.categoryId === 'ten-qiraat' && c.certNumber) cName += ` #${c.certNumber}`;
+      return {
+        ...c,
+        categoryName: cName
+      };
+    });
     openBioModal(item.member, certsI18n);
   });
 
@@ -271,14 +278,76 @@
 
   /* ── Static staff entries (not in students.json) ─── */
   const STATIC_STAFF = {
-    first: [],
+    first: [
+      {
+        member: {
+          name: { ku: 'سیروان حامید ڕەحیم', ar: 'سيروان حامد رحيم', en: 'Sirwan Hamid Rahim' },
+          staffRole: 'director',
+          isStaff: true,
+          bio: {
+            birthDate: '13/02/1975',
+            job: { ku: 'مامۆستای زمانی عەرەبی', ar: 'مدرس اللغة العربية', en: 'Arabic Language Teacher' },
+            degree: { ku: 'بەکالۆریۆس لە زمانی عەرەبی', ar: 'بكالوريوس في اللغة العربية', en: "Bachelor's in Arabic Language" },
+            photo: 'assets/img/students/SirwanHamid.jpg'
+          }
+        },
+        allCerts: []
+      },
+      {
+        member: {
+          name: { ku: 'خێڵان ئەحمەد فەتاح', ar: 'خيلان أحمد فتاح', en: 'Khelan Ahmed Fattah' },
+          staffRole: 'studies',
+          isStaff: true,
+          bio: {
+            birthDate: '03/04/1988',
+            job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
+            degree: { ku: 'دبلۆم', ar: 'دبلوم', en: 'Diploma' },
+            photo: 'assets/img/students/placeholder-female.svg'
+          }
+        },
+        allCerts: []
+      },
+      {
+        member: {
+          name: { ku: 'دێرین محێدین', ar: 'ديرين محي الدين', en: 'Derin Muhedin' },
+          staffRole: 'qaida',
+          isStaff: true,
+          bio: {
+            birthDate: '1998',
+            job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
+            degree: { ku: 'بەکالۆریۆس', ar: 'بكالوريوس', en: "Bachelor's" },
+            photo: 'assets/img/students/placeholder-female.svg'
+          }
+        },
+        allCerts: []
+      }
+    ],
     last: [
       {
         member: {
           name: { ku: 'سەردار عەبدوڕەحیم مەحموود', ar: 'سردار عبدالرحيم محمود', en: 'Sardar Abdulrahim Mahmoud' },
           staffRole: 'admin',
           isStaff: true,
-          bio: { photo: 'assets/img/students/placeholder-male.svg' }
+          bio: {
+            birthDate: '01/03/1987',
+            job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
+            degree: { ku: 'ماستەر لە جوگرافیا', ar: 'ماجستير في الجغرافيا', en: "Master's in Geography" },
+            photo: 'assets/img/students/placeholder-male.svg'
+          }
+        },
+        allCerts: []
+      },
+      {
+        member: {
+          name: { ku: 'بورهان عەلی ڕۆغزاد', ar: 'برهان علي روغزاد', en: 'Burhan Ali Roghzad' },
+          staffRole: 'studies',
+          isStaff: true,
+          bio: {
+            birthDate: '1984',
+            job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
+            degree: { ku: 'بەکالۆریۆس', ar: 'بكالوريوس', en: "Bachelor's" },
+            photo: 'assets/img/students/placeholder-male.svg'
+          }
         },
         allCerts: []
       }
@@ -289,10 +358,44 @@
   fetch('assets/data/students.json')
     .then(r => r.json())
     .then(data => {
-      const roleOrder = { director: 0, huffaz: 1, tajweed: 2, studies: 3, admin: 4 };
-      const fromJson = buildStaffList(data.categories || [])
-        .sort((a, b) => (roleOrder[a.member.staffRole] ?? 99) - (roleOrder[b.member.staffRole] ?? 99));
-      staffList = [...STATIC_STAFF.first, ...fromJson, ...STATIC_STAFF.last];
+      const allCerts = (data.categories || []).map(cat => ({
+        categoryName: t(cat.name, getCurrentLang()),
+        categoryNameObj: cat.name,
+        categoryId: cat.id,
+        certNumber: '',
+        date: ''
+      }));
+      if (STATIC_STAFF.first[0]) {
+        STATIC_STAFF.first[0].allCerts = allCerts;
+      }
+
+      const roleOrder = { director: 0, huffaz: 1, qaida: 2, tajweed: 3, studies: 4, admin: 5 };
+      
+      const getStaffRank = (item) => {
+        const n = String(item.member.name.en || '').toLowerCase();
+        if (n.includes('sirwan hamid')) return 10;
+        if (n.includes('farooq')) return 20;
+        if (n.includes('ahmed ainaddin') || n.includes('ahmed ainadin')) return 30;
+        if (n.includes('sardar abdulrahim')) return 40;
+        if (n.includes('fakhir')) return 45;
+        
+        const photo = item.member.bio?.photo || '';
+        if (photo && !photo.includes('placeholder-')) return 50; // Real picture
+        if (photo.includes('placeholder-male')) return 60;       // Men without picture
+        if (photo.includes('placeholder-female')) return 70;     // Women
+        return 80;
+      };
+
+      const fromJson = buildStaffList(data.categories || []);
+      staffList = [...STATIC_STAFF.first, ...fromJson, ...STATIC_STAFF.last]
+        .sort((a, b) => {
+          const rankA = getStaffRank(a);
+          const rankB = getStaffRank(b);
+          if (rankA !== rankB) return rankA - rankB;
+          
+          return (roleOrder[a.member.staffRole] ?? 99) - (roleOrder[b.member.staffRole] ?? 99);
+        });
+      
       if (staffList.length === 0) return; // no staff marked yet
       section.hidden = false;
       render();

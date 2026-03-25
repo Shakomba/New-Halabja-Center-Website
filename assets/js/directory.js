@@ -134,8 +134,9 @@ const directoryInit = () => {
   const buildCard = (member, categoryName, categoryId, showCategory) => {
     const lang = getCurrentLang();
     const name = t(member.name, lang);
-    const certNum = member.certNumber || '—';
     const dateStr = member.date || '—';
+
+    const certNumHTML = categoryId === 'ten-qiraat' ? '' : `<div class="dir-card-certnum">${member.certNumber || '—'}</div>`;
 
     const categoryBadge = showCategory
       ? `<span class="dir-card-category" data-cat-id="${categoryId}">${categoryName}</span>`
@@ -143,7 +144,7 @@ const directoryInit = () => {
 
     const hasBio = !!(member.bio || getBioByName(name, lang));
     return `<article class="dir-card${hasBio ? ' dir-card-bio' : ''}"${hasBio ? ` data-bio="1" data-cat-id="${categoryId}"` : ''}>
-      <div class="dir-card-certnum">${certNum}</div>
+      ${certNumHTML}
       <div class="dir-card-name">${name}</div>
       <div class="dir-card-date">${dateStr}</div>
       ${categoryBadge}
@@ -158,7 +159,7 @@ const directoryInit = () => {
     certificates.forEach(c => {
        let label = c.categoryName || '';
        label = label.replace(/(?:مۆڵەتی?|بڕوانامەی?|إجازة|شهادة|License|Certificate)\s*/ig, '').trim();
-       if (c.certNumber) {
+       if (c.certNumber && c.categoryId !== 'ten-qiraat') {
          label += ` #${c.certNumber}`;
        }
        certsHtml += `<span class="dir-card-category" data-cat-id="${c.categoryId}">${label}</span>`;
@@ -193,8 +194,9 @@ const directoryInit = () => {
           const nameVariants = typeof m.name === 'object'
             ? Object.values(m.name).join(' ')
             : String(m.name || '');
+          const searchableCert = m.certNumber || '';
           const haystack = normalize(
-            [nameVariants, m.certNumber || '', m.date || ''].join(' ')
+            [nameVariants, searchableCert, m.date || ''].join(' ')
           );
           if (tokens.every(tok => haystack.includes(tok))) {
             const studentKey = typeof m.name === 'object' ? (m.name.ku || m.name.en || m.name.ar || String(m.name)) : String(m.name);
@@ -205,8 +207,12 @@ const directoryInit = () => {
                     certificates: []
                 };
             }
+            
+            let cName = m.customLabel ? t(m.customLabel, lang) : catName;
+            if (cat.id === 'ten-qiraat' && m.certNumber) cName += ` #${m.certNumber}`;
+            
             groupedResults[studentKey].certificates.push({
-                categoryName: catName,
+                categoryName: cName,
                 categoryId: cat.id,
                 certNumber: m.certNumber,
                 date: m.date
@@ -223,8 +229,16 @@ const directoryInit = () => {
       if (!cat) return { cards: [], showCategory: false };
       const catName = t(cat.name, lang);
       return {
-        cards: (cat.members || []).map(m => ({ member: m, categoryName: catName })),
-        showCategory: false
+        cards: (cat.members || []).map(m => {
+          let cName = m.customLabel ? t(m.customLabel, lang) : catName;
+          if (cat.id === 'ten-qiraat' && m.certNumber) cName += ` #${m.certNumber}`;
+          return {
+            member: m,
+            categoryName: cName,
+            categoryId: cat.id
+          };
+        }),
+        showCategory: cat.id === 'ten-qiraat' || (cat.members || []).some(m => !!m.customLabel)
       };
     }
   };
@@ -280,15 +294,18 @@ const directoryInit = () => {
     bioInfo.innerHTML = infoHtml;
 
     // Certificates
-    let certsHtml = `<div class="dir-bio-certs-title">${labels.certs}</div>`;
-    allCertsForMember.forEach(cert => {
-      const catName = (cert.categoryName || '').replace(/(?:مۆڵەتی?|بڕوانامەی?|إجازة|شهادة|License|Certificate)\s*/ig, '').trim();
-      certsHtml += `<div class="dir-bio-cert-row">
-        <span class="dir-bio-cert-name">${catName}</span>
-        <span class="dir-bio-cert-date">${cert.date || ''}</span>
-        ${cert.certNumber ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
-      </div>`;
-    });
+    let certsHtml = '';
+    if (allCertsForMember.length > 0) {
+      certsHtml += `<div class="dir-bio-certs-title">${labels.certs}</div>`;
+      allCertsForMember.forEach(cert => {
+        const catName = (cert.categoryName || '').replace(/(?:مۆڵەتی?|بڕوانامەی?|إجازة|شهادة|License|Certificate)\s*/ig, '').trim();
+        certsHtml += `<div class="dir-bio-cert-row">
+          <span class="dir-bio-cert-name">${catName}</span>
+          <span class="dir-bio-cert-date">${cert.date || ''}</span>
+          ${cert.certNumber && cert.categoryId !== 'ten-qiraat' ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
+        </div>`;
+      });
+    }
     bioCerts.innerHTML = certsHtml;
 
     bioModal.showModal();
@@ -384,7 +401,9 @@ const directoryInit = () => {
         for (const m of (cat.members || [])) {
           if (t(m.name, lang) === cardName) {
             if (!memberObj || m.bio) memberObj = m; // prioritize member object with bio
-            allCerts.push({ ...m, categoryName: t(cat.name, lang), categoryId: cat.id });
+            let cName = m.customLabel ? t(m.customLabel, lang) : t(cat.name, lang);
+            if (cat.id === 'ten-qiraat' && m.certNumber) cName += ` #${m.certNumber}`;
+            allCerts.push({ ...m, categoryName: cName, categoryId: cat.id });
           }
         }
       }

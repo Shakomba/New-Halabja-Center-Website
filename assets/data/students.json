@@ -10,29 +10,75 @@
       "members": [
         {
           "name": {
-            "ku": "سیروان حامید ڕاهیم",
-            "ar": "سيروان حامد رحيم",
-            "en": "Sirwan Hamid Rahim"
+            "ku": "شەرمین عوبەید ئەحمەد",
+            "ar": "شرمين عبيد أحمد",
+            "en": "Sharmin Ubaid Ahmed"
           },
-          "isStaff": true,
-          "staffRole": "director",
+          "certNumber": "1",
+          "date": "31/12/2018",
           "bio": {
-            "birthDate": {
-              "ku": "13/02/1975",
-              "ar": "13/02/1975",
-              "en": "13/02/1975"
-            },
+            "birthDate": "1983",
             "job": {
-              "ku": "مامۆستای زمانی عەرەبی",
-              "ar": "مدرس اللغة العربية",
-              "en": "Arabic Language Teacher"
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
             },
             "degree": {
-              "ku": "بەکالۆریۆس لە زمانی عەرەبی",
-              "ar": "بكالوريوس في اللغة العربية",
-              "en": "Bachelor's in Arabic Language"
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
             },
-            "photo": "assets/img/students/SirwanHamid.jpg"
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "نەجیبە عەزم عەلی",
+            "ar": "نجيبة عزم علي",
+            "en": "Najeeba Azm Ali"
+          },
+          "certNumber": "2",
+          "date": "09/12/2020",
+          "isStaff": true,
+          "staffRole": "huffaz",
+          "bio": {
+            "birthDate": "1978",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "ناوەندی",
+              "ar": "متوسطة",
+              "en": "Middle School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "ڕەند فەهمی حەمەڕەشید",
+            "ar": "رند فهمي حمه رشيد",
+            "en": "Rand Fahmi Hama-Rashid"
+          },
+          "certNumber": "3",
+          "date": "25/05/2023",
+          "isStaff": true,
+          "staffRole": "huffaz",
+          "bio": {
+            "birthDate": "08/07/2008",
+            "job": {
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
+            },
+            "degree": {
+              "ku": "ئامادەیی",
+              "ar": "إعدادية",
+              "en": "High School"
+            },
+            "photo": "assets/img/students/39.png"
           }
         }
       ]
@@ -56,11 +102,7 @@
           "isStaff": true,
           "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "01/03/1978",
-              "ar": "01/03/1978",
-              "en": "01/03/1978"
-            },
+            "birthDate": "01/03/1978",
             "job": {
               "ku": "مامۆستای زمانی عەرەبی",
               "ar": "مدرس اللغة العربية",
@@ -76,6 +118,52 @@
         },
         {
           "name": {
+            "ku": "ڕێباز عەلی حەسەن",
+            "ar": "ريباز علي حسن",
+            "en": "Rebaz Ali Hassan"
+          },
+          "certNumber": "2",
+          "date": "30/06/2012",
+          "bio": {
+            "birthDate": "1997",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە پزیشکیی ڤێتێرنەری",
+              "ar": "بكالوريوس في الطب البيطري",
+              "en": "Bachelor's in Veterinary Medicine"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "پێشڕەو کەریم عەبدوڕەحمان",
+            "ar": "بيشرو كريم عبد الرحمن",
+            "en": "Pishraw Karim Abdulrahman"
+          },
+          "certNumber": "3",
+          "date": "09/08/2012",
+          "bio": {
+            "birthDate": "1993",
+            "job": {
+              "ku": "پزیشک",
+              "ar": "طبيب",
+              "en": "Doctor"
+            },
+            "degree": {
+              "ku": "دکتۆرا (بۆردی عەرەبی)",
+              "ar": "دكتوراه (البورد العربي)",
+              "en": "Doctorate (Arab Board)"
+            },
+            "photo": "assets/img/students/03.png"
+          }
+        },
+        {
+          "name": {
             "ku": "ئەحمەد عەینەدین عەبدوڕەحمان",
             "ar": "أحمد عين الدين عبد الرحمن",
             "en": "Ahmed Ainaddin Abdulrahman"
@@ -85,11 +173,7 @@
           "isStaff": true,
           "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "01/05/1976",
-              "ar": "01/05/1976",
-              "en": "01/05/1976"
-            },
+            "birthDate": "01/05/1976",
             "job": {
               "ku": "مامۆستای بیرکاری",
               "ar": "مدرس الرياضيات",
@@ -105,6 +189,192 @@
         },
         {
           "name": {
+            "ku": "ئیدریس سەلام کەریم",
+            "ar": "إدريس سلام كريم",
+            "en": "Idris Salam Karim"
+          },
+          "certNumber": "5",
+          "date": "27/10/2013",
+          "bio": {
+            "birthDate": "1984",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە توێژینەوەی ئیسلامی",
+              "ar": "بكالوريوس في الدراسات الإسلامية",
+              "en": "Bachelor's in Islamic Studies"
+            },
+            "photo": "assets/img/students/05.jpg"
+          }
+        },
+        {
+          "name": {
+            "ku": "مووسا موحەممەد عەبدوڕەحمان",
+            "ar": "موسى محمد عبد الرحمن",
+            "en": "Musa Muhammad Abdulrahman"
+          },
+          "certNumber": "6",
+          "date": "22/12/2013",
+          "bio": {
+            "birthDate": "1982",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە شەریعە",
+              "ar": "بكالوريوس في الشريعة",
+              "en": "Bachelor's in Sharia"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "ئیکرام موحەممەد حەسەن",
+            "ar": "إكرام محمد حسن",
+            "en": "Ikram Muhammad Hassan"
+          },
+          "certNumber": "7",
+          "date": "13/09/2014",
+          "bio": {
+            "birthDate": "1996",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە کیمیا",
+              "ar": "بكالوريوس في الكيمياء",
+              "en": "Bachelor's in Chemistry"
+            },
+            "photo": "assets/img/students/07.png"
+          }
+        },
+        {
+          "name": {
+            "ku": "بەرزنج شەهاب نووری",
+            "ar": "برزنج شهاب نوري",
+            "en": "Barzinj Shahab Nuri"
+          },
+          "certNumber": "8",
+          "date": "20/10/2014",
+          "bio": {
+            "birthDate": "1997",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە ئەندازیاری",
+              "ar": "بكالوريوس في الهندسة",
+              "en": "Bachelor's in Engineering"
+            },
+            "photo": "assets/img/students/08.png"
+          }
+        },
+        {
+          "name": {
+            "ku": "حامید عەبد فەیحان",
+            "ar": "حامد عبد فيحان",
+            "en": "Hamid Abd Fayhan"
+          },
+          "certNumber": "9",
+          "date": "28/08/2015",
+          "bio": {
+            "birthDate": "",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "خەڵات موحەممەد ڕەشید",
+            "ar": "خلات محمد رشيد",
+            "en": "Khalat Muhammad Rashid"
+          },
+          "certNumber": "10",
+          "date": "02/09/2015",
+          "bio": {
+            "birthDate": "1990",
+            "job": {
+              "ku": "فەرمانبەر",
+              "ar": "موظف",
+              "en": "Employee"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "شەرمین عوبەید ئەحمەد",
+            "ar": "شرمين عبيد أحمد",
+            "en": "Sharmin Ubaid Ahmed"
+          },
+          "certNumber": "11",
+          "date": "10/10/2015",
+          "isStaff": true,
+          "staffRole": "huffaz",
+          "bio": {
+            "birthDate": "1983",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "فاتمە زاهید حەمەئەمین",
+            "ar": "فاطمة زاهد حمه أمين",
+            "en": "Fatima Zahid Hama-Amin"
+          },
+          "certNumber": "12",
+          "date": "20/01/2016",
+          "bio": {
+            "birthDate": "1971",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "شلێر موحەممەد عەلی",
             "ar": "شلير محمد علي",
             "en": "Shler Muhammad Ali"
@@ -114,11 +384,7 @@
           "isStaff": true,
           "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "25/03/1982",
-              "ar": "25/03/1982",
-              "en": "25/03/1982"
-            },
+            "birthDate": "25/03/1982",
             "job": {
               "ku": "مامۆستای کۆمەڵایەتی",
               "ar": "مدرس الاجتماعيات",
@@ -141,11 +407,7 @@
           "certNumber": "14",
           "date": "4/5/2016",
           "bio": {
-            "birthDate": {
-              "ku": "01/07/1987",
-              "ar": "01/07/1987",
-              "en": "01/07/1987"
-            },
+            "birthDate": "2001",
             "job": {
               "ku": "قوتابیی زانکۆ (پزیشکیی گشتی)",
               "ar": "طالب جامعي (طب عام)",
@@ -161,27 +423,48 @@
         },
         {
           "name": {
+            "ku": "سیما عەبدوڕەحمان حەمەساڵح",
+            "ar": "سيما عبد الرحمن حمه صالح",
+            "en": "Sima Abdulrahman Hama-Salih"
+          },
+          "certNumber": "15",
+          "date": "12/07/2017",
+          "bio": {
+            "birthDate": "2005",
+            "job": {
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
+            },
+            "degree": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "سازگار موحەممەد ساڵح",
             "ar": "سازكار محمد صالح",
             "en": "Sazgar Muhammad Salih"
           },
           "certNumber": "16",
           "date": "01/05/2018",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "15/07/1994",
-              "ar": "15/07/1994",
-              "en": "15/07/1994"
-            },
+            "birthDate": "15/07/1994",
             "job": {
-              "ku": "مامۆستای زانستی کۆمپیوتەر",
-              "ar": "مدرس علوم الحاسبات",
-              "en": "Computer Science Teacher"
+              "ku": "مامۆستا",
+              "ar": "مدرسة",
+              "en": "Teacher"
             },
             "degree": {
-              "ku": "بەکالۆریۆس",
-              "ar": "بكالوريوس",
-              "en": "Bachelor's"
+              "ku": "بەکالۆریۆس لە زانستی کۆمپیوتەر",
+              "ar": "بكالوريوس في علوم الحاسبات",
+              "en": "Bachelor's in Computer Science"
             },
             "photo": "assets/img/students/placeholder-female.svg"
           }
@@ -195,18 +478,14 @@
           "certNumber": "17",
           "date": "28/06/2018",
           "bio": {
-            "birthDate": {
-              "ku": "03/05/1992",
-              "ar": "03/05/1992",
-              "en": "03/05/1992"
-            },
+            "birthDate": "03/05/1992",
             "job": {
               "ku": "",
               "ar": "",
               "en": ""
             },
             "degree": {
-              "ku": "دبلۆم لە شیکاری نەخۆشییەکان",
+              "ku": "دبلۆم لە شیکاریی نەخۆشییەکان",
               "ar": "دبلوم في التحليلات المرضية",
               "en": "Diploma in Pathological Analysis"
             },
@@ -222,16 +501,12 @@
           "certNumber": "18",
           "date": "18/09/2018",
           "isStaff": true,
-          "staffRole": "tajweed",
+          "staffRole": "huffaz",
           "bio": {
-            "birthDate": {
-              "ku": "01/01/1979",
-              "ar": "01/01/1979",
-              "en": "01/01/1979"
-            },
+            "birthDate": "01/01/1979",
             "job": {
               "ku": "مامۆستای زمانی عەرەبی",
-              "ar": "مدرس اللغة العربية",
+              "ar": "مدرسة اللغة العربية",
               "en": "Arabic Language Teacher"
             },
             "degree": {
@@ -250,21 +525,88 @@
           },
           "certNumber": "19",
           "date": "31/01/2019",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "01/01/1992",
-              "ar": "01/01/1992",
-              "en": "01/01/1992"
-            },
+            "birthDate": "01/01/1992",
             "job": {
-              "ku": "یاریدەدەری تاقیگە",
-              "ar": "مساعد مختبر",
-              "en": "Lab Assistant"
+              "ku": "",
+              "ar": "",
+              "en": ""
             },
             "degree": {
               "ku": "دبلۆم",
               "ar": "دبلوم",
               "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "ڕەندە مەحموود موحەممەد",
+            "ar": "رندة محمود محمد",
+            "en": "Randa Mahmoud Muhammad"
+          },
+          "certNumber": "20",
+          "date": "06/07/2019",
+          "bio": {
+            "birthDate": "06/08/2003",
+            "job": {
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
+            },
+            "degree": {
+              "ku": "ئامادەیی",
+              "ar": "إعدادية",
+              "en": "High School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "ئاریان ئەحمەد موحەممەد",
+            "ar": "آريان أحمد محمد",
+            "en": "Aryan Ahmed Muhammad"
+          },
+          "certNumber": "21",
+          "date": "23/07/2019",
+          "bio": {
+            "birthDate": "1/3/1997",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "شێنی نورەدین مەحموود",
+            "ar": "شيني نور الدين محمود",
+            "en": "Shene Nuraddin Mahmoud"
+          },
+          "certNumber": "22",
+          "date": "08/09/2019",
+          "bio": {
+            "birthDate": "11/11/2001",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "ئامادەیی",
+              "ar": "إعدادية",
+              "en": "High School"
             },
             "photo": "assets/img/students/placeholder-female.svg"
           }
@@ -278,14 +620,10 @@
           "certNumber": "23",
           "date": "12/10/2019",
           "bio": {
-            "birthDate": {
-              "ku": "01/01/1993",
-              "ar": "01/01/1993",
-              "en": "01/01/1993"
-            },
+            "birthDate": "01/01/1993",
             "job": {
               "ku": "فەرمانبەر",
-              "ar": "موظف",
+              "ar": "موظفة",
               "en": "Employee"
             },
             "degree": {
@@ -307,15 +645,34 @@
           "isStaff": true,
           "staffRole": "studies",
           "bio": {
-            "birthDate": {
-              "ku": "03/10/1983",
-              "ar": "03/10/1983",
-              "en": "03/10/1983"
-            },
+            "birthDate": "03/10/1983",
             "job": {
               "ku": "مامۆستای زمانی ئینگلیزی",
-              "ar": "مدرس اللغة الإنجليزية",
+              "ar": "مدرسة اللغة الإنجليزية",
               "en": "English Language Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "شادان خالید حەسەن",
+            "ar": "شادان خالد حسن",
+            "en": "Shadan Khalid Hassan"
+          },
+          "certNumber": "25",
+          "date": "07/12/2019",
+          "bio": {
+            "birthDate": "23/12/1994",
+            "job": {
+              "ku": "پەرستاری ددان",
+              "ar": "ممرضة أسنان",
+              "en": "Dental Nurse"
             },
             "degree": {
               "ku": "دبلۆم",
@@ -334,11 +691,7 @@
           "certNumber": "26",
           "date": "13/12/2019",
           "bio": {
-            "birthDate": {
-              "ku": "11/03/1989",
-              "ar": "11/03/1989",
-              "en": "11/03/1989"
-            },
+            "birthDate": "11/03/1989",
             "job": {
               "ku": "مامۆستای زمانی کوردی",
               "ar": "مدرس اللغة الكردية",
@@ -360,16 +713,37 @@
           },
           "certNumber": "27",
           "date": "24/01/2020",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "22/11/1983",
-              "ar": "22/11/1983",
-              "en": "22/11/1983"
-            },
+            "birthDate": "22/11/1983",
             "job": {
               "ku": "چارەسەری کێشەی خێزانی",
               "ar": "الإرشاد الأسري",
               "en": "Family Counseling"
+            },
+            "degree": {
+              "ku": "ناوەندی",
+              "ar": "متوسطة",
+              "en": "Middle School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "نەجیبە عەزم عەلی",
+            "ar": "نجيبة عزم علي",
+            "en": "Najeeba Azm Ali"
+          },
+          "certNumber": "28",
+          "date": "1/1/2020",
+          "bio": {
+            "birthDate": "1978",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
             },
             "degree": {
               "ku": "ناوەندی",
@@ -387,48 +761,42 @@
           },
           "certNumber": "29",
           "date": "27/04/2020",
+          "isStaff": true,
+          "staffRole": "huffaz",
           "bio": {
-            "birthDate": {
-              "ku": "04/04/2000",
-              "ar": "04/04/2000",
-              "en": "04/04/2000"
-            },
+            "birthDate": "25/10/2003",
             "job": {
-              "ku": "پەرستاری منداڵان",
-              "ar": "تمريض الأطفال",
-              "en": "Pediatric Nursing"
+              "ku": "",
+              "ar": "",
+              "en": ""
             },
             "degree": {
-              "ku": "بەکالۆریۆس",
-              "ar": "بكالوريوس",
-              "en": "Bachelor's"
+              "ku": "دبلۆم لە بێهۆشکاری",
+              "ar": "دبلوم في التخدير",
+              "en": "Diploma in Anesthesia"
             },
             "photo": "assets/img/students/placeholder-female.svg"
           }
         },
         {
           "name": {
-            "ku": "چنوور ئازاد حوسێن",
-            "ar": "جنور أزاد حسين",
-            "en": "Chnur Azad Hussein"
+            "ku": "ژیان مەحموود عەبدوڕەحمان",
+            "ar": "ژيان محمود عبد الرحمن",
+            "en": "Zhiyan Mahmoud Abdulrahman"
           },
-          "certNumber": "29",
-          "date": "10/07/2024",
+          "certNumber": "30",
+          "date": "21/06/2020",
           "bio": {
-            "birthDate": {
-              "ku": "04/04/2000",
-              "ar": "04/04/2000",
-              "en": "04/04/2000"
-            },
+            "birthDate": "1980",
             "job": {
-              "ku": "پەرستاری منداڵان",
-              "ar": "تمريض الأطفال",
-              "en": "Pediatric Nursing"
+              "ku": "",
+              "ar": "",
+              "en": ""
             },
             "degree": {
-              "ku": "بەکالۆریۆس",
-              "ar": "بكالوريوس",
-              "en": "Bachelor's"
+              "ku": "ناوەندی",
+              "ar": "متوسطة",
+              "en": "Middle School"
             },
             "photo": "assets/img/students/placeholder-female.svg"
           }
@@ -442,11 +810,7 @@
           "certNumber": "31",
           "date": "21/06/2020",
           "bio": {
-            "birthDate": {
-              "ku": "05/07/2003",
-              "ar": "05/07/2003",
-              "en": "05/07/2003"
-            },
+            "birthDate": "05/07/2003",
             "job": {
               "ku": "قوتابیی زانکۆ (تاقیگە)",
               "ar": "طالب جامعي (مختبرات)",
@@ -462,6 +826,54 @@
         },
         {
           "name": {
+            "ku": "مەهاباد عەزیز ئەمین",
+            "ar": "مهاباد عزيز أمين",
+            "en": "Mahabad Aziz Amin"
+          },
+          "certNumber": "32",
+          "date": "20/11/2020",
+          "isStaff": true,
+          "staffRole": "tajweed",
+          "bio": {
+            "birthDate": "1978",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "ئامادەیی",
+              "ar": "ثانوية",
+              "en": "High School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "خەندە حسێن مستەفا",
+            "ar": "خندة حسين مصطفى",
+            "en": "Khanda Hussein Mustafa"
+          },
+          "certNumber": "33",
+          "date": "25/11/2020",
+          "bio": {
+            "birthDate": "",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "پشتیوان عەزیز موحەممەد",
             "ar": "بشتيوان عزيز محمد",
             "en": "Pshtiwan Aziz Muhammad"
@@ -469,11 +881,7 @@
           "certNumber": "34",
           "date": "01/12/2020",
           "bio": {
-            "birthDate": {
-              "ku": "01/03/1985",
-              "ar": "01/03/1985",
-              "en": "01/03/1985"
-            },
+            "birthDate": "01/03/1985",
             "job": {
               "ku": "مامۆستای زمانی عەرەبی",
               "ar": "مدرس اللغة العربية",
@@ -495,19 +903,17 @@
           },
           "certNumber": "35",
           "date": "30/01/2021",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "10/02/1990",
-              "ar": "10/02/1990",
-              "en": "10/02/1990"
-            },
+            "birthDate": "10/02/1990",
             "job": {
               "ku": "",
               "ar": "",
               "en": ""
             },
             "degree": {
-              "ku": "دبلۆم لە شیکاری نەخۆشییەکان",
+              "ku": "دبلۆم لە شیکاریی نەخۆشییەکان",
               "ar": "دبلوم في التحليلات المرضية",
               "en": "Diploma in Pathological Analysis"
             },
@@ -523,13 +929,9 @@
           "certNumber": "36",
           "date": "17/08/2021",
           "bio": {
-            "birthDate": {
-              "ku": "03/02/2007",
-              "ar": "03/02/2007",
-              "en": "03/02/2007"
-            },
+            "birthDate": "03/02/2007",
             "job": {
-              "ku": "قوتابی زانکۆ (ئەندازیاری پرۆگرامسازی)",
+              "ku": "قوتابیی زانکۆ (ئەندازیاریی پرۆگرامسازی)",
               "ar": "طالب جامعي (هندسة البرمجيات)",
               "en": "University Student (Software Engineering)"
             },
@@ -543,6 +945,29 @@
         },
         {
           "name": {
+            "ku": "پاڤێڵ سۆران عەبدولواحید",
+            "ar": "بافل سوران عبد الواحد",
+            "en": "Bafil Soran Abdulwahid"
+          },
+          "certNumber": "37",
+          "date": "09/09/2021",
+          "bio": {
+            "birthDate": "2005",
+            "job": {
+              "ku": "قوتابیی زانکۆ (پزیشکیی گشتی)",
+              "ar": "طالب جامعي (طب عام)",
+              "en": "University Student (General Medicine)"
+            },
+            "degree": {
+              "ku": "ئامادەیی",
+              "ar": "إعدادية",
+              "en": "High School"
+            },
+            "photo": "assets/img/students/36.png"
+          }
+        },
+        {
+          "name": {
             "ku": "دونیا مونیر ئەمیر",
             "ar": "دنيا منير أمير",
             "en": "Dunya Munir Amir"
@@ -550,11 +975,7 @@
           "certNumber": "38",
           "date": "11/12/2021",
           "bio": {
-            "birthDate": {
-              "ku": "01/01/2004",
-              "ar": "01/01/2004",
-              "en": "01/01/2004"
-            },
+            "birthDate": "01/01/2004",
             "job": {
               "ku": "",
               "ar": "",
@@ -577,11 +998,7 @@
           "certNumber": "39",
           "date": "08/04/2022",
           "bio": {
-            "birthDate": {
-              "ku": "08/07/2008",
-              "ar": "08/07/2008",
-              "en": "08/07/2008"
-            },
+            "birthDate": "08/07/2008",
             "job": {
               "ku": "قوتابی",
               "ar": "طالب",
@@ -592,7 +1009,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.svg"
+            "photo": "assets/img/students/39.png"
           }
         },
         {
@@ -604,15 +1021,11 @@
           "certNumber": "40",
           "date": "01/09/2021",
           "bio": {
-            "birthDate": {
-              "ku": "15/04/2006",
-              "ar": "15/04/2006",
-              "en": "15/04/2006"
-            },
+            "birthDate": "15/04/2006",
             "job": {
-              "ku": "قوتابی",
-              "ar": "طالب",
-              "en": "Student"
+              "ku": "قوتابیی زانکۆ",
+              "ar": "طالب جامعي",
+              "en": "University Student"
             },
             "degree": {
               "ku": "ئامادەیی",
@@ -624,18 +1037,39 @@
         },
         {
           "name": {
+            "ku": "ڕوەیدا ئەحمەد عەبدوڵڵا",
+            "ar": "رویدا احمد عبدالله",
+            "en": "Ruwayda Ahmad Abdullah"
+          },
+          "certNumber": "41",
+          "date": "25/11/2022",
+          "bio": {
+            "birthDate": "1996",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "بوشرا سەعید حەمەساڵح",
             "ar": "بشرى سعيد حمه صالح",
             "en": "Bushra Saeed Hama-Salih"
           },
           "certNumber": "42",
           "date": "27/08/2022",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "20/07/1990",
-              "ar": "20/07/1990",
-              "en": "20/07/1990"
-            },
+            "birthDate": "20/07/1990",
             "job": {
               "ku": "",
               "ar": "",
@@ -657,12 +1091,10 @@
           },
           "certNumber": "43",
           "date": "13/01/2023",
+          "isStaff": true,
+          "staffRole": "huffaz",
           "bio": {
-            "birthDate": {
-              "ku": "11/03/1989",
-              "ar": "11/03/1989",
-              "en": "11/03/1989"
-            },
+            "birthDate": "11/03/1989",
             "job": {
               "ku": "",
               "ar": "",
@@ -678,18 +1110,41 @@
         },
         {
           "name": {
+            "ku": "کەنار مەحموود موحەممەد",
+            "ar": "كنار محمود محمد",
+            "en": "Kanar Mahmoud Muhammad"
+          },
+          "certNumber": "44",
+          "date": "14/04/2023",
+          "isStaff": true,
+          "staffRole": "tajweed",
+          "bio": {
+            "birthDate": "1993",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "دبلۆم لە کشتوکاڵ",
+              "ar": "دبلوم في الزراعة",
+              "en": "Diploma in Agriculture"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "سۆما حەمەڕەشید عەبدولغەفوور",
             "ar": "سوما حمه رشيد عبدالغفور",
             "en": "Soma Hama-Rashid Abdulghafour"
           },
           "certNumber": "45",
           "date": "07/06/2023",
+          "isStaff": true,
+          "staffRole": "qaida",
           "bio": {
-            "birthDate": {
-              "ku": "20/08/1995",
-              "ar": "20/08/1995",
-              "en": "20/08/1995"
-            },
+            "birthDate": "20/08/1995",
             "job": {
               "ku": "",
               "ar": "",
@@ -712,22 +1167,18 @@
           "certNumber": "46",
           "date": "22/10/2023",
           "bio": {
-            "birthDate": {
-              "ku": "01/01/2005",
-              "ar": "01/01/2005",
-              "en": "01/01/2005"
-            },
+            "birthDate": "01/01/2005",
             "job": {
-              "ku": "قوتابی",
-              "ar": "طالب",
-              "en": "Student"
+              "ku": "قوتابیی زانکۆ",
+              "ar": "طالب جامعي",
+              "en": "University Student"
             },
             "degree": {
-              "ku": "بەکالۆریۆس",
-              "ar": "بكالوريوس",
-              "en": "Bachelor's"
+              "ku": "ئامادەیی ",
+              "ar": "إعدادية",
+              "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "assets/img/students/placeholder-female.svg"
           }
         },
         {
@@ -741,11 +1192,7 @@
           "isStaff": true,
           "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "01/03/1985",
-              "ar": "01/03/1985",
-              "en": "01/03/1985"
-            },
+            "birthDate": "01/03/1985",
             "job": {
               "ku": "مامۆستای زمانی عەرەبی",
               "ar": "مدرس اللغة العربية",
@@ -756,7 +1203,30 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "assets/img/students/47.png"
+          }
+        },
+        {
+          "name": {
+            "ku": "ڕۆزا ناسیح عەبدوڵڵا",
+            "ar": "روزا ناصح عبد الله",
+            "en": "Roza Nasih Abdullah"
+          },
+          "certNumber": "48",
+          "date": "14/01/2024",
+          "bio": {
+            "birthDate": "1997",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
           }
         },
         {
@@ -768,11 +1238,7 @@
           "certNumber": "49",
           "date": "25/01/2024",
           "bio": {
-            "birthDate": {
-              "ku": "01/01/2013",
-              "ar": "01/01/2013",
-              "en": "01/01/2013"
-            },
+            "birthDate": "01/01/2013",
             "job": {
               "ku": "قوتابی",
               "ar": "طالب",
@@ -794,12 +1260,10 @@
           },
           "certNumber": "50",
           "date": "09/03/2024",
+          "isStaff": true,
+          "staffRole": "qaida",
           "bio": {
-            "birthDate": {
-              "ku": "04/09/2009",
-              "ar": "04/09/2009",
-              "en": "04/09/2009"
-            },
+            "birthDate": "04/09/2009",
             "job": {
               "ku": "قوتابی",
               "ar": "طالب",
@@ -815,18 +1279,39 @@
         },
         {
           "name": {
+            "ku": "موحەممەد عوسمان حەمەڕەشید",
+            "ar": "محمد عثمان حمه رشيد",
+            "en": "Muhammad Osman Hama-Rashid"
+          },
+          "certNumber": "51",
+          "date": "19/05/2024",
+          "bio": {
+            "birthDate": "15/01/2008",
+            "job": {
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
+            },
+            "degree": {
+              "ku": "ئامادەیی",
+              "ar": "إعدادية",
+              "en": "High School"
+            },
+            "photo": "assets/img/students/59.jpg"
+          }
+        },
+        {
+          "name": {
             "ku": "هەرمێ ڕەئووف موحەممەد",
             "ar": "هرمي رؤوف محمد",
             "en": "Harme Rauf Muhammad"
           },
           "certNumber": "52",
           "date": "04/07/2024",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
-            "birthDate": {
-              "ku": "05/05/1998",
-              "ar": "05/05/1998",
-              "en": "05/05/1998"
-            },
+            "birthDate": "05/05/1998",
             "job": {
               "ku": "",
               "ar": "",
@@ -849,11 +1334,7 @@
           "certNumber": "53",
           "date": "04/07/2024",
           "bio": {
-            "birthDate": {
-              "ku": "08/01/1997",
-              "ar": "08/01/1997",
-              "en": "08/01/1997"
-            },
+            "birthDate": "08/01/1997",
             "job": {
               "ku": "",
               "ar": "",
@@ -869,6 +1350,75 @@
         },
         {
           "name": {
+            "ku": "چنوور ئازاد حوسێن",
+            "ar": "جنور أزاد حسين",
+            "en": "Chnur Azad Hussein"
+          },
+          "certNumber": "54",
+          "date": "10/07/2024",
+          "bio": {
+            "birthDate": "04/04/2000",
+            "job": {
+              "ku": "پەرستار",
+              "ar": "ممرضة",
+              "en": "Nurse"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "هوما فازڵ موحەممەد",
+            "ar": "هوما فاضل محمد",
+            "en": "Huma Fazil Muhammad"
+          },
+          "certNumber": "55",
+          "date": "31/10/2024",
+          "bio": {
+            "birthDate": "1996",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "چاوان زاهیر حەمەساڵح",
+            "ar": "جاوان زاهر حمه صالح",
+            "en": "Chawan Zahir Hama-Salih"
+          },
+          "certNumber": "56",
+          "date": "03/11/2024",
+          "bio": {
+            "birthDate": "",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "شکۆ فارووق حوسێن",
             "ar": "شكو فاروق حسين",
             "en": "Shiko Farooq Hussein"
@@ -876,11 +1426,7 @@
           "certNumber": "57",
           "date": "19/12/2024",
           "bio": {
-            "birthDate": {
-              "ku": "25/04/2012",
-              "ar": "25/04/2012",
-              "en": "25/04/2012"
-            },
+            "birthDate": "25/04/2012",
             "job": {
               "ku": "قوتابی",
               "ar": "طالب",
@@ -896,56 +1442,95 @@
         },
         {
           "name": {
-            "ku": "موحەممەد عوسمان حەمەڕەشید",
-            "ar": "محمد عثمان حمه رشيد",
-            "en": "Muhammad Osman Hama-Rashid"
+            "ku": "ئانیا جاسم موحەممەد",
+            "ar": "آنيا جاسم محمد",
+            "en": "Anya Jassim Muhammad"
           },
-          "certNumber": "59",
-          "date": "19/05/2024",
+          "certNumber": "58",
+          "date": "02/01/2024",
           "bio": {
-            "birthDate": {
-              "ku": "15/01/2008",
-              "ar": "15/01/2008",
-              "en": "15/01/2008"
-            },
+            "birthDate": "2012",
             "job": {
               "ku": "قوتابی",
               "ar": "طالب",
               "en": "Student"
             },
             "degree": {
-              "ku": "ئامادەیی",
-              "ar": "إعدادية",
-              "en": "High School"
+              "ku": "ناوەندی",
+              "ar": "متوسطة",
+              "en": "Middle School"
             },
-            "photo": "assets/img/students/59.jpg"
+            "photo": "assets/img/students/placeholder-female.svg"
           }
         },
         {
           "name": {
-            "ku": "دارا کەریم فەرەج",
-            "ar": "دارا كريم فرج",
-            "en": "Dara Karim Faraj"
+            "ku": "سارا پشتیوان ئەحمەد",
+            "ar": "سارا بشتيوان أحمد",
+            "en": "Sara Pshtiwan Ahmed"
           },
-          "certNumber": "62",
-          "date": "21/08/2025",
+          "certNumber": "59",
+          "date": "06/02/2025",
+          "isStaff": true,
           "bio": {
-            "birthDate": {
-              "ku": "01/09/1978",
-              "ar": "01/09/1978",
-              "en": "01/09/1978"
-            },
+            "birthDate": "06/11/2012",
             "job": {
-              "ku": "توێژەری کۆمەڵایەتی",
-              "ar": "باحث اجتماعي",
-              "en": "Social Researcher"
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
             },
             "degree": {
-              "ku": "بەکالۆریۆس",
-              "ar": "بكالوريوس",
-              "en": "Bachelor's"
+              "ku": "ناوەندی",
+              "ar": "متوسطة",
+              "en": "Middle School"
             },
-            "photo": "assets/img/students/62.jpg"
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "کۆسار عومەر موحەممەد",
+            "ar": "كوسار عمر محمد",
+            "en": "Kosar Omar Muhammad"
+          },
+          "certNumber": "60",
+          "date": "06/02/2025",
+          "bio": {
+            "birthDate": "1993",
+            "job": {
+              "ku": "کاسب",
+              "ar": "كاسب",
+              "en": "Self-employed"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/60.jpg"
+          }
+        },
+        {
+          "name": {
+            "ku": "نەمام نەجمەدین مەحموود",
+            "ar": "نمام نجم الدين محمود",
+            "en": "Namam Najmaddin Mahmoud"
+          },
+          "certNumber": "61",
+          "date": "24/07/2025",
+          "bio": {
+            "birthDate": "2011",
+            "job": {
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
+            },
+            "degree": {
+              "ku": "ناوەندی",
+              "ar": "متوسطة",
+              "en": "Middle School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
           }
         },
         {
@@ -956,12 +1541,10 @@
           },
           "certNumber": "62",
           "date": "31/07/2025",
+          "isStaff": true,
+          "staffRole": "qaida",
           "bio": {
-            "birthDate": {
-              "ku": "30/07/2000",
-              "ar": "30/07/2000",
-              "en": "30/07/2000"
-            },
+            "birthDate": "30/07/2000",
             "job": {
               "ku": "",
               "ar": "",
@@ -977,18 +1560,39 @@
         },
         {
           "name": {
+            "ku": "دارا کەریم فەرەج",
+            "ar": "دارا كريم فرج",
+            "en": "Dara Karim Faraj"
+          },
+          "certNumber": "63",
+          "date": "21/08/2025",
+          "bio": {
+            "birthDate": "01/09/1978",
+            "job": {
+              "ku": "توێژەری کۆمەڵایەتی",
+              "ar": "باحث اجتماعي",
+              "en": "Social Researcher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/62.jpg"
+          }
+        },
+        {
+          "name": {
             "ku": "یوسرا سەعید حەمەساڵح",
             "ar": "يسرى سعيد حمه صالح",
             "en": "Yusra Saeed Hama-Salih"
           },
           "certNumber": "64",
           "date": "10/09/2025",
+          "isStaff": true,
+          "staffRole": "huffaz",
           "bio": {
-            "birthDate": {
-              "ku": "15/04/1997",
-              "ar": "15/04/1997",
-              "en": "15/04/1997"
-            },
+            "birthDate": "15/04/1997",
             "job": {
               "ku": "",
               "ar": "",
@@ -1004,6 +1608,52 @@
         },
         {
           "name": {
+            "ku": "ژیناس ئاسۆ حەمەسەعید",
+            "ar": "جيناس آسو حمه سعيد",
+            "en": "Jinas Aso Hama-Saeed"
+          },
+          "certNumber": "65",
+          "date": "18/09/2025",
+          "bio": {
+            "birthDate": "26/02/2014",
+            "job": {
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
+            },
+            "degree": {
+              "ku": "بنەڕەتی",
+              "ar": "أساسية",
+              "en": "Primary School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "هالە ئیسماعیل ئەحمەد",
+            "ar": "هالة إسماعيل أحمد",
+            "en": "Hala Ismail Ahmed"
+          },
+          "certNumber": "66",
+          "date": "06/11/2025",
+          "bio": {
+            "birthDate": "30/05/2013",
+            "job": {
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
+            },
+            "degree": {
+              "ku": "بنەڕەتی",
+              "ar": "أساسية",
+              "en": "Primary School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "شێنێ عەبدوڵڵا مەحموود",
             "ar": "شيني عبد الله محمود",
             "en": "Shene Abdullah Mahmoud"
@@ -1011,11 +1661,7 @@
           "certNumber": "67",
           "date": "11/12/2025",
           "bio": {
-            "birthDate": {
-              "ku": "30/04/2008",
-              "ar": "30/04/2008",
-              "en": "30/04/2008"
-            },
+            "birthDate": "30/04/2008",
             "job": {
               "ku": "قوتابی",
               "ar": "طالب",
@@ -1027,33 +1673,6 @@
               "en": "High School"
             },
             "photo": "assets/img/students/placeholder-female.svg"
-          }
-        },
-        {
-          "name": {
-            "ku": "سیروان حامید ڕاهیم",
-            "ar": "سيروان حامد رحيم",
-            "en": "Sirwan Hamid Rahim"
-          },
-          "isStaff": true,
-          "staffRole": "director",
-          "bio": {
-            "birthDate": {
-              "ku": "13/02/1975",
-              "ar": "13/02/1975",
-              "en": "13/02/1975"
-            },
-            "job": {
-              "ku": "مامۆستای زمانی عەرەبی",
-              "ar": "مدرس اللغة العربية",
-              "en": "Arabic Language Teacher"
-            },
-            "degree": {
-              "ku": "بەکالۆریۆس لە زمانی عەرەبی",
-              "ar": "بكالوريوس في اللغة العربية",
-              "en": "Bachelor's in Arabic Language"
-            },
-            "photo": "assets/img/students/placeholder-male.svg"
           }
         }
       ]
@@ -1074,15 +1693,6 @@
           },
           "certNumber": "1",
           "date": "01/01/2012"
-        },
-        {
-          "name": {
-            "ku": "سیروان حامید ڕاهیم",
-            "ar": "سيروان حامد رحيم",
-            "en": "Sirwan Hamid Rahim"
-          },
-          "isStaff": true,
-          "staffRole": "director"
         }
       ]
     },
@@ -1102,15 +1712,6 @@
           },
           "certNumber": "1",
           "date": "01/01/2012"
-        },
-        {
-          "name": {
-            "ku": "سیروان حامید ڕاهیم",
-            "ar": "سيروان حامد رحيم",
-            "en": "Sirwan Hamid Rahim"
-          },
-          "isStaff": true,
-          "staffRole": "director"
         }
       ]
     },
@@ -1133,12 +1734,26 @@
         },
         {
           "name": {
-            "ku": "سیروان حامید ڕاهیم",
-            "ar": "سيروان حامد رحيم",
-            "en": "Sirwan Hamid Rahim"
+            "ku": "فاخر فەرەج عەبدوڵڵا",
+            "ar": "فاخر فرج عبد الله",
+            "en": "Fakhir Faraj Abdullah"
           },
           "isStaff": true,
-          "staffRole": "director"
+          "staffRole": "admin",
+          "bio": {
+            "birthDate": "01/07/1972",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/Fakher.jpg"
+          }
         }
       ]
     },
@@ -1158,15 +1773,6 @@
           },
           "certNumber": "1",
           "date": "01/01/2012"
-        },
-        {
-          "name": {
-            "ku": "سیروان حامید ڕاهیم",
-            "ar": "سيروان حامد رحيم",
-            "en": "Sirwan Hamid Rahim"
-          },
-          "isStaff": true,
-          "staffRole": "director"
         }
       ]
     },
@@ -1177,17 +1783,7 @@
         "ku": "مۆڵەتی بانگ و قامەت",
         "ar": "إجازة الأذان والإقامة"
       },
-      "members": [
-        {
-          "name": {
-            "ku": "سیروان حامید ڕاهیم",
-            "ar": "سيروان حامد رحيم",
-            "en": "Sirwan Hamid Rahim"
-          },
-          "isStaff": true,
-          "staffRole": "tajweed"
-        }
-      ]
+      "members": []
     },
     {
       "id": "ten-qiraat",
@@ -1199,12 +1795,313 @@
       "members": [
         {
           "name": {
-            "ku": "سیروان حامید ڕاهیم",
-            "ar": "سيروان حامد رحيم",
-            "en": "Sirwan Hamid Rahim"
+            "ku": "فارووق حوسێن مەحموود",
+            "ar": "فاروق حسين محمود",
+            "en": "Farooq Hussein Mahmoud"
           },
+          "date": "15/09/2015",
           "isStaff": true,
-          "staffRole": "director"
+          "staffRole": "tajweed",
+          "bio": {
+            "birthDate": "01/03/1978",
+            "job": {
+              "ku": "مامۆستای زمانی عەرەبی",
+              "ar": "مدرس اللغة العربية",
+              "en": "Arabic Language Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/01.jpg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "2"
+        },
+        {
+          "name": {
+            "ku": "ئەحمەد عەینەدین عەبدوڕەحمان",
+            "ar": "أحمد عين الدين عبد الرحمن",
+            "en": "Ahmed Ainaddin Abdulrahman"
+          },
+          "date": "05/03/2016",
+          "isStaff": true,
+          "staffRole": "tajweed",
+          "bio": {
+            "birthDate": "01/05/1976",
+            "job": {
+              "ku": "مامۆستای بیرکاری",
+              "ar": "مدرس الرياضيات",
+              "en": "Mathematics Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/04.jpg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "4"
+        },
+        {
+          "name": {
+            "ku": "شەرمین عوبەید ئەحمەد",
+            "ar": "شرمين عبيد أحمد",
+            "en": "Sharmin Ubaid Ahmed"
+          },
+          "bio": {
+            "birthDate": "1983",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "القراءات العشر",
+            "ar": "القراءات العشر",
+            "en": "The Ten Qira'at"
+          },
+          "certNumber": ""
+        },
+        {
+          "name": {
+            "ku": "نەجیبە عەزم عەلی",
+            "ar": "نجيبة عزم علي",
+            "en": "Najeeba Azm Ali"
+          },
+          "date": "03/08/2020",
+          "bio": {
+            "birthDate": "1978",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "ناوەندی",
+              "ar": "متوسطة",
+              "en": "Middle School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "6"
+        },
+        {
+          "name": {
+            "ku": "مەهاباد عەزیز ئەمین",
+            "ar": "مهاباد عزيز أمين",
+            "en": "Mahabad Aziz Amin"
+          },
+          "date": "05/01/2021",
+          "bio": {
+            "birthDate": "1978",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "ئامادەیی",
+              "ar": "ثانوية",
+              "en": "High School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "7"
+        },
+        {
+          "name": {
+            "ku": "گوڵاڵە موحەممەد عەزیز",
+            "ar": "جلالة محمد عزيز",
+            "en": "Gulala Muhammad Aziz"
+          },
+          "date": "29/05/2022",
+          "bio": {
+            "birthDate": "10/02/1990",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "دبلۆم لە شیکاریی نەخۆشییەکان",
+              "ar": "دبلوم في التحليلات المرضية",
+              "en": "Diploma in Pathological Analysis"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "8"
+        },
+        {
+          "name": {
+            "ku": "حامید عەبد فەیحان",
+            "ar": "حامد عبد فيحان",
+            "en": "Hamid Abd Fayhan"
+          },
+          "date": "28/08/2015",
+          "bio": {
+            "birthDate": "",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "1"
+        },
+        {
+          "name": {
+            "ku": "بەرزنج شەهاب نووری",
+            "ar": "برزنج شهاب نوري",
+            "en": "Barzinj Shahab Nuri"
+          },
+          "bio": {
+            "birthDate": "1997",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە ئەندازیاری",
+              "ar": "بكالوريوس في الهندسة",
+              "en": "Bachelor's in Engineering"
+            },
+            "photo": "assets/img/students/08.png"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": ""
+        },
+        {
+          "name": {
+            "ku": "فاتمە زاهید حەمەئەمین",
+            "ar": "فاطمة زاهد حمه أمين",
+            "en": "Fatima Zahid Hama-Amin"
+          },
+          "date": "20/01/2016",
+          "bio": {
+            "birthDate": "1971",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "3"
+        },
+        {
+          "name": {
+            "ku": "خەندە ئەحمەد حەمەئەمین",
+            "ar": "خندة أحمد حمه أمين",
+            "en": "Khanda Ahmed Hama-Amin"
+          },
+          "date": "12/10/2019",
+          "bio": {
+            "birthDate": "01/01/1993",
+            "job": {
+              "ku": "فەرمانبەر",
+              "ar": "موظفة",
+              "en": "Employee"
+            },
+            "degree": {
+              "ku": "دبلۆم لە پاراستنی ددان",
+              "ar": "دبلوم في وقاية الأسنان",
+              "en": "Diploma in Preventive Dentistry"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "5"
+        },
+        {
+          "name": {
+            "ku": "مووسا موحەممەد عەبدوڕەحمان",
+            "ar": "موسى محمد عبد الرحمن",
+            "en": "Musa Muhammad Abdulrahman"
+          },
+          "date": "22/12/2013",
+          "bio": {
+            "birthDate": "1982",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە شەریعە",
+              "ar": "بكالوريوس في الشريعة",
+              "en": "Bachelor's in Sharia"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          },
+          "customLabel": {
+            "ku": "ورش عن نافع",
+            "ar": "ورش عن نافع",
+            "en": "Warsh 'an Nafi'"
+          },
+          "certNumber": ""
         }
       ]
     }

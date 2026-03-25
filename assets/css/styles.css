@@ -6005,6 +6005,7 @@ body[dir="ltr"] .pub-card-title {
 
 .staff-role-director { color: #1a4a8a; }
 .staff-role-huffaz  { color: var(--color-green-1); }
+.staff-role-qaida   { color: #0e755a; }
 .staff-role-tajweed { color: #8a6a00; }
 .staff-role-studies { color: #a35500; }
 .staff-role-admin   { color: var(--color-muted); }
