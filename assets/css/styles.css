@@ -8059,10 +8059,11 @@ body[dir="rtl"] .pc-features li::before {
 /* Grouped card: use normal category badge styles */
 .dir-card.dir-card-grouped .dir-card-category {
   margin-top: 0;
-  flex: 1 1 30%;
-  min-width: 30%;
-  white-space: nowrap;
+  flex: 0 1 auto;
+  max-width: 100%;
+  white-space: normal;
   text-align: center;
+  word-break: break-word;
 }
 
 /* ── Mobile: search results responsive layout ──────── */
