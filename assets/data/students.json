@@ -33,11 +33,36 @@
         },
         {
           "name": {
+            "ku": "مەریەم والی قادر",
+            "ar": "مريم والي قادر",
+            "en": "Maryam Wali Qadir"
+          },
+          "certNumber": "2",
+          "date": "18/09/2018",
+          "isStaff": true,
+          "staffRole": "huffaz",
+          "bio": {
+            "birthDate": "01/01/1979",
+            "job": {
+              "ku": "مامۆستای زمانی عەرەبی",
+              "ar": "مدرسة اللغة العربية",
+              "en": "Arabic Language Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "نەجیبە عەزم عەلی",
             "ar": "نجيبة عزم علي",
             "en": "Najeeba Azm Ali"
           },
-          "certNumber": "2",
+          "certNumber": "3",
           "date": "09/12/2020",
           "isStaff": true,
           "staffRole": "huffaz",
@@ -58,11 +83,61 @@
         },
         {
           "name": {
+            "ku": "سنوور عەبدوڵڵا مستەفا",
+            "ar": "سنور عبدالله مصطفى",
+            "en": "Snur Abdullah Mustafa"
+          },
+          "certNumber": "4",
+          "date": "27/04/2020",
+          "isStaff": true,
+          "staffRole": "huffaz",
+          "bio": {
+            "birthDate": "25/10/2003",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "دبلۆم لە بێهۆشکاری",
+              "ar": "دبلوم في التخدير",
+              "en": "Diploma in Anesthesia"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "سابات ئەحمەد موحەممەد",
+            "ar": "سابات أحمد محمد",
+            "en": "Sabat Ahmed Muhammad"
+          },
+          "certNumber": "5",
+          "date": "13/01/2023",
+          "isStaff": true,
+          "staffRole": "huffaz",
+          "bio": {
+            "birthDate": "11/03/1989",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە زمانی کوردی",
+              "ar": "بكالوريوس في اللغة الكردية",
+              "en": "Bachelor's in Kurdish Language"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
             "ku": "ڕەند فەهمی حەمەڕەشید",
             "ar": "رند فهمي حمه رشيد",
             "en": "Rand Fahmi Hama-Rashid"
           },
-          "certNumber": "3",
+          "certNumber": "6",
           "date": "25/05/2023",
           "isStaff": true,
           "staffRole": "huffaz",
@@ -78,7 +153,82 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/39.png"
+            "photo": "assets/img/students/39.jpg"
+          }
+        },
+        {
+          "name": {
+            "ku": "مەهاباد عەزیز ئەمین",
+            "ar": "مهاباد عزيز أمين",
+            "en": "Mahabad Aziz Amin"
+          },
+          "certNumber": "7",
+          "date": "20/11/2020",
+          "isStaff": true,
+          "staffRole": "tajweed",
+          "bio": {
+            "birthDate": "1978",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "ئامادەیی",
+              "ar": "ثانوية",
+              "en": "High School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "یوسرا سەعید حەمەساڵح",
+            "ar": "يسرى سعيد حمه صالح",
+            "en": "Yusra Saeed Hama-Salih"
+          },
+          "certNumber": "8",
+          "date": "10/09/2025",
+          "isStaff": true,
+          "staffRole": "huffaz",
+          "bio": {
+            "birthDate": "15/04/1997",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە زمانی ئینگلیزی",
+              "ar": "بكالوريوس في اللغة الإنجليزية",
+              "en": "Bachelor's in English Language"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          }
+        },
+        {
+          "name": {
+            "ku": "بوشرا سەعید حەمەساڵح",
+            "ar": "بشرى سعيد حمه صالح",
+            "en": "Bushra Saeed Hama-Salih"
+          },
+          "certNumber": "9",
+          "date": "27/08/2022",
+          "isStaff": true,
+          "staffRole": "tajweed",
+          "bio": {
+            "birthDate": "20/07/1990",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە کۆمەڵایەتی",
+              "ar": "بكالوريوس في الاجتماعيات",
+              "en": "Bachelor's in Social Studies"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
           }
         }
       ]
@@ -1009,7 +1159,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/39.png"
+            "photo": "assets/img/students/39.jpg"
           }
         },
         {
