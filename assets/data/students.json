@@ -1716,6 +1716,8 @@
           },
           "certNumber": "63",
           "date": "21/08/2025",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": "01/09/1978",
             "job": {

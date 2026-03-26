@@ -332,7 +332,7 @@
             birthDate: '01/03/1987',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'ماستەر لە جوگرافیا', ar: 'ماجستير في الجغرافيا', en: "Master's in Geography" },
-            photo: 'assets/img/students/placeholder-male.svg'
+            photo: 'assets/img/students/Sardar.png'
           }
         },
         allCerts: []
