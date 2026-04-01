@@ -107,7 +107,7 @@
         certsHtml += `<div class="dir-bio-cert-row">
           <span class="dir-bio-cert-name">${catName}</span>
           <span class="dir-bio-cert-date">${cert.date || ''}</span>
-          ${cert.certNumber && cert.categoryId !== 'ten-qiraat' ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
+          ${cert.certNumber ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
         </div>`;
       });
     }
@@ -198,7 +198,6 @@
     const lang = getCurrentLang();
     const certsI18n = item.allCerts.map(c => {
       let cName = t(c.categoryNameObj, lang);
-      if (c.categoryId === 'ten-qiraat' && c.certNumber) cName += ` #${c.certNumber}`;
       return {
         ...c,
         categoryName: cName
@@ -371,29 +370,57 @@
 
       const roleOrder = { director: 0, huffaz: 1, qaida: 2, tajweed: 3, studies: 4, admin: 5 };
       
-      const getStaffRank = (item) => {
+const isMan = (item) => {
         const n = String(item.member.name.en || '').toLowerCase();
-        if (n.includes('sirwan hamid')) return 10;
-        if (n.includes('farooq')) return 20;
-        if (n.includes('ahmed ainaddin') || n.includes('ahmed ainadin')) return 30;
-        if (n.includes('sardar abdulrahim')) return 40;
-        if (n.includes('fakhir')) return 45;
-        
+        const menNames = [
+          'sirwan hamid', 'sardar abdulrahim', 'burhan ali',
+          'farooq hussein', 'ahmed ainaddin', 'ahmed ainadin',
+          'bahman hama', 'kosar omar', 'dara karim', 'fakhr f',
+          'rand fahmi'
+        ];
+        if (menNames.some(m => n.includes(m))) return true;
         const photo = item.member.bio?.photo || '';
-        if (photo && !photo.includes('placeholder-')) return 50; // Real picture
-        if (photo.includes('placeholder-male')) return 60;       // Men without picture
-        if (photo.includes('placeholder-female')) return 70;     // Women
-        return 80;
+        if (photo.includes('placeholder-male')) return true;
+        return false;
+      };
+
+      const getRecitationCertNumber = (item) => {
+        const cert = (item.allCerts || []).find(c => c.categoryId === 'recitation-license' && c.certNumber);
+        if (!cert || !cert.certNumber) return Infinity;
+        const num = parseInt(cert.certNumber, 10);
+        return isNaN(num) ? Infinity : num;
       };
 
       const fromJson = buildStaffList(data.categories || []);
       staffList = [...STATIC_STAFF.first, ...fromJson, ...STATIC_STAFF.last]
         .sort((a, b) => {
-          const rankA = getStaffRank(a);
-          const rankB = getStaffRank(b);
-          if (rankA !== rankB) return rankA - rankB;
-          
-          return (roleOrder[a.member.staffRole] ?? 99) - (roleOrder[b.member.staffRole] ?? 99);
+          const nA = String(a.member.name.en || '').toLowerCase();
+          const nB = String(b.member.name.en || '').toLowerCase();
+
+          // 1. Hardcoded first positions
+          if (nA.includes('sirwan hamid') && !nB.includes('sirwan hamid')) return -1;
+          if (nB.includes('sirwan hamid') && !nA.includes('sirwan hamid')) return 1;
+
+          if (nA.includes('sardar abdulrahim') && !nB.includes('sardar abdulrahim')) return -1;
+          if (nB.includes('sardar abdulrahim') && !nA.includes('sardar abdulrahim')) return 1;
+
+          // 2. Men first, then women
+          const manA = isMan(a);
+          const manB = isMan(b);
+          if (manA && !manB) return -1;
+          if (!manA && manB) return 1;
+
+          // 3. Sort by recitation license number (lowest first); no license goes to the end (Infinity)
+          let certA = getRecitationCertNumber(a);
+          let certB = getRecitationCertNumber(b);
+
+          // Force Fakhr between Ahmed (4) and Rand (39)
+          if (nA.includes('fakhr f')) certA = 5;
+          if (nB.includes('fakhr f')) certB = 5;
+
+          if (certA !== certB) return certA - certB;
+
+          return nA.localeCompare(nB);
         });
       
       if (staffList.length === 0) return; // no staff marked yet

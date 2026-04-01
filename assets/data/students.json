@@ -1877,6 +1877,90 @@
       "members": [
         {
           "name": {
+            "ku": "شەرمین عوبەید ئەحمەد",
+            "ar": "شرمين عبيد أحمد",
+            "en": "Sharmin Ubaid Ahmed"
+          },
+          "date": "31/12/2018",
+          "bio": {
+            "birthDate": "1983",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "القراءات العشر",
+            "ar": "القراءات العشر",
+            "en": "The Ten Qira'at"
+          },
+          "certNumber": "1"
+        },
+        {
+          "name": {
+            "ku": "مووسا موحەممەد عەبدوڕەحمان",
+            "ar": "موسى محمد عبد الرحمن",
+            "en": "Musa Muhammad Abdulrahman"
+          },
+          "date": "29/12/2015",
+          "bio": {
+            "birthDate": "1982",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس لە شەریعە",
+              "ar": "بكالوريوس في الشريعة",
+              "en": "Bachelor's in Sharia"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          },
+          "customLabel": {
+            "ku": "ورش عن نافع",
+            "ar": "ورش عن نافع",
+            "en": "Warsh 'an Nafi'"
+          },
+          "certNumber": "1"
+        },
+        {
+          "name": {
+            "ku": "حامید عەبد فەیحان",
+            "ar": "حامد عبد فيحان",
+            "en": "Hamid Abd Fayhan"
+          },
+          "date": "28/08/2015",
+          "bio": {
+            "birthDate": "",
+            "job": {
+              "ku": "",
+              "ar": "",
+              "en": ""
+            },
+            "degree": {
+              "ku": "بەکالۆریۆس",
+              "ar": "بكالوريوس",
+              "en": "Bachelor's"
+            },
+            "photo": "assets/img/students/placeholder-male.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "1"
+        },
+        {
+          "name": {
             "ku": "فارووق حوسێن مەحموود",
             "ar": "فاروق حسين محمود",
             "en": "Farooq Hussein Mahmoud"
@@ -1904,6 +1988,34 @@
             "en": "Shu'ba 'an Asim"
           },
           "certNumber": "2"
+        },
+        {
+          "name": {
+            "ku": "فاتمە زاهید حەمەئەمین",
+            "ar": "فاطمة زاهد حمه أمين",
+            "en": "Fatima Zahid Hama-Amin"
+          },
+          "date": "20/01/2016",
+          "bio": {
+            "birthDate": "1971",
+            "job": {
+              "ku": "مامۆستا",
+              "ar": "مدرس",
+              "en": "Teacher"
+            },
+            "degree": {
+              "ku": "دبلۆم",
+              "ar": "دبلوم",
+              "en": "Diploma"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "3"
         },
         {
           "name": {
@@ -1937,33 +2049,6 @@
         },
         {
           "name": {
-            "ku": "شەرمین عوبەید ئەحمەد",
-            "ar": "شرمين عبيد أحمد",
-            "en": "Sharmin Ubaid Ahmed"
-          },
-          "bio": {
-            "birthDate": "1983",
-            "job": {
-              "ku": "مامۆستا",
-              "ar": "مدرس",
-              "en": "Teacher"
-            },
-            "degree": {
-              "ku": "دبلۆم",
-              "ar": "دبلوم",
-              "en": "Diploma"
-            },
-            "photo": "assets/img/students/placeholder-female.svg"
-          },
-          "customLabel": {
-            "ku": "القراءات العشر",
-            "ar": "القراءات العشر",
-            "en": "The Ten Qira'at"
-          },
-          "certNumber": ""
-        },
-        {
-          "name": {
             "ku": "نەجیبە عەزەم عەلی",
             "ar": "نجيبة عزم علي",
             "en": "Najeeba Azam Ali"
@@ -1980,6 +2065,34 @@
               "ku": "ناوەندی",
               "ar": "متوسطة",
               "en": "Middle School"
+            },
+            "photo": "assets/img/students/placeholder-female.svg"
+          },
+          "customLabel": {
+            "ku": "شعبة عن عاصم",
+            "ar": "شعبة عن عاصم",
+            "en": "Shu'ba 'an Asim"
+          },
+          "certNumber": "5"
+        },
+        {
+          "name": {
+            "ku": "خەندە ئەحمەد حەمەئەمین",
+            "ar": "خندة أحمد حمه أمين",
+            "en": "Khanda Ahmed Hama-Amin"
+          },
+          "date": "03/01/2021",
+          "bio": {
+            "birthDate": "01/01/1993",
+            "job": {
+              "ku": "فەرمانبەر",
+              "ar": "موظفة",
+              "en": "Employee"
+            },
+            "degree": {
+              "ku": "دبلۆم لە پاراستنی ددان",
+              "ar": "دبلوم في وقاية الأسنان",
+              "en": "Diploma in Preventive Dentistry"
             },
             "photo": "assets/img/students/placeholder-female.svg"
           },
@@ -2048,31 +2161,17 @@
         },
         {
           "name": {
-            "ku": "حامید عەبد فەیحان",
-            "ar": "حامد عبد فيحان",
-            "en": "Hamid Abd Fayhan"
-          },
-          "date": "28/08/2015",
-          "bio": {
-            "birthDate": "",
-            "job": {
-              "ku": "",
-              "ar": "",
-              "en": ""
-            },
-            "degree": {
-              "ku": "بەکالۆریۆس",
-              "ar": "بكالوريوس",
-              "en": "Bachelor's"
-            },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "ku": "ڕەند فەهمی حەمەڕەشید",
+            "ar": "رند فهمي حمه رشيد",
+            "en": "Rand Fahmi Hama-Rashid"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
             "ar": "شعبة عن عاصم",
             "en": "Shu'ba 'an Asim"
           },
-          "certNumber": "1"
+          "certNumber": "9",
+          "date": "25/05/2023"
         },
         {
           "name": {
@@ -2099,91 +2198,7 @@
             "ar": "شعبة عن عاصم",
             "en": "Shu'ba 'an Asim"
           },
-          "certNumber": ""
-        },
-        {
-          "name": {
-            "ku": "فاتمە زاهید حەمەئەمین",
-            "ar": "فاطمة زاهد حمه أمين",
-            "en": "Fatima Zahid Hama-Amin"
-          },
-          "date": "20/01/2016",
-          "bio": {
-            "birthDate": "1971",
-            "job": {
-              "ku": "مامۆستا",
-              "ar": "مدرس",
-              "en": "Teacher"
-            },
-            "degree": {
-              "ku": "دبلۆم",
-              "ar": "دبلوم",
-              "en": "Diploma"
-            },
-            "photo": "assets/img/students/placeholder-female.svg"
-          },
-          "customLabel": {
-            "ku": "شعبة عن عاصم",
-            "ar": "شعبة عن عاصم",
-            "en": "Shu'ba 'an Asim"
-          },
-          "certNumber": "3"
-        },
-        {
-          "name": {
-            "ku": "خەندە ئەحمەد حەمەئەمین",
-            "ar": "خندة أحمد حمه أمين",
-            "en": "Khanda Ahmed Hama-Amin"
-          },
-          "date": "12/10/2019",
-          "bio": {
-            "birthDate": "01/01/1993",
-            "job": {
-              "ku": "فەرمانبەر",
-              "ar": "موظفة",
-              "en": "Employee"
-            },
-            "degree": {
-              "ku": "دبلۆم لە پاراستنی ددان",
-              "ar": "دبلوم في وقاية الأسنان",
-              "en": "Diploma in Preventive Dentistry"
-            },
-            "photo": "assets/img/students/placeholder-female.svg"
-          },
-          "customLabel": {
-            "ku": "شعبة عن عاصم",
-            "ar": "شعبة عن عاصم",
-            "en": "Shu'ba 'an Asim"
-          },
-          "certNumber": "5"
-        },
-        {
-          "name": {
-            "ku": "مووسا موحەممەد عەبدوڕەحمان",
-            "ar": "موسى محمد عبد الرحمن",
-            "en": "Musa Muhammad Abdulrahman"
-          },
-          "date": "22/12/2013",
-          "bio": {
-            "birthDate": "1982",
-            "job": {
-              "ku": "مامۆستا",
-              "ar": "مدرس",
-              "en": "Teacher"
-            },
-            "degree": {
-              "ku": "بەکالۆریۆس لە شەریعە",
-              "ar": "بكالوريوس في الشريعة",
-              "en": "Bachelor's in Sharia"
-            },
-            "photo": "assets/img/students/placeholder-male.svg"
-          },
-          "customLabel": {
-            "ku": "ورش عن نافع",
-            "ar": "ورش عن نافع",
-            "en": "Warsh 'an Nafi'"
-          },
-          "certNumber": ""
+          "certNumber": "10"
         }
       ]
     },

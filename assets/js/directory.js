@@ -136,10 +136,15 @@ const directoryInit = () => {
     const name = t(member.name, lang);
     const dateStr = member.date || '—';
 
-    const certNumHTML = categoryId === 'ten-qiraat' ? '' : `<div class="dir-card-certnum">${member.certNumber || '—'}</div>`;
+    const certNumHTML = categoryId === 'ten-qiraat' ? '' : `<div class="dir-card-certnum">${member.certNumber || '؟'}</div>`;
+
+    let displayedCategoryName = categoryName;
+    if (categoryId === 'ten-qiraat' && member.certNumber) {
+      displayedCategoryName += ` #${member.certNumber}`;
+    }
 
     const categoryBadge = showCategory
-      ? `<span class="dir-card-category" data-cat-id="${categoryId}">${categoryName}</span>`
+      ? `<span class="dir-card-category" data-cat-id="${categoryId}">${displayedCategoryName}</span>`
       : '';
 
     const hasBio = !!(member.bio || getBioByName(name, lang));
@@ -159,7 +164,7 @@ const directoryInit = () => {
     certificates.forEach(c => {
        let label = c.categoryName || '';
        label = label.replace(/(?:مۆڵەتی?|بڕوانامەی?|إجازة|شهادة|License|Certificate)\s*/ig, '').trim();
-       if (c.certNumber && c.categoryId !== 'ten-qiraat') {
+       if (c.certNumber) {
          label += ` #${c.certNumber}`;
        }
        certsHtml += `<span class="dir-card-category" data-cat-id="${c.categoryId}">${label}</span>`;
@@ -208,8 +213,8 @@ const directoryInit = () => {
                 };
             }
             
-            let cName = m.customLabel ? t(m.customLabel, lang) : catName;
-            if (cat.id === 'ten-qiraat' && m.certNumber) cName += ` #${m.certNumber}`;
+let cName = m.customLabel ? t(m.customLabel, lang) : catName;
+        // let cName alone, certNumber will render normally
             
             groupedResults[studentKey].certificates.push({
                 categoryName: cName,
@@ -231,7 +236,6 @@ const directoryInit = () => {
       return {
         cards: (cat.members || []).map(m => {
           let cName = m.customLabel ? t(m.customLabel, lang) : catName;
-          if (cat.id === 'ten-qiraat' && m.certNumber) cName += ` #${m.certNumber}`;
           return {
             member: m,
             categoryName: cName,
@@ -302,7 +306,7 @@ const directoryInit = () => {
         certsHtml += `<div class="dir-bio-cert-row">
           <span class="dir-bio-cert-name">${catName}</span>
           <span class="dir-bio-cert-date">${cert.date || ''}</span>
-          ${cert.certNumber && cert.categoryId !== 'ten-qiraat' ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
+          ${cert.certNumber ? `<span class="dir-bio-cert-num">#${cert.certNumber}</span>` : ''}
         </div>`;
       });
     }
@@ -402,7 +406,6 @@ const directoryInit = () => {
           if (t(m.name, lang) === cardName) {
             if (!memberObj || m.bio) memberObj = m; // prioritize member object with bio
             let cName = m.customLabel ? t(m.customLabel, lang) : t(cat.name, lang);
-            if (cat.id === 'ten-qiraat' && m.certNumber) cName += ` #${m.certNumber}`;
             allCerts.push({ ...m, categoryName: cName, categoryId: cat.id });
           }
         }
