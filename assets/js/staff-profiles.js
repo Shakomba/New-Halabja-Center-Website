@@ -301,7 +301,7 @@
             birthDate: '03/04/1988',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'دبلۆم', ar: 'دبلوم', en: 'Diploma' },
-            photo: 'assets/img/students/placeholder-female.svg'
+            photo: 'assets/img/students/placeholder-female.png'
           }
         },
         allCerts: []
@@ -315,7 +315,7 @@
             birthDate: '1998',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'بەکالۆریۆس', ar: 'بكالوريوس', en: "Bachelor's" },
-            photo: 'assets/img/students/placeholder-female.svg'
+            photo: 'assets/img/students/placeholder-female.png'
           }
         },
         allCerts: []
@@ -346,6 +346,20 @@
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'بەکالۆریۆس', ar: 'بكالوريوس', en: "Bachelor's" },
             photo: 'assets/img/students/Burhan.jpg'
+          }
+        },
+        allCerts: []
+      },
+      {
+        member: {
+          name: { ku: 'شەهلا عەبدوڵڵا ئەحمەد', ar: 'شهلا عبد الله أحمد', en: 'Shahla Abdullah Ahmed' },
+          staffRole: 'studies',
+          isStaff: true,
+          bio: {
+            birthDate: '1975',
+            job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
+            degree: { ku: 'سەرەتایی', ar: 'ابتدائية', en: 'Elementary' },
+            photo: 'assets/img/students/placeholder-female.png'
           }
         },
         allCerts: []
@@ -419,6 +433,10 @@ const isMan = (item) => {
           if (nB.includes('fakhr f')) certB = 5;
 
           if (certA !== certB) return certA - certB;
+
+          // Force Shahla to the very end
+          if (nA.includes('shahla abdullah') && !nB.includes('shahla abdullah')) return 1;
+          if (nB.includes('shahla abdullah') && !nA.includes('shahla abdullah')) return -1;
 
           return nA.localeCompare(nB);
         });

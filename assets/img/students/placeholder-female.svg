@@ -1,16 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
-  <!-- Background fills the entire card area -->
-  <rect width="300" height="400" fill="#e8d8e2"/>
-
-  <!-- Hijab — large flowing shape covering head and flowing into body -->
-  <path d="M 150 42
-           C 68 42 58 128 68 182
-           C 76 224 18 308 14 410
-           L 286 410
-           C 282 308 224 224 232 182
-           C 242 128 232 42 150 42 Z"
-        fill="#a87e9c"/>
-
-  <!-- Face opening -->
-  <ellipse cx="150" cy="162" rx="46" ry="58" fill="#f2d4c4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Shoulders and hijab drape -->
+  <path d="M200,20 C120,20 100,100 100,180 C100,220 120,240 100,280 C70,330 20,350 20,400 L380,400 C380,350 330,330 300,280 C280,240 300,220 300,180 C300,100 280,20 200,20 Z" fill="#1a1a1a"/>
+  <!-- Face area -->
+  <path d="M200,60 C160,60 140,110 140,170 C140,220 160,260 200,260 C240,260 260,220 260,170 C260,110 240,60 200,60 Z" fill="#f5f5f5"/>
 </svg>
