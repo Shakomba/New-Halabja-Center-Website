@@ -309,8 +309,8 @@
       },
       {
         member: {
-          name: { ku: 'دێرین محێدین', ar: 'ديرين محي الدين', en: 'Derin Muhedin' },
-          staffRole: 'qaida',
+          name: { ku: 'دێرین محێدین محەممەد', ar: 'ديرين محي الدين محمد', en: 'Derin Muhedin Muhammad' },
+          staffRole: 'studies',
           isStaff: true,
           bio: {
             birthDate: '1998',
@@ -346,7 +346,7 @@
             birthDate: '1984',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'بەکالۆریۆس', ar: 'بكالوريوس', en: "Bachelor's" },
-            photo: 'assets/img/students/placeholder-male.svg'
+            photo: 'assets/img/students/Burhan.jpg'
           }
         },
         allCerts: []
