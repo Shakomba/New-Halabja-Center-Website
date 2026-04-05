@@ -397,8 +397,7 @@
 
   const langSelect = $("#langSelect");
   const urlLang = new URLSearchParams(location.search).get("lang");
-  const stored = (urlLang && window.I18N && window.I18N[urlLang]) ? urlLang
-    : localStorage.getItem("nhc_lang") || "ku";
+  const stored = (urlLang && window.I18N && window.I18N[urlLang]) ? urlLang : "ku";
   // Converts the current pathname to a /lang/page canonical URL
   function toCanonicalLangPath(lang) {
     const page = location.pathname
