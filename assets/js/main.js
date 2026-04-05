@@ -648,7 +648,7 @@
     }).join("");
 
     const seeAllCard = `
-      <a class="news-mini news-see-all" href="news.html" role="listitem" aria-roledescription="slide" aria-label="${total} of ${total}">
+      <a class="news-mini news-see-all" href="news" role="listitem" aria-roledescription="slide" aria-label="${total} of ${total}">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>${seeAllText}</span>
       </a>

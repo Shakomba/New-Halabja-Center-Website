@@ -154,7 +154,7 @@
     if (pub.physicalOnly) {
       return `
         <div class="pub-buttons">
-          <a href="contact.html" class="pub-btn pub-btn-solid pub-btn-contact">
+          <a href="contact" class="pub-btn pub-btn-solid pub-btn-contact">
             ${ICONS.phone}
             <span data-i18n="pub.btn.contact">${t('pub.btn.contact')}</span>
           </a>
