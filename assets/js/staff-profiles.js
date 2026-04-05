@@ -388,7 +388,7 @@ const isMan = (item) => {
         const n = String(item.member.name.en || '').toLowerCase();
         const menNames = [
           'sirwan hamid', 'sardar abdulrahim', 'burhan ali',
-          'farooq hussein', 'ahmed ainuddin',
+          'farooq hussein', 'ahmed aynaddin',
           'bahman hama', 'kosar omar', 'dara karim', 'fakhr f',
           'rand fahmi'
         ];
@@ -421,8 +421,8 @@ const isMan = (item) => {
           if (nA.includes('farooq hussein') && !nB.includes('farooq hussein')) return -1;
           if (nB.includes('farooq hussein') && !nA.includes('farooq hussein')) return 1;
 
-          if (nA.includes('ahmed ainuddin') && !nB.includes('ahmed ainuddin')) return -1;
-          if (nB.includes('ahmed ainuddin') && !nA.includes('ahmed ainuddin')) return 1;
+          if (nA.includes('ahmed aynaddin') && !nB.includes('ahmed aynaddin')) return -1;
+          if (nB.includes('ahmed aynaddin') && !nA.includes('ahmed aynaddin')) return 1;
 
           // 2. Men first, then women
           const manA = isMan(a);
