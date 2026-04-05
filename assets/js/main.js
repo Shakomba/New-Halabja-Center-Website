@@ -123,6 +123,30 @@
       if (dict[key]) el.placeholder = dict[key];
     });
 
+    // SEO meta update on language switch
+    const page = document.body.getAttribute("data-page") || "home";
+    const metaTitle = dict["meta.title." + page] || document.title;
+    const metaDesc = dict["meta.desc." + page] || "";
+    const ogTitle = dict["meta.og.title." + page] || metaTitle;
+    const ogDesc = dict["meta.og.desc." + page] || metaDesc;
+    document.title = metaTitle;
+    const setMeta = (sel, val) => { const el = document.querySelector(sel); if (el && val) el.setAttribute("content", val); };
+    setMeta('meta[name="description"]', metaDesc);
+    setMeta('meta[property="og:title"]', ogTitle);
+    setMeta('meta[property="og:description"]', ogDesc);
+    setMeta('meta[name="twitter:title"]', ogTitle);
+    setMeta('meta[name="twitter:description"]', ogDesc);
+    const localeMap = { ku: "ckb_IQ", ar: "ar_IQ", en: "en_US" };
+    setMeta('meta[property="og:locale"]', localeMap[lang] || "ckb_IQ");
+    document.querySelectorAll('meta[property="og:locale:alternate"]').forEach(el => el.remove());
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    Object.entries(localeMap).filter(([l]) => l !== lang).forEach(([, loc]) => {
+      const m = document.createElement("meta");
+      m.setAttribute("property", "og:locale:alternate");
+      m.setAttribute("content", loc);
+      if (ogUrl) ogUrl.after(m); else document.head.appendChild(m);
+    });
+
     // Update address from SITE_CONFIG
     if (window.SITE_CONFIG && window.SITE_CONFIG.address && typeof window.SITE_CONFIG.address === 'object') {
       const addr = window.SITE_CONFIG.address[lang] || window.SITE_CONFIG.address['en'] || "";

@@ -1,7 +1,8 @@
 {
   "name": "New Halabja Center",
   "short_name": "NHC Quran",
-  "start_url": "index.html",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f7f4ee",
   "theme_color": "#147E49",
