@@ -214,7 +214,7 @@
 
     grid.innerHTML = pageItems.map((item, idx) => {
       const member = item.member;
-      const photo = (member.bio && member.bio.photo) || 'assets/img/students/placeholder-male.svg';
+      const photo = (member.bio && member.bio.photo) || '/assets/img/students/placeholder-male.svg';
       const name = t(member.name, lang);
       const role = member.staffRole || 'tajweed';
       const roleLabel = i18n(`staff.role.${role}`);
@@ -287,7 +287,7 @@
             birthDate: '13/02/1975',
             job: { ku: 'مامۆستای زمانی عەرەبی', ar: 'مدرس اللغة العربية', en: 'Arabic Language Teacher' },
             degree: { ku: 'بەکالۆریۆس لە زمانی عەرەبی', ar: 'بكالوريوس في اللغة العربية', en: "Bachelor's in Arabic Language" },
-            photo: 'assets/img/students/SirwanHamid.jpg'
+            photo: '/assets/img/students/SirwanHamid.jpg'
           }
         },
         allCerts: []
@@ -301,7 +301,7 @@
             birthDate: '03/04/1988',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'دبلۆم', ar: 'دبلوم', en: 'Diploma' },
-            photo: 'assets/img/students/placeholder-female.png'
+            photo: '/assets/img/students/placeholder-female.png'
           }
         },
         allCerts: []
@@ -315,7 +315,7 @@
             birthDate: '1998',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'بەکالۆریۆس', ar: 'بكالوريوس', en: "Bachelor's" },
-            photo: 'assets/img/students/placeholder-female.png'
+            photo: '/assets/img/students/placeholder-female.png'
           }
         },
         allCerts: []
@@ -331,7 +331,7 @@
             birthDate: '01/03/1987',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'ماستەر لە جوگرافیا', ar: 'ماجستير في الجغرافيا', en: "Master's in Geography" },
-            photo: 'assets/img/students/Sardar.png'
+            photo: '/assets/img/students/Sardar.png'
           }
         },
         allCerts: []
@@ -345,7 +345,7 @@
             birthDate: '1984',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'بەکالۆریۆس', ar: 'بكالوريوس', en: "Bachelor's" },
-            photo: 'assets/img/students/Burhan.jpg'
+            photo: '/assets/img/students/Burhan.jpg'
           }
         },
         allCerts: []
@@ -359,7 +359,7 @@
             birthDate: '1975',
             job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
             degree: { ku: 'سەرەتایی', ar: 'ابتدائية', en: 'Elementary' },
-            photo: 'assets/img/students/placeholder-female.png'
+            photo: '/assets/img/students/placeholder-female.png'
           }
         },
         allCerts: []

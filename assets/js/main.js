@@ -685,7 +685,7 @@
     const readMoreText = dict["news.readmore"] || "Read more";
 
     const cards = items.map((p, index) => {
-      const image = p.image || "assets/img/heroBackground-optimized.jpg";
+      const image = p.image || "/assets/img/heroBackground-optimized.jpg";
       const position = index + 1;
       return `
         <article class="news-mini" data-id="${p.id}" role="listitem" aria-roledescription="slide" aria-label="${position} of ${total}">

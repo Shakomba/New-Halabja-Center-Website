@@ -29,7 +29,7 @@ function updateNewsData(lang) {
     id: activity.id,
     title: getTranslatedValue(activity.title, lang),
     date: activity.date,
-    image: activity.image || 'assets/img/heroBackground-optimized.jpg',
+    image: activity.image || '/assets/img/heroBackground-optimized.jpg',
     tags: Array.isArray(activity.tags) ? activity.tags : [],
     excerpt: getTranslatedValue(activity.summary, lang),
     contentHtml: getTranslatedValue(activity.content, lang)
