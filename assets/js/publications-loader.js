@@ -1071,7 +1071,7 @@
   // Load publications from JSON
   async function loadPublications() {
     try {
-      const response = await fetch('/assets/data/publications.json');
+      const response = await fetch((window.__nhcOrigin || '') + '/assets/data/publications.json');
       if (!response.ok) {
         throw new Error('Failed to load publications');
       }

@@ -2,6 +2,9 @@
   const $ = (q, root = document) => root.querySelector(q);
   const $$ = (q, root = document) => Array.from(root.querySelectorAll(q));
 
+  // Capture origin before history.replaceState can change location.*
+  window.__nhcOrigin = location.origin;
+
   // Disable automatic scroll restoration and force scroll to top
   if ('scrollRestoration' in window.history) {
     window.history.scrollRestoration = 'manual';
@@ -399,10 +402,20 @@
   const urlLang = new URLSearchParams(location.search).get("lang");
   const stored = (urlLang && window.I18N && window.I18N[urlLang]) ? urlLang : (localStorage.getItem("nhc_lang") || "ku");
 
+  // Converts the current pathname to a /lang/page canonical URL
+  function toCanonicalLangPath(lang) {
+    const page = location.pathname
+      .replace(/^\//, "")
+      .replace(/\.html$/, "")
+      .replace(/^(en|ku|ar)(\/|$)/, ""); // strip any existing lang prefix
+    return "/" + lang + (page ? "/" + page : "") + (location.hash || "");
+  }
+
   if (langSelect) {
     langSelect.value = stored;
     applyLanguage(stored);
     applySiteConfig();
+    history.replaceState(null, "", toCanonicalLangPath(stored));
     const langUI = setupLanguageDropdown(langSelect);
     langUI?.sync();
     const drawerLangUI = setupDrawerLangSwitcher(langSelect);
@@ -414,6 +427,7 @@
         : 0;
       const newLang = langSelect.value;
       localStorage.setItem("nhc_lang", newLang);
+      history.replaceState(null, "", toCanonicalLangPath(newLang));
       applyLanguage(newLang);
       applySiteConfig();
       langUI?.sync();

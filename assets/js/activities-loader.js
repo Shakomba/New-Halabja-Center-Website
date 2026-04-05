@@ -50,7 +50,7 @@
 
   async function fetchActivities() {
     try {
-      const response = await fetch('/assets/data/activities.json');
+      const response = await fetch((window.__nhcOrigin || '') + '/assets/data/activities.json');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

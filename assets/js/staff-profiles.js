@@ -368,7 +368,7 @@
   };
 
   /* ── Fetch and initialise ─────────────────────────── */
-  fetch('assets/data/students.json')
+  fetch((window.__nhcOrigin || '') + '/assets/data/students.json')
     .then(r => r.json())
     .then(data => {
       const allCerts = (data.categories || []).map(cat => ({

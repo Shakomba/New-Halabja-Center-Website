@@ -533,7 +533,7 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
   /* ── Load data ─────────────────────────────────────── */
   const loadData = async () => {
     try {
-      const res = await fetch('/assets/data/students.json');
+      const res = await fetch((window.__nhcOrigin || '') + '/assets/data/students.json');
       if (!res.ok) throw new Error('Network response was not ok');
       const data = await res.json();
       categoriesData = data.categories || [];

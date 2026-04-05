@@ -28,7 +28,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -53,7 +53,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -78,7 +78,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -103,7 +103,7 @@
               "ar": "دبلوم في التخدير",
               "en": "Diploma in Anesthesia"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -128,7 +128,7 @@
               "ar": "بكالوريوس في اللغة الكردية",
               "en": "Bachelor's in Kurdish Language"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -153,7 +153,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/39.jpg"
+            "photo": "/assets/img/students/39.jpg"
           }
         },
         {
@@ -178,7 +178,7 @@
               "ar": "ثانوية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -203,7 +203,7 @@
               "ar": "بكالوريوس في اللغة الإنجليزية",
               "en": "Bachelor's in English Language"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -228,7 +228,7 @@
               "ar": "بكالوريوس في الاجتماعيات",
               "en": "Bachelor's in Social Studies"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         }
       ]
@@ -263,7 +263,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/01.jpg"
+            "photo": "/assets/img/students/01.jpg"
           }
         },
         {
@@ -286,7 +286,7 @@
               "ar": "بكالوريوس في الطب البيطري",
               "en": "Bachelor's in Veterinary Medicine"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           }
         },
         {
@@ -309,7 +309,7 @@
               "ar": "دكتوراه (البورد العربي)",
               "en": "Doctorate (Arab Board)"
             },
-            "photo": "assets/img/students/03.png"
+            "photo": "/assets/img/students/03.png"
           }
         },
         {
@@ -334,7 +334,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/04.jpg"
+            "photo": "/assets/img/students/04.jpg"
           }
         },
         {
@@ -357,7 +357,7 @@
               "ar": "بكالوريوس في الدراسات الإسلامية",
               "en": "Bachelor's in Islamic Studies"
             },
-            "photo": "assets/img/students/05.jpg"
+            "photo": "/assets/img/students/05.jpg"
           }
         },
         {
@@ -380,7 +380,7 @@
               "ar": "بكالوريوس في الشريعة",
               "en": "Bachelor's in Sharia"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           }
         },
         {
@@ -403,7 +403,7 @@
               "ar": "بكالوريوس في الكيمياء",
               "en": "Bachelor's in Chemistry"
             },
-            "photo": "assets/img/students/07.png"
+            "photo": "/assets/img/students/07.png"
           }
         },
         {
@@ -426,7 +426,7 @@
               "ar": "بكالوريوس في الهندسة",
               "en": "Bachelor's in Engineering"
             },
-            "photo": "assets/img/students/08.png"
+            "photo": "/assets/img/students/08.png"
           }
         },
         {
@@ -449,7 +449,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           }
         },
         {
@@ -472,7 +472,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -497,7 +497,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -520,7 +520,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -545,7 +545,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -568,7 +568,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/14.jpg"
+            "photo": "/assets/img/students/14.jpg"
           }
         },
         {
@@ -591,7 +591,7 @@
               "ar": "",
               "en": ""
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           }
         },
         {
@@ -616,7 +616,7 @@
               "ar": "بكالوريوس في علوم الحاسبات",
               "en": "Bachelor's in Computer Science"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -639,7 +639,7 @@
               "ar": "دبلوم في التحليلات المرضية",
               "en": "Diploma in Pathological Analysis"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -664,7 +664,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -689,7 +689,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -712,7 +712,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -735,7 +735,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           }
         },
         {
@@ -758,7 +758,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -781,7 +781,7 @@
               "ar": "دبلوم في وقاية الأسنان",
               "en": "Diploma in Preventive Dentistry"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -806,7 +806,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -829,7 +829,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -852,7 +852,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -875,7 +875,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -898,7 +898,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -923,7 +923,7 @@
               "ar": "دبلوم في التخدير",
               "en": "Diploma in Anesthesia"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -946,7 +946,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -969,7 +969,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -994,7 +994,7 @@
               "ar": "ثانوية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1017,7 +1017,7 @@
               "ar": "",
               "en": ""
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1040,7 +1040,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           }
         },
         {
@@ -1065,7 +1065,7 @@
               "ar": "دبلوم في التحليلات المرضية",
               "en": "Diploma in Pathological Analysis"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1088,7 +1088,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/36.jpg"
+            "photo": "/assets/img/students/36.jpg"
           }
         },
         {
@@ -1111,7 +1111,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/36.png"
+            "photo": "/assets/img/students/36.png"
           }
         },
         {
@@ -1134,7 +1134,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1157,7 +1157,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/39.jpg"
+            "photo": "/assets/img/students/39.jpg"
           }
         },
         {
@@ -1180,7 +1180,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/40.jpg"
+            "photo": "/assets/img/students/40.jpg"
           }
         },
         {
@@ -1203,7 +1203,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1228,7 +1228,7 @@
               "ar": "بكالوريوس في الاجتماعيات",
               "en": "Bachelor's in Social Studies"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1253,7 +1253,7 @@
               "ar": "بكالوريوس في اللغة الكردية",
               "en": "Bachelor's in Kurdish Language"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1278,7 +1278,7 @@
               "ar": "دبلوم في الزراعة",
               "en": "Diploma in Agriculture"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1303,7 +1303,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1326,7 +1326,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1351,7 +1351,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/47.png"
+            "photo": "/assets/img/students/47.png"
           }
         },
         {
@@ -1374,7 +1374,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1397,7 +1397,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1422,7 +1422,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1445,7 +1445,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/59.jpg"
+            "photo": "/assets/img/students/59.jpg"
           }
         },
         {
@@ -1470,7 +1470,7 @@
               "ar": "دبلوم في علوم الحاسبات",
               "en": "Diploma in Computer Science"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1493,7 +1493,7 @@
               "ar": "دبلوم في الصيدلة",
               "en": "Diploma in Pharmacy"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1516,7 +1516,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1539,7 +1539,7 @@
               "ar": "",
               "en": ""
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1562,7 +1562,7 @@
               "ar": "",
               "en": ""
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           }
         },
         {
@@ -1585,7 +1585,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/57.jpg"
+            "photo": "/assets/img/students/57.jpg"
           }
         },
         {
@@ -1608,7 +1608,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1632,7 +1632,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1657,7 +1657,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/60.jpg"
+            "photo": "/assets/img/students/60.jpg"
           }
         },
         {
@@ -1680,7 +1680,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1705,7 +1705,7 @@
               "ar": "بكالوريوس في اللغة الكردية",
               "en": "Bachelor's in Kurdish Language"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1730,7 +1730,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/62.jpg"
+            "photo": "/assets/img/students/62.jpg"
           }
         },
         {
@@ -1755,7 +1755,7 @@
               "ar": "بكالوريوس في اللغة الإنجليزية",
               "en": "Bachelor's in English Language"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1778,7 +1778,7 @@
               "ar": "أساسية",
               "en": "Primary School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1801,7 +1801,7 @@
               "ar": "أساسية",
               "en": "Primary School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         },
         {
@@ -1824,7 +1824,7 @@
               "ar": "إعدادية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           }
         }
       ]
@@ -6450,7 +6450,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           },
           "customLabel": {
             "ku": "القراءات العشر",
@@ -6478,7 +6478,7 @@
               "ar": "بكالوريوس في الشريعة",
               "en": "Bachelor's in Sharia"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           },
           "customLabel": {
             "ku": "ورش عن نافع",
@@ -6506,7 +6506,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/placeholder-male.svg"
+            "photo": "/assets/img/students/placeholder-male.svg"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
@@ -6536,7 +6536,7 @@
               "ar": "بكالوريوس",
               "en": "Bachelor's"
             },
-            "photo": "assets/img/students/01.jpg"
+            "photo": "/assets/img/students/01.jpg"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
@@ -6564,7 +6564,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
@@ -6594,7 +6594,7 @@
               "ar": "دبلوم",
               "en": "Diploma"
             },
-            "photo": "assets/img/students/04.jpg"
+            "photo": "/assets/img/students/04.jpg"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
@@ -6622,7 +6622,7 @@
               "ar": "متوسطة",
               "en": "Middle School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
@@ -6650,7 +6650,7 @@
               "ar": "دبلوم في وقاية الأسنان",
               "en": "Diploma in Preventive Dentistry"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
@@ -6678,7 +6678,7 @@
               "ar": "ثانوية",
               "en": "High School"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
@@ -6706,7 +6706,7 @@
               "ar": "دبلوم في التحليلات المرضية",
               "en": "Diploma in Pathological Analysis"
             },
-            "photo": "assets/img/students/placeholder-female.png"
+            "photo": "/assets/img/students/placeholder-female.png"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
@@ -6747,7 +6747,7 @@
               "ar": "بكالوريوس في الهندسة",
               "en": "Bachelor's in Engineering"
             },
-            "photo": "assets/img/students/08.png"
+            "photo": "/assets/img/students/08.png"
           },
           "customLabel": {
             "ku": "شعبة عن عاصم",
