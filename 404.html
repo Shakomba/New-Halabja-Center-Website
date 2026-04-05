@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Redirecting…</title></head>
+<script>
+(function () {
+  var langs = ['en', 'ku', 'ar'];
+  var parts = window.location.pathname.replace(/^\//, '').split('/');
+  var lang = parts[0];
+  if (langs.indexOf(lang) !== -1) {
+    var page = parts[1] ? parts[1].replace(/\.html$/, '') : '';
+    var target = page ? '/' + page : '/';
+    var qs = window.location.search;
+    var sep = qs ? '&' : '?';
+    window.location.replace(target + qs + sep + 'lang=' + lang);
+  } else {
+    window.location.replace('/');
+  }
+})();
+</script>
+</html>

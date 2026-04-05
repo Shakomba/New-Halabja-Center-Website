@@ -67,31 +67,25 @@
       if (!document.body.id) document.body.id = "top";
     }
 
-    const homeLinks = $$("a[href='index.html'], a[href='./index.html'], a[href='/index.html'], a[href='/']");
+    const homeLinks = $$("a[href='index.html'], a[href='./index.html'], a[href='/index.html'], a[href='/'], a[href='/#top']");
     homeLinks.forEach(link => {
       const rawHref = link.getAttribute("href");
       if (!rawHref || rawHref.startsWith("#")) return;
 
+      if (rawHref === "/#top") link.setAttribute("href", "/");
+
       let url;
       try {
-        url = new URL(rawHref, window.location.href);
+        url = new URL(link.getAttribute("href"), window.location.href);
       } catch (_) {
         return;
       }
       if (!isHomePath(url.pathname)) return;
 
-      const normalizedHref = rawHref.startsWith("./") ? "./index.html#top" : "index.html#top";
-      if (rawHref !== normalizedHref) {
-        link.setAttribute("href", normalizedHref);
-      }
-
       link.addEventListener("click", (e) => {
         if (!isHomePath(window.location.pathname)) return;
         e.preventDefault();
         if (typeof setDrawer === "function") setDrawer(false);
-        if (window.location.hash !== "#top") {
-          history.replaceState(null, "", `${window.location.pathname}${window.location.search}#top`);
-        }
         (document.getElementById("top") || document.body).scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
@@ -378,11 +372,23 @@
   }
 
   const langSelect = $("#langSelect");
-  const stored = localStorage.getItem("nhc_lang") || "ku";
+  const urlLang = new URLSearchParams(location.search).get("lang");
+  const stored = (urlLang && window.I18N && window.I18N[urlLang]) ? urlLang
+    : localStorage.getItem("nhc_lang") || "ku";
+  // Converts the current pathname to a /lang/page canonical URL
+  function toCanonicalLangPath(lang) {
+    const page = location.pathname
+      .replace(/^\//, "")
+      .replace(/\.html$/, "")
+      .replace(/^(en|ku|ar)(\/|$)/, ""); // strip any existing lang prefix
+    return "/" + lang + (page ? "/" + page : "") + (location.hash || "");
+  }
+
   if (langSelect) {
     langSelect.value = stored;
     applyLanguage(stored);
     applySiteConfig();
+    history.replaceState(null, "", toCanonicalLangPath(stored));
     const langUI = setupLanguageDropdown(langSelect);
     langUI?.sync();
     const drawerLangUI = setupDrawerLangSwitcher(langSelect);
@@ -392,8 +398,10 @@
       const pageTopBeforeLangChange = shouldPreserveScroll
         ? (window.scrollY || window.pageYOffset || 0)
         : 0;
-      localStorage.setItem("nhc_lang", langSelect.value);
-      applyLanguage(langSelect.value);
+      const newLang = langSelect.value;
+      localStorage.setItem("nhc_lang", newLang);
+      history.replaceState(null, "", toCanonicalLangPath(newLang));
+      applyLanguage(newLang);
       applySiteConfig();
       langUI?.sync();
       drawerLangUI?.sync();
@@ -410,6 +418,24 @@
     applyLanguage(stored);
     applySiteConfig();
   }
+
+  // Carry lang when navigating between pages (uses ?lang= for the actual request,
+  // which gets replaceState'd to /lang/page on load)
+  document.addEventListener("click", (e) => {
+    if (e.defaultPrevented) return;
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const href = a.getAttribute("href");
+    if (!href || /^(https?:|\/\/|mailto:|tel:|#)/.test(href)) return;
+    const currentLang = (langSelect && langSelect.value) || localStorage.getItem("nhc_lang") || "ku";
+    try {
+      const url = new URL(href, location.href);
+      if (url.origin !== location.origin) return;
+      url.searchParams.set("lang", currentLang);
+      e.preventDefault();
+      location.href = url.toString();
+    } catch (_) {}
+  });
 
   // Count-up animation (home only)
   function animateCounters() {
