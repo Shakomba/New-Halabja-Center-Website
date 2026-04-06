@@ -415,7 +415,8 @@
     langSelect.value = stored;
     applyLanguage(stored);
     applySiteConfig();
-    history.replaceState(null, "", toCanonicalLangPath(stored));
+    const isLocalDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    if (!isLocalDev) history.replaceState(null, "", toCanonicalLangPath(stored));
     const langUI = setupLanguageDropdown(langSelect);
     langUI?.sync();
     const drawerLangUI = setupDrawerLangSwitcher(langSelect);
