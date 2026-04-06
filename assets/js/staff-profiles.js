@@ -389,7 +389,7 @@ const isMan = (item) => {
         const menNames = [
           'sirwan hamid', 'sardar abdulrahim', 'burhan ali',
           'farooq hussein', 'ahmed aynaddin',
-          'bahman hama', 'kosar omar', 'dara karim', 'fakhr f',
+          'bahman muhammad', 'kosar omar', 'dara karim', 'fakhr f',
           'rand fahmi'
         ];
         if (menNames.some(m => n.includes(m))) return true;
