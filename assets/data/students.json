@@ -208,9 +208,9 @@
         },
         {
           "name": {
-            "ku": "یوسرا سەعید حەمەساڵح",
-            "ar": "يوسرا سعيد محمد صالح",
-            "en": "Yusra Saeed Muhammad Salih"
+            "ku": "بوشرا سەعید حەمەساڵح",
+            "ar": "بشرى سعيد محمد صالح",
+            "en": "Bushra Saeed Muhammad Salih"
           },
           "certNumber": "9",
           "date": "08/10/2025",
@@ -1208,9 +1208,9 @@
         },
         {
           "name": {
-            "ku": "یوسرا سەعید حەمەساڵح",
-            "ar": "يوسرا سعيد محمد صالح",
-            "en": "Yusra Saeed Muhammad Salih"
+            "ku": "بوشرا سەعید حەمەساڵح",
+            "ar": "بشرى سعيد محمد صالح",
+            "en": "Bushra Saeed Muhammad Salih"
           },
           "certNumber": "42",
           "date": "27/08/2022",
@@ -2208,15 +2208,6 @@
         },
         {
           "name": {
-            "ku": "شەیما محەممەد عەزیز",
-            "ar": "شيماء محمد عزيز",
-            "en": "Shaimaa Mohammed Aziz"
-          },
-          "certNumber": "42",
-          "date": "8/8/2016"
-        },
-        {
-          "name": {
             "ku": "شەهلا عەبدوڵڵا ئەحمەد",
             "ar": "شهلا عبدالله أحمد",
             "en": "Shahla Abdulla Ahmed"
@@ -2442,15 +2433,6 @@
         },
         {
           "name": {
-            "ku": "ڕەندە مەحموود محەممەد",
-            "ar": "رندة محمود محمد",
-            "en": "Randa Mahmoud Mohammed"
-          },
-          "certNumber": "68",
-          "date": "19/8/2017"
-        },
-        {
-          "name": {
             "ku": "هەدیە محەممەد نەسیم",
             "ar": "هدية محمد نسيم",
             "en": "hadia Mohammed Nasim"
@@ -2546,15 +2528,6 @@
             "en": "harun Osman Salih"
           },
           "certNumber": "79",
-          "date": "19/8/2017"
-        },
-        {
-          "name": {
-            "ku": "ئاریان ئەحمەد محەممەد",
-            "ar": "آريان أحمد محمد",
-            "en": "Aryan Ahmed Mohammed"
-          },
-          "certNumber": "80",
           "date": "19/8/2017"
         },
         {
@@ -3081,24 +3054,6 @@
         },
         {
           "name": {
-            "ku": "لاوێن عوسمان حەمەڕەشید",
-            "ar": "لاوين عثمان محمد رشيد",
-            "en": "Lawen Osman Hama rashid"
-          },
-          "certNumber": "139",
-          "date": ""
-        },
-        {
-          "name": {
-            "ku": "دونیا مونیر ئەمیر",
-            "ar": "دونيا مونير أمير",
-            "en": "Dwnia Munir Amir"
-          },
-          "certNumber": "140",
-          "date": ""
-        },
-        {
-          "name": {
             "ku": "سنوور عەبدوڵڵا مستەفا",
             "ar": "سنور عبدالله مصطفى",
             "en": "Snur Abdulla Mustafa"
@@ -3486,24 +3441,6 @@
         },
         {
           "name": {
-            "ku": "سایە نامیق عەبدوڕەحیم",
-            "ar": "ساية ناميق عبدورحيم",
-            "en": "Saia Namiq Abdulrahim"
-          },
-          "certNumber": "184",
-          "date": ""
-        },
-        {
-          "name": {
-            "ku": "هەوری نوورەدین حسێن",
-            "ar": "هوري نوردين حسين",
-            "en": "hawri Nuraddin Hussein"
-          },
-          "certNumber": "185",
-          "date": ""
-        },
-        {
-          "name": {
             "ku": "دڵخواز محمد حەمەکەریم",
             "ar": "دلخواز محمد محمد كريم",
             "en": "Dlkhuaz Mhmd Hama Karim"
@@ -3599,15 +3536,6 @@
             "en": "Ana Ahmed Karim"
           },
           "certNumber": "197",
-          "date": "15/8/2021"
-        },
-        {
-          "name": {
-            "ku": "ڕەند فەهمی حەمەڕەشید",
-            "ar": "رند فهمي محمد رشيد",
-            "en": "Rand Fahmi Hama rashid"
-          },
-          "certNumber": "198",
           "date": "15/8/2021"
         },
         {
@@ -4071,15 +3999,6 @@
         },
         {
           "name": {
-            "ku": "ئاریان ئەحمەد محەممەد",
-            "ar": "آريان أحمد محمد",
-            "en": "Aryan Ahmed Mohammed"
-          },
-          "certNumber": "250",
-          "date": "10/9/2022"
-        },
-        {
-          "name": {
             "ku": "شاناز خەلیل کەریم",
             "ar": "شاناز خليل کريم",
             "en": "Shanaz Khalil Karim"
@@ -4170,15 +4089,6 @@
         },
         {
           "name": {
-            "ku": "دیار ڕزگار مەحموود",
-            "ar": "ديار رزغار محمود",
-            "en": "Diar Rzgar Mahmoud"
-          },
-          "certNumber": "261",
-          "date": "13/8/2023"
-        },
-        {
-          "name": {
             "ku": "کۆسار عومەر محەممەد",
             "ar": "کوسار عمر محمد",
             "en": "Kosar Omar Mohammed"
@@ -4238,15 +4148,6 @@
             "en": "honia Najim Abdulrahman"
           },
           "certNumber": "268",
-          "date": ""
-        },
-        {
-          "name": {
-            "ku": "شادان ئەحمەد محەممەد",
-            "ar": "شادان أحمد محمد",
-            "en": "Shadan Ahmed Mohammed"
-          },
-          "certNumber": "269",
           "date": ""
         },
         {
@@ -4391,15 +4292,6 @@
             "en": "Shene Abdulla Mahmoud"
           },
           "certNumber": "285",
-          "date": ""
-        },
-        {
-          "name": {
-            "ku": "شادان ئەحمەد محەممەد",
-            "ar": "شادان أحمد محمد",
-            "en": "Shadan Ahmed Mohammed"
-          },
-          "certNumber": "286",
           "date": ""
         },
         {
@@ -4841,15 +4733,6 @@
             "en": "hawzhin Abdulrahman Salih"
           },
           "certNumber": "335",
-          "date": "5/10/2024"
-        },
-        {
-          "name": {
-            "ku": "باخان مستەفا حەمەساڵح",
-            "ar": "باخان مصطفى محمد صالح",
-            "en": "Bakhan Mustafa Hama salih"
-          },
-          "certNumber": "336",
           "date": "5/10/2024"
         },
         {
@@ -5331,24 +5214,6 @@
         },
         {
           "name": {
-            "ku": "محەممەد حەمزە حەمەڕەشید",
-            "ar": "محمد حمزة محمد رشيد",
-            "en": "Mohammed Hamza Hama rashid"
-          },
-          "certNumber": "390",
-          "date": "7/9/2025"
-        },
-        {
-          "name": {
-            "ku": "شاد ئیسماعیل عەبدوڕەحمان",
-            "ar": "شاد إسماعيل عبدالرحمن",
-            "en": "Shad Ismail Abdulrahman"
-          },
-          "certNumber": "391",
-          "date": "7/9/2025"
-        },
-        {
-          "name": {
             "ku": "ئەحمەد ساڵح ئەحمەد",
             "ar": "أحمد صالح أحمد",
             "en": "Ahmed Salih Ahmed"
@@ -5624,15 +5489,6 @@
             "ku": "خەلاَت فەتاح محەممەد",
             "ar": "خلاَت فتاح محمد",
             "en": "خەلاَت Fatah Muhammad"
-          },
-          "date": "10/2/2020"
-        },
-        {
-          "certNumber": "27",
-          "name": {
-            "ku": "سومەییە فەتاح محەممەد",
-            "ar": "سمية فتاح محمد",
-            "en": "Sumayya Fatah Muhammad"
           },
           "date": "10/2/2020"
         },
@@ -6912,9 +6768,9 @@
         },
         {
           "name": {
-            "ku": "دونیا عومەر ئەحمەد",
-            "ar": "دونيا عمر أحمد",
-            "en": "Dunya Omar Ahmed"
+            "ku": "لەنیا عومەر ئەحمەد",
+            "ar": "لنيا عمر أحمد",
+            "en": "Lana Omar Ahmed"
           },
           "certNumber": "17",
           "date": "12/1/2017"
@@ -7353,9 +7209,9 @@
         },
         {
           "name": {
-            "ku": "شادان ئەحمەد محەممەد",
-            "ar": "شادان أحمد محمد",
-            "en": "Shadan Ahmed Muhammad"
+            "ku": "شادان ئەحمەد محەممەد یوسف",
+            "ar": "شادان أحمد محمد يوسف",
+            "en": "Shadan Ahmed Muhammad Youssef"
           },
           "certNumber": "66",
           "date": "13/8/2018"
@@ -7560,9 +7416,9 @@
         },
         {
           "name": {
-            "ku": "هەنا محەممەد ساڵح",
-            "ar": "هناء محمد صالح",
-            "en": "Hana Muhammad Salih"
+            "ku": "سەنا محەممەد ساڵح",
+            "ar": "سناء محمد صالح",
+            "en": "Sana Muhammad Salih"
           },
           "certNumber": "89",
           "date": "15/12/2018"
@@ -7740,9 +7596,9 @@
         },
         {
           "name": {
-            "ku": "یوسرا سەعید حەمەساڵح",
-            "ar": "يوسرا سعيد محمد صالح",
-            "en": "Yusra Saeed Muhammad Salih"
+            "ku": "بوشرا سەعید حەمەساڵح",
+            "ar": "بشرى سعيد محمد صالح",
+            "en": "Bushra Saeed Muhammad Salih"
           },
           "certNumber": "109",
           "date": "20/7/2019"
@@ -8325,9 +8181,9 @@
         },
         {
           "name": {
-            "ku": "کانی ئاریان عەلی",
-            "ar": "کاني آريان علي",
-            "en": "Kany Aryan Ali"
+            "ku": "هانی ئاریان عەلی",
+            "ar": "هاني آريان علي",
+            "en": "Hani Aryan Ali"
           },
           "certNumber": "174",
           "date": "17/10/2020"
@@ -8415,9 +8271,9 @@
         },
         {
           "name": {
-            "ku": "سۆزیار بەختیار محەممەد",
-            "ar": "سوزيار بختيار محمد",
-            "en": "Sozyar Bakhtyar Muhammad"
+            "ku": "هۆزیار بەختیار محەممەد",
+            "ar": "هوزيار بختيار محمد",
+            "en": "Hozyar Bakhtyar Muhammad"
           },
           "certNumber": "184",
           "date": "5/11/2020"
@@ -8946,9 +8802,9 @@
         },
         {
           "name": {
-            "ku": "لاڤین عەبدوڵڵا محەممەد",
-            "ar": "لافين عبدالله محمد",
-            "en": "Lavyn Abdullah Muhammad"
+            "ku": "ئەڤین عەبدوڵڵا محەممەد",
+            "ar": "أفين عبدالله محمد",
+            "en": "Avyn Abdullah Muhammad"
           },
           "certNumber": "243",
           "date": "14/8/2021"
@@ -9279,9 +9135,9 @@
         },
         {
           "name": {
-            "ku": "دونیا مونیر ئەمیر",
-            "ar": "دونيا مونير أمير",
-            "en": "Dunya Munir Amir"
+            "ku": "دەریا مونیر ئەمیر",
+            "ar": "دريا مونير أمير",
+            "en": "Darya Munir Amir"
           },
           "certNumber": "280",
           "date": "11/5/2022"
@@ -9315,9 +9171,9 @@
         },
         {
           "name": {
-            "ku": "لاوێن عوسمان حەمەڕەشید",
-            "ar": "لاوين عثمان محمد رشيد",
-            "en": "Lawen Othman Muhammad Rashid"
+            "ku": "لاوی عوسمان حەمەڕەشید",
+            "ar": "لاوي عثمان محمد رشيد",
+            "en": "Lawy Othman Muhammad Rashid"
           },
           "certNumber": "284",
           "date": "5/6/2022"
@@ -9684,9 +9540,9 @@
         },
         {
           "name": {
-            "ku": "شادان ئەحمەد محەممەد",
-            "ar": "شادان أحمد محمد",
-            "en": "Shadan Ahmed Muhammad"
+            "ku": "شاجوان ئەحمەد محەممەد",
+            "ar": "شاجوان أحمد محمد",
+            "en": "Shajwan Ahmed Muhammad"
           },
           "certNumber": "325",
           "date": "22/2/2023"
@@ -10305,9 +10161,9 @@
         },
         {
           "name": {
-            "ku": "دیا عوسمان فائیق",
-            "ar": "ديا عثمان فائق",
-            "en": "Dya Othman Faiq"
+            "ku": "لیا عوسمان فائیق",
+            "ar": "ليا عثمان فائق",
+            "en": "Lya Othman Faiq"
           },
           "certNumber": "394",
           "date": "14/9/2023"
@@ -10323,9 +10179,9 @@
         },
         {
           "name": {
-            "ku": "لینا سەعد ئەحمەد",
-            "ar": "لينا سعد أحمد",
-            "en": "Lyna Saad Ahmed"
+            "ku": "زینە سەعد ئەحمەد",
+            "ar": "زينة سعد أحمد",
+            "en": "Zina Saad Ahmed"
           },
           "certNumber": "396",
           "date": "14/9/2023"
@@ -10413,9 +10269,9 @@
         },
         {
           "name": {
-            "ku": "هەستی مەنسوور عەبدوڕەحمان",
-            "ar": "هستي منصور عبدالرحمن",
-            "en": "Hasty Mansour Abdulrahman"
+            "ku": "هەنی مەنسوور عەبدوڕەحمان",
+            "ar": "هني منصور عبدالرحمن",
+            "en": "Hany Mansour Abdulrahman"
           },
           "certNumber": "406",
           "date": "30/9/2023"
@@ -10773,9 +10629,9 @@
         },
         {
           "name": {
-            "ku": "ڤانیا عەبدوڵڵا ئیبراهیم",
-            "ar": "فانيا عبدالله إبراهيم",
-            "en": "Vanya Abdullah Ibrahim"
+            "ku": "ڤارين عەبدوڵڵا ئیبراهیم",
+            "ar": "فارين عبدالله إبراهيم",
+            "en": "Varin Abdullah Ibrahim"
           },
           "certNumber": "446",
           "date": "23/12/2023"
@@ -10809,9 +10665,9 @@
         },
         {
           "name": {
-            "ku": "ئانیا جاسم محەممەد",
-            "ar": "آنيا جاسم محمد",
-            "en": "Anya Jassim Muhammad"
+            "ku": "شانیا جاسم محەممەد",
+            "ar": "شانيا جاسم محمد",
+            "en": "Shanya Jassim Muhammad"
           },
           "certNumber": "450",
           "date": "23/12/2023"
@@ -10908,9 +10764,9 @@
         },
         {
           "name": {
-            "ku": "ئارۆ ئارام مەجید",
-            "ar": "آرو آرام مجيد",
-            "en": "Aro Aram Majid"
+            "ku": "کاردۆ ئارام مەجید",
+            "ar": "كاردو آرام مجيد",
+            "en": "Kardo Aram Majid"
           },
           "certNumber": "461",
           "date": "11/1/2024"
@@ -11376,9 +11232,9 @@
         },
         {
           "name": {
-            "ku": "ژیناس ئاسۆ حەمەسەعید",
-            "ar": "جيناس آسو محمد سعيد",
-            "en": "Zhynas Aso Muhammad Saeed"
+            "ku": "ژیران ئاسۆ حەمەسەعید",
+            "ar": "جيران آسو محمد سعيد",
+            "en": "Zhiran Aso Muhammad Saeed"
           },
           "certNumber": "513",
           "date": "25/8/2024"
@@ -11475,9 +11331,9 @@
         },
         {
           "name": {
-            "ku": "لەرێ نامیق محەممەد",
-            "ar": "لري ناميق محمد",
-            "en": "Lare Namq Muhammad"
+            "ku": "ترێ نامیق محەممەد",
+            "ar": "تري ناميق محمد",
+            "en": "Tre Namq Muhammad"
           },
           "certNumber": "524",
           "date": "11/9/2024"
@@ -11493,9 +11349,9 @@
         },
         {
           "name": {
-            "ku": "ئاریان ئەحمەد محەممەد",
-            "ar": "آريان أحمد محمد",
-            "en": "Aryan Ahmed Muhammad"
+            "ku": "زریان ئەحمەد محەممەد",
+            "ar": "زريان أحمد محمد",
+            "en": "Zryan Ahmed Muhammad"
           },
           "certNumber": "526",
           "date": "18/9/2024"
@@ -11529,9 +11385,9 @@
         },
         {
           "name": {
-            "ku": "سارا ئاسۆ عەلی",
-            "ar": "سارا آسو علي",
-            "en": "Sara Aso Ali"
+            "ku": "ساڤۆ ئاسۆ عەلی",
+            "ar": "سافو آسو علي",
+            "en": "Savo Aso Ali"
           },
           "certNumber": "530",
           "date": "5/10/2024"
@@ -11925,9 +11781,9 @@
         },
         {
           "name": {
-            "ku": "چنوور حەسەن عەلی",
-            "ar": "شنور حسن علي",
-            "en": "Chnur Hasan Ali"
+            "ku": "چنار حەسەن عەلی",
+            "ar": "جنار حسن علي",
+            "en": "Chnar Hasan Ali"
           },
           "certNumber": "574",
           "date": "12/7/2025"
@@ -12267,9 +12123,9 @@
         },
         {
           "name": {
-            "ku": "لیا جەوهەر فەرەج",
-            "ar": "ليا جوهر فرج",
-            "en": "Lya Jawhar Faraj"
+            "ku": "لین جەوهەر فەرەج",
+            "ar": "لين جوهر فرج",
+            "en": "Lin Jawhar Faraj"
           },
           "certNumber": "612",
           "date": "2/11/2025"
@@ -12294,9 +12150,9 @@
         },
         {
           "name": {
-            "ku": "هەستی یاسین ئەحمەد",
-            "ar": "هستي ياسين أحمد",
-            "en": "Hasty Yasyn Ahmed"
+            "ku": "هەوری یاسین ئەحمەد",
+            "ar": "هوري ياسين أحمد",
+            "en": "Hawry Yasyn Ahmed"
           },
           "certNumber": "615",
           "date": "2/11/2025"
@@ -12312,9 +12168,9 @@
         },
         {
           "name": {
-            "ku": "ئاران مەحموود حەسەن",
-            "ar": "آران محمود حسن",
-            "en": "Aran Mahmoud Hasan"
+            "ku": "ئاڤان مەحموود حەسەن",
+            "ar": "آفان محمود حسن",
+            "en": "Avan Mahmoud Hasan"
           },
           "certNumber": "617",
           "date": "17/12/2025"
@@ -12357,9 +12213,9 @@
         },
         {
           "name": {
-            "ku": "نیدا عەدنان محەممەد",
-            "ar": "نيدا عدنان محمد",
-            "en": "Nida Adnan Muhammad"
+            "ku": "دینا عەدنان محەممەد",
+            "ar": "دینا عدنان محمد",
+            "en": "Dina Adnan Muhammad"
           },
           "certNumber": "622",
           "date": "24/1/2026"
@@ -12402,9 +12258,9 @@
         },
         {
           "name": {
-            "ku": "دییە جەبار کەریم",
-            "ar": "دية جبار کريم",
-            "en": "Dyya Jabar Karim"
+            "ku": "دینا جەبار کەریم",
+            "ar": "دينا جبار كريم",
+            "en": "Dina Jabar Karim"
           },
           "certNumber": "627",
           "date": "31/1/2026"
@@ -12420,9 +12276,9 @@
         },
         {
           "name": {
-            "ku": "هەنا محەممەد ساڵح",
-            "ar": "هناء محمد صالح",
-            "en": "Hana Muhammad Salih"
+            "ku": "هەنا محەممەد سادق",
+            "ar": "هناء محمد صادق",
+            "en": "Hana Muhammad Sadiq"
           },
           "certNumber": "629",
           "date": "11/3/2026"
