@@ -545,7 +545,13 @@
       document.documentElement.style.setProperty("--header-sticky-offset", `${header.offsetHeight}px`);
     };
     const updateHeader = () => {
-      header.classList.toggle("scrolled", window.scrollY > 20);
+      const y = window.scrollY;
+      const isScrolled = header.classList.contains("scrolled");
+      // Hysteresis: add class at 50px, remove only once back below 30px.
+      // Prevents the class from flickering when header height change nudges scrollY
+      // back and forth across a single threshold.
+      if (!isScrolled && y > 50) header.classList.add("scrolled");
+      else if (isScrolled && y < 30) header.classList.remove("scrolled");
       syncHeaderOffset();
     };
     const onHeaderScroll = () => {
@@ -559,6 +565,7 @@
     updateHeader();
     window.addEventListener("scroll", onHeaderScroll, { passive: true });
     window.addEventListener("resize", syncHeaderOffset, { passive: true });
+    header.addEventListener("transitionend", syncHeaderOffset);
   }
 
 
