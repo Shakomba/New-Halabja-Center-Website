@@ -110,9 +110,6 @@
 
     <div class="mobile-drawer" id="mobileDrawer">
       <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
-        <div class="drawer-brand" aria-hidden="true">
-          <img src="assets/img/Bnka.png" alt="" width="512" height="512">
-        </div>
         <nav class="drawer-links" aria-label="Mobile navigation">
           <a class="active" href="/"><span data-i18n="nav.home">Home</span></a>
           <a href="news.html"><span data-i18n="nav.news">Activities</span></a>
@@ -142,6 +139,11 @@
         <div class="hero-grid">
           <div>
             
+            <div class="hero-ornament" aria-hidden="true">
+              <span class="hero-orn-line"></span>
+              <svg class="hero-orn-diamond" viewBox="0 0 10 10" fill="currentColor"><polygon points="5,0 10,5 5,10 0,5"/></svg>
+              <span class="hero-orn-line"></span>
+            </div>
             <h1 class="h-title">
               <span data-i18n="hero.title1">New Halabja Center</span><br/>
               <span class="accent" data-i18n="hero.title2">for Teaching &amp; Memorizing the Holy Qur'an</span>
@@ -247,94 +249,80 @@
     </div>
   </section>
 
-  <section class="section" id="programs">
+  <section class="section prog-section" id="programs">
     <div class="container">
-      <h2 class="title h-title" data-i18n="section.programs.title">Programs</h2>
+      <h2 class="title h-title prog-heading" data-i18n="section.programs.title">Programs</h2>
+      <div class="prog-list">
 
-      
-      <div class="programs-grid">
-        <article class="program-card-v2 reveal">
-          <div class="pc-icon-wrap">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.8"/><path d="M19 11a7 7 0 0 1-14 0" stroke="currentColor" stroke-width="1.8"/><path d="M12 18v3" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8" stroke="currentColor" stroke-width="1.8"/></svg>
+        <article class="prog-item reveal">
+          <span class="prog-num" aria-hidden="true">01</span>
+          <div class="prog-mark" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 0 0-6 0v4a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.6"/><path d="M19 11a7 7 0 0 1-14 0" stroke="currentColor" stroke-width="1.6"/><path d="M12 18v3M8 21h8" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
-          <div class="pc-content">
-            <div class="pc-header">
-              <span class="pc-sub" data-i18n="program.recitation.sub">Tajweed</span>
-              <h3 class="pc-title" data-i18n="program.recitation">Recitation</h3>
-            </div>
-            <ul class="pc-features">
+          <div class="prog-body">
+            <span class="prog-sub" data-i18n="program.recitation.sub">Tajweed</span>
+            <h3 class="prog-title" data-i18n="program.recitation">Recitation</h3>
+            <ul class="prog-features">
               <li data-i18n="program.recitation.li1">Makharij &amp; sifat practice (pronunciation)</li>
               <li data-i18n="program.recitation.li2">Rule-based recitation with guided correction</li>
               <li data-i18n="program.recitation.li3">Reading circles and progress tracking</li>
             </ul>
-            <div class="pc-footer">
-              <a class="btn primary pc-btn" href="contact.html" data-i18n="program.enroll">Enroll</a>
-            </div>
           </div>
+          <a class="btn primary prog-cta" href="contact.html" data-i18n="program.enroll">Enroll</a>
         </article>
 
-        <article class="program-card-v2 reveal" style="transition-delay: 0.1s;">
-          <div class="pc-icon-wrap">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 4h12a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H7a3 3 0 0 0-3 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/><path d="M9 9h6M9 12h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <article class="prog-item reveal" style="transition-delay: 0.1s;">
+          <span class="prog-num" aria-hidden="true">02</span>
+          <div class="prog-mark" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 4h12a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H7a3 3 0 0 0-3 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/><path d="M9 9h6M9 12h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </div>
-          <div class="pc-content">
-            <div class="pc-header">
-              <span class="pc-sub" data-i18n="program.memorization.sub">Hifz</span>
-              <h3 class="pc-title" data-i18n="program.memorization">Memorization</h3>
-            </div>
-            <ul class="pc-features">
+          <div class="prog-body">
+            <span class="prog-sub" data-i18n="program.memorization.sub">Hifz</span>
+            <h3 class="prog-title" data-i18n="program.memorization">Memorization</h3>
+            <ul class="prog-features">
               <li data-i18n="program.memorization.li1">Daily memorization with teacher supervision</li>
               <li data-i18n="program.memorization.li2">Weekly revision plan (muraja'ah) and assessment</li>
               <li data-i18n="program.memorization.li3">Individual pacing with clear milestones</li>
             </ul>
-            <div class="pc-footer">
-              <a class="btn primary pc-btn" href="contact.html" data-i18n="program.enroll">Enroll</a>
-            </div>
           </div>
+          <a class="btn primary prog-cta" href="contact.html" data-i18n="program.enroll">Enroll</a>
         </article>
 
-        <article class="program-card-v2 reveal" style="transition-delay: 0.2s;">
-          <div class="pc-icon-wrap">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13" stroke="currentColor" stroke-width="1.8"/><path d="M6.5 18H20v1a2 2 0 0 1-2 2H6.5A2.5 2.5 0 0 1 4 18.5V18h2.5Z" stroke="currentColor" stroke-width="1.8"/><path d="M8 8h8M8 11h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <article class="prog-item reveal" style="transition-delay: 0.2s;">
+          <span class="prog-num" aria-hidden="true">03</span>
+          <div class="prog-mark" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 19V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13" stroke="currentColor" stroke-width="1.6"/><path d="M6.5 18H20v1a2 2 0 0 1-2 2H6.5A2.5 2.5 0 0 1 4 18.5V18h2.5Z" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 11h8M8 14h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </div>
-          <div class="pc-content">
-            <div class="pc-header">
-              <span class="pc-sub" data-i18n="program.understanding.sub">Tadabbur</span>
-              <h3 class="pc-title" data-i18n="program.understanding">Understanding</h3>
-            </div>
-            <ul class="pc-features">
+          <div class="prog-body">
+            <span class="prog-sub" data-i18n="program.understanding.sub">Tadabbur</span>
+            <h3 class="prog-title" data-i18n="program.understanding">Understanding</h3>
+            <ul class="prog-features">
               <li data-i18n="program.understanding.li1">Meaning and reflection (tadabbur)</li>
               <li data-i18n="program.understanding.li2">Audio &amp; video lecture series</li>
               <li data-i18n="program.understanding.li3">Notes and study resources</li>
             </ul>
-            <div class="pc-footer">
-              <a class="btn primary pc-btn" href="contact.html" data-i18n="program.enroll">Enroll</a>
-            </div>
           </div>
+          <a class="btn primary prog-cta" href="contact.html" data-i18n="program.enroll">Enroll</a>
         </article>
 
-        <article class="program-card-v2 reveal" style="transition-delay: 0.3s;">
-          <div class="pc-icon-wrap">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 10.5 12 5l9 5.5-9 5.5-9-5.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 12.5V17c0 1.2 2.7 3 6 3s6-1.8 6-3v-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <article class="prog-item reveal" style="transition-delay: 0.3s;">
+          <span class="prog-num" aria-hidden="true">04</span>
+          <div class="prog-mark" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 10.5 12 5l9 5.5-9 5.5-9-5.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 12.5V17c0 1.2 2.7 3 6 3s6-1.8 6-3v-4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </div>
-          <div class="pc-content">
-            <div class="pc-header">
-              <span class="pc-sub" data-i18n="program.studies.sub">Fiqh &amp; Seerah</span>
-              <h3 class="pc-title" data-i18n="program.studies">Studies</h3>
-            </div>
-            <ul class="pc-features">
+          <div class="prog-body">
+            <span class="prog-sub" data-i18n="program.studies.sub">Fiqh &amp; Seerah</span>
+            <h3 class="prog-title" data-i18n="program.studies">Studies</h3>
+            <ul class="prog-features">
               <li data-i18n="program.studies.li1">Foundations of worship and daily practice</li>
               <li data-i18n="program.studies.li2">Seerah lessons and Islamic manners (adab)</li>
               <li data-i18n="program.studies.li3">Age-appropriate classes</li>
             </ul>
-            <div class="pc-footer">
-              <a class="btn primary pc-btn" href="contact.html" data-i18n="program.enroll">Enroll</a>
-            </div>
           </div>
+          <a class="btn primary prog-cta" href="contact.html" data-i18n="program.enroll">Enroll</a>
         </article>
+
       </div>
-
-
     </div>
   </section>
 
