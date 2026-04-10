@@ -1,0 +1,24 @@
+{
+  "name": "new-halabja-center-website",
+  "version": "1.0.0",
+  "description": "A fast, static website (HTML/CSS/JS) inspired by common Quran academy layouts:\r - Hero + stats\r - Programs (memorization, recitation, tafsir)\r - News & posts\r - Publications (PDF library)\r - Tafsir (audio/video library)\r - About and Contact",
+  "main": "analyze_names.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shakomba/New-Halabja-Center-Website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Shakomba/New-Halabja-Center-Website/issues"
+  },
+  "homepage": "https://github.com/Shakomba/New-Halabja-Center-Website#readme",
+  "dependencies": {
+    "tesseract.js": "^7.0.0"
+  }
+}
