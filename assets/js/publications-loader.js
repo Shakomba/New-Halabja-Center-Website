@@ -1112,7 +1112,7 @@
       attachBookFlip();
     }, 100);
 
-  // Listen for language changes
+  // Listen for language changes via both the select element and the custom event
   const langSelect = document.getElementById('langSelect');
   if (langSelect) {
     langSelect.addEventListener('change', () => {
@@ -1124,6 +1124,8 @@
       reRender();
     });
   }
+  // Also respond to the custom languageChanged event dispatched by main.js
+  document.addEventListener('languageChanged', () => reRender());
   }
 
   // Run on DOM ready

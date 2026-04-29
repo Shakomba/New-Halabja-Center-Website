@@ -271,8 +271,7 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
       }
     } else {
       bioPhotoWrap.hidden = true;
-      // Add a coloured header strip with just the name instead
-      bioPhotoWrap.hidden = true;
+
     }
 
     // Info rows
@@ -335,11 +334,11 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
       // Only open if the exact clicked element is the profile picture itself
       if (e.target !== bioPhoto) return;
       if (bioPhoto.src && bioPhotoWrap.classList.contains('dir-is-clickable')) {
-        if (typeof window.openNativeLightbox === 'function') {
-          window.openNativeLightbox(bioPhoto.src, [bioPhoto.src], 0);
-        } else if (fsModal) {
+        if (fsModal) {
           fsPhoto.src = bioPhoto.src;
           fsModal.showModal();
+        } else if (typeof window.openNativeLightbox === 'function') {
+          window.openNativeLightbox(bioPhoto.src, [bioPhoto.src], 0);
         }
       }
     });
@@ -389,30 +388,6 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
 
     cardGrid.innerHTML = html;
 
-    // Delegated click: open bio modal for bio-enabled cards
-    cardGrid.addEventListener('click', e => {
-      const card = e.target.closest('[data-bio="1"]');
-      if (!card) return;
-      const lang = getCurrentLang();
-      // Find the member name from the card
-      const nameEl = card.querySelector('.dir-card-name');
-      const cardName = nameEl ? nameEl.textContent.trim() : '';
-
-      // Gather all certs for this member across all categories
-      let memberObj = null;
-      const allCerts = [];
-      for (const cat of categoriesData) {
-        for (const m of (cat.members || [])) {
-          if (t(m.name, lang) === cardName) {
-            if (!memberObj || m.bio) memberObj = m; // prioritize member object with bio
-            let cName = m.customLabel ? t(m.customLabel, lang) : t(cat.name, lang);
-            allCerts.push({ ...m, categoryName: cName, categoryId: cat.id });
-          }
-        }
-      }
-      if (memberObj) openBioModal(memberObj, allCerts);
-    }, { once: false });
-
     // Animate cards + apply masonry for search
     requestAnimationFrame(() => {
       const cardEls = cardGrid.querySelectorAll('.dir-card');
@@ -423,6 +398,28 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
       if (isSearching) applyMasonry();
     });
   };
+
+  /* ── Delegated bio-modal click (attached once, outside render) ─────── */
+  cardGrid.addEventListener('click', e => {
+    const card = e.target.closest('[data-bio="1"]');
+    if (!card) return;
+    const lang = getCurrentLang();
+    const nameEl = card.querySelector('.dir-card-name');
+    const cardName = nameEl ? nameEl.textContent.trim() : '';
+
+    let memberObj = null;
+    const allCerts = [];
+    for (const cat of categoriesData) {
+      for (const m of (cat.members || [])) {
+        if (t(m.name, lang) === cardName) {
+          if (!memberObj || m.bio) memberObj = m;
+          let cName = m.customLabel ? t(m.customLabel, lang) : t(cat.name, lang);
+          allCerts.push({ ...m, categoryName: cName, categoryId: cat.id });
+        }
+      }
+    }
+    if (memberObj) openBioModal(memberObj, allCerts);
+  });
 
   const applyMasonry = () => {
     if (!cardGrid) return;
@@ -505,12 +502,33 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
   }
 
   /* ── Search handler ────────────────────────────────── */
+  let _searchDebounceTimer = null;
+  const searchIcon = document.querySelector('.dir-search-icon');
+
+  const setSearchLoading = (loading) => {
+    const box = document.querySelector('.dir-search-box');
+    if (!box) return;
+    if (loading) {
+      box.classList.add('dir-search-loading');
+    } else {
+      box.classList.remove('dir-search-loading');
+    }
+  };
+
   if (searchInput) {
     searchInput.addEventListener('input', () => {
       const term = searchInput.value.trim();
-      // Set isSearching BEFORE render so sidebar state is correct immediately
-      isSearching = term.length > 0;
-      render();
+      // Show spinner immediately so the user gets instant feedback
+      if (term.length > 0) setSearchLoading(true);
+      else setSearchLoading(false);
+
+      clearTimeout(_searchDebounceTimer);
+      _searchDebounceTimer = setTimeout(() => {
+        // Set isSearching BEFORE render so sidebar state is correct immediately
+        isSearching = term.length > 0;
+        render();
+        setSearchLoading(false);
+      }, 220);
     });
   }
 

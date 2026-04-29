@@ -333,22 +333,44 @@
     const lang = getCurrentLanguage();
     const title = getTranslatedValue(activity.title, lang);
     const category = getFirstCategory(activity, lang);
-    const content = getTranslatedValue(activity.content, lang);
+    let content = getTranslatedValue(activity.content, lang);
     const mainImageRaw = activity.image ? String(activity.image).trim() : '';
     const mainImageSrc = mainImageRaw ? escapeHtml(mainImageRaw) : '';
-    const galleryImages = Array.isArray(activity.gallery)
+    let galleryImages = Array.isArray(activity.gallery)
       ? activity.gallery
           .map(img => String(img).trim())
           .filter(Boolean)
       : [];
-    
+
+    // Extract videos from content, strip their containing wrapper divs, and collect them
+    const videoContainerRegex = /<div[^>]*>\s*<video[^>]*src="([^"]*)"[^>]*(?:poster="([^"]*)")?[^>]*>(?:<\/video>)?\s*<\/div>/gi;
+    const looseVideoRegex = /<video[^>]*src="([^"]*)"[^>]*(?:poster="([^"]*)")?[^>]*>(?:<\/video>)?/gi;
+    const extractedVideos = [];
+
+    content = content.replace(videoContainerRegex, (_, src, poster) => {
+      extractedVideos.push({ src, poster: poster || '' });
+      return '';
+    });
+    content = content.replace(looseVideoRegex, (_, src, poster) => {
+      extractedVideos.push({ src, poster: poster || '' });
+      return '';
+    });
+
     const mainImage = activity.image ? `
       <div class="modal-main-image" data-image="${mainImageSrc}">
         <img src="${mainImageSrc}" alt="${escapeHtml(title)}" />
       </div>
     ` : '';
     
-    const gallery = (galleryImages.length > 0) ? `
+    // Build a unified media list: videos first, then photos
+    // Each item: {type, src, poster?}
+    const mediaItems = [
+      ...extractedVideos.map(v => ({ type: 'video', src: v.src, poster: v.poster })),
+      ...galleryImages.map(src => ({ type: 'image', src }))
+    ];
+
+    const hasGallery = mediaItems.length > 0;
+    const gallery = hasGallery ? `
       <div class="modal-gallery" dir="ltr">
         <div class="modal-gallery-divider">
           <svg viewBox="0 0 640 640" fill="#DEB86D">
@@ -356,15 +378,26 @@
           </svg>
         </div>
         <div class="modal-gallery-grid" dir="ltr">
-          ${galleryImages.map((img, index) => `
-            <div class="modal-gallery-item" data-index="${index}">
-              <img src="${escapeHtml(img)}" alt="Gallery image ${index + 1}" loading="lazy" />
-            </div>
-          `).join('')}
+          ${mediaItems.map((item, idx) => {
+            if (item.type === 'video') {
+              const poster = item.poster ? escapeHtml(item.poster) : '';
+              return `
+                <div class="modal-gallery-item modal-gallery-item--video" data-media-index="${idx}">
+                  ${poster ? `<img src="${poster}" alt="Video" loading="lazy" />` : ''}
+                  <div class="gallery-play-badge">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                  </div>
+                </div>`;
+            }
+            return `
+              <div class="modal-gallery-item" data-media-index="${idx}">
+                <img src="${escapeHtml(item.src)}" alt="Gallery image ${idx + 1}" loading="lazy" />
+              </div>`;
+          }).join('')}
         </div>
       </div>
     ` : '';
-    
+
     const modalContent = `
       ${mainImage}
       <div class="modal-meta-inline">
@@ -378,58 +411,33 @@
     if (window.NHC_MODAL && typeof window.NHC_MODAL.open === 'function') {
       window.NHC_MODAL.open(title, modalContent);
       history.replaceState(null, '', `#${activity.id}`);
-      attachImageLightboxListeners(activity);
+      attachImageLightboxListeners(mediaItems);
     } else if (typeof window.openModal === 'function') {
       window.openModal(title, modalContent);
       history.replaceState(null, '', `#${activity.id}`);
-      attachImageLightboxListeners(activity);
+      attachImageLightboxListeners(mediaItems);
     }
   }
 
-  function attachImageLightboxListeners(activity) {
+  function attachImageLightboxListeners(mediaItems) {
     const mainImage = document.querySelector('.modal-main-image');
-    const galleryItems = document.querySelectorAll('.modal-gallery-item');
     const mainImageEl = mainImage?.querySelector('img');
     const mainImageSrc = resolveImageUrl(mainImageEl?.currentSrc || mainImageEl?.src || mainImageEl?.getAttribute('src') || '');
-    const galleryImages = Array.from(document.querySelectorAll('.modal-gallery-item img'))
-      .map(img => resolveImageUrl(img.currentSrc || img.src || img.getAttribute('src') || ''))
-      .filter(Boolean);
-    const lightboxImages = galleryImages.length
-      ? galleryImages
-      : (mainImageSrc ? [mainImageSrc] : []);
 
     if (mainImage && mainImageSrc) {
       mainImage.addEventListener('click', () => {
         if (typeof window.openNativeLightbox === 'function') {
-          try {
-            window.openNativeLightbox(mainImageSrc, [mainImageSrc], 0);
-            return;
-          } catch (error) {
-            console.error('Lightbox failed to open from modal main image:', error);
-          }
+          window.openNativeLightbox(mainImageSrc, [mainImageSrc], 0);
         }
-        openImageFallback(mainImageSrc);
       });
     }
 
-    galleryItems.forEach(item => {
+    document.querySelectorAll('.modal-gallery-item[data-media-index]').forEach(item => {
       item.addEventListener('click', () => {
-        if (lightboxImages.length === 0) return;
-        const clickedImg = item.querySelector('img');
-        const clickedSrc = resolveImageUrl(clickedImg?.currentSrc || clickedImg?.src || clickedImg?.getAttribute('src') || '');
-        const foundIndex = clickedSrc ? lightboxImages.findIndex(src => src === clickedSrc) : -1;
-        const lightboxIndex = foundIndex >= 0 ? foundIndex : 0;
-        const targetSrc = lightboxImages[lightboxIndex];
-
-        if (typeof window.openNativeLightbox === 'function') {
-          try {
-            window.openNativeLightbox(targetSrc, lightboxImages, lightboxIndex);
-            return;
-          } catch (error) {
-            console.error('Lightbox failed to open from modal gallery item:', error);
-          }
+        const idx = parseInt(item.getAttribute('data-media-index'), 10);
+        if (!isNaN(idx) && typeof window.openMediaLightbox === 'function') {
+          window.openMediaLightbox(mediaItems, idx);
         }
-        openImageFallback(targetSrc);
       });
     });
   }

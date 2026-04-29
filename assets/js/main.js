@@ -928,9 +928,10 @@
     slider.dataset.activitiesSliderInit = "true";
   }
 
+  // setupNewsPage() was replaced by activities-loader.js
   function setupNewsPage() {
-    return;
-    const list = $("#newsList");
+    // No-op: activities page is handled by activities-loader.js
+    const list = $("#newsList"); // kept only to silence "unused" warnings
     if (!list) return;
 
     const q = $("#newsSearch");
@@ -1324,11 +1325,7 @@
     setupContactPage();
   }
 
-  // Use native full-page navigation for maximum reliability.
-  function setupSmoothTabNavigation() {
-    return;
-  }
-  setupSmoothTabNavigation();
+  // Navigation uses native full-page requests for reliability.
 
   // Expose icons (used in dynamic templates)
   window.NHC_ICONS = {

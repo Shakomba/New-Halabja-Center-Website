@@ -1,5 +1,64 @@
 [
   {
+    "id": "spring-trip-2025-sisters",
+    "categories": [
+      {
+        "en": "Activities",
+        "ku": "چالاکییەکان",
+        "ar": "أنشطة"
+      }
+    ],
+    "title": {
+      "en": "Spring Trip for Sisters' Department",
+      "ku": "گەشتی بەهارە بۆ بەشی خوشکان",
+      "ar": "الرحلة الربيعية لقسم الأخوات"
+    },
+    "date": "2026-04-19",
+    "tags": {
+      "en": [
+        "trip",
+        "sisters",
+        "students",
+        "teachers"
+      ],
+      "ku": [
+        "گەشت",
+        "خوشکان",
+        "فێرخوازان",
+        "مامۆستایان"
+      ],
+      "ar": [
+        "رحلة",
+        "أخوات",
+        "طالبات",
+        "معلمات"
+      ]
+    },
+    "summary": {
+      "en": "The New Halabja Center organized a spring trip for more than 170 students and teachers in the sisters' department.",
+      "ku": "بنکەی هەڵەبجەی تازە گەشتێکی بەهارەی بۆ زیاتر لە (١٧٠) فێرخواز و مامۆستا لەبەشی خوشکان ڕێکخست.",
+      "ar": "نظم مركز حلبجة الجديدة رحلة ربيعية لأكثر من (١٧٠) طالبة ومعلمة في قسم الأخوات."
+    },
+    "content": {
+      "en": "<p>The New Halabja Center organized a spring trip for more than 170 students and teachers in the sisters' department.</p><p>We extend our thanks and appreciation to the (anonymous benefactor from Chamchamal) who took on the responsibility of providing food for the trip. We also send our thanks and prayers to the owner of the garden.</p><p>May God Almighty reward them with good and multiply their likes in our region.</p><div style=\"margin-top: 15px;\"><video controls src=\"/assets/img/activities/AQO8UjwZbO16vPmL2ydgco6VisSDWsymVYR9BLXm6o0MO5A0UMkA3LFlktYwYcsExegMBmT4g2UCibtYKFydpLWlE1JLnndVwi9DhEth4JxPzA.mp4\" style=\"max-width: 100%; border-radius: 8px;\" poster=\"/assets/img/activities/spring-trip-2025-thumb.jpg\"></video></div>",
+      "ku": "<p>بنکەی هەڵەبجەی تازە گەشتێکی بەهارەی بۆ زیاتر لە (١٧٠) فێرخواز و مامۆستا لەبەشی خوشکان ڕێکخست.</p><p>سوپاس و پێزانینی خۆمان ئاراستەی (خێرخوازە نەناسراوەکەی چەمچەماڵ) دەکەین کە ئەرکی دابینکردنی خواردنی گەشتەکەی گرتە ئەستۆ. هەروەها سوپاس و دوعای خێرمان هەیە بۆ خاوەنی باخەکەیش.</p><p>خوای گەورە پاداشتی خێریان بداتەوە و نموونەیان زۆرتر بێت لە ناوچەکەماندا.</p><div style=\"margin-top: 15px;\"><video controls src=\"/assets/img/activities/AQO8UjwZbO16vPmL2ydgco6VisSDWsymVYR9BLXm6o0MO5A0UMkA3LFlktYwYcsExegMBmT4g2UCibtYKFydpLWlE1JLnndVwi9DhEth4JxPzA.mp4\" style=\"max-width: 100%; border-radius: 8px;\" poster=\"/assets/img/activities/spring-trip-2025-thumb.jpg\"></video></div>",
+      "ar": "<p>نظم مركز حلبجة الجديدة رحلة ربيعية لأكثر من (١٧٠) طالبة ومعلمة في قسم الأخوات.</p><p>نوجه شكرنا وتقديرنا لـ (المتطوع المجهول من جمجمال) الذي تكفل بتوفير طعام الرحلة. وكذلك نشكر وندعو بالخير لصاحب البستان.</p><p>نسأل الله العظيم أن يجزيهم خيراً ويكثر من أمثالهم في منطقتنا.</p><div style=\"margin-top: 15px;\"><video controls src=\"/assets/img/activities/AQO8UjwZbO16vPmL2ydgco6VisSDWsymVYR9BLXm6o0MO5A0UMkA3LFlktYwYcsExegMBmT4g2UCibtYKFydpLWlE1JLnndVwi9DhEth4JxPzA.mp4\" style=\"max-width: 100%; border-radius: 8px;\" poster=\"/assets/img/activities/spring-trip-2025-thumb.jpg\"></video></div>"
+    },
+    "image": "/assets/img/activities/673520215_1290891356473622_6373893914275348314_n.jpg",
+    "gallery": [
+      "/assets/img/activities/672673483_1290891489806942_5266726176908610318_n.jpg",
+      "/assets/img/activities/672688869_1290904716472286_8674955736247259702_n.jpg",
+      "/assets/img/activities/673469517_1290891309806960_8697831321669320391_n.jpg",
+      "/assets/img/activities/673477953_1290891399806951_7834911463780398345_n.jpg",
+      "/assets/img/activities/673520215_1290891356473622_6373893914275348314_n.jpg",
+      "/assets/img/activities/673618454_1290891446473613_1723697591838695383_n.jpg",
+      "/assets/img/activities/674033251_1290904729805618_6843435543535673555_n.jpg",
+      "/assets/img/activities/674282064_1290891429806948_4942929739348399014_n.jpg",
+      "/assets/img/activities/675975206_1290891486473609_6886884416076366202_n.jpg",
+      "/assets/img/activities/676939430_1290891526473605_581453998093247541_n.jpg"
+    ]
+  },
+  {
     "id": "scientific-trip-2025-1",
     "categories": [
       {
@@ -329,9 +388,21 @@
     },
     "date": "2025-11-05",
     "tags": {
-      "en": ["seminar", "media", "teachers"],
-      "ku": ["کۆڕ", "ڕاگەیاندن", "مامۆستایان"],
-      "ar": ["ندوة", "إعلام", "معلمين"]
+      "en": [
+        "seminar",
+        "media",
+        "teachers"
+      ],
+      "ku": [
+        "کۆڕ",
+        "ڕاگەیاندن",
+        "مامۆستایان"
+      ],
+      "ar": [
+        "ندوة",
+        "إعلام",
+        "معلمين"
+      ]
     },
     "summary": {
       "en": "A special seminar conducted for the media department teachers of the center.",
@@ -368,9 +439,21 @@
     },
     "date": "2025-09-28",
     "tags": {
-      "en": ["ceremony", "graduation", "brothers"],
-      "ku": ["ئاهەنگ", "دەرچوون", "برایان"],
-      "ar": ["حفل", "تخرج", "إخوة"]
+      "en": [
+        "ceremony",
+        "graduation",
+        "brothers"
+      ],
+      "ku": [
+        "ئاهەنگ",
+        "دەرچوون",
+        "برایان"
+      ],
+      "ar": [
+        "حفل",
+        "تخرج",
+        "إخوة"
+      ]
     },
     "summary": {
       "en": "Annual graduation ceremony for New Halabja Center Brothers Section, honoring teachers and students across all levels.",
@@ -430,9 +513,21 @@
     },
     "date": "2025-09-27",
     "tags": {
-      "en": ["ceremony", "graduation", "sisters"],
-      "ku": ["ئاهەنگ", "دەرچوون", "خوشکان"],
-      "ar": ["حفل", "تخرج", "أخوات"]
+      "en": [
+        "ceremony",
+        "graduation",
+        "sisters"
+      ],
+      "ku": [
+        "ئاهەنگ",
+        "دەرچوون",
+        "خوشکان"
+      ],
+      "ar": [
+        "حفل",
+        "تخرج",
+        "أخوات"
+      ]
     },
     "summary": {
       "en": "Annual graduation ceremony for New Halabja Center Sisters Section course, from which approximately 350 students benefited.",
@@ -441,7 +536,7 @@
     },
     "content": {
       "en": "<p>Praise be to Allah, by whose grace good deeds are completed.</p><p>The end-of-summer course ceremony was held for New Halabja Center (Sisters Section), from which approximately 350 students benefited. Over several months they consistently attended and learned Quran recitation and educational lessons.</p><p>The ceremony opened with a recitation from the Holy Quran by our center's student (Tazhna Jamal), a Level One student.</p><p>This was followed by a nasheed performed by a group of Level One students.<br>The ceremony then proceeded to the honoring of teachers and students as follows:<br>Level One: All students received merit awards.<br>Level Two: Special awards for the top 15 students, then all students were honored.<br>Level Three: Top 10 students were awarded.<br>Level Four: Top 5 students were awarded.</p><p>Al-Qa'ida An-Nurania graduates: 61 students.<br>Teachers and Quran memorizers: 3 teachers.<br>Licensed (Ijazah) graduates: 8 students.<br>Teachers honored: 37 teachers.<br>Advanced Tajweed graduates: 4 students.<br>Tuhfat al-Atfal graduates: 3 students.</p><p>We extend our deepest gratitude to the respected teachers who gave their time and dedication to the students throughout this period. May Allah reward them generously and make it an everlasting reward. We also thank the generous benefactors who provided the awards for students and teachers. May Allah multiply His blessings upon them many times over.<br>O Allah, Ameen.</p>",
-      "ku": "<p>الحمدلله الذي بنعمة تتم الصالحات</p><p>ئەنجامدانی ئاهەنگێک بۆ کۆتاییپێهێنان بە خولی هاوینەی بنکەی هەڵبەجەی تازە کە نزیکەی ٣٥٠ فێرخواز لێی سوودمەند بوون و بەدرێژایی چەند مانگی راپبردوو، فێرخوازانی تێیدا ناشنابوون بە قورئان و وانەی پەروەردەیی.</p><p>سەرەتا دەستپێکی ئاهەنگەکەمان بە چەند دزێیک لە قورئانی پیرۆز بوو لەلایەن فێرخوازی بنکەکەمان (تەژنە جەمال) فێرخوازی قۆناغی یەکەم.</p><p>پاشان سروودێک لەلایەن کۆمەڵێک فێرخوازانی قۆناغی یەکەوە پێشکەش کرا.<br>پاشان هەستان بە خەڵاتەکردنی مامۆستایان و فێرخوازان بەم شێوەیە:<br>قۆناغی یەکەم: هەموو فێرخوازان خەڵاتی شایستەکران.<br>قۆناغی دووەم: خەڵاتی تایبەت بە (١٥) فێرخوازی یەکەم، پاشان سەرجەم فێرخوازان خەڵات کران.<br>قۆناغی سێیەم: (١٠) فێرخوازی یەکەم خەڵات کران.<br>قۆناغی چوارەم: (٥) فێرخوازی یەکەم خەڵات کران.</p><p>خەڵاتی دەرچووانی قاعدة النورانیة: ٦١ فێرخواز.<br>مامۆستایان و لەبەرکارانی قورئانی پیرۆز: ٣ مامۆستا.<br>فێرخوازی مۆڵەتپێدراو: ٨ فێرخواز.<br>مامۆستایان: ٣٧ مامۆستا.<br>دەرچوانی تەجویید ناستی پێشکەوتوون: ٤ فێرخواز.<br>دەرچوانی خولی (تحفة الاطفال): ٣ فێرخواز.</p><p>زۆر سوپاسی مامۆستایانی بەرێز دەکەین کە لەم ماوەیەدا لەڕێگەی کاریان لەگەڵ فێرخوازانی کردووە، خوای گەورە پاداشتیان بداتەوە و بیکات بە پاداشتێکی نەیرابوو. وە زۆر سووپاسی خەڵاتکارانی بەرێز کە هەستان بەدابینکردنی خەڵاتی فێرخوازان و مامۆستایان. خوای گەورە بەچەند قات بۆیان قەرەبووی بکاتەوە.<br>اللهم أمین یارب</p>",
+      "ku": "<p>الحمدلله الذي بنعمة تتم الصالحات</p><p>ئەنجامدانی ئاهەنگێک بۆ کۆتاییپێهێنان بە خولی هاوینەی بنکەی هەڵەبجەی تازە کە نزیکەی ٣٥٠ فێرخواز لێی سوودمەند بوون و بەدرێژایی چەند مانگی ڕابردوو فێرخوازان تێیدا ئاشنابوون بە قورئان و وانەی پەروەردەیی.</p><p>سەرەتا دەستپێکی ئاهەنگەکەمان بە خوێندنەوەی چەند ئایەتێک لە قورئانی پیرۆز بوو لەلایەن فێرخوازی بنکەکەمان (تەژنە جەمال) فێرخوازی قۆناغی یەکەم.</p><p>پاشان سروودێک لەلایەن کۆمەڵێک فێرخوازانی قۆناغی یەکەوە پێشکەش کرا.<br>پاشان هەستان بە خەڵاتکردنی مامۆستایان و فێرخوازان بەم شێوەیە:<br>قۆناغی یەکەم: هەموو فێرخوازان خەڵاتی شایستەکران.<br>قۆناغی دووەم: خەڵاتی تایبەت بە (١٥) فێرخوازی یەکەم، پاشان سەرجەم فێرخوازان خەڵات کران.<br>قۆناغی سێیەم: (١٠) فێرخوازی یەکەم خەڵات کران.<br>قۆناغی چوارەم: (٥) فێرخوازی یەکەم خەڵات کران.</p><p>خەڵاتی دەرچووانی القاعدة النورانیة: ٦١ فێرخواز.<br>مامۆستایان و لەبەرکارانی قورئانی پیرۆز: ٣ مامۆستا.<br>فێرخوازی مۆڵەتپێدراو: ٨ فێرخواز.<br>مامۆستایان: ٣٧ مامۆستا.<br>دەرچووانی تەجویدی ئاستی پێشکەوتوو: ٤ فێرخواز.<br>دەرچووانی خولی (تحفة الاطفال): ٣ فێرخواز.</p><p>زۆر سپاسی مامۆستایانی بەڕێز دەکەین کە لەم ماوەیەدا ئەرکێکی زۆریان کێشاوە لەگەڵ فێرخوازان، خوای گەورە پاداشتیان بداتەوە و بیکات بە پاداشتێکی نەبڕاوە. وە زۆر سپاسی خەڵاتکارانی بەڕێز دەکەین کە هەستان بەدابینکردنی خەڵاتی فێرخوازان و مامۆستایان. خوای گەورە بەچەند قات بۆیان قەرەبوو بکاتەوە.<br>اللهم آمین یا رب</p>",
       "ar": "<p>الحمدلله الذي بنعمة تتم الصالحات</p><p>أُقيم حفل ختام دورة الصيف في مركز حلبجة الجديدة (قسم الأخوات)، وقد استفادت منها قرابة ٣٥٠ طالبة على مدى أشهر متواصلة، حيث واظبت الطالبات على دروس تلاوة القرآن الكريم والدروس التربوية.</p><p>افتُتح الحفل بتلاوة آيات من القرآن الكريم من قِبَل طالبتنا (تژنه جمال) من المستوى الأول.</p><p>ثم أُدِّيت أنشودة من قِبَل مجموعة من طالبات المستوى الأول.<br>ثم انتقل الحفل إلى تكريم المعلمات والطالبات على النحو الآتي:<br>المستوى الأول: جميع الطالبات نلن جوائز استحقاق.<br>المستوى الثاني: جوائز خاصة لأفضل ١٥ طالبة، ثم تكريم جميع الطالبات.<br>المستوى الثالث: تكريم أفضل ١٠ طالبات.<br>المستوى الرابع: تكريم أفضل ٥ طالبات.</p><p>خريجات القاعدة النورانية: ٦١ طالبة.<br>المعلمات وحافظات القرآن الكريم: ٣ معلمات.<br>المجازات: ٨ طالبات.<br>المعلمات المكرَّمات: ٣٧ معلمة.<br>خريجات التجويد المتقدم: ٤ طالبات.<br>خريجات تحفة الأطفال: ٣ طالبات.</p><p>نتقدم بخالص الشكر للمعلمات الكريمات اللواتي بذلن جهدهن مع الطالبات طوال هذه المدة. جزاهن الله خيراً وجعله في ميزان حسناتهن مثوبةً لا تنقطع. ونشكر أيضاً المتبرعين الكرام الذين قدَّموا الجوائز للطالبات والمعلمات. أضاعف الله أجورهم أضعافاً كثيرة.<br>اللهم آمين يا رب</p>"
     },
     "image": "/assets/img/activities/7_1.jpg",
@@ -480,9 +575,21 @@
     },
     "date": "2025-09-26",
     "tags": {
-      "en": ["exam", "education", "students"],
-      "ku": ["تاقیکردنەوە", "پەروەردە", "فێرخوازان"],
-      "ar": ["امتحان", "تربية", "طلاب"]
+      "en": [
+        "exam",
+        "education",
+        "students"
+      ],
+      "ku": [
+        "تاقیکردنەوە",
+        "پەروەردە",
+        "فێرخوازان"
+      ],
+      "ar": [
+        "امتحان",
+        "تربية",
+        "طلاب"
+      ]
     },
     "summary": {
       "en": "Conducting an educational lesson exam at our center's hall on Thursday 25/9/2025.",
@@ -520,13 +627,25 @@
     },
     "date": "2025-08-30",
     "tags": {
-      "en": ["visit", "community", "scholars"],
-      "ku": ["سەردان", "کۆمەڵایەتی", "زانایان"],
-      "ar": ["زيارة", "مجتمع", "علماء"]
+      "en": [
+        "visit",
+        "community",
+        "scholars"
+      ],
+      "ku": [
+        "سەردان",
+        "کۆمەڵایەتی",
+        "زانایان"
+      ],
+      "ar": [
+        "زيارة",
+        "مجتمع",
+        "علماء"
+      ]
     },
     "summary": {
       "en": "Dr. Imad Gwani, accompanied by a delegation of teachers from the Gzng organization of Sharazoor, visited our center and were warmly welcomed.",
-      "ku": "بەڕێز دکتۆر عماد گوانی بەیاوەری وەفدێک لە مامۆستایانی رێکخراوی گزنگی شارەزوور تەشریفیان هێنا بۆ بنکەکەمان و پێشوازیی گەرمیان لێکرا.",
+      "ku": "بەڕێز دکتۆر عماد گوانی بەیاوەری وەفدێک لە مامۆستایانی ڕێکخراوی گزنگی شارەزوور تەشریفیان هێنا بۆ بنکەکەمان و پێشوازیی گەرمیان لێکرا.",
       "ar": "زار مركزنا الدكتور الفاضل عماد گواني برفقة وفد من معلمي منظمة شهرزور، واستُقبل باستقبال حار."
     },
     "content": {
@@ -557,9 +676,21 @@
     },
     "date": "2025-08-30",
     "tags": {
-      "en": ["lecture", "sisters", "scholars"],
-      "ku": ["واری", "خوشکان", "زانایان"],
-      "ar": ["محاضرة", "أخوات", "علماء"]
+      "en": [
+        "lecture",
+        "sisters",
+        "scholars"
+      ],
+      "ku": [
+        "واری",
+        "خوشکان",
+        "زانایان"
+      ],
+      "ar": [
+        "محاضرة",
+        "أخوات",
+        "علماء"
+      ]
     },
     "summary": {
       "en": "Dr. Imad Gwani presented a lecture for the teachers and students of New Halabja Center Sisters Section.",
@@ -590,25 +721,37 @@
       }
     ],
     "title": {
-      "en": "Religious History Lecture on the Occasion of 26 Rabi al-Akhir",
-      "ku": "واری مێژووی ئایینی بەمناسەبەتی ٢٦ی رەبیعی ئاخیر",
-      "ar": "محاضرة في التاريخ الديني بمناسبة السادس والعشرين من ربيع الآخر"
+      "en": "Teacher Development: How to reflect on the Holy Quran",
+      "ku": "گەشەپێدانی مامۆستایان: چۆن تەدەبور لە قورئانی پیرۆز بکەین",
+      "ar": "تطوير المعلمين: كيف نتدبر القرآن الكريم"
     },
     "date": "2025-05-21",
     "tags": {
-      "en": ["lecture", "Islamic history", "religion"],
-      "ku": ["واری", "مێژووی ئیسلام", "ئایین"],
-      "ar": ["محاضرة", "تاريخ إسلامي", "دين"]
+      "en": [
+        "teacher-training",
+        "quran",
+        "reflection"
+      ],
+      "ku": [
+        "ڕاهێنانی-مامۆستایان",
+        "قورئان",
+        "تەدەبور"
+      ],
+      "ar": [
+        "تدريب-المعلمين",
+        "قرآن",
+        "تدبر"
+      ]
     },
     "summary": {
-      "en": "On the occasion of 26 Rabi al-Akhir, our teachers presented a lecture drawing students' attention to important events in religious history.",
-      "ku": "بەمناسەبەتی ٢٦ی رەبیعی ئاخیر، مامۆستایانمان واریێک پێشکەش کرد کە تێیدا ئاگاداری فێرخوازان دەکاتەوە لە تاریخی مێژووی ئایینی.",
-      "ar": "بمناسبة السادس والعشرين من ربيع الآخر، قدَّم معلمونا محاضرة تلفت انتباه الطلاب إلى أحداث مهمة في التاريخ الديني."
+      "en": "In continuation of the Teacher Development course, a topic titled 'How to reflect on the Holy Quran' was presented by Mr. Sirwan Hamid.",
+      "ku": "لە درێژەی وانەکانی خولی (گەشە پێدانی مامۆستایان)، بابەتێک لەژێر ناونیشانی (چۆن تەدەبور لە قورئانی پیرۆز بکەین) لەلایەن بەڕێز مامۆستا سیروان حامدەوە پێشکەش کرا.",
+      "ar": "استمراراً لدروس دورة تطوير المعلمين، تم تقديم موضوع بعنوان \"كيف نتدبر القرآن الكريم\" من قبل الأستاذ سيروان حامد."
     },
     "content": {
-      "en": "<p>On the occasion of the 26th of Rabi al-Akhir, our teachers presented a lecture drawing students' attention to important events and milestones in Islamic religious history.</p>",
-      "ku": "<p>لە ٢٦ی رەبیعی ئاخیر، مامۆستایانمان واریێک پێشکەش کردن کە تێیدا ئاگاداری فێرخوازانمان دەکاتەوە لە رووداوە گرنگەکانی تاریخی مێژووی ئایینی دونیا.</p>",
-      "ar": "<p>بمناسبة السادس والعشرين من ربيع الآخر، قدَّم معلمونا محاضرة تسلط الضوء على أهم أحداث ومحطات التاريخ الإسلامي، لتوعية الطلاب بتراثهم الديني.</p>"
+      "en": "<p>In continuation of the (Teacher Development) course lessons, today a topic titled (How to reflect on the Holy Quran) was presented by the respected (Mr. Sirwan Hamid), which included the following points:</p><ul><li>The difference between reflection (Tadabbur) and interpretation (Tafsir)</li><li>The ruling on reflection</li><li>Some examples of the reflection of the Prophet (Peace be upon him) and his companions</li><li>Obstacles to reflection</li><li>The fruits of reflection</li><li>Tools for reflection</li><li>Some examples of the reflection of the predecessors</li></ul>",
+      "ku": "<p>لە درێژەی وانەکانی خولی (گەشە پێدانی مامۆستایان) ئەمڕۆ بابەتێک لەژێر ناونیشانی (چۆن تەدەبور لە قورئانی پیرۆز بکەین) لەلایەن بەڕێز (مامۆستا سیروان حامد)ەوە پێشکەش کرا کە تێیدا ئەم تەوەرانەی لەخۆ دەگرت:</p><ul><li>جیاوازی نێوان تەدەبور و تەفسیر</li><li>حوکمی تەدەبور</li><li>چەند نموونەیەک لە تەدەبوری پێغەمبەر (صلی الله علیه وسلم) و هاوەڵان</li><li>ڕێگرەکانی تەدەبور</li><li>بەربوومی تەدەبور</li><li>ئامرازەکانی تەدەبور</li><li>چەند نموونەیەک لە تەدەبوری پێشینان</li></ul>",
+      "ar": "<p>استمراراً لدروس دورة (تطوير المعلمين)، تم اليوم تقديم موضوع بعنوان (كيف نتدبر القرآن الكريم) من قبل الأستاذ الفاضل (سيروان حامد)، والذي تضمن المحاور التالية:</p><ul><li>الفرق بين التدبر والتفسير</li><li>حكم التدبر</li><li>بعض الأمثلة من تدبر النبي (صلى الله عليه وسلم) والصحابة</li><li>موانع التدبر</li><li>ثمرات التدبر</li><li>أدوات التدبر</li><li>بعض الأمثلة من تدبر السلف</li></ul>"
     },
     "image": "/assets/img/activities/11_1.jpg",
     "gallery": [
@@ -630,23 +773,35 @@
     ],
     "title": {
       "en": "Teacher Training Course — Week 5: How to Be an Effective Educator",
-      "ku": "خولی ڕاهێنان و گەشەپێدانی مامۆستایان — هەفتەی پێنجەم: چۆن دەبیتە پەروەردەکاریێکی کارا و کاریگەر؟",
+      "ku": "خولی ڕاهێنان و گەشەپێدانی مامۆستایان — هەفتەی پێنجەم: چۆن دەبیتە پەروەردەکارێکی کارا و کاریگەر؟",
       "ar": "دورة تدريب وتطوير المعلمين — الأسبوع الخامس: كيف تكون مربياً فعّالاً ومؤثراً؟"
     },
     "date": "2025-01-15",
     "tags": {
-      "en": ["training", "teachers", "education"],
-      "ku": ["ڕاهێنان", "مامۆستایان", "پەروەردە"],
-      "ar": ["تدريب", "معلمين", "تربية"]
+      "en": [
+        "training",
+        "teachers",
+        "education"
+      ],
+      "ku": [
+        "ڕاهێنان",
+        "مامۆستایان",
+        "پەروەردە"
+      ],
+      "ar": [
+        "تدريب",
+        "معلمين",
+        "تربية"
+      ]
     },
     "summary": {
       "en": "The fifth week of the Teacher Training and Development course, with a presentation by Mr. Muhammad Sinemoki on how to become an effective and impactful educator.",
-      "ku": "هەفتەی پێنجەمی خولی ڕاهێنان و گەشەپێدانی مامۆستایان، تێیدا بەڕێز م. محمد سینەمۆکی بابەتێکی ئامادەکرد بە ناونیشانی (چۆن دەبیتە پەروەردەکاریێکی کارا و کاریگەر؟)",
+      "ku": "هەفتەی پێنجەمی خولی ڕاهێنان و گەشەپێدانی مامۆستایان، تێیدا بەڕێز م. محمد سینەمۆکی بابەتێکی ئامادەکرد بە ناونیشانی (چۆن دەبیتە پەروەردەکارێکی کارا و کاریگەر؟)",
       "ar": "الأسبوع الخامس من دورة تدريب وتطوير المعلمين، قدَّم فيه الأستاذ محمد سينموكي موضوعاً بعنوان (كيف تكون مربياً فعّالاً ومؤثراً؟)"
     },
     "content": {
       "en": "<p>The fifth week of the Teacher Training and Development course was held, in which the respected Mr. Muhammad Sinemoki presented a topic titled: <strong>'How to become an effective and impactful educator?'</strong></p>",
-      "ku": "<p>هەفتەی پێنجەمی خولی (ڕاهێنان و گەشەپێدانی مامۆستایان) بەڕێوەچوو و تێیدا بەڕێز م. محمد سینەمۆکی بابەتێکی لەژێر ناونیشانی <strong>(چۆن دەبیتە پەروەردەکاریێکی کارا و کاریگەر؟)</strong> پێشکەش کرد.</p>",
+      "ku": "<p>هەفتەی پێنجەمی خولی (ڕاهێنان و گەشەپێدانی مامۆستایان) بەڕێوەچوو و تێیدا بەڕێز م. محمد سینەمۆکی بابەتێکی لەژێر ناونیشانی <strong>(چۆن دەبیتە پەروەردەکارێکی کارا و کاریگەر؟)</strong> پێشکەش کرد.</p>",
       "ar": "<p>انعقد الأسبوع الخامس من دورة (تدريب وتطوير المعلمين)، وفيه قدَّم الأستاذ الفاضل محمد سينموكي موضوعاً بعنوان: <strong>'كيف تكون مربياً فعّالاً ومؤثراً؟'</strong></p>"
     },
     "image": "/assets/img/activities/12_1.jpg",
@@ -674,9 +829,21 @@
     },
     "date": "2025-01-08",
     "tags": {
-      "en": ["training", "teachers", "education"],
-      "ku": ["ڕاهێنان", "مامۆستایان", "پەروەردە"],
-      "ar": ["تدريب", "معلمين", "تربية"]
+      "en": [
+        "training",
+        "teachers",
+        "education"
+      ],
+      "ku": [
+        "ڕاهێنان",
+        "مامۆستایان",
+        "پەروەردە"
+      ],
+      "ar": [
+        "تدريب",
+        "معلمين",
+        "تربية"
+      ]
     },
     "summary": {
       "en": "The fourth week of the Teacher Training and Development course, with a presentation by Mr. Adnan Nuri on education and how to deal with disruptive students.",
@@ -696,34 +863,46 @@
     ]
   },
   {
-    "id": "graduation-ceremony-147-nurania",
+    "id": "teacher-training-start-2024",
     "categories": [
       {
-        "en": "Ceremonies",
-        "ku": "ئاهەنگەکان",
-        "ar": "احتفالات"
+        "en": "Training",
+        "ku": "ڕاهێنان",
+        "ar": "تدريب"
       }
     ],
     "title": {
-      "en": "Ceremony No. 147 — Al-Qa'ida An-Nurania Graduates (Sisters Section)",
-      "ku": "تەمپی ژمارە 147 — دەرچووانی قاعدة النورانية (بەشی خوشکان)",
-      "ar": "الحفل رقم 147 — خريجات القاعدة النورانية (قسم الأخوات)"
+      "en": "Start of Teacher Training and Development Course",
+      "ku": "دەستپێکی خولی ڕاهێنان و گەشەپێدانی مامۆستایان",
+      "ar": "انطلاق دورة تدريب وتطوير المعلمين"
     },
     "date": "2024-12-18",
     "tags": {
-      "en": ["ceremony", "graduation", "sisters", "Nurania"],
-      "ku": ["ئاهەنگ", "دەرچوون", "خوشکان", "نوورانی"],
-      "ar": ["حفل", "تخرج", "أخوات", "نورانية"]
+      "en": [
+        "training",
+        "teachers",
+        "development"
+      ],
+      "ku": [
+        "ڕاهێنان",
+        "مامۆستایان",
+        "گەشەپێدان"
+      ],
+      "ar": [
+        "تدريب",
+        "معلمين",
+        "تطوير"
+      ]
     },
     "summary": {
-      "en": "Graduation ceremony No. 147 for Al-Qa'ida An-Nurania level students (Sisters Section) at New Halabja Center.",
-      "ku": "تەمپی ژمارە 147 بۆ دەرچووانی قاعدة النورانية (بەشی خوشکان) لە بنکەی هەڵەبجەی تازە.",
-      "ar": "الحفل رقم 147 لخريجات مستوى القاعدة النورانية (قسم الأخوات) في مركز حلبجة الجديدة."
+      "en": "The Teacher Training and Development Course started for the teachers of New Halabja Center, with the first lesson presented by Mamosta Yasin Ahmed Zangana.",
+      "ku": "دەستکرا بە خولی ڕاهێنان و گەشەپێدانی مامۆستایان بۆ مامۆستایانی بنکەی هەڵەبجەی تازە، یەکەم وانەش لەلایەن مامۆستا یاسین ئەحمەد زەنگەنەوە پێشکەش کرا.",
+      "ar": "انطلقت دورة تدريب وتطوير المعلمين لمعلمي مركز حلبجة الجديدة، حيث قُدِّم الدرس الأول من قبل الأستاذ ياسين أحمد زنكنة."
     },
     "content": {
-      "en": "<p>Graduation ceremony No. 147 was held for Al-Qa'ida An-Nurania level students (Sisters Section) at New Halabja Center, celebrating the achievement of graduates who successfully completed this foundational Quran recitation course.</p>",
-      "ku": "<p>تەمپی ژمارە 147 بۆ دەرچووانی قاعدة النورانية (بەشی خوشکان) لە بنکەی هەڵەبجەی تازە ئەنجام درا، بریتی بوو لە کوڵکردنەوەی دەستکەوتی فێرخوازانی دەرچوو لە ئەم قۆناغەی بنچینەیی قورئانی.</p>",
-      "ar": "<p>أُقيم الحفل رقم 147 لخريجات مستوى القاعدة النورانية (قسم الأخوات) في مركز حلبجة الجديدة، احتفاءً بإنجاز الطالبات المتخرجات اللواتي أتممن هذه المرحلة الأساسية في تلاوة القرآن الكريم.</p>"
+      "en": "<p>Today, 17 Jumada al-Thani 1446 (18/12/2024), the Teacher Training and Development Course commenced for the teachers of the New Halabja Center, with the participation of more than thirty respected teachers.</p><p>The first lesson of the course was presented by the respected Mamosta Yasin Ahmed Zangana under the title (Teacher's Conduct with Students).</p>",
+      "ku": "<p>ئەمڕۆ بەرواری ١٧ جماد الثانی ١٤٤٦ (١٨/١٢/٢٠٢٤)، دەستکرا بە خولی ڕاهێنان و گەشەپێدانی مامۆستایان بۆ مامۆستایانی بنکەی هەڵەبجەی تازە بە بەشداری زیاتر لە سی مامۆستای بەڕێز.</p><p>وە یەکەم وانەی خولەکە لەلایەن بەڕێز مامۆستا یاسین ئەحمەد زەنگەنە پێشکەش کرا بە ناونیشانی (هەڵسوکەوتی مامۆستا لەگەڵ قوتابیان).</p>",
+      "ar": "<p>اليوم، بتاريخ 17 جمادى الآخرة 1446 (18/12/2024)، انطلقت دورة تدريب وتطوير المعلمين لمعلمي مركز حلبجة الجديدة بمشاركة أكثر من ثلاثين معلماً فاضلاً.</p><p>وقُدِّم الدرس الأول في الدورة من قبل الأستاذ الفاضل ياسين أحمد زنكنة بعنوان (تعامل المعلم مع الطلاب).</p>"
     },
     "image": "/assets/img/activities/14_1.jpg",
     "gallery": [

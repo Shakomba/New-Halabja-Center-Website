@@ -149,6 +149,11 @@ body {
   transition: opacity .16s ease;
 }
 
+/* Browsers don't inherit font-family on form elements — force it */
+input, button, select, textarea {
+  font-family: inherit;
+}
+
 html.nhc-page-leaving {
   pointer-events: none;
 }
@@ -3371,6 +3376,12 @@ html[dir="rtl"] .activities-arrow .icon {
   padding-inline-end: 50px;
 }
 
+html[lang="ku"] .modal .box header h3,
+html[lang="ar"] .modal .box header h3 {
+  font-family: var(--font-heading-active);
+  letter-spacing: 0;
+}
+
 /* Close button — ink circle with white X */
 .xbtn {
   position: absolute;
@@ -3526,6 +3537,12 @@ body[dir="rtl"] .modal .content .modal-meta .meta-label {
   color: rgba(116, 80, 14, .9);
 }
 
+html[lang="ku"] .modal-category,
+html[lang="ar"] .modal-category {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .modal-date {
   font-size: .85rem;
   font-weight: 500;
@@ -3613,25 +3630,23 @@ dialog.native-lightbox {
   background: rgba(0, 0, 0, .92);
   display: none;
   opacity: 0;
-  transition: opacity 0.3s ease, background-color 0.3s ease;
-  
-  /* Reset defaults for dialog */
+  transition: opacity 0.3s ease;
   border: none;
   margin: 0;
   padding: 0;
-  max-width: none;
-  max-height: none;
+  max-width: 100vw;
+  max-height: 100vh;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
-}
-
-dialog.native-lightbox::backdrop {
-  background: transparent;
 }
 
 .native-lightbox.active {
   display: block;
+}
+
+dialog.native-lightbox::backdrop {
+  background: transparent;
 }
 
 .lightbox-slides-wrapper {
@@ -7997,6 +8012,35 @@ html[lang="ar"] .enroll-btn {
   color: var(--green-3, #147E49);
 }
 
+/* Search loading state — spinner replaces the icon */
+.dir-search-box.dir-search-loading .dir-search-icon {
+  opacity: 0;
+}
+
+.dir-search-box.dir-search-loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  border: 2px solid rgba(20, 126, 73, 0.2);
+  border-top-color: var(--green-3, #147E49);
+  border-radius: 50%;
+  animation: dir-spin 0.65s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+[dir="ltr"] .dir-search-box.dir-search-loading::before,
+:not([dir]) .dir-search-box.dir-search-loading::before {
+  left: 19px;
+}
+
+[dir="rtl"] .dir-search-box.dir-search-loading::before {
+  right: 19px;
+}
+
 /* Mobile category selector — hidden on desktop */
 .dir-mobile-cats {
   display: none;
@@ -8750,5 +8794,216 @@ html[lang="ar"] .enroll-btn {
   .dir-card-name {
     font-size: 0.85rem;
   }
+}
+
+/* Video item in gallery — same size as photos, play badge on top */
+.modal-gallery-item--video {
+  position: relative;
+}
+
+.gallery-play-badge {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.gallery-play-badge svg {
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  background: var(--color-green-1);
+  border-radius: 50%;
+  padding: 10px 9px 10px 12px;
+  transition: transform 0.15s, background 0.2s;
+}
+
+.modal-gallery-item--video:hover .gallery-play-badge svg {
+  background: var(--color-green-2);
+  transform: scale(1.08);
+}
+
+/* Video player component */
+.nhc-video-player {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  display: block;
+  line-height: 0;
+}
+
+.nhc-video-el {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nhc-video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.nhc-big-play {
+  background: var(--color-green-1);
+  border: none;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.nhc-big-play:hover {
+  background: var(--color-green-2);
+  transform: scale(1.1);
+}
+
+.nhc-big-play svg {
+  width: 28px;
+  height: 28px;
+  /* nudge right to optically centre the asymmetric play triangle */
+  transform: translateX(2px);
+}
+
+.nhc-video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 12px 10px;
+  background: linear-gradient(transparent, rgba(11, 26, 18, 0.88));
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.nhc-progress {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.nhc-progress-fill {
+  height: 100%;
+  background: var(--color-green-1);
+  border-radius: 2px;
+  width: 0;
+  pointer-events: none;
+}
+
+.nhc-ctrl-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nhc-ctrl-left,
+.nhc-ctrl-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nhc-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.nhc-btn:hover {
+  opacity: 1;
+}
+
+.nhc-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nhc-time {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  font-family: monospace;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.nhc-volume {
+  width: 70px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  outline: none;
+}
+
+.nhc-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.nhc-volume::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+@media (max-width: 540px) {
+  .nhc-volume { display: none; }
+}
+
+/* Lightbox video slide */
+.lightbox-slide--video .lightbox-slide-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox-slide--video .nhc-video-player {
+  width: min(92vw, calc(82vh * 16 / 9));
+  aspect-ratio: 16 / 9;
+  max-height: 82vh;
+  margin: 0;
+  border-radius: var(--radius-md);
+}
+
+.lightbox-video {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  display: block;
+  background: #000;
+  outline: none;
 }
 

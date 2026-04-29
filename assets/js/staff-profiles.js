@@ -127,11 +127,11 @@
     bioPhotoWrap.addEventListener('click', e => {
       if (e.target !== bioPhoto) return;
       if (bioPhoto.src && bioPhotoWrap.classList.contains('dir-is-clickable')) {
-        if (typeof window.openNativeLightbox === 'function') {
-          window.openNativeLightbox(bioPhoto.src, [bioPhoto.src], 0);
-        } else if (fsModal) {
+        if (fsModal) {
           fsPhoto.src = bioPhoto.src;
           fsModal.showModal();
+        } else if (typeof window.openNativeLightbox === 'function') {
+          window.openNativeLightbox(bioPhoto.src, [bioPhoto.src], 0);
         }
       }
     });

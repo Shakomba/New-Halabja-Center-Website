@@ -214,13 +214,39 @@
     }, { passive: true });
   }
 
+  function itemSrc(item) {
+    return typeof item === 'string' ? item : (item.src || '');
+  }
+
+  function itemType(item) {
+    return (typeof item === 'object' && item.type === 'video') ? 'video' : 'image';
+  }
+
+  function pauseAllVideos() {
+    if (!track) return;
+    track.querySelectorAll('video').forEach(function (v) { try { v.pause(); } catch (_) {} });
+  }
+
   function renderSlides() {
     if (!track) return;
-    track.innerHTML = images.map(function (src, i) {
+    track.innerHTML = images.map(function (item, i) {
+      const type = itemType(item);
+      if (type === 'video') {
+        const src = safeSrc(itemSrc(item));
+        const poster = safeSrc(typeof item === 'object' ? (item.poster || '') : '');
+        return [
+          '<div class="lightbox-slide lightbox-slide--video" data-index="' + i + '">',
+          '  <div class="lightbox-slide-content">',
+          '    <video class="lightbox-video" src="' + src + '"' + (poster ? ' poster="' + poster + '"' : '') + ' playsinline preload="metadata"></video>',
+          '  </div>',
+          '</div>'
+        ].join('');
+      }
+      const src = safeSrc(itemSrc(item));
       return [
         '<div class="lightbox-slide" data-index="' + i + '">',
         '  <div class="lightbox-slide-content">',
-        '    <img src="' + safeSrc(src) + '" alt="Image ' + (i + 1) + '" />',
+        '    <img src="' + src + '" alt="Image ' + (i + 1) + '" />',
         '  </div>',
         '</div>'
       ].join('');
@@ -234,10 +260,7 @@
         if (img.dataset.retryDone === '1') return;
         img.dataset.retryDone = '1';
         const encoded = encodeURI(current).replace(/%2F/g, '/');
-        if (encoded && encoded !== current) {
-          img.src = encoded;
-          return;
-        }
+        if (encoded && encoded !== current) { img.src = encoded; return; }
         if (!/^https?:\/\//i.test(current) && !/^data:/i.test(current) && !current.startsWith('/')) {
           img.src = './' + current;
         }
@@ -287,8 +310,14 @@
 
   function goTo(newIndex) {
     if (!images.length || !lightbox || !lightbox.classList.contains('active')) return;
+    pauseAllVideos();
     index = clamp(newIndex, 0, images.length - 1);
     updateUi();
+    if (itemType(images[index]) === 'video') {
+      const slide = track.querySelector('.lightbox-slide[data-index="' + index + '"]');
+      const vid = slide && slide.querySelector('video');
+      if (vid) vid.play().catch(function () {});
+    }
   }
 
   function openLightbox(startIndex) {
@@ -298,7 +327,6 @@
     renderSlides();
     lightbox.style.opacity = '0';
     lightbox.classList.add('active');
-    if (typeof lightbox.showModal === 'function' && !lightbox.hasAttribute('open')) lightbox.showModal();
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
@@ -312,6 +340,7 @@
 
   function closeLightbox(options) {
     if (!lightbox || !lightbox.classList.contains('active')) return;
+    pauseAllVideos();
     const preserveSwipeState = Boolean(options && options.preserveSwipeState);
     hasTouchStart = false;
     if (!preserveSwipeState) {
@@ -324,7 +353,6 @@
     setTimeout(function () {
       if (!lightbox) return;
       lightbox.classList.remove('active');
-      if (typeof lightbox.close === 'function' && lightbox.hasAttribute('open')) lightbox.close();
       lightbox.setAttribute('aria-hidden', 'true');
       dragAxis = null;
       dragOffsetX = 0;
@@ -336,23 +364,41 @@
     }, 220);
   }
 
+  // Original image-only API (backwards compat)
   window.openNativeLightbox = function (imageSrc, allImages, currentIndex) {
     try {
       const list = Array.isArray(allImages) && allImages.length
         ? allImages.map(normalizeSrc).filter(Boolean)
         : [normalizeSrc(imageSrc)].filter(Boolean);
-
       if (!list.length) return;
-
       ensureLightbox();
       images = list;
-
       const requestedRaw = Number(currentIndex);
       const requested = Number.isFinite(requestedRaw) ? Math.trunc(requestedRaw) : 0;
       openLightbox(requested);
     } catch (error) {
       console.error('Failed to open native lightbox:', error);
       if (imageSrc) window.open(imageSrc, '_blank', 'noopener');
+    }
+  };
+
+  // Mixed media API: items are {type:'image'|'video', src, poster?} or plain strings
+  window.openMediaLightbox = function (mediaItems, currentIndex) {
+    try {
+      if (!Array.isArray(mediaItems) || !mediaItems.length) return;
+      ensureLightbox();
+      images = mediaItems;
+      const requested = Number.isFinite(Number(currentIndex)) ? Math.trunc(Number(currentIndex)) : 0;
+      openLightbox(requested);
+      if (itemType(images[requested]) === 'video') {
+        requestAnimationFrame(function () {
+          const slide = track.querySelector('.lightbox-slide[data-index="' + requested + '"]');
+          const vid = slide && slide.querySelector('video');
+          if (vid) vid.play().catch(function () {});
+        });
+      }
+    } catch (error) {
+      console.error('Failed to open media lightbox:', error);
     }
   };
 })();
