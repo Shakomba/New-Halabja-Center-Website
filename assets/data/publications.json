@@ -106,7 +106,7 @@
     "color": "#147E49",
     "pages": 213,
     "size": "5.2 MB",
-    "file": "assets/pdfs/ZanstiTejwid.pdf",
+    "file": "/assets/pdfs/ZanstiTejwid.pdf",
     "featured": false,
     "newest": false,
     "thickness": 15
@@ -129,7 +129,7 @@
     "color": "#FE9007",
     "pages": 151,
     "size": "1.8 MB",
-    "file": "assets/pdfs/BanguQamet.pdf",
+    "file": "/assets/pdfs/BanguQamet.pdf",
     "featured": false,
     "newest": false,
     "thickness": 12
@@ -152,7 +152,7 @@
     "color": "#FE9007",
     "pages": 212,
     "size": "2.2 MB",
-    "file": "assets/pdfs/DaykaniImandaran.pdf",
+    "file": "/assets/pdfs/DaykaniImandaran.pdf",
     "featured": false,
     "newest": false,
     "thickness": 26
