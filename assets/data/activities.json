@@ -1,5 +1,170 @@
 [
   {
+    "id": "tuhfat-al-atfal-course-2026",
+    "categories": [
+      {
+        "en": "Activities",
+        "ku": "چالاکییەکان",
+        "ar": "أنشطة"
+      }
+    ],
+    "title": {
+      "en": "Explanation Course of \"Tuhfat al-Atfal\" for Learning Quranic Tajweed",
+      "ku": "خولی ڕاڤەی (تحفة الأطفال) بۆ فێربوونی تەجویدی قورئان",
+      "ar": "دورة شرح (تحفة الأطفال) لتعلم تجويد القرآن"
+    },
+    "date": "2026-06-30",
+    "tags": {
+      "en": ["course", "Tajweed", "Tuhfat al-Atfal"],
+      "ku": ["خول", "تەجوید", "تحفة الأطفال"],
+      "ar": ["دورة", "تجويد", "تحفة الأطفال"]
+    },
+    "summary": {
+      "en": "The New Halabja Center for Teaching and Memorizing the Holy Quran opens an explanation course of \"Tuhfat al-Atfal\" for learning Quranic Tajweed.",
+      "ku": "بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز، خولی ڕاڤەی (تحفة الأطفال) بۆ فێربوونی تەجویدی قورئان دەکاتەوە.",
+      "ar": "يفتتح مركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم دورة لشرح (تحفة الأطفال) لتعلم تجويد القرآن."
+    },
+    "content": {
+      "en": "<p>The New Halabja Center for Teaching and Memorizing the Holy Quran opens an explanation course of \"Tuhfat al-Atfal\" for learning Quranic Tajweed.</p><p>The book \"Tuhfat al-Atfal\" is one of the best and easiest sources for learning the fundamentals of the science of Tajweed.</p><p>About the Course:</p><ul><li>Comprehensive and open to all different levels and ages.</li><li>Taught by licensed teachers.</li><li>Sisters: Saturdays at 3:00.</li><li>Brothers: Tuesdays at 2:30.</li><li>A certificate will be awarded to successful participants at the end of the course.</li><li>The course begins on June 30, 2026.</li></ul><p>To register, you can visit us directly or send a message to our page.</p>",
+      "ku": "<p>بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز، خولی ڕاڤەی (تحفة الأطفال) بۆ فێربوونی تەجویدی قورئان دەکاتەوە.</p><p>کتێبی (تحفة الأطفال) یەکێکە لە باشترین و ئاسانترین سەرچاوەکان بۆ فێربوونی بنەماکانی زانستی تەجوید.</p><p>دەربارەی خولەکە:</p><ul><li>گشتگیرە و کراوەیە بۆ سەرجەم ئاست و تەمەنە جیاوازەکان.</li><li>لە لایەن مامۆستایانی خاوەن مۆڵەتەوە دەوترێتەوە.</li><li>خوشکان: ڕۆژانی شەممە، کاتژمێر (٣:٠٠).</li><li>برایان: ڕۆژانی سێشەممە، کاتژمێر (٢:٣٠).</li><li>لە کۆتایی خولەکەدا بڕوانامە دەبەخشرێتە بەشداربووانی سەرکەوتوو.</li><li>لە بەرواری ٣٠ی حوزەیرانی ٢٠٢٦ دەست پێ دەکات.</li></ul><p>بۆ ناوتۆمارکردن، دەتوانن ڕاستەوخۆ سەردانمان بکەن یاخود نامە بۆ پەیجەکەمان بنێرن.</p>",
+      "ar": "<p>يفتتح مركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم دورة لشرح (تحفة الأطفال) لتعلم تجويد القرآن.</p><p>يعتبر كتاب (تحفة الأطفال) من أفضل وأسهل المصادر لتعلم أسس علم التجويد.</p><p>حول الدورة:</p><ul><li>شاملة ومفتوحة لجميع المستويات والأعمار المختلفة.</li><li>تُقدم من قبل معلمين مجازين.</li><li>الأخوات: أيام السبت، الساعة (3:00).</li><li>الإخوة: أيام الثلاثاء، الساعة (2:30).</li><li>تُمنح شهادة للمشاركين الناجحين في نهاية الدورة.</li><li>تبدأ الدورة بتاريخ 30 يونيو 2026.</li></ul><p>للتسجيل، يمكنكم زيارتنا مباشرة أو إرسال رسالة إلى صفحتنا.</p>"
+    },
+    "image": "/assets/img/activities/731093936_1033635559022770_6854322765011049650_n.jpg"
+  },
+  {
+    "id": "advanced-tajweed-course-2026",
+    "categories": [
+      {
+        "en": "Activities",
+        "ku": "چالاکییەکان",
+        "ar": "أنشطة"
+      }
+    ],
+    "title": {
+      "en": "A New Tajweed Course for the Advanced Level",
+      "ku": "خولێکی نوێی تەجوید بۆ ئاستی پێشکەوتووان",
+      "ar": "دورة تجويد جديدة للمستوى المتقدم"
+    },
+    "date": "2026-07-03",
+    "tags": {
+      "en": ["course", "Tajweed", "women"],
+      "ku": ["خول", "تەجوید", "ئافرەتان"],
+      "ar": ["دورة", "تجويد", "نساء"]
+    },
+    "summary": {
+      "en": "The New Halabja Center for Teaching and Memorizing the Holy Quran announces a new Tajweed course for the advanced level.",
+      "ku": "بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز، خولێکی نوێی تەجوید بۆ ئاستی پێشکەوتووان ڕادەگەیەنێت.",
+      "ar": "يعلن مركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم عن دورة تجويد جديدة للمستوى المتقدم."
+    },
+    "content": {
+      "en": "<p>The New Halabja Center for Teaching and Memorizing the Holy Quran announces a new Tajweed course for the advanced level.</p><p>Course Features:</p><ul><li>The course is for women, with no age limit.</li><li>Lessons are taught by licensed and experienced teachers.</li><li>Schedule: Saturdays and Wednesdays at 4:00 PM.</li><li>The course curriculum is the book (The Science of Tajweed), authored by Mr. Sirwan Hamid.</li><li>A certificate will be awarded to successful participants at the end of the course.</li><li>The course begins on July 4, 2026.</li></ul><p>Participation Requirements:</p><p>Participants must have basic knowledge of the science of Tajweed before joining this level.</p><p>To register, you can visit us directly or send a message to the page.</p>",
+      "ku": "<p>بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز، خولێکی نوێی تەجوید بۆ ئاستی پێشکەوتووان ڕادەگەیەنێت.</p><p>تایبەتمەندییەکانی خولەکە:</p><ul><li>خولەکە بۆ ئافرەتانە و تەمەن دیاریکراو نییە.</li><li>وانەکان لەلایەن مامۆستایانی خاوەن مۆڵەت و بەئەزموونەوە دەوترێنەوە.</li><li>ڕۆژانی شەممە و چوارشەممە، کاتژمێر (٤:٠٠)ی پاشنیوەڕۆ دەخوێنرێت.</li><li>مەنهەجی خولەکە کتێبی (زانستی تەجوید)ـە، لە نووسینی م. سیروان حامد.</li><li>لە کۆتایی خولەکەدا بڕوانامە دەبەخشرێتە بەشداربووانی سەرکەوتوو.</li><li>لە بەرواری ٤ی تەممووزی ٢٠٢٦ دەست پێ دەکات.</li></ul><p>مەرجی بەشداریکردن:</p><p>پێویستە بەشداربوو زانیاریی سەرەتایی لەسەر زانستی تەجوید هەبێت پێش ئەوەی بەشداری لەم ئاستەدا بکات.</p><p>بۆ ناوتۆمارکردن، دەتوانن ڕاستەوخۆ سەردانمان بکەن یاخود نامە بنێرن بۆ پەیج.</p>",
+      "ar": "<p>يعلن مركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم عن دورة تجويد جديدة للمستوى المتقدم.</p><p>مميزات الدورة:</p><ul><li>الدورة مخصصة للنساء وغير مقيدة بعمر محدد.</li><li>تُقدم الدروس من قبل معلمات مجازات وذوات خبرة.</li><li>أيام الدراسة: السبت والأربعاء، الساعة (4:00) عصراً.</li><li>منهج الدورة هو كتاب (علم التجويد)، من تأليف الأستاذ سيروان حامد.</li><li>تُمنح شهادة للمشاركات الناجحات في نهاية الدورة.</li><li>تبدأ الدورة بتاريخ 4 يوليو 2026.</li></ul><p>شروط المشاركة:</p><p>يجب أن تمتلك المشاركة معرفة أساسية بعلم التجويد قبل الالتحاق بهذا المستوى.</p><p>للتسجيل، يمكنكم زيارتنا مباشرة أو إرسال رسالة إلى الصفحة.</p>"
+    },
+    "image": "/assets/img/activities/733630286_1298953842393479_6043483593752951684_n.jpg"
+  },
+  {
+    "id": "anas-6-years-video-2026",
+    "categories": [
+      {
+        "en": "Activities",
+        "ku": "چالاکییەکان",
+        "ar": "أنشطة"
+      }
+    ],
+    "title": {
+      "en": "A brief look at 6 years of brother Anas's studies with his teacher until receiving his Ijaza.",
+      "ku": "کورتەیەک لە ٦ ساڵ خوێندنی کاک ئەنەس لای مامۆستاکەی تا وەرگرتنی مۆڵەتەکەی.",
+      "ar": "مقتطفات من 6 سنوات من دراسة الأخ أنس عند معلمه حتى نيله الإجازة."
+    },
+    "date": "2026-06-12",
+    "tags": {
+      "en": ["video", "Ijaza", "students"],
+      "ku": ["ڤیدیۆ", "مۆڵەت", "فێرخوازان"],
+      "ar": ["فيديو", "إجازة", "طلاب"]
+    },
+    "summary": {
+      "en": "A brief look at 6 years of brother Anas's studies with his teacher until receiving his Ijaza.",
+      "ku": "کورتەیەک لە ٦ ساڵ خوێندنی کاک ئەنەس لای مامۆستاکەی تا وەرگرتنی مۆڵەتەکەی.",
+      "ar": "مقتطفات من 6 سنوات من دراسة الأخ أنس عند معلمه حتى نيله الإجازة."
+    },
+    "content": {
+      "en": "<p>A brief look at 6 years of brother Anas's studies with his teacher until receiving his Ijaza.</p><p>May God Almighty make the Quran a light in his life and reward his family and teacher.</p><div style=\"margin-top: 15px;\"><video controls src=\"/assets/img/activities/video5.mp4\" style=\"max-width: 100%; border-radius: 8px;\"></video></div>",
+      "ku": "<p>کورتەیەک لە ٦ ساڵ خوێندنی کاک ئەنەس لای مامۆستاکەی تا وەرگرتنی مۆڵەتەکەی.</p><p>خوای گەورە قورئان بکاتە ڕووناکی ژیانی و پاداشتی خێزانەکەی و مامۆستاکەی بداتەوە.</p><div style=\"margin-top: 15px;\"><video controls src=\"/assets/img/activities/video5.mp4\" style=\"max-width: 100%; border-radius: 8px;\"></video></div>",
+      "ar": "<p>مقتطفات من 6 سنوات من دراسة الأخ أنس عند معلمه حتى نيله الإجازة.</p><p>نسأل الله العظيم أن يجعل القرآن نوراً في حياته وأن يجزي عائلته ومعلمه خير الجزاء.</p><div style=\"margin-top: 15px;\"><video controls src=\"/assets/img/activities/video5.mp4\" style=\"max-width: 100%; border-radius: 8px;\"></video></div>"
+    },
+    "image": ""
+  },
+  {
+    "id": "ijaza-anas-muhammad-salih-2026",
+    "categories": [
+      {
+        "en": "Activities",
+        "ku": "چالاکییەکان",
+        "ar": "أنشطة"
+      }
+    ],
+    "title": {
+      "en": "The Authentication Committee of the New Halabja Center decides to grant an Ijaza to the student (Anas Muhammad Salih)",
+      "ku": "لیژنەی ڕاستاندنی بنکەی هەڵەبجەی تازە بڕیاری دا بە پێدانی مۆڵەت بە فێرخواز (ئەنەس محەممەد ساڵح)",
+      "ar": "لجنة المصادقة في مركز حلبجة تازة تقرر منح الإجازة للطالب (أنس محمد صالح)"
+    },
+    "date": "2026-06-11",
+    "tags": {
+      "en": ["Ijaza", "Authentication", "Students"],
+      "ku": ["مۆڵەت", "ڕاستاندن", "فێرخوازان"],
+      "ar": ["إجازة", "مصادقة", "طلاب"]
+    },
+    "summary": {
+      "en": "The Authentication Committee of the New Halabja Center for Teaching and Memorizing the Holy Quran held a testing session and decided to grant an Ijaza to the student (Anas Muhammad Salih).",
+      "ku": "لیژنەی ڕاستاندنی (بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز) لیژنەی سازکرد و بڕیاری دا بە پێدانی مۆڵەت بە فێرخواز (ئەنەس محەممەد ساڵح).",
+      "ar": "عقدت لجنة المصادقة التابعة لمركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم لجنة اختبار وقررت منح الإجازة للطالب (أنس محمد صالح)."
+    },
+    "content": {
+      "en": "<p>The Authentication Committee of the (New Halabja Center for Teaching and Memorizing the Holy Quran) held a testing session today, Thursday, June 11, 2026, for the student (Anas Muhammad Salih). Following the evaluation, the committee decided to grant him the Ijaza and have his teacher write his Sanad (chain of transmission).</p><p>The committee consisted of:</p><ul><li>Ahmad Ainuddin Abdulrahman (Committee Chairman)</li><li>Faruq Hussein Mahmud (Committee Member)</li><li>Bahman Hama Amin Ahmad (Committee Member)</li></ul><p>The granting teacher: Sirwan Hamid Rahim.</p><p>Brother Anas has graduated from the seventh grade of primary school and is currently busy memorizing the Holy Quran, having successfully completed a significant portion of it.</p>",
+      "ku": "<p>لیژنەی ڕاستاندنی (بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز) ئەمڕۆ ڕۆژی پێنجشەممە بەرواری (١١ی حوزەیرانی ٢٠٢٦) لیژنەی سازکرد بۆ فێرخواز (ئەنەس محەممەد ساڵح). پاش هەڵسەنگاندن بڕیاری دا بە پێدانی مۆڵەت و نووسینی سەنەد لەلایەن مامۆستاکەیەوە.</p><p>لیژنەکە پێکهاتبوو لە بەڕێزان:</p><ul><li>ئەحمەد عەینەدین عەبدولڕەحمان (سەرۆکی لیژنە)</li><li>فاروق حوسێن مەحموود (ئەندامی لیژنە)</li><li>بەهمەن حەمەئەمین ئەحمەد (ئەندامی لیژنە)</li></ul><p>مامۆستای مۆڵەتدەر: سیروان حامد ڕەحیم.</p><p>کاکە ئەنەس دەرچووی پۆلی حەوتەمی بنەڕەتییە و ئێستا خەریکی لەبەرکردنی قورئانی پیرۆزە و قۆناغێکی باشی بڕیوە.</p>",
+      "ar": "<p>عقدت لجنة المصادقة التابعة لـ (مركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم) اليوم الخميس الموافق (11 يونيو 2026) لجنة اختبار للطالب (أنس محمد صالح). وبعد التقييم، قررت اللجنة منحه الإجازة وكتابة السند من قبل معلمه.</p><p>تألفت اللجنة من السادة:</p><ul><li>أحمد عين الدين عبدالرحمن (رئيس اللجنة)</li><li>فاروق حسين محمود (عضو اللجنة)</li><li>بهمن حمه أمين أحمد (عضو اللجنة)</li></ul><p>المعلم المُجيز: سيروان حامد رحيم.</p><p>الأخ أنس تخرج من الصف السابع الأساسي وهو الآن منشغل بحفظ القرآن الكريم وقد قطع مرحلة جيدة ولله الحمد.</p>"
+    },
+    "image": "/assets/img/activities/722296554_847285394687893_1592862130683315569_n.jpg",
+    "gallery": [
+      "/assets/img/activities/722755268_1635557647553877_2956943256514225027_n.jpg",
+      "/assets/img/activities/720125395_1212407737590792_2930403074797744020_n.jpg",
+      "/assets/img/activities/722490389_1714477369552399_1540634294074086637_n.jpg"
+    ]
+  },
+  {
+    "id": "registration-new-season-2026",
+    "categories": [
+      {
+        "en": "Activities",
+        "ku": "چالاکییەکان",
+        "ar": "أنشطة"
+      }
+    ],
+    "title": {
+      "en": "Good News... Registration for the New Academic Season is Now Open!",
+      "ku": "مژدە... دەرگای ناونووسین بۆ وەرزی نوێی خوێندن کرایەوە!",
+      "ar": "بشرى سارة... تم فتح باب التسجيل للموسم الدراسي الجديد!"
+    },
+    "date": "2026-05-21",
+    "tags": {
+      "en": ["registration", "new season", "courses"],
+      "ku": ["ناونووسین", "وەرزی نوێ", "خولەکان"],
+      "ar": ["تسجيل", "موسم جديد", "دورات"]
+    },
+    "summary": {
+      "en": "Good News... Registration for the New Academic Season is Now Open! Our center is pleased to announce the new academic season and welcome seekers of knowledge and the Holy Quran.",
+      "ku": "مژدە... دەرگای ناونووسین بۆ وەرزی نوێی خوێندن کرایەوە! بنکەکەمان خۆشحاڵە بە ڕاگەیاندنی وەرزی نوێی خوێندن و پێشوازیکردن لە خوازیارانی زانست و قورئانی پیرۆز.",
+      "ar": "بشرى سارة... تم فتح باب التسجيل للموسم الدراسي الجديد! يسر مركزنا الإعلان عن الموسم الدراسي الجديد واستقبال طلاب العلم والقرآن الكريم."
+    },
+    "content": {
+      "en": "<p>Good News... Registration for the New Academic Season is Now Open!</p><p>Our center is pleased to announce the new academic season and welcome seekers of knowledge and the Holy Quran with a rich and special program.</p><p>What we offer this season:</p><ul><li>The Holy Quran: Teaching, memorization, and the principles of Tajweed.</li><li>New educational program: Utilizing the newest and most effective educational and teaching methods.</li><li>Capable staff: Lessons are taught by licensed, experienced, and trained teachers.</li></ul><p>Registration Period:</p><ul><li>Start: May 21, 2026</li><li>End: May 31, 2026</li></ul><p>Note: Due to limited seats, please register yourself or your child in advance so you do not miss this golden opportunity.</p><p>For registration and more information, please contact us:</p><ul><li>Phone numbers: 07701951666 - 07501144417</li><li>Address: New Halabja Center for Teaching and Memorizing the Holy Quran, next to Ghufran Mosque, opposite Sharazoor Bank.</li></ul><p>With us, learning the Quran and receiving proper upbringing is easier and more enjoyable!</p>",
+      "ku": "<p>مژدە... دەرگای ناونووسین بۆ وەرزی نوێی خوێندن کرایەوە!</p><p>بنکەکەمان خۆشحاڵە بە ڕاگەیاندنی وەرزی نوێی خوێندن و پێشوازیکردن لە خوازیارانی زانست و قورئانی پیرۆز، بە پڕۆگرامێکی دەوڵەمەند و تایبەت.</p><p>ئەوەی لەم وەرزەدا پێشکەشی دەکەین:</p><ul><li>قورئانی پیرۆز: فێرکردن، لەبەرکردن و بنەماکانی زانستی تەجوید.</li><li>پڕۆگرامی پەروەردەیی نوێ: پەیڕەوکردنی نوێترین و کاریگەریترین شێوازی پەروەردەیی و فێرکاری.</li><li>ستافێکی بەتوانا: وانەکان لەلایەن مامۆستایانی خاوەن مۆڵەت، بەئەزموون و ڕاهێنراوەوە دەوترێنەوە.</li></ul><p>کاتی ناونووسین:</p><ul><li>دەستپێکردن: ٢١ی ئایاری ٢٠٢٦</li><li>کۆتاییهاتن: ٣١ی ئایاری ٢٠٢٦</li></ul><p>سەرنج: بەهۆی سنوورداریی کورسییەکانەوە، پێشوەختە ناوی خۆت یان منداڵەکەت تۆمار بکە بۆ ئەوەی ئەم دەرفەتە زێڕینەت لەدەست نەچێت.</p><p>بۆ ناونووسین و زانیاری زیاتر، پەیوەندیمان پێوە بکەن:</p><ul><li>ژمارەی تەلەفۆن: ٠٧٧٠١٩٥١٦٦٦ - ٠٧٥٠١١٤٤٤١٧</li><li>ناونیشان: بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز، تەنیشت مزگەوتی غفران، بەرامبەر بانکی شارەزوور.</li></ul><p>لەگەڵ ئێمە، فێربوونی قورئان و پەروەردەی دروست ئاسانتر و چێژبەخشترە!</p>",
+      "ar": "<p>بشرى سارة... تم فتح باب التسجيل للموسم الدراسي الجديد!</p><p>يسر مركزنا الإعلان عن الموسم الدراسي الجديد واستقبال طلاب العلم والقرآن الكريم، ببرنامج غني ومميز.</p><p>ما نقدمه في هذا الموسم:</p><ul><li>القرآن الكريم: التعليم، التحفيظ، وأسس علم التجويد.</li><li>برنامج تربوي جديد: اتباع أحدث الطرق التربوية والتعليمية وأكثرها تأثيراً.</li><li>كادر متمكن: يتم تقديم الدروس من قبل معلمين مجازين، ذوي خبرة ومدربين.</li></ul><p>فترة التسجيل:</p><ul><li>البداية: 21 مايو 2026</li><li>النهاية: 31 مايو 2026</li></ul><p>ملاحظة: نظراً لمحدودية المقاعد، يرجى تسجيل اسمك أو اسم طفلك مسبقاً كي لا تفوتك هذه الفرصة الذهبية.</p><p>للتسجيل ومزيد من المعلومات، يرجى التواصل معنا:</p><ul><li>أرقام الهواتف: 07701951666 - 07501144417</li><li>العنوان: مركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم، بجوار مسجد غفران، مقابل بنك شهرزور.</li></ul><p>معنا، تعلم القرآن والتربية السليمة أسهل وأكثر متعة!</p>"
+    },
+    "image": "/assets/img/activities/703002419_1316875760541848_2594760326845098370_n.jpg"
+  },
+  {
     "id": "spring-trip-teachers-halabja-2026",
     "categories": [
       {
