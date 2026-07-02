@@ -11,47 +11,47 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://bnkayhalabjaytaza.org/news</loc>
-    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/news?lang=ku"/>
-    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/news?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/news?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/news"/>
+    <loc>https://bnkayhalabjaytaza.org/news.html</loc>
+    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/news.html?lang=ku"/>
+    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/news.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/news.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/news.html"/>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bnkayhalabjaytaza.org/publications</loc>
-    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/publications?lang=ku"/>
-    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/publications?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/publications?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/publications"/>
+    <loc>https://bnkayhalabjaytaza.org/publications.html</loc>
+    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/publications.html?lang=ku"/>
+    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/publications.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/publications.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/publications.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bnkayhalabjaytaza.org/directory</loc>
-    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/directory?lang=ku"/>
-    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/directory?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/directory?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/directory"/>
+    <loc>https://bnkayhalabjaytaza.org/directory.html</loc>
+    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/directory.html?lang=ku"/>
+    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/directory.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/directory.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/directory.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bnkayhalabjaytaza.org/about</loc>
-    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/about?lang=ku"/>
-    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/about?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/about?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/about"/>
+    <loc>https://bnkayhalabjaytaza.org/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/about.html?lang=ku"/>
+    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/about.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/about.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/about.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bnkayhalabjaytaza.org/contact</loc>
-    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/contact?lang=ku"/>
-    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/contact?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/contact?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/contact"/>
+    <loc>https://bnkayhalabjaytaza.org/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/contact.html?lang=ku"/>
+    <xhtml:link rel="alternate" hreflang="ar"  href="https://bnkayhalabjaytaza.org/contact.html?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="en"  href="https://bnkayhalabjaytaza.org/contact.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/contact.html"/>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>

@@ -12,8 +12,8 @@
   <link rel="apple-touch-icon" sizes="512x512" href="/assets/img/web-app-manifest-512x512.png" />
   <link rel="manifest" href="/assets/img/site.webmanifest" />
   <meta name="theme-color" content="#147E49" />
-  <link rel="canonical" href="https://bnkayhalabjaytaza.org/publications" />
-  <meta property="og:url" content="https://bnkayhalabjaytaza.org/publications" />
+  <link rel="canonical" href="https://bnkayhalabjaytaza.org/publications.html" />
+  <meta property="og:url" content="https://bnkayhalabjaytaza.org/publications.html" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="بڵاوکراوەکان — بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز" />
   <meta property="og:description" content="کتێب و بڵاوکراوەکانی بنکەی هەڵەبجەی تازە." />
@@ -30,46 +30,18 @@
   <meta name="twitter:title" content="بڵاوکراوەکان — بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز" />
   <meta name="twitter:description" content="کتێب و بڵاوکراوەکانی بنکەی هەڵەبجەی تازە." />
   <meta name="twitter:image" content="https://bnkayhalabjaytaza.org/assets/img/Bnka.png" />
-  <link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/publications?lang=ku" />
-  <link rel="alternate" hreflang="ar" href="https://bnkayhalabjaytaza.org/publications?lang=ar" />
-  <link rel="alternate" hreflang="en" href="https://bnkayhalabjaytaza.org/publications?lang=en" />
-  <link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/publications" />
+  <link rel="alternate" hreflang="ckb" href="https://bnkayhalabjaytaza.org/publications.html?lang=ku" />
+  <link rel="alternate" hreflang="ar" href="https://bnkayhalabjaytaza.org/publications.html?lang=ar" />
+  <link rel="alternate" hreflang="en" href="https://bnkayhalabjaytaza.org/publications.html?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://bnkayhalabjaytaza.org/publications.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&family=Vazirmatn:wght@400;500;700&display=swap"
     rel="stylesheet">
   <style>
-    html.nhc-prerender body {
-      opacity: 0 !important;
-      visibility: hidden !important;
-    }
   </style>
-  <script>
-    (function () {
-      document.documentElement.classList.add("nhc-prerender");
-      var revealed = false;
-      var reveal = function () {
-        if (revealed) return;
-        revealed = true;
-        document.documentElement.classList.remove("nhc-prerender");
-      };
-      try {
-        var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-        var pageReady = new Promise(function (resolve) {
-          if (document.readyState === "complete") {
-            resolve();
-            return;
-          }
-          window.addEventListener("load", resolve, { once: true });
-        });
-        var timeout = new Promise(function (resolve) { setTimeout(resolve, 1800); });
-        Promise.race([Promise.all([fontsReady, pageReady]), timeout]).then(reveal, reveal);
-      } catch (_) {
-        reveal();
-      }
-    })();
-  </script>
+
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
@@ -256,8 +228,8 @@
 {
 "@context": "https://schema.org",
 "@type": "CollectionPage",
-"@id": "https://bnkayhalabjaytaza.org/publications",
-"url": "https://bnkayhalabjaytaza.org/publications",
+"@id": "https://bnkayhalabjaytaza.org/publications.html",
+"url": "https://bnkayhalabjaytaza.org/publications.html",
 "name": "Publications — New Halabja Center",
 "description": "Books and publications authored by New Halabja Center for Teaching and Memorizing the Holy Qur'an.",
 "inLanguage": ["ckb", "ar", "en"],
