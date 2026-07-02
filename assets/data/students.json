@@ -1804,7 +1804,7 @@
             "photo": "/assets/img/students/placeholder-female.png"
           }
         },
-        {
+                {
           "name": {
             "ku": "شێنێ عەبدوڵڵا مەحموود",
             "ar": "شيني عبدالله محمود",
@@ -1825,6 +1825,29 @@
               "en": "High School"
             },
             "photo": "/assets/img/students/placeholder-female.png"
+          }
+        },
+        {
+          "name": {
+            "ku": "ئەنەس محەممەد ساڵح حەسەن",
+            "ar": "أنس محمد صالح حسن",
+            "en": "Anas Muhammad Salih Hasan"
+          },
+          "certNumber": "68",
+          "date": "11/06/2026",
+          "bio": {
+            "birthDate": "29/07/2013",
+            "job": {
+              "ku": "قوتابی",
+              "ar": "طالب",
+              "en": "Student"
+            },
+            "degree": {
+              "ku": "ناوەندی",
+              "ar": "متوسطة",
+              "en": "Middle School"
+            },
+            "photo": "/assets/img/students/placeholder-male.png"
           }
         }
       ]
