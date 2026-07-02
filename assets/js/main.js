@@ -14,15 +14,6 @@
   try {
     localStorage.removeItem("nhc_activities_slide");
   } catch (e) {}
-  
-  // Scroll to top immediately
-  window.scrollTo(0, 0);
-  
-  // Also scroll to top after DOMContentLoaded and after a delay to ensure it takes effect
-  const scrollToTop = () => window.scrollTo(0, 0);
-  document.addEventListener("DOMContentLoaded", scrollToTop);
-  window.addEventListener("load", scrollToTop);
-  setTimeout(scrollToTop, 100);
 
   let skipHeroIntro = false;
   try {
