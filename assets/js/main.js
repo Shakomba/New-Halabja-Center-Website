@@ -896,13 +896,18 @@
 
       const slides = getSlides();
       if (!slides.length) return;
-      const scrollLeft = track.scrollLeft;
+      
+      const trackRect = track.getBoundingClientRect();
+      const rtl = isRTL();
       let closest = 0;
       let closestDist = Infinity;
+      
       slides.forEach((slide, i) => {
-        const dist = Math.abs(slide.offsetLeft - scrollLeft);
+        const rect = slide.getBoundingClientRect();
+        const dist = Math.abs(rtl ? (rect.right - trackRect.right) : (rect.left - trackRect.left));
         if (dist < closestDist) { closestDist = dist; closest = i; }
       });
+      
       if (closest !== slideIndex) {
         slideIndex = closest;
         updateUI();

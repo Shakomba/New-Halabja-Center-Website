@@ -9007,3 +9007,8 @@ html[lang="ar"] .enroll-btn {
   outline: none;
 }
 
+/* Temporarily hide Tadabbur tab */
+a.nav-tadabbur,
+a[href="https://tadabbur.bnkayhalabjaytaza.org"] {
+  display: none !important;
+}
