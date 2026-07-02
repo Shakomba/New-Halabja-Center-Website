@@ -1,5 +1,83 @@
 [
   {
+    "id": "spring-trip-teachers-halabja-2026",
+    "categories": [
+      {
+        "en": "Activities",
+        "ku": "چالاکییەکان",
+        "ar": "أنشطة"
+      }
+    ],
+    "title": {
+      "en": "A spring trip for the teachers of our center to the breathtaking nature of martyred Halabja.",
+      "ku": "گەشتێکی بەهارەی مامۆستایانی بنکەکەمان بۆ سروشتی دڵڕفێنی هەڵەبجەی شەهید.",
+      "ar": "رحلة ربيعية لمعلمي مركزنا إلى الطبيعة الخلابة في حلبجة الشهيدة."
+    },
+    "date": "2026-07-03",
+    "tags": {
+      "en": ["trip", "teachers", "Halabja"],
+      "ku": ["گەشت", "مامۆستایان", "هەڵەبجە"],
+      "ar": ["رحلة", "معلمون", "حلبجة"]
+    },
+    "summary": {
+      "en": "A spring trip for the teachers of our center to the breathtaking nature of martyred Halabja.",
+      "ku": "گەشتێکی بەهارەی مامۆستایانی بنکەکەمان بۆ سروشتی دڵڕفێنی هەڵەبجەی شەهید.",
+      "ar": "رحلة ربيعية لمعلمي مركزنا إلى الطبيعة الخلابة في حلبجة الشهيدة."
+    },
+    "content": {
+      "en": "<p>A spring trip for the teachers of our center to the breathtaking nature of martyred Halabja.</p>",
+      "ku": "<p>گەشتێکی بەهارەی مامۆستایانی بنکەکەمان بۆ سروشتی دڵڕفێنی هەڵەبجەی شەهید.</p>",
+      "ar": "<p>رحلة ربيعية لمعلمي مركزنا إلى الطبيعة الخلابة في حلبجة الشهيدة.</p>"
+    },
+    "image": "/assets/img/activities/689474339_1307862074776550_1178921998700142122_n.jpg",
+    "gallery": [
+      "/assets/img/activities/692166099_1307861984776559_6122187656029818069_n.jpg",
+      "/assets/img/activities/690638202_1307860931443331_3214618111217531412_n.jpg",
+      "/assets/img/activities/691785019_1307861904776567_2955692598688409000_n.jpg",
+      "/assets/img/activities/690779566_1307861851443239_5229636320881737015_n.jpg",
+      "/assets/img/activities/690634585_1307860751443349_7305642238363803224_n.jpg",
+      "/assets/img/activities/691420406_1307861758109915_8945275356827539474_n.jpg",
+      "/assets/img/activities/692353457_1307860598110031_651970272739688855_n.jpg",
+      "/assets/img/activities/690827801_1307860564776701_5382614085334841646_n.jpg",
+      "/assets/img/activities/691899855_1307861501443274_5650212689542594702_n.jpg",
+      "/assets/img/activities/690634601_1307861428109948_819829130107095507_n.jpg",
+      "/assets/img/activities/695728991_1307861341443290_8519564181578288890_n.jpg",
+      "/assets/img/activities/690991645_1307861238109967_2534696701385133694_n.jpg"
+    ]
+  },
+  {
+    "id": "visit-sharazoor-endowments-2026",
+    "categories": [
+      {
+        "en": "Activities",
+        "ku": "چالاکییەکان",
+        "ar": "أنشطة"
+      }
+    ],
+    "title": {
+      "en": "Visit by a Delegation from the Sharazoor Endowments Directorate to New Halabja",
+      "ku": "سەردانی شاندێکی بەڕێوەبەرایەتیی ئەوقافی شارەزوور بۆ هەڵەبجەی تازە",
+      "ar": "زيارة وفد من مديرية أوقاف شهرزور إلى حلبجة تازة"
+    },
+    "date": "2026-05-06",
+    "tags": {
+      "en": ["visit", "endowments", "Sharazoor"],
+      "ku": ["سەردان", "ئەوقاف", "شارەزوور"],
+      "ar": ["زيارة", "أوقاف", "شهرزور"]
+    },
+    "summary": {
+      "en": "Today, Wednesday, May 6, 2026, a delegation from the Sharazoor Endowments Directorate paid a field visit to the \"New Halabja Center for Teaching and Memorizing the Holy Quran.\"",
+      "ku": "ئەمڕۆ چوارشەممە، بەرواری ٦ی ئایاری ٢٠٢٦، شاندێکی بەڕێوەبەرایەتیی ئەوقافی شارەزوور سەردانی مەیدانییان بۆ \"بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز\" ئەنجامدا.",
+      "ar": "اليوم الأربعاء، الموافق 6 مايو 2026، قام وفد من مديرية أوقاف شهرزور بزيارة ميدانية إلى \"مركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم\"."
+    },
+    "content": {
+      "en": "<p>Today, Wednesday, May 6, 2026, a delegation from the Sharazoor Endowments Directorate paid a field visit to the \"New Halabja Center for Teaching and Memorizing the Holy Quran.\"</p><p>The delegation consisted of: Mr. Mullah Sayid Tahir, Director of Sharazoor Endowments; Mr. Azad Fatah, Head of the New Halabja Endowments Observation Office; and Mr. Sarwat Muhammad Faraj, Head of Centers at Sharazoor Endowments.</p><p>The main objective of the visit was to closely observe and follow up on the progress of work and activities at the center. Upon their arrival, the delegation was warmly welcomed by Mr. Sirwan Hamid, the center's director, and Mr. Sardar, the center's administrator. Discussions were held regarding the advancement and further enhancement of the process of teaching and memorizing the Holy Quran.</p><p>In conclusion, the delegation was thanked for their close care and support for the center's activities.</p>",
+      "ku": "<p>ئەمڕۆ چوارشەممە، بەرواری ٦ی ئایاری ٢٠٢٦، شاندێکی بەڕێوەبەرایەتیی ئەوقافی شارەزوور سەردانی مەیدانییان بۆ \"بنکەی هەڵەبجەی تازە بۆ فێرکردن و لەبەرکردنی قورئانی پیرۆز\" ئەنجامدا.</p><p>شاندەکە پێکهاتبوون لە بەڕێزان: مامۆستا مەلا سەید تاهیر، بەڕێوەبەری ئەوقافی شارەزوور؛ کاک ئازاد فەتاح، لێپرسراوی تێبینەرایەتیی ئەوقافی هەڵەبجەی تازە؛ و مامۆستا سەروەت محەممەد فەرەج، لێپرسراوی بنکەکانی ئەوقافی شارەزوور.</p><p>ئامانجی سەرەکیی سەردانەکە بریتی بوو لە لەنزیکەوە ئاگاداربوون و بەدواداچوون بۆ ڕەوشی کار و چالاکییەکانی بنکەکە. لە کاتی گەیشتنیان، شاندەکە لەلایەن بەڕێزان مامۆستا سیروان حامد، بەڕێوەبەری بنکە و مامۆستا سەردار، کارگێڕی بنکەوە بە گەرمی پێشوازییان لێکرا و گفتوگۆ لەبارەی بەرەوپێشبردن و خزمەتکردنی زیاتری پرۆسەی فێرکردن و لەبەرکردنی قورئانی پیرۆز کرا.</p><p>لە کۆتاییدا، سوپاسی شاندەکە کرا کە لە نزیکەوە خەمخۆر و پاڵپشتی کارەکانی بنکەن.</p>",
+      "ar": "<p>اليوم الأربعاء، الموافق 6 مايو 2026، قام وفد من مديرية أوقاف شهرزور بزيارة ميدانية إلى \"مركز حلبجة تازة لتعليم وتحفيظ القرآن الكريم\".</p><p>تألف الوفد من السادة: الأستاذ الملا سيد طاهر، مدير أوقاف شهرزور؛ السيد آزاد فتاح، مسؤول ملاحظية أوقاف حلبجة تازة؛ والأستاذ سروت محمد فرج، مسؤول المراكز في أوقاف شهرزور.</p><p>كان الهدف الرئيسي من الزيارة هو الاطلاع والمتابعة عن كثب لسير العمل والأنشطة في المركز. عند وصولهم، تم استقبال الوفد بحفاوة من قبل الأستاذ سيروان حامد، مدير المركز، والأستاذ سردار، إداري المركز، وجرى نقاش حول تطوير وتعزيز خدمة عملية تعليم وتحفيظ القرآن الكريم.</p><p>في الختام، تم توجيه الشكر للوفد لاهتمامهم ودعمهم المستمر لأعمال المركز عن كثب.</p>"
+    },
+    "image": "/assets/img/activities/69063dawfvs.jpg"
+  },
+  {
     "id": "spring-trip-2025-sisters",
     "categories": [
       {
