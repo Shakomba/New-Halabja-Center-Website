@@ -915,6 +915,13 @@
     };
     track.addEventListener("scroll", onTrackScroll, { passive: true });
 
+    // Disable PC touchpad/mousewheel horizontal scrolling
+    track.addEventListener("wheel", (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
     // Initialize
     buildDots();
     updateUI();
