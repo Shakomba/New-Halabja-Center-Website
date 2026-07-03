@@ -127,17 +127,14 @@
     bioPhotoWrap.addEventListener('click', e => {
       if (e.target !== bioPhoto) return;
       if (bioPhoto.src && bioPhotoWrap.classList.contains('dir-is-clickable')) {
-        if (fsModal) {
-          fsPhoto.src = bioPhoto.src;
-          fsModal.showModal();
+        if (typeof window.openMediaLightbox === 'function') {
+          window.openMediaLightbox([{ type: 'image', src: bioPhoto.src }], 0);
         } else if (typeof window.openNativeLightbox === 'function') {
           window.openNativeLightbox(bioPhoto.src, [bioPhoto.src], 0);
         }
       }
     });
   }
-  if (fsClose) fsClose.addEventListener('click', () => fsModal.close());
-  if (fsModal) fsModal.addEventListener('click', e => { if (e.target === fsModal) fsModal.close(); });
 
   /* ── Build people map from categories data ────────── */
   const buildStaffList = (categories) => {
