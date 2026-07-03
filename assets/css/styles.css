@@ -1104,14 +1104,14 @@ body[dir="rtl"] .h-title {
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;
-  gap: clamp(.5rem, 1.8vh, 1.8rem);
+  gap: clamp(0.8rem, 2.6vh, 2.2rem);
   padding-block: clamp(4px, 1vh, 14px);
 }
 
 .drawer-links a {
   display: block;
   font-family: var(--font-heading-active);
-  font-size: clamp(1rem, 4vh, 2.2rem);
+  font-size: clamp(1.2rem, 4.5vh, 2.4rem);
   font-weight: 300;
   color: rgba(255, 255, 255, .88);
   margin: 0;
@@ -1120,7 +1120,7 @@ body[dir="rtl"] .h-title {
   background: transparent;
   text-transform: capitalize;
   line-height: 1.08;
-  padding: clamp(2px, 0.6vh, 8px) clamp(8px, 4vw, 18px);
+  padding: clamp(6px, 1.2vh, 12px) clamp(12px, 4.5vw, 22px);
   border-radius: 14px;
   position: relative;
   opacity: 0;
