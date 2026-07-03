@@ -329,6 +329,13 @@
     lightbox.classList.add('active');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    
+    // Ensure it goes to the top layer so it appears above other modals
+    try {
+      if (!lightbox.open) {
+        lightbox.showModal();
+      }
+    } catch(e) {}
 
     requestAnimationFrame(function () {
       resetDragVisuals(false);
@@ -354,6 +361,9 @@
       if (!lightbox) return;
       lightbox.classList.remove('active');
       lightbox.setAttribute('aria-hidden', 'true');
+      try {
+        if (lightbox.open) lightbox.close();
+      } catch(e) {}
       dragAxis = null;
       dragOffsetX = 0;
       dragOffsetY = 0;
