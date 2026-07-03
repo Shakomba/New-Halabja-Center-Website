@@ -8540,16 +8540,17 @@ html[lang="ar"] .enroll-btn {
   margin: auto;
 }
 .dir-fs-close {
-  position: absolute;
-  top: -48px;
-  inset-inline-end: 0;
-  width: 40px; height: 40px;
+  position: fixed;
+  top: 24px;
+  inset-inline-end: 24px;
+  width: 44px; height: 44px;
   border: none; border-radius: 50%;
   background: rgba(255,255,255,0.2);
   color: #fff;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: background 0.2s;
+  z-index: 100;
 }
 .dir-fs-close:hover {
   background: rgba(255,255,255,0.4);
