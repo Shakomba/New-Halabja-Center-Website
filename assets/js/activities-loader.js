@@ -1,6 +1,9 @@
 (function() {
   'use strict';
 
+  // Capture script URL before DOMContentLoaded to compute robust paths later
+  const currentScriptUrl = (document.currentScript && document.currentScript.src) ? document.currentScript.src : null;
+
   let activitiesData = [];
   let selectedCategories = [];
   let currentSearch = '';
@@ -50,12 +53,21 @@
 
   function fetchActivities() {
     // Use plain .then() chains — avoids async/await which some old WebView engines don't support.
+    var urls = [];
+    
+    // Most robust approach: resolve path relative to this script file
+    // e.g. from .../assets/js/activities-loader.js to .../assets/data/activities.json
+    if (currentScriptUrl) {
+      try {
+        urls.push(new URL('../data/activities.json', currentScriptUrl).href);
+      } catch (e) {}
+    }
+
     var base = 'https://bnkayhalabjaytaza.org';
     var path = '/assets/data/activities.json';
     var origin = (window.__nhcOrigin || '');
-    // Build deduplicated list of URLs to try.
-    // Try the hardcoded base URL first (most reliable), then origin-relative, then root-relative.
-    var urls = [];
+
+    // Add fallbacks
     if (urls.indexOf(base + path) === -1) urls.push(base + path);
     if (origin && origin !== base && urls.indexOf(origin + path) === -1) urls.push(origin + path);
     if (urls.indexOf(path) === -1) urls.push(path);

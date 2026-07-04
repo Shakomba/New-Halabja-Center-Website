@@ -24,10 +24,13 @@
     || (_ua.indexOf('Android') !== -1 && /wv|Version\/[0-9]/.test(_ua) && _ua.indexOf('Chrome') !== -1)
     || (_ua.indexOf('iPhone') !== -1 && !_ua.match(/Safari\//));
 
-  // Disable CSS View Transitions for WebViews — this is the primary fix for the green-screen bug.
-  // The @view-transition { navigation: auto } rule in CSS picks up this class and opts out.
-  if (_isWebView) {
-    document.documentElement.classList.add('nhc-no-vtrans');
+  // Inject CSS View Transitions ONLY for safe browsers (not WebViews).
+  // This is the foolproof fix for the green-screen bug on social media browsers:
+  // if they don't see the @view-transition rule, they can't break on it.
+  if (!_isWebView && window.CSS && CSS.supports('view-transition-name', 'root')) {
+    var _vtStyle = document.createElement('style');
+    _vtStyle.textContent = '@supports (view-transition-name: root) { @view-transition { navigation: auto; } ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; animation-timing-function: cubic-bezier(.22, 1, .36, 1); } ::view-transition-old(root) { animation-name: nhc-view-out; } ::view-transition-new(root) { animation-name: nhc-view-in; } }';
+    document.head.appendChild(_vtStyle);
   }
 
   var skipHeroIntro = _isWebView;
