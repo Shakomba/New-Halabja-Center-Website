@@ -410,11 +410,11 @@
 
     if (window.NHC_MODAL && typeof window.NHC_MODAL.open === 'function') {
       window.NHC_MODAL.open(title, modalContent);
-      history.replaceState(null, '', `#${activity.id}`);
+      try { history.replaceState(null, '', `#${activity.id}`); } catch(e) {}
       attachImageLightboxListeners(mediaItems);
     } else if (typeof window.openModal === 'function') {
       window.openModal(title, modalContent);
-      history.replaceState(null, '', `#${activity.id}`);
+      try { history.replaceState(null, '', `#${activity.id}`); } catch(e) {}
       attachImageLightboxListeners(mediaItems);
     }
   }
@@ -422,7 +422,7 @@
   function attachImageLightboxListeners(mediaItems) {
     const mainImage = document.querySelector('.modal-main-image');
     const mainImageEl = (mainImage ? mainImage.querySelector : function(){return null;})('img');
-    const mainImageSrc = resolveImageUrl((mainImageEl ? mainImageEl.currentSrc : null) || (mainImageEl ? mainImageEl.src : null) || (mainImageEl && mainImageEl.getAttribute ? mainImageEl.getAttribute(\'src\') : null) || '');
+    const mainImageSrc = resolveImageUrl((mainImageEl ? mainImageEl.currentSrc : null) || (mainImageEl ? mainImageEl.src : null) || (mainImageEl && mainImageEl.getAttribute ? mainImageEl.getAttribute('src') : null) || '');
 
     if (mainImage && mainImageSrc) {
       mainImage.addEventListener('click', () => {

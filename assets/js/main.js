@@ -176,7 +176,7 @@
       el.dataset.bound = "true";
     };
     const currentLang = (document.getElementById("langSelect") ? document.getElementById("langSelect").value : undefined)
-      || localStorage.getItem("nhc_lang")
+      || (function(){try{return localStorage.getItem("nhc_lang");}catch(e){return null;}})()
       || document.documentElement.lang
       || "ku";
 
@@ -391,7 +391,7 @@
 
   const langSelect = $("#langSelect");
   const urlLang = new URLSearchParams(location.search).get("lang");
-  const stored = (urlLang && window.I18N && window.I18N[urlLang]) ? urlLang : (localStorage.getItem("nhc_lang") || "ku");
+  const stored = (urlLang && window.I18N && window.I18N[urlLang]) ? urlLang : ((function(){try{return localStorage.getItem("nhc_lang");}catch(e){return null;}})() || "ku");
 
   // Converts the current pathname to a /lang/page canonical URL
   function toCanonicalLangPath(lang) {
@@ -407,7 +407,9 @@
     applyLanguage(stored);
     applySiteConfig();
     const isLocalDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-    if (!isLocalDev) history.replaceState(null, "", toCanonicalLangPath(stored));
+    if (!isLocalDev) {
+      try { history.replaceState(null, "", toCanonicalLangPath(stored)); } catch (e) {}
+    }
     const langUI = setupLanguageDropdown(langSelect);
     if (langUI) langUI.sync();
     const drawerLangUI = setupDrawerLangSwitcher(langSelect);
@@ -418,8 +420,8 @@
         ? (window.scrollY || window.pageYOffset || 0)
         : 0;
       const newLang = langSelect.value;
-      localStorage.setItem("nhc_lang", newLang);
-      history.replaceState(null, "", toCanonicalLangPath(newLang));
+      (function(){try{localStorage.setItem("nhc_lang", newLang);}catch(e){}})();
+      try { history.replaceState(null, "", toCanonicalLangPath(newLang)); } catch (e) {}
       applyLanguage(newLang);
       applySiteConfig();
       if (langUI) langUI.sync();
@@ -446,7 +448,7 @@
     if (!a) return;
     const href = a.getAttribute("href");
     if (!href || /^(https?:|\/\/|mailto:|tel:|#)/.test(href)) return;
-    const currentLang = (langSelect && langSelect.value) || localStorage.getItem("nhc_lang") || "ku";
+    const currentLang = (langSelect && langSelect.value) || (function(){try{return localStorage.getItem("nhc_lang");}catch(e){return null;}})() || "ku";
     try {
       const url = new URL(href, location.href);
       if (url.origin !== location.origin) return;
@@ -636,7 +638,7 @@
 
     // Clear URL hash when closing modal
     if (window.location.hash) {
-      history.replaceState(null, null, window.location.pathname + window.location.search);
+      try { history.replaceState(null, null, window.location.pathname + window.location.search); } catch (e) {}
     }
 
     if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
@@ -764,7 +766,7 @@
         // Clear the guard after the animation is done (~400ms is safe for smooth scroll)
         programmaticScrollTimer = setTimeout(() => { programmaticScroll = false; }, 400);
         try {
-          localStorage.setItem("nhc_activities_slide", slideIndex.toString());
+          (function(){try{localStorage.setItem("nhc_activities_slide", slideIndex.toString());}catch(e){}})();
         } catch (e) {}
       }
 
@@ -920,7 +922,7 @@
     // Restore saved position
     setTimeout(() => {
       try {
-        const saved = localStorage.getItem("nhc_activities_slide");
+        const saved = (function(){try{return localStorage.getItem("nhc_activities_slide");}catch(e){return null;}})();
         if (saved) {
           const index = parseInt(saved, 10);
           if (!isNaN(index) && index > 0) goToSlide(index);
@@ -1094,7 +1096,7 @@
           const post = window.NEWS_DATA.find(x => x.id === id);
           if (post) {
             openModal(post.title, buildAnnouncementModal(post));
-            history.replaceState(null, "", `#${post.id}`);
+            try { history.replaceState(null, "", `#${post.id}`); } catch (e) {}
           }
         });
       });

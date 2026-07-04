@@ -16,7 +16,7 @@
     if (docLang) return docLang;
 
     try {
-      const stored = normalizeLang(localStorage.getItem('nhc_lang'));
+      const stored = normalizeLang((function(){try{return localStorage.getItem('nhc_lang');}catch(e){return null;}})());
       if (stored) return stored;
     } catch (error) {
       // Ignore storage access issues and fall back to default.
@@ -1117,7 +1117,7 @@
   if (langSelect) {
     langSelect.addEventListener('change', () => {
       try {
-        localStorage.setItem('nhc_lang', langSelect.value);
+        (function(){try{localStorage.setItem('nhc_lang', langSelect.value);}catch(e){}})();
       } catch (error) {
         // Ignore storage access issues.
       }
