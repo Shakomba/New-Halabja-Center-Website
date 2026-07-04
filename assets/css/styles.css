@@ -323,6 +323,25 @@ a {
   }
 }
 
+/* Issue 1 fix: Disable View Transitions for social-media in-app browsers (Facebook, Instagram,
+   WhatsApp, Telegram, etc.). Their View Transitions API implementation is broken — the browser
+   takes a page snapshot, renders it over the solid html background (#2d4a3e = dark green), and
+   then the animation gets stuck/frozen, showing a blank green screen. JS detection in main.js
+   adds this class to <html> before any navigation occurs. */
+@supports (view-transition-name: root) {
+  html.nhc-no-vtrans {
+    /* Override the @view-transition rule by setting view-transition-name to none on the root,
+       which effectively opts this page out of the View Transitions navigation handling. */
+    view-transition-name: none;
+  }
+
+  html.nhc-no-vtrans::view-transition-old(root),
+  html.nhc-no-vtrans::view-transition-new(root) {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
 @keyframes nhc-view-out {
   from {
     opacity: 1

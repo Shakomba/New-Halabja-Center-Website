@@ -17,10 +17,18 @@
 
   // Detect in-app/social-media WebViews (Facebook, Instagram, Twitter, WhatsApp, Telegram, etc.)
   // These browsers have unreliable CSS animation support — skip the intro to avoid content staying hidden.
+  // They also have a broken View Transitions API implementation that causes a green-screen freeze
+  // (the transition snapshot gets stuck on the html background colour). We disable it via a class.
   var _ua = (navigator.userAgent || '');
   var _isWebView = /FBAN|FBAV|Instagram|Twitter|Snapchat|TikTok|Line\/|MicroMessenger|Telegram|WhatsApp/i.test(_ua)
     || (_ua.indexOf('Android') !== -1 && /wv|Version\/[0-9]/.test(_ua) && _ua.indexOf('Chrome') !== -1)
     || (_ua.indexOf('iPhone') !== -1 && !_ua.match(/Safari\//));
+
+  // Disable CSS View Transitions for WebViews — this is the primary fix for the green-screen bug.
+  // The @view-transition { navigation: auto } rule in CSS picks up this class and opts out.
+  if (_isWebView) {
+    document.documentElement.classList.add('nhc-no-vtrans');
+  }
 
   var skipHeroIntro = _isWebView;
   if (!skipHeroIntro) {

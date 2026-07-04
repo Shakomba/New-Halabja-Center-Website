@@ -53,10 +53,11 @@
     var base = 'https://bnkayhalabjaytaza.org';
     var path = '/assets/data/activities.json';
     var origin = (window.__nhcOrigin || '');
-    // Build deduplicated list of URLs to try
+    // Build deduplicated list of URLs to try.
+    // Try the hardcoded base URL first (most reliable), then origin-relative, then root-relative.
     var urls = [];
-    if (urls.indexOf(origin + path) === -1) urls.push(origin + path);
     if (urls.indexOf(base + path) === -1) urls.push(base + path);
+    if (origin && origin !== base && urls.indexOf(origin + path) === -1) urls.push(origin + path);
     if (urls.indexOf(path) === -1) urls.push(path);
 
     // Try each URL in sequence using promise chaining
@@ -130,8 +131,11 @@
 
     const thumbnailClickable = '';
 
+    // Note: no 'reveal' class here — cards are loaded asynchronously after page paint,
+    // so the IntersectionObserver-based reveal is unnecessary and can leave cards invisible
+    // (opacity:0) if the observer threshold is never met (e.g. cards below the fold).
     return `
-      <article class="news-card reveal" data-id="${activity.id}">
+      <article class="news-card" data-id="${activity.id}">
         <div class="news-media${mediaClass}"${mediaStyle}${thumbnailClickable}>
         </div>
         <div class="news-body">
