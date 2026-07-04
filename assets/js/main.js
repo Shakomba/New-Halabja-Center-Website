@@ -453,8 +453,8 @@
       const url = new URL(href, location.href);
       if (url.origin !== location.origin) return;
       url.searchParams.set("lang", currentLang);
-      e.preventDefault();
-      location.href = url.toString();
+      a.href = url.toString();
+      // Allow the default click action to proceed with the updated href
     } catch (_) {}
   });
 
