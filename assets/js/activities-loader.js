@@ -30,7 +30,7 @@
 
   function getI18n(key) {
     const lang = getCurrentLanguage();
-    const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
+    const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : (window.I18N ? window.I18N.en : null) || {};
     return dict[key] || '';
   }
 
@@ -205,8 +205,8 @@
   function scrollToFirstActivity(behavior = 'smooth') {
     const header = document.querySelector('.header');
     const toolbar = document.querySelector('.news-toolbar');
-    const offset = (header?.offsetHeight || 0) + (toolbar?.offsetHeight || 0) + 20;
-    const firstCard = elements.grid?.querySelector('.news-card');
+    const offset = ((header ? header.offsetHeight : 0) || 0) + ((toolbar ? toolbar.offsetHeight : 0) || 0) + 20;
+    const firstCard = (elements.grid ? elements.grid.querySelector : function(){return null;})('.news-card');
     const anchor = firstCard || elements.grid;
     if (!anchor) return;
 
@@ -421,8 +421,8 @@
 
   function attachImageLightboxListeners(mediaItems) {
     const mainImage = document.querySelector('.modal-main-image');
-    const mainImageEl = mainImage?.querySelector('img');
-    const mainImageSrc = resolveImageUrl(mainImageEl?.currentSrc || mainImageEl?.src || mainImageEl?.getAttribute('src') || '');
+    const mainImageEl = (mainImage ? mainImage.querySelector : function(){return null;})('img');
+    const mainImageSrc = resolveImageUrl((mainImageEl ? mainImageEl.currentSrc : null) || (mainImageEl ? mainImageEl.src : null) || (mainImageEl && mainImageEl.getAttribute ? mainImageEl.getAttribute(\'src\') : null) || '');
 
     if (mainImage && mainImageSrc) {
       mainImage.addEventListener('click', () => {
@@ -555,8 +555,8 @@
     elements.searchInput = document.getElementById('newsSearch');
     elements.countDisplay = document.getElementById('newsCount');
     elements.multiselect = document.getElementById('categoryFilter');
-    elements.multiselectTrigger = elements.multiselect?.querySelector('.multiselect-trigger');
-    elements.multiselectLabel = elements.multiselect?.querySelector('.multiselect-label');
+    elements.multiselectTrigger = (elements.multiselect ? elements.multiselect.querySelector : function(){return null;})('.multiselect-trigger');
+    elements.multiselectLabel = (elements.multiselect ? elements.multiselect.querySelector : function(){return null;})('.multiselect-label');
     elements.categoryOptions = document.getElementById('categoryOptions');
   }
 

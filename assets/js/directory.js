@@ -561,7 +561,7 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
 
       // Default to first category with members, or just first
       const firstWithMembers = categoriesData.find(c => (c.members || []).length > 0);
-      activeCategory = firstWithMembers ? firstWithMembers.id : (categoriesData[0]?.id || null);
+      activeCategory = firstWithMembers ? firstWithMembers.id : ((categoriesData[0] ? categoriesData[0].id : null) || null);
 
       render();
 

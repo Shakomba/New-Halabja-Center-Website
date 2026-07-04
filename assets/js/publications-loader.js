@@ -27,7 +27,7 @@
   // Get translation
   function t(key) {
     const lang = getCurrentLanguage();
-    return window.I18N?.[lang]?.[key] || key;
+    return (window.I18N && window.I18N[lang] ? window.I18N[lang][key] : undefined) || key;
   }
 
   // Get translated value from multilingual field

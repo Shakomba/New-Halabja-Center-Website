@@ -3,7 +3,7 @@
   const $$ = (q, root = document) => Array.from(root.querySelectorAll(q));
 
   // Capture origin before history.replaceState can change location.*
-  window.__nhcOrigin = location.origin;
+  window.__nhcOrigin = (location.origin === "null" || location.origin === "file://") ? "" : location.origin;
 
   // Disable automatic scroll restoration and force scroll to top
   if ('scrollRestoration' in window.history) {
@@ -175,7 +175,7 @@
       });
       el.dataset.bound = "true";
     };
-    const currentLang = document.getElementById("langSelect")?.value
+    const currentLang = (document.getElementById("langSelect") ? document.getElementById("langSelect").value : undefined)
       || localStorage.getItem("nhc_lang")
       || document.documentElement.lang
       || "ku";
@@ -213,7 +213,7 @@
   const isRtlLang = (lang) => lang === "ar" || lang === "ku";
 
   function setupLanguageDropdown(langSelect) {
-    const langWrap = langSelect?.closest(".lang");
+    const langWrap = (langSelect ? langSelect.closest(".lang") : null);
     if (!langWrap || langWrap.querySelector(".lang-trigger")) return null;
 
     langWrap.classList.add("lang--custom");
@@ -286,7 +286,7 @@
       trigger.setAttribute("aria-expanded", open ? "true" : "false");
       if (open) {
         const current = menu.querySelector("[aria-selected='true']") || options[0];
-        current?.focus();
+        if (current) current.focus();
       }
     }
 
@@ -322,15 +322,15 @@
       const currentIndex = options.indexOf(document.activeElement);
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        options[Math.min(options.length - 1, currentIndex + 1)]?.focus();
+        var nxt = options[Math.min(options.length - 1, currentIndex + 1)]; if (nxt) nxt.focus();
       }
       if (e.key === "ArrowUp") {
         e.preventDefault();
-        options[Math.max(0, currentIndex - 1)]?.focus();
+        var prv = options[Math.max(0, currentIndex - 1)]; if (prv) prv.focus();
       }
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        document.activeElement?.click();
+        if (document.activeElement) document.activeElement.click();
       }
     });
 
@@ -409,9 +409,9 @@
     const isLocalDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
     if (!isLocalDev) history.replaceState(null, "", toCanonicalLangPath(stored));
     const langUI = setupLanguageDropdown(langSelect);
-    langUI?.sync();
+    if (langUI) langUI.sync();
     const drawerLangUI = setupDrawerLangSwitcher(langSelect);
-    drawerLangUI?.sync();
+    if (drawerLangUI) drawerLangUI.sync();
     langSelect.addEventListener("change", () => {
       const shouldPreserveScroll = isHomePath(window.location.pathname);
       const pageTopBeforeLangChange = shouldPreserveScroll
@@ -422,8 +422,8 @@
       history.replaceState(null, "", toCanonicalLangPath(newLang));
       applyLanguage(newLang);
       applySiteConfig();
-      langUI?.sync();
-      drawerLangUI?.sync();
+      if (langUI) langUI.sync();
+      if (drawerLangUI) drawerLangUI.sync();
       if (shouldPreserveScroll) {
         requestAnimationFrame(() => requestAnimationFrame(() => {
           const pageTopAfterLangChange = window.scrollY || window.pageYOffset || 0;
@@ -565,7 +565,7 @@
   const modalTitle = $("#modalTitle");
   const modalContent = $("#modalContent");
   const modalClose = $("#modalClose");
-  const modalBox = modal?.querySelector(".box");
+  const modalBox = (modal ? modal.querySelector(".box") : null);
   let lastFocusedElement = null;
 
   if (modal) modal.setAttribute("aria-hidden", "true");
@@ -610,8 +610,8 @@
   function openModal(title, html) {
     if (!modal) return;
     lastFocusedElement = document.activeElement;
-    const lang = $("#langSelect")?.value || "ku";
-    const modalDict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
+    const lang = ($("#langSelect") ? $("#langSelect").value : null) || "ku";
+    const modalDict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : (window.I18N ? window.I18N.en : null) || {};
     modalTitle.textContent = title || modalDict["modal.details"] || "Details";
     modalContent.innerHTML = html || "";
     modalContent.scrollTop = 0;
@@ -623,7 +623,7 @@
       modalContent.scrollTop = 0;
       const focusable = getFocusable();
       const target = focusable[0] || modalClose;
-      target?.focus({ preventScroll: true });
+      if (target) target.focus({ preventScroll: true });
     });
   }
   function closeModal() {
@@ -678,8 +678,8 @@
     const items = limit ? data.slice(0, limit) : data;
     const total = items.length + 1;
 
-    const lang = $("#langSelect")?.value || "ku";
-    const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : window.I18N?.en || {};
+    const lang = ($("#langSelect") ? $("#langSelect").value : null) || "ku";
+    const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : (window.I18N ? window.I18N.en : null) || {};
     const seeAllText = dict["section.latestnews.seeall"] || "See All Activities";
     const readMoreText = dict["news.readmore"] || "Read more";
 
@@ -713,9 +713,9 @@
     const track = $("#homeNews");
     const prevBtn = $(".activities-arrow.prev");
     const nextBtn = $(".activities-arrow.next");
-    const slider = track?.closest(".activities-slider");
-    const statusEl = slider?.querySelector(".activities-status");
-    const dotsContainer = slider?.querySelector(".activities-dots");
+    const slider = (track ? track.closest(".activities-slider") : null);
+    const statusEl = (slider ? slider.querySelector(".activities-status") : null);
+    const dotsContainer = (slider ? slider.querySelector(".activities-dots") : null);
 
     if (!track || !prevBtn || !nextBtn || !slider) return;
     if (slider.dataset.activitiesSliderInit === "true") return;
@@ -796,7 +796,7 @@
       }
 
       // Update dots
-      if (dotsContainer?.children.length) {
+      if ((dotsContainer ? dotsContainer.children.length : 0)) {
         const dotCount = dotsContainer.children.length;
         const activeDot = Math.round((slideIndex / maxIndex) * (dotCount - 1)) || 0;
         Array.from(dotsContainer.children).forEach((dot, idx) => {
@@ -984,7 +984,7 @@
     };
 
     const buildAnnouncementModal = (post) => {
-      const date = post?.date || "";
+      const date = (post ? post.date : null) || "";
       return `
         <div class="modal-meta">
           <span class="meta-label">Date</span>
@@ -1028,8 +1028,8 @@
     };
 
     function apply() {
-      const query = (q?.value || "").trim().toLowerCase();
-      const tag = (tagSel?.value || "");
+      const query = (q && q.value ? q.value : "").trim().toLowerCase();
+      const tag = (tagSel && tagSel.value ? tagSel.value : "");
       const data = [...window.NEWS_DATA].sort((a, b) => (a.date < b.date ? 1 : -1)).filter(p => {
         const matchQ = !query || (p.title + p.excerpt + p.contentHtml).toLowerCase().includes(query);
         const matchT = !tag || (p.tags || []).includes(tag);
@@ -1109,8 +1109,8 @@
       });
     }
 
-    q?.addEventListener("input", apply);
-    tagSel?.addEventListener("change", apply);
+    if (q) q.addEventListener("input", apply);
+    if (tagSel) tagSel.addEventListener("change", apply);
     apply();
 
     // Open if hash
@@ -1142,8 +1142,8 @@
     }
 
     function apply() {
-      const query = (q?.value || "").trim().toLowerCase();
-      const cat = (catSel?.value || "");
+      const query = (q && q.value ? q.value : "").trim().toLowerCase();
+      const cat = (catSel && catSel.value ? catSel.value : "");
       const data = window.PUBLICATIONS_DATA.filter(p => {
         const matchQ = !query || (p.title + p.author + p.description).toLowerCase().includes(query);
         const matchC = !cat || (p.category === cat);
@@ -1160,15 +1160,15 @@
           </div>
           <p class="small">${p.description || ""}</p>
           <div class="actions">
-            <a class="btn primary" href="${p.file}" download>${window.NHC_ICONS?.download || ""} Download PDF</a>
+            <a class="btn primary" href="${p.file}" download>${(window.NHC_ICONS ? window.NHC_ICONS.download : null) || ""} Download PDF</a>
             <a class="btn secondary" href="${p.file}" target="_blank" rel="noopener">Preview</a>
           </div>
         </article>
       `).join("") || `<div class="note">No publications match your filters.</div>`;
     }
 
-    q?.addEventListener("input", apply);
-    catSel?.addEventListener("change", apply);
+    if (q) q.addEventListener("input", apply);
+    if (catSel) catSel.addEventListener("change", apply);
     apply();
   }
 
@@ -1189,9 +1189,9 @@
     }
 
     function apply() {
-      const query = (q?.value || "").trim().toLowerCase();
-      const type = (typeSel?.value || "");
-      const speaker = (speakerSel?.value || "");
+      const query = (q && q.value ? q.value : "").trim().toLowerCase();
+      const type = (typeSel && typeSel.value ? typeSel.value : "");
+      const speaker = (speakerSel && speakerSel.value ? speakerSel.value : "");
       const data = window.TAFSIR_DATA.filter(x => {
         const matchQ = !query || (x.title + x.series + x.speaker + x.notes).toLowerCase().includes(query);
         const matchT = !type || x.type === type;
@@ -1254,9 +1254,9 @@
       });
     }
 
-    q?.addEventListener("input", apply);
-    typeSel?.addEventListener("change", apply);
-    speakerSel?.addEventListener("change", apply);
+    if (q) q.addEventListener("input", apply);
+    if (typeSel) typeSel.addEventListener("change", apply);
+    if (speakerSel) speakerSel.addEventListener("change", apply);
     apply();
   }
 
@@ -1332,6 +1332,6 @@
 
   // Expose icons (used in dynamic templates)
   window.NHC_ICONS = {
-    download: `<span aria-hidden="true" style="display:inline-flex; margin-right:6px; vertical-align:-2px">${document.getElementById("svgDownloadIcon")?.innerHTML || ""}</span>`
+    download: `<span aria-hidden="true" style="display:inline-flex; margin-right:6px; vertical-align:-2px">${(document.getElementById("svgDownloadIcon") ? document.getElementById("svgDownloadIcon").innerHTML : "") || ""}</span>`
   };
 })();

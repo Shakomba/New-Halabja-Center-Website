@@ -154,8 +154,8 @@
     volSlider.addEventListener('input', e => { video.volume = e.target.value / 100; syncVol(); });
 
     fsBtn.addEventListener('click', () => {
-      if (!document.fullscreenElement) container.requestFullscreen?.();
-      else document.exitFullscreen?.();
+      if (!document.fullscreenElement) { if (container.requestFullscreen) container.requestFullscreen(); }
+      else { if (document.exitFullscreen) document.exitFullscreen(); }
     });
 
     document.addEventListener('fullscreenchange', () => {
@@ -185,7 +185,7 @@
       for (const node of m.addedNodes) {
         if (node.nodeType === 1) {
           if (node.tagName === 'VIDEO' && !node.classList.contains('nhc-video-el')) buildPlayer(node);
-          else node.querySelectorAll?.('video:not(.nhc-video-el)').forEach(buildPlayer);
+          else if (node.querySelectorAll) node.querySelectorAll('video:not(.nhc-video-el)').forEach(buildPlayer);
         }
       }
     }

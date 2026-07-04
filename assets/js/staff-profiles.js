@@ -390,7 +390,7 @@ const isMan = (item) => {
           'rand fahmi'
         ];
         if (menNames.some(m => n.includes(m))) return true;
-        const photo = item.member.bio?.photo || '';
+        const photo = (item.member.bio ? item.member.bio.photo : null) || '';
         if (photo.includes('placeholder-male')) return true;
         return false;
       };
