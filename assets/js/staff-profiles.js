@@ -365,102 +365,97 @@
   };
 
   /* ── Fetch and initialise ─────────────────────────── */
-  (async function() {
-    const base = 'https://bnkayhalabjaytaza.org';
-    const path = '/assets/data/students.json';
-    const urls = [(window.__nhcOrigin || '') + path, base + path, path];
-    const tried = [];
-    for (var i = 0; i < urls.length; i++) { if (tried.indexOf(urls[i]) === -1) tried.push(urls[i]); }
-    let data = null;
-    for (var j = 0; j < tried.length; j++) {
-      try {
-        const r = await fetch(tried[j]);
-        if (!r.ok) continue;
-        data = await r.json();
-        break;
-      } catch (e) { /* try next */ }
+  (function() {
+    var base = 'https://bnkayhalabjaytaza.org';
+    var path = '/assets/data/students.json';
+    var origin = (window.__nhcOrigin || '');
+    var urls = [];
+    if (urls.indexOf(origin + path) === -1) urls.push(origin + path);
+    if (urls.indexOf(base + path) === -1) urls.push(base + path);
+    if (urls.indexOf(path) === -1) urls.push(path);
+
+    function tryUrl(index) {
+      if (index >= urls.length) {
+        console.error('staff-profiles: could not load students.json');
+        return Promise.resolve(null);
+      }
+      return fetch(urls[index]).then(function(r) {
+        if (!r.ok) return tryUrl(index + 1);
+        return r.json();
+      }).catch(function() {
+        return tryUrl(index + 1);
+      });
     }
-    if (!data) { console.error('staff-profiles: could not load students.json'); return; }
-      const allCerts = (data.categories || []).map(cat => ({
-        categoryName: t(cat.name, getCurrentLang()),
-        categoryNameObj: cat.name,
-        categoryId: cat.id,
-        certNumber: '',
-        date: ''
-      }));
+
+    tryUrl(0).then(function(data) {
+      if (!data) return;
+      var allCerts = (data.categories || []).map(function(cat) {
+        return {
+          categoryName: t(cat.name, getCurrentLang()),
+          categoryNameObj: cat.name,
+          categoryId: cat.id,
+          certNumber: '',
+          date: ''
+        };
+      });
       if (STATIC_STAFF.first[0]) {
         STATIC_STAFF.first[0].allCerts = allCerts;
       }
 
-      const roleOrder = { director: 0, huffaz: 1, qaida: 2, tajweed: 3, studies: 4, admin: 5 };
-      
-const isMan = (item) => {
-        const n = String(item.member.name.en || '').toLowerCase();
-        const menNames = [
-          'sirwan hamid', 'sardar abdulrahim', 'burhan ali',
-          'farooq hussein', 'ahmed aynaddin',
-          'bahman muhammad', 'kosar omar', 'dara karim', 'fakhr f',
-          'rand fahmi'
-        ];
-        if (menNames.some(m => n.includes(m))) return true;
-        const photo = (item.member.bio ? item.member.bio.photo : null) || '';
-        if (photo.includes('placeholder-male')) return true;
+      var roleOrder = { director: 0, huffaz: 1, qaida: 2, tajweed: 3, studies: 4, admin: 5 };
+
+      var isMan = function(item) {
+        var n = String((item.member.name && item.member.name.en) || '').toLowerCase();
+        var menNames = ['sirwan hamid', 'sardar abdulrahim', 'burhan ali', 'farooq hussein', 'ahmed aynaddin', 'bahman muhammad', 'kosar omar', 'dara karim', 'fakhr f', 'rand fahmi'];
+        if (menNames.some(function(m) { return n.indexOf(m) !== -1; })) return true;
+        var photo = (item.member.bio ? item.member.bio.photo : null) || '';
+        if (photo.indexOf('placeholder-male') !== -1) return true;
         return false;
       };
 
-      const getRecitationCertNumber = (item) => {
-        const cert = (item.allCerts || []).find(c => c.categoryId === 'recitation-license' && c.certNumber);
+      var getRecitationCertNumber = function(item) {
+        var cert = (item.allCerts || []).find(function(c) { return c.categoryId === 'recitation-license' && c.certNumber; });
         if (!cert || !cert.certNumber) return Infinity;
-        const num = parseInt(cert.certNumber, 10);
+        var num = parseInt(cert.certNumber, 10);
         return isNaN(num) ? Infinity : num;
       };
 
-      const fromJson = buildStaffList(data.categories || []);
-      staffList = [...STATIC_STAFF.first, ...fromJson, ...STATIC_STAFF.last]
-        .sort((a, b) => {
-          const nA = String(a.member.name.en || '').toLowerCase();
-          const nB = String(b.member.name.en || '').toLowerCase();
+      var fromJson = buildStaffList(data.categories || []);
+      staffList = [].concat(STATIC_STAFF.first, fromJson, STATIC_STAFF.last)
+        .sort(function(a, b) {
+          var nA = String((a.member.name && a.member.name.en) || '').toLowerCase();
+          var nB = String((b.member.name && b.member.name.en) || '').toLowerCase();
 
-          // 1. Hardcoded first positions
-          if (nA.includes('sirwan hamid') && !nB.includes('sirwan hamid')) return -1;
-          if (nB.includes('sirwan hamid') && !nA.includes('sirwan hamid')) return 1;
+          if (nA.indexOf('sirwan hamid') !== -1 && nB.indexOf('sirwan hamid') === -1) return -1;
+          if (nB.indexOf('sirwan hamid') !== -1 && nA.indexOf('sirwan hamid') === -1) return 1;
+          if (nA.indexOf('sardar abdulrahim') !== -1 && nB.indexOf('sardar abdulrahim') === -1) return -1;
+          if (nB.indexOf('sardar abdulrahim') !== -1 && nA.indexOf('sardar abdulrahim') === -1) return 1;
+          if (nA.indexOf('farooq hussein') !== -1 && nB.indexOf('farooq hussein') === -1) return -1;
+          if (nB.indexOf('farooq hussein') !== -1 && nA.indexOf('farooq hussein') === -1) return 1;
+          if (nA.indexOf('ahmed aynaddin') !== -1 && nB.indexOf('ahmed aynaddin') === -1) return -1;
+          if (nB.indexOf('ahmed aynaddin') !== -1 && nA.indexOf('ahmed aynaddin') === -1) return 1;
 
-          if (nA.includes('sardar abdulrahim') && !nB.includes('sardar abdulrahim')) return -1;
-          if (nB.includes('sardar abdulrahim') && !nA.includes('sardar abdulrahim')) return 1;
-
-          if (nA.includes('farooq hussein') && !nB.includes('farooq hussein')) return -1;
-          if (nB.includes('farooq hussein') && !nA.includes('farooq hussein')) return 1;
-
-          if (nA.includes('ahmed aynaddin') && !nB.includes('ahmed aynaddin')) return -1;
-          if (nB.includes('ahmed aynaddin') && !nA.includes('ahmed aynaddin')) return 1;
-
-          // 2. Men first, then women
-          const manA = isMan(a);
-          const manB = isMan(b);
+          var manA = isMan(a), manB = isMan(b);
           if (manA && !manB) return -1;
           if (!manA && manB) return 1;
 
-          // 3. Sort by recitation license number (lowest first); no license goes to the end (Infinity)
-          let certA = getRecitationCertNumber(a);
-          let certB = getRecitationCertNumber(b);
-
-          // Force Fakhr between Ahmed (4) and Rand (39)
-          if (nA.includes('fakhr f')) certA = 5;
-          if (nB.includes('fakhr f')) certB = 5;
-
+          var certA = getRecitationCertNumber(a);
+          var certB = getRecitationCertNumber(b);
+          if (nA.indexOf('fakhr f') !== -1) certA = 5;
+          if (nB.indexOf('fakhr f') !== -1) certB = 5;
           if (certA !== certB) return certA - certB;
 
-          // Force Shahla to the very end
-          if (nA.includes('shahla abdullah') && !nB.includes('shahla abdullah')) return 1;
-          if (nB.includes('shahla abdullah') && !nA.includes('shahla abdullah')) return -1;
+          if (nA.indexOf('shahla abdullah') !== -1 && nB.indexOf('shahla abdullah') === -1) return 1;
+          if (nB.indexOf('shahla abdullah') !== -1 && nA.indexOf('shahla abdullah') === -1) return -1;
 
           return nA.localeCompare(nB);
         });
-      
-      if (staffList.length === 0) return; // no staff marked yet
+
+      if (staffList.length === 0) return;
       section.hidden = false;
       render();
       if (typeof window.setupReveal === 'function') window.setupReveal();
+    });
   })();
 
   /* ── Re-render on language change ─────────────────── */

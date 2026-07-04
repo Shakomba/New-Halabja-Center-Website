@@ -15,17 +15,26 @@
     localStorage.removeItem("nhc_activities_slide");
   } catch (e) {}
 
-  let skipHeroIntro = false;
-  try {
-    skipHeroIntro = sessionStorage.getItem("nhc_skip_intro") === "1";
-    if (skipHeroIntro) sessionStorage.removeItem("nhc_skip_intro");
-  } catch (_) { }
+  // Detect in-app/social-media WebViews (Facebook, Instagram, Twitter, WhatsApp, Telegram, etc.)
+  // These browsers have unreliable CSS animation support — skip the intro to avoid content staying hidden.
+  var _ua = (navigator.userAgent || '');
+  var _isWebView = /FBAN|FBAV|Instagram|Twitter|Snapchat|TikTok|Line\/|MicroMessenger|Telegram|WhatsApp/i.test(_ua)
+    || (_ua.indexOf('Android') !== -1 && /wv|Version\/[0-9]/.test(_ua) && _ua.indexOf('Chrome') !== -1)
+    || (_ua.indexOf('iPhone') !== -1 && !_ua.match(/Safari\//));
+
+  var skipHeroIntro = _isWebView;
+  if (!skipHeroIntro) {
+    try {
+      skipHeroIntro = sessionStorage.getItem("nhc_skip_intro") === "1";
+      if (skipHeroIntro) sessionStorage.removeItem("nhc_skip_intro");
+    } catch (_) { }
+  }
 
   if (!skipHeroIntro) {
     document.documentElement.classList.add("nhc-hero-intro");
-    // Remove intro class after animation — use a short timeout so the CSS
-    // animation has a chance to fire, but also listen for visibilitychange
-    // to handle WebViews that pause animations when the page is hidden.
+    // Remove the intro class once the animation finishes.
+    // We use both a timer AND visibilitychange so that if the browser
+    // throttles the timer (e.g. backgrounded tab), it still resolves.
     var _removeIntro = function() {
       document.documentElement.classList.remove("nhc-hero-intro");
     };
@@ -38,6 +47,7 @@
       }
     });
   }
+
 
   // Mobile menu
   const menuBtn = $("#menuBtn");

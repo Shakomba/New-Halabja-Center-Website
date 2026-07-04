@@ -549,36 +549,40 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
   });
 
   /* ── Load data ─────────────────────────────────────── */
-  const loadData = async () => {
-    const base = 'https://bnkayhalabjaytaza.org';
-    const path = '/assets/data/students.json';
-    const urls = [(window.__nhcOrigin || '') + path, base + path, path];
-    const tried = [];
-    for (var i = 0; i < urls.length; i++) { if (tried.indexOf(urls[i]) === -1) tried.push(urls[i]); }
-    let data = null;
-    for (var j = 0; j < tried.length; j++) {
-      try {
-        const res = await fetch(tried[j]);
-        if (!res.ok) continue;
-        data = await res.json();
-        break;
-      } catch (err) { /* try next */ }
+  var loadData = function() {
+    var base = 'https://bnkayhalabjaytaza.org';
+    var path = '/assets/data/students.json';
+    var origin = (window.__nhcOrigin || '');
+    var urls = [];
+    if (urls.indexOf(origin + path) === -1) urls.push(origin + path);
+    if (urls.indexOf(base + path) === -1) urls.push(base + path);
+    if (urls.indexOf(path) === -1) urls.push(path);
+
+    function tryUrl(index) {
+      if (index >= urls.length) return Promise.resolve(null);
+      return fetch(urls[index]).then(function(res) {
+        if (!res.ok) return tryUrl(index + 1);
+        return res.json();
+      }).catch(function() { return tryUrl(index + 1); });
     }
-    if (!data) {
-      console.error('Failed to load achievements data');
-      if (loadingState) {
-        loadingState.innerHTML = '<p style="color:#b91c1c;text-align:center;">Error loading data.</p>';
+
+    tryUrl(0).then(function(data) {
+      if (!data) {
+        console.error('Failed to load achievements data');
+        if (loadingState) {
+          loadingState.innerHTML = '<p style="color:#b91c1c;text-align:center;">Error loading data.</p>';
+        }
+        return;
       }
-      return;
-    }
-    categoriesData = data.categories || [];
-    if (loadingState) loadingState.style.display = 'none';
-    const firstWithMembers = categoriesData.find(c => (c.members || []).length > 0);
-    activeCategory = firstWithMembers ? firstWithMembers.id : ((categoriesData[0] ? categoriesData[0].id : null) || null);
-    render();
-    if (typeof window.setupReveal === 'function') {
-      window.setupReveal();
-    }
+      categoriesData = data.categories || [];
+      if (loadingState) loadingState.style.display = 'none';
+      var firstWithMembers = categoriesData.find(function(c) { return (c.members || []).length > 0; });
+      activeCategory = firstWithMembers ? firstWithMembers.id : ((categoriesData[0] ? categoriesData[0].id : null) || null);
+      render();
+      if (typeof window.setupReveal === 'function') {
+        window.setupReveal();
+      }
+    });
   };
 
   loadData();

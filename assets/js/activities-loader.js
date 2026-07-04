@@ -48,34 +48,36 @@
     return activity.categories.map(cat => getTranslatedValue(cat, lang)).filter(c => c);
   }
 
-  async function fetchActivities() {
-    // Build the URL from a known absolute base so WebViews can resolve it.
-    // Fall back progressively: canonical origin → window.__nhcOrigin → relative path.
-    const base = 'https://bnkayhalabjaytaza.org';
-    const path = '/assets/data/activities.json';
-    const urls = [
-      (window.__nhcOrigin || '') + path,
-      base + path,
-      path
-    ];
-    // Deduplicate
-    const tried = [];
-    for (var i = 0; i < urls.length; i++) {
-      if (tried.indexOf(urls[i]) === -1) tried.push(urls[i]);
-    }
-    for (var j = 0; j < tried.length; j++) {
-      try {
-        const response = await fetch(tried[j]);
-        if (!response.ok) continue;
-        activitiesData = await response.json();
-        return activitiesData;
-      } catch (error) {
-        // try next URL
+  function fetchActivities() {
+    // Use plain .then() chains — avoids async/await which some old WebView engines don't support.
+    var base = 'https://bnkayhalabjaytaza.org';
+    var path = '/assets/data/activities.json';
+    var origin = (window.__nhcOrigin || '');
+    // Build deduplicated list of URLs to try
+    var urls = [];
+    if (urls.indexOf(origin + path) === -1) urls.push(origin + path);
+    if (urls.indexOf(base + path) === -1) urls.push(base + path);
+    if (urls.indexOf(path) === -1) urls.push(path);
+
+    // Try each URL in sequence using promise chaining
+    function tryUrl(index) {
+      if (index >= urls.length) {
+        console.error('Error fetching activities: all URLs failed');
+        return Promise.resolve([]);
       }
+      return fetch(urls[index]).then(function(response) {
+        if (!response.ok) return tryUrl(index + 1);
+        return response.json().then(function(data) {
+          activitiesData = data;
+          return data;
+        });
+      }).catch(function() {
+        return tryUrl(index + 1);
+      });
     }
-    console.error('Error fetching activities: all URLs failed');
-    return [];
+    return tryUrl(0);
   }
+
 
   function formatDate(dateStr) {
     if (!dateStr) return '';
@@ -601,7 +603,7 @@
     renderCards();
   }
 
-  async function init() {
+  function init() {
     initializeElements();
 
     if (!elements.grid) {
@@ -609,21 +611,16 @@
       return;
     }
 
-    const data = await fetchActivities();
-    
-    if (data.length === 0) {
-      elements.grid.innerHTML = `
-        <div class="news-empty">
-          ${getI18n('news.loaderror') || 'Unable to load activities. Please try again later.'}
-        </div>
-      `;
-      return;
-    }
-
-    populateFilterOptions();
-    renderCards();
-    attachEventListeners();
-    handleHashChange();
+    fetchActivities().then(function(data) {
+      if (!data || data.length === 0) {
+        elements.grid.innerHTML = '<div class="news-empty">' + (getI18n('news.loaderror') || 'Unable to load activities. Please try again later.') + '</div>';
+        return;
+      }
+      populateFilterOptions();
+      renderCards();
+      attachEventListeners();
+      handleHashChange();
+    });
   }
 
   if (document.readyState === 'loading') {

@@ -1069,29 +1069,38 @@
   }
 
   // Load publications from JSON
-  async function loadPublications() {
-    const base = 'https://bnkayhalabjaytaza.org';
-    const path = '/assets/data/publications.json';
-    const urls = [(window.__nhcOrigin || '') + path, base + path, path];
-    const tried = [];
-    for (var i = 0; i < urls.length; i++) { if (tried.indexOf(urls[i]) === -1) tried.push(urls[i]); }
-    for (var j = 0; j < tried.length; j++) {
-      try {
-        const response = await fetch(tried[j]);
-        if (!response.ok) continue;
-        PUBLICATIONS = await response.json();
-        return true;
-      } catch (error) { /* try next */ }
+  function loadPublications() {
+    var base = 'https://bnkayhalabjaytaza.org';
+    var path = '/assets/data/publications.json';
+    var origin = (window.__nhcOrigin || '');
+    var urls = [];
+    if (urls.indexOf(origin + path) === -1) urls.push(origin + path);
+    if (urls.indexOf(base + path) === -1) urls.push(base + path);
+    if (urls.indexOf(path) === -1) urls.push(path);
+
+    function tryUrl(index) {
+      if (index >= urls.length) {
+        console.error('Error loading publications: all URLs failed');
+        return Promise.resolve(false);
+      }
+      return fetch(urls[index]).then(function(response) {
+        if (!response.ok) return tryUrl(index + 1);
+        return response.json().then(function(data) {
+          PUBLICATIONS = data;
+          return true;
+        });
+      }).catch(function() {
+        return tryUrl(index + 1);
+      });
     }
-    console.error('Error loading publications: all URLs failed');
-    return false;
+    return tryUrl(0);
   }
 
   // Re-render function for language changes
   function reRender() {
     renderHeroCarousel();
     renderGrid();
-    setTimeout(() => {
+    setTimeout(function() {
       attachBookFlip();
     }, 100);
   }
@@ -1100,36 +1109,31 @@
   window.reRenderPublications = reRender;
 
   // Initialize
-  async function init() {
-    // Load publications from JSON first
-    const loaded = await loadPublications();
-    if (!loaded) {
-      console.error('Failed to initialize publications');
-      return;
-    }
-
-    renderHeroCarousel();
-    renderGrid();
-
-    // Attach flip functionality
-    setTimeout(() => {
-      attachBookFlip();
-    }, 100);
-
-  // Listen for language changes via both the select element and the custom event
-  const langSelect = document.getElementById('langSelect');
-  if (langSelect) {
-    langSelect.addEventListener('change', () => {
-      try {
-        (function(){try{localStorage.setItem('nhc_lang', langSelect.value);}catch(e){}})();
-      } catch (error) {
-        // Ignore storage access issues.
+  function init() {
+    loadPublications().then(function(loaded) {
+      if (!loaded) {
+        console.error('Failed to initialize publications');
+        return;
       }
-      reRender();
+
+      renderHeroCarousel();
+      renderGrid();
+
+      setTimeout(function() {
+        attachBookFlip();
+      }, 100);
+
+      var langSelect = document.getElementById('langSelect');
+      if (langSelect) {
+        langSelect.addEventListener('change', function() {
+          try {
+            (function(){try{localStorage.setItem('nhc_lang', langSelect.value);}catch(e){}})();
+          } catch (error) { }
+          reRender();
+        });
+      }
+      document.addEventListener('languageChanged', function() { reRender(); });
     });
-  }
-  // Also respond to the custom languageChanged event dispatched by main.js
-  document.addEventListener('languageChanged', () => reRender());
   }
 
   // Run on DOM ready
