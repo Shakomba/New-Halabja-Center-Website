@@ -550,29 +550,34 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
 
   /* ── Load data ─────────────────────────────────────── */
   const loadData = async () => {
-    try {
-      const res = await fetch((window.__nhcOrigin || '') + '/assets/data/students.json');
-      if (!res.ok) throw new Error('Network response was not ok');
-      const data = await res.json();
-      categoriesData = data.categories || [];
-
-      // Hide loading
-      if (loadingState) loadingState.style.display = 'none';
-
-      // Default to first category with members, or just first
-      const firstWithMembers = categoriesData.find(c => (c.members || []).length > 0);
-      activeCategory = firstWithMembers ? firstWithMembers.id : ((categoriesData[0] ? categoriesData[0].id : null) || null);
-
-      render();
-
-      if (typeof window.setupReveal === 'function') {
-        window.setupReveal();
-      }
-    } catch (err) {
-      console.error('Failed to load achievements data:', err);
+    const base = 'https://bnkayhalabjaytaza.org';
+    const path = '/assets/data/students.json';
+    const urls = [(window.__nhcOrigin || '') + path, base + path, path];
+    const tried = [];
+    for (var i = 0; i < urls.length; i++) { if (tried.indexOf(urls[i]) === -1) tried.push(urls[i]); }
+    let data = null;
+    for (var j = 0; j < tried.length; j++) {
+      try {
+        const res = await fetch(tried[j]);
+        if (!res.ok) continue;
+        data = await res.json();
+        break;
+      } catch (err) { /* try next */ }
+    }
+    if (!data) {
+      console.error('Failed to load achievements data');
       if (loadingState) {
         loadingState.innerHTML = '<p style="color:#b91c1c;text-align:center;">Error loading data.</p>';
       }
+      return;
+    }
+    categoriesData = data.categories || [];
+    if (loadingState) loadingState.style.display = 'none';
+    const firstWithMembers = categoriesData.find(c => (c.members || []).length > 0);
+    activeCategory = firstWithMembers ? firstWithMembers.id : ((categoriesData[0] ? categoriesData[0].id : null) || null);
+    render();
+    if (typeof window.setupReveal === 'function') {
+      window.setupReveal();
     }
   };
 

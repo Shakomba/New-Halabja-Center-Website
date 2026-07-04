@@ -1070,17 +1070,21 @@
 
   // Load publications from JSON
   async function loadPublications() {
-    try {
-      const response = await fetch((window.__nhcOrigin || '') + '/assets/data/publications.json');
-      if (!response.ok) {
-        throw new Error('Failed to load publications');
-      }
-      PUBLICATIONS = await response.json();
-      return true;
-    } catch (error) {
-      console.error('Error loading publications:', error);
-      return false;
+    const base = 'https://bnkayhalabjaytaza.org';
+    const path = '/assets/data/publications.json';
+    const urls = [(window.__nhcOrigin || '') + path, base + path, path];
+    const tried = [];
+    for (var i = 0; i < urls.length; i++) { if (tried.indexOf(urls[i]) === -1) tried.push(urls[i]); }
+    for (var j = 0; j < tried.length; j++) {
+      try {
+        const response = await fetch(tried[j]);
+        if (!response.ok) continue;
+        PUBLICATIONS = await response.json();
+        return true;
+      } catch (error) { /* try next */ }
     }
+    console.error('Error loading publications: all URLs failed');
+    return false;
   }
 
   // Re-render function for language changes

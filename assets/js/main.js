@@ -23,9 +23,20 @@
 
   if (!skipHeroIntro) {
     document.documentElement.classList.add("nhc-hero-intro");
-    window.setTimeout(() => {
+    // Remove intro class after animation — use a short timeout so the CSS
+    // animation has a chance to fire, but also listen for visibilitychange
+    // to handle WebViews that pause animations when the page is hidden.
+    var _removeIntro = function() {
       document.documentElement.classList.remove("nhc-hero-intro");
-    }, 900);
+    };
+    var _introTimer = window.setTimeout(_removeIntro, 900);
+    document.addEventListener("visibilitychange", function _onVisible() {
+      if (document.visibilityState === "visible") {
+        clearTimeout(_introTimer);
+        _removeIntro();
+        document.removeEventListener("visibilitychange", _onVisible);
+      }
+    });
   }
 
   // Mobile menu

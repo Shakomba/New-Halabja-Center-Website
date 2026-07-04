@@ -365,9 +365,22 @@
   };
 
   /* ── Fetch and initialise ─────────────────────────── */
-  fetch((window.__nhcOrigin || '') + '/assets/data/students.json')
-    .then(r => r.json())
-    .then(data => {
+  (async function() {
+    const base = 'https://bnkayhalabjaytaza.org';
+    const path = '/assets/data/students.json';
+    const urls = [(window.__nhcOrigin || '') + path, base + path, path];
+    const tried = [];
+    for (var i = 0; i < urls.length; i++) { if (tried.indexOf(urls[i]) === -1) tried.push(urls[i]); }
+    let data = null;
+    for (var j = 0; j < tried.length; j++) {
+      try {
+        const r = await fetch(tried[j]);
+        if (!r.ok) continue;
+        data = await r.json();
+        break;
+      } catch (e) { /* try next */ }
+    }
+    if (!data) { console.error('staff-profiles: could not load students.json'); return; }
       const allCerts = (data.categories || []).map(cat => ({
         categoryName: t(cat.name, getCurrentLang()),
         categoryNameObj: cat.name,
@@ -448,8 +461,7 @@ const isMan = (item) => {
       section.hidden = false;
       render();
       if (typeof window.setupReveal === 'function') window.setupReveal();
-    })
-    .catch(err => console.warn('staff-profiles: failed to load students.json', err));
+  })();
 
   /* ── Re-render on language change ─────────────────── */
   document.addEventListener('languageChanged', () => {

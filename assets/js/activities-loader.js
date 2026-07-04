@@ -49,17 +49,32 @@
   }
 
   async function fetchActivities() {
-    try {
-      const response = await fetch((window.__nhcOrigin || '') + '/assets/data/activities.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      activitiesData = await response.json();
-      return activitiesData;
-    } catch (error) {
-      console.error('Error fetching activities:', error);
-      return [];
+    // Build the URL from a known absolute base so WebViews can resolve it.
+    // Fall back progressively: canonical origin → window.__nhcOrigin → relative path.
+    const base = 'https://bnkayhalabjaytaza.org';
+    const path = '/assets/data/activities.json';
+    const urls = [
+      (window.__nhcOrigin || '') + path,
+      base + path,
+      path
+    ];
+    // Deduplicate
+    const tried = [];
+    for (var i = 0; i < urls.length; i++) {
+      if (tried.indexOf(urls[i]) === -1) tried.push(urls[i]);
     }
+    for (var j = 0; j < tried.length; j++) {
+      try {
+        const response = await fetch(tried[j]);
+        if (!response.ok) continue;
+        activitiesData = await response.json();
+        return activitiesData;
+      } catch (error) {
+        // try next URL
+      }
+    }
+    console.error('Error fetching activities: all URLs failed');
+    return [];
   }
 
   function formatDate(dateStr) {
