@@ -33,31 +33,7 @@
     document.head.appendChild(_vtStyle);
   }
 
-  var skipHeroIntro = _isWebView;
-  if (!skipHeroIntro) {
-    try {
-      skipHeroIntro = sessionStorage.getItem("nhc_skip_intro") === "1";
-      if (skipHeroIntro) sessionStorage.removeItem("nhc_skip_intro");
-    } catch (_) { }
-  }
 
-  if (!skipHeroIntro) {
-    document.documentElement.classList.add("nhc-hero-intro");
-    // Remove the intro class once the animation finishes.
-    // We use both a timer AND visibilitychange so that if the browser
-    // throttles the timer (e.g. backgrounded tab), it still resolves.
-    var _removeIntro = function() {
-      document.documentElement.classList.remove("nhc-hero-intro");
-    };
-    var _introTimer = window.setTimeout(_removeIntro, 900);
-    document.addEventListener("visibilitychange", function _onVisible() {
-      if (document.visibilityState === "visible") {
-        clearTimeout(_introTimer);
-        _removeIntro();
-        document.removeEventListener("visibilitychange", _onVisible);
-      }
-    });
-  }
 
 
   // Mobile menu
