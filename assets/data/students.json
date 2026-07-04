@@ -3545,9 +3545,9 @@
         },
         {
           "name": {
-            "ku": "یوسرا سەعید حەمەساڵح",
-            "ar": "يوسرا سعيد محمد صالح",
-            "en": "Iwsra Saeed Muhammad Salih"
+            "ku": "بوشرا سەعید حەمەساڵح",
+            "ar": "بوشرا سعيد محمد صالح",
+            "en": "Bushra Saeed Muhammad Salih"
           },
           "certNumber": "189",
           "date": "30/5/2020"
@@ -3559,6 +3559,15 @@
             "en": "Sazan Ali Karim"
           },
           "certNumber": "190",
+          "date": "30/5/2020"
+        },
+        {
+          "name": {
+            "ku": "یوسرا سەعید حەمەساڵح",
+            "ar": "يوسرا سعيد محمد صالح",
+            "en": "Iwsra Saeed Muhammad Salih"
+          },
+          "certNumber": "191",
           "date": "30/5/2020"
         },
         {
