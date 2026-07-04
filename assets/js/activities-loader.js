@@ -239,7 +239,7 @@
     const header = document.querySelector('.header');
     const toolbar = document.querySelector('.news-toolbar');
     const offset = ((header ? header.offsetHeight : 0) || 0) + ((toolbar ? toolbar.offsetHeight : 0) || 0) + 20;
-    const firstCard = (elements.grid ? elements.grid.querySelector : function(){return null;})('.news-card');
+    const firstCard = elements.grid ? elements.grid.querySelector('.news-card') : null;
     const anchor = firstCard || elements.grid;
     if (!anchor) return;
 
@@ -454,7 +454,7 @@
 
   function attachImageLightboxListeners(mediaItems) {
     const mainImage = document.querySelector('.modal-main-image');
-    const mainImageEl = (mainImage ? mainImage.querySelector : function(){return null;})('img');
+    const mainImageEl = mainImage ? mainImage.querySelector('img') : null;
     const mainImageSrc = resolveImageUrl((mainImageEl ? mainImageEl.currentSrc : null) || (mainImageEl ? mainImageEl.src : null) || (mainImageEl && mainImageEl.getAttribute ? mainImageEl.getAttribute('src') : null) || '');
 
     if (mainImage && mainImageSrc) {
@@ -588,8 +588,8 @@
     elements.searchInput = document.getElementById('newsSearch');
     elements.countDisplay = document.getElementById('newsCount');
     elements.multiselect = document.getElementById('categoryFilter');
-    elements.multiselectTrigger = (elements.multiselect ? elements.multiselect.querySelector : function(){return null;})('.multiselect-trigger');
-    elements.multiselectLabel = (elements.multiselect ? elements.multiselect.querySelector : function(){return null;})('.multiselect-label');
+    elements.multiselectTrigger = elements.multiselect ? elements.multiselect.querySelector('.multiselect-trigger') : null;
+    elements.multiselectLabel = elements.multiselect ? elements.multiselect.querySelector('.multiselect-label') : null;
     elements.categoryOptions = document.getElementById('categoryOptions');
   }
 
