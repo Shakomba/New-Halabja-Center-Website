@@ -24,14 +24,7 @@
     || (_ua.indexOf('Android') !== -1 && /wv|Version\/[0-9]/.test(_ua) && _ua.indexOf('Chrome') !== -1)
     || (_ua.indexOf('iPhone') !== -1 && !_ua.match(/Safari\//));
 
-  // Inject CSS View Transitions ONLY for safe browsers (not WebViews).
-  // This is the foolproof fix for the green-screen bug on social media browsers:
-  // if they don't see the @view-transition rule, they can't break on it.
-  if (!_isWebView && window.CSS && CSS.supports('view-transition-name', 'root')) {
-    var _vtStyle = document.createElement('style');
-    _vtStyle.textContent = '@supports (view-transition-name: root) { @view-transition { navigation: auto; } ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; animation-timing-function: cubic-bezier(.22, 1, .36, 1); } ::view-transition-old(root) { animation-name: nhc-view-out; } ::view-transition-new(root) { animation-name: nhc-view-in; } }';
-    document.head.appendChild(_vtStyle);
-  }
+
 
 
 
@@ -461,6 +454,10 @@
       const url = new URL(href, location.href);
       if (url.origin !== location.origin) return;
       url.searchParams.set("lang", currentLang);
+      
+      // Force cache bypass for in-app browsers on navigation
+      url.searchParams.set("cb", Date.now().toString());
+      
       a.href = url.toString();
       // Allow the default click action to proceed with the updated href
     } catch (_) {}
@@ -504,6 +501,14 @@
   function setupReveal() {
     const nodes = $$(".reveal");
     if (!nodes.length) return;
+
+    // Safety fallback for in-app WebViews that preload pages and freeze IntersectionObserver.
+    // If we detect a WebView, or if the user prefers reduced motion, instantly reveal everything.
+    if (_isWebView || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      nodes.forEach(n => n.classList.add("in-view"));
+      return;
+    }
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -513,6 +518,20 @@
       });
     }, { threshold: 0.18 });
     nodes.forEach(n => io.observe(n));
+
+    // Ultimate fallback for preloaded tabs that never fire the observer on first load:
+    // When the app becomes fully visible (e.g., backgrounded and reopened), force reveal everything.
+    document.addEventListener("visibilitychange", function() {
+      if (document.visibilityState === "visible") {
+        nodes.forEach(n => n.classList.add("in-view"));
+      }
+    });
+
+    // Timeout fallback: if 2 seconds pass and they are still hidden, reveal them 
+    // to guarantee no one gets stuck with a permanently invisible page.
+    setTimeout(() => {
+      nodes.forEach(n => n.classList.add("in-view"));
+    }, 2000);
   }
   setupReveal();
   window.setupReveal = setupReveal;
