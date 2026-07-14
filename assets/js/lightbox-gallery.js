@@ -85,8 +85,9 @@
     lightbox = document.createElement('dialog');
     lightbox.id = 'nativeLightbox';
     lightbox.className = 'native-lightbox';
-    // Keep slider math consistent across site languages by isolating from page RTL direction.
-    lightbox.setAttribute('dir', 'ltr');
+    // Do NOT force dir=ltr on the dialog itself — it would break inset-inline-end
+    // on the close button in RTL languages. The slides wrapper and track already
+    // have direction:ltr applied below to keep slider math correct.
     lightbox.setAttribute('aria-hidden', 'true');
     lightbox.innerHTML = [
       '<button class="lightbox-close" aria-label="Close">&times;</button>',
