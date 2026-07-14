@@ -3738,7 +3738,7 @@ dialog.native-lightbox::backdrop {
 .lightbox-counter {
   position: absolute;
   top: 20px;
-  left: 20px;
+  inset-inline-start: 20px;
   background: transparent;
   color: white;
   padding: 0;
@@ -3758,7 +3758,7 @@ dialog.native-lightbox::backdrop {
 @media (max-width: 768px) {
   .lightbox-counter {
     top: 16px;
-    left: 16px;
+    inset-inline-start: 16px;
     padding: 0;
     font-size: 0.875rem;
   }
