@@ -258,29 +258,40 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
 
     // Photo — show only if present
     const photo = member.bio && member.bio.photo;
-    if (photo) {
-      // Clear previous image to avoid flashing the old profile picture
-      bioPhoto.removeAttribute('src');
-      
-      // Hide the image while loading to ensure a clean transition
-      bioPhoto.style.opacity = '0';
-      bioPhoto.style.transition = 'opacity 0.2s ease';
-      bioPhoto.onload = () => { bioPhoto.style.opacity = '1'; };
-      bioPhoto.onerror = () => { bioPhoto.style.opacity = '1'; };
 
-      bioPhoto.src = photo;
-      bioPhoto.alt = t(member.name, lang);
+    // Always clear the previous image immediately so the old photo is never
+    // visible while the new one is downloading. We never move bioPhoto out of
+    // the DOM (innerHTML = '' would detach it and kill the onload handler).
+    bioPhoto.onload = null;
+    bioPhoto.onerror = null;
+    bioPhoto.style.transition = 'none';
+    bioPhoto.style.opacity = '0';
+    bioPhoto.removeAttribute('src');
+
+    if (photo) {
       bioPhotoWrap.hidden = false;
-      bioPhotoWrap.innerHTML = ''; // reset
-      bioPhotoWrap.appendChild(bioPhoto);
+      bioPhoto.alt = t(member.name, lang);
+
       if (photo.includes('placeholder-')) {
         bioPhotoWrap.classList.remove('dir-is-clickable');
       } else {
         bioPhotoWrap.classList.add('dir-is-clickable');
       }
+
+      // Set handlers before src so they fire even for cached images
+      bioPhoto.onload  = () => {
+        bioPhoto.style.transition = 'opacity 0.2s ease';
+        bioPhoto.style.opacity = '1';
+      };
+      bioPhoto.onerror = () => {
+        bioPhoto.style.transition = 'none';
+        bioPhoto.style.opacity = '1';
+      };
+
+      // Setting src last triggers the actual load
+      bioPhoto.src = photo;
     } else {
       bioPhotoWrap.hidden = true;
-      bioPhoto.removeAttribute('src');
     }
 
     // Info rows
