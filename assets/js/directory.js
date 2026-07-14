@@ -259,6 +259,15 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
     // Photo — show only if present
     const photo = member.bio && member.bio.photo;
     if (photo) {
+      // Clear previous image to avoid flashing the old profile picture
+      bioPhoto.removeAttribute('src');
+      
+      // Hide the image while loading to ensure a clean transition
+      bioPhoto.style.opacity = '0';
+      bioPhoto.style.transition = 'opacity 0.2s ease';
+      bioPhoto.onload = () => { bioPhoto.style.opacity = '1'; };
+      bioPhoto.onerror = () => { bioPhoto.style.opacity = '1'; };
+
       bioPhoto.src = photo;
       bioPhoto.alt = t(member.name, lang);
       bioPhotoWrap.hidden = false;
@@ -271,7 +280,7 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
       }
     } else {
       bioPhotoWrap.hidden = true;
-
+      bioPhoto.removeAttribute('src');
     }
 
     // Info rows
