@@ -36,7 +36,7 @@ window.I18N = {
     "pub.btn.preview": "Read",
     "pub.btn.download": "Download",
     "pub.btn.contact": "Contact Us",
-    "pub.physical.note": "Available as physical copy only",
+    "pub.physical.note": "physical copy only",
     "about.kicker": "About Us",
     "about.title": "New Halabja Center for Teaching & Memorizing the Holy Qur'an",
     "about.whoweare.kicker": "About the Center",

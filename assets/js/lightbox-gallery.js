@@ -324,6 +324,11 @@
   function openLightbox(startIndex) {
     if (!lightbox) return;
 
+    // Mirror the page direction so inset-inline-* CSS resolves correctly.
+    // dialog elements in the top layer don't always inherit dir from <html>.
+    const pageDir = document.documentElement.getAttribute('dir') || 'ltr';
+    lightbox.setAttribute('dir', pageDir);
+
     index = clamp(startIndex, 0, images.length - 1);
     renderSlides();
     lightbox.style.opacity = '0';
