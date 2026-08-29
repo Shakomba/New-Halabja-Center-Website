@@ -817,6 +817,8 @@
           },
           "certNumber": "25",
           "date": "07/12/2019",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": "23/12/1994",
             "job": {
@@ -1005,6 +1007,8 @@
           },
           "certNumber": "33",
           "date": "25/11/2020",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": "",
             "job": {
@@ -1481,6 +1485,8 @@
           },
           "certNumber": "53",
           "date": "04/07/2024",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": "08/01/1997",
             "job": {
@@ -1504,6 +1510,8 @@
           },
           "certNumber": "54",
           "date": "10/07/2024",
+          "isStaff": true,
+          "staffRole": "tajweed",
           "bio": {
             "birthDate": "04/04/2000",
             "job": {

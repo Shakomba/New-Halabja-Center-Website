@@ -347,20 +347,6 @@
         },
         allCerts: []
       },
-      {
-        member: {
-          name: { ku: 'شەهلا عەبدوڵڵا ئەحمەد', ar: 'شهلا عبد الله أحمد', en: 'Shahla Abdullah Ahmed' },
-          staffRole: 'studies',
-          isStaff: true,
-          bio: {
-            birthDate: '1975',
-            job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
-            degree: { ku: 'سەرەتایی', ar: 'ابتدائية', en: 'Elementary' },
-            photo: '/assets/img/students/placeholder-female.png'
-          }
-        },
-        allCerts: []
-      }
     ]
   };
 
