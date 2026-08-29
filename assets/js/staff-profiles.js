@@ -136,6 +136,30 @@
     });
   }
 
+  /* ── Staff exclusion helpers ──────────────────────── */
+  const isBlockedStaffName = (member) => {
+    if (!member || !member.name) return false;
+    const rawNames = [];
+
+    if (typeof member.name === 'string') {
+      rawNames.push(member.name);
+    } else {
+      rawNames.push(member.name.ku, member.name.ar, member.name.en);
+    }
+
+    const blocked = [
+      'shahla abdullah ahmed',
+      'شەهلا عەبدوڵڵا ئەحمەد',
+      'شهلا عبدالله أحمد',
+      'شهلا عبد الله أحمد'
+    ];
+
+    return rawNames.some(name => {
+      const n = String(name || '').trim().toLowerCase();
+      return blocked.includes(n);
+    });
+  };
+
   /* ── Build people map from categories data ────────── */
   const buildStaffList = (categories) => {
     const peopleMap = {};
@@ -144,7 +168,7 @@
     // storing their primary data (bio, staffRole, etc.)
     categories.forEach(cat => {
       (cat.members || []).forEach(member => {
-        if (!member.isStaff) return;
+        if (!member.isStaff || isBlockedStaffName(member)) return;
 
         const nameKey = (typeof member.name === 'object')
           ? (member.name.ku || member.name.en || member.name.ar || '')
