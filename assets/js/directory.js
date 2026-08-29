@@ -571,7 +571,8 @@ let cName = m.customLabel ? t(m.customLabel, lang) : catName;
   /* ── Load data ─────────────────────────────────────── */
   var loadData = function() {
     var base = 'https://bnkayhalabjaytaza.org';
-    var path = '/assets/data/students.json';
+    var cacheBust = '?v=20260829';
+    var path = '/assets/data/students.json' + cacheBust;
     var origin = (window.__nhcOrigin || '');
     var urls = [];
     if (urls.indexOf(origin + path) === -1) urls.push(origin + path);
