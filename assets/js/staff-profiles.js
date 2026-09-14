@@ -350,7 +350,7 @@
   /* ── Fetch and initialise ─────────────────────────── */
   (function() {
     var base = 'https://bnkayhalabjaytaza.org';
-    var cacheBust = '?v=20260914';
+    var cacheBust = '?v=20260915';
     var path = '/assets/data/students.json' + cacheBust;
     var origin = (window.__nhcOrigin || '');
     var urls = [];
@@ -404,6 +404,11 @@
         return isNaN(num) ? Infinity : num;
       };
 
+      var requestedOrder = {
+        'fakhr faraj abdullah': 0,
+        'pshtiwan aziz muhammad': 1
+      };
+
       var fromJson = buildStaffList(data.categories || []);
       staffList = [].concat(STATIC_STAFF.first, fromJson, STATIC_STAFF.last)
         .sort(function(a, b) {
@@ -418,6 +423,14 @@
           if (nB.indexOf('farooq hussein') !== -1 && nA.indexOf('farooq hussein') === -1) return 1;
           if (nA.indexOf('ahmed aynaddin') !== -1 && nB.indexOf('ahmed aynaddin') === -1) return -1;
           if (nB.indexOf('ahmed aynaddin') !== -1 && nA.indexOf('ahmed aynaddin') === -1) return 1;
+
+          var orderA = requestedOrder[nA];
+          var orderB = requestedOrder[nB];
+          if (orderA !== undefined || orderB !== undefined) {
+            if (orderA === undefined) return 1;
+            if (orderB === undefined) return -1;
+            return orderA - orderB;
+          }
 
           var manA = isMan(a), manB = isMan(b);
           if (manA && !manB) return -1;
