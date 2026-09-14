@@ -313,34 +313,7 @@
         },
         allCerts: []
       },
-      {
-        member: {
-          name: { ku: 'خێڵان ئەحمەد فەتاح', ar: 'خيلان أحمد فتاح', en: 'Khelan Ahmed Fattah' },
-          staffRole: 'studies',
-          isStaff: true,
-          bio: {
-            birthDate: '03/04/1988',
-            job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
-            degree: { ku: 'دبلۆم', ar: 'دبلوم', en: 'Diploma' },
-            photo: '/assets/img/students/placeholder-female.png'
-          }
-        },
-        allCerts: []
-      },
-      {
-        member: {
-          name: { ku: 'دێرین محێدین محەممەد', ar: 'ديرين محي الدين محمد', en: 'Derin Muhedin Muhammad' },
-          staffRole: 'studies',
-          isStaff: true,
-          bio: {
-            birthDate: '1998',
-            job: { ku: 'مامۆستا', ar: 'مدرس', en: 'Teacher' },
-            degree: { ku: 'بەکالۆریۆس', ar: 'بكالوريوس', en: "Bachelor's" },
-            photo: '/assets/img/students/placeholder-female.png'
-          }
-        },
-        allCerts: []
-      }
+
     ],
     last: [
       {
@@ -377,7 +350,7 @@
   /* ── Fetch and initialise ─────────────────────────── */
   (function() {
     var base = 'https://bnkayhalabjaytaza.org';
-    var cacheBust = '?v=20260829';
+    var cacheBust = '?v=20260914';
     var path = '/assets/data/students.json' + cacheBust;
     var origin = (window.__nhcOrigin || '');
     var urls = [];

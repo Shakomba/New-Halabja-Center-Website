@@ -64,8 +64,6 @@
           },
           "certNumber": "3",
           "date": "04/12/2024",
-          "isStaff": true,
-          "staffRole": "huffaz",
           "bio": {
             "birthDate": "1978",
             "job": {
@@ -230,6 +228,15 @@
             },
             "photo": "/assets/img/students/placeholder-female.png"
           }
+        },
+        {
+          "name": {
+            "ku": "سیما عەبدوڕەحمان حەمەساڵح",
+            "ar": "سيما عبدالرحمن محمد صالح",
+            "en": "Syma Abdulrahman Muhammad Salih"
+          },
+          "certNumber": "10",
+          "date": "09/09/2026"
         }
       ]
     },
@@ -1857,6 +1864,24 @@
             },
             "photo": "/assets/img/students/placeholder-male.svg"
           }
+        },
+        {
+          "name": {
+            "ku": "دیار ڕزگار مەحموود",
+            "ar": "ديار رزغار محمود",
+            "en": "Dyar Rzgar Mahmoud"
+          },
+          "certNumber": "69",
+          "date": "27/8/2026"
+        },
+        {
+          "name": {
+            "ku": "چنوور حەسەن عەلی",
+            "ar": "شنور حسن علي",
+            "en": "Chnur Hasan Ali"
+          },
+          "certNumber": "70",
+          "date": "05/9/2026"
         }
       ]
     },
@@ -4930,9 +4955,9 @@
         },
         {
           "name": {
-            "ku": "سیما عەبدوڕەحمان محەممەد",
+            "ku": "سیما عەبدوڕەحمان حەمەساڵح",
             "ar": "سيما عبدالرحمن محمد",
-            "en": "Syma Abdulrahman Muhammad"
+            "en": "Syma Abdulrahman Hama salih"
           },
           "certNumber": "343",
           "date": "5/10/2024"
@@ -6844,9 +6869,9 @@
         },
         {
           "name": {
-            "ku": "سیما عەبدوڕەحمان محەممەد",
-            "ar": "سيما عبدالرحمن محمد",
-            "en": "Syma Abdulrahman Muhammad"
+            "ku": "سیما عەبدوڕەحمان حەمەساڵح",
+            "ar": "سيما عبدالرحمن حمزة",
+            "en": "Syma Abdulrahman Hama salih"
           },
           "certNumber": "8",
           "date": "12/10/2016"
